@@ -1,0 +1,46 @@
+# ===========================
+# Robots.txt for https://reda-website.vercel.app
+# Author: Reda Salem (Front-End Developer)
+# Purpose: Full SEO optimization for portfolio visibility
+# ===========================
+
+User-agent: *
+Allow: /
+
+# Disallow any sensitive or backend routes
+Disallow: /admin/
+Disallow: /api/
+Disallow: /server/
+Disallow: /private/
+Disallow: /tmp/
+
+# Avoid duplicate indexing
+Disallow: /*?*
+
+# Crawl-delay for better server performance
+Crawl-delay: 2
+
+# Sitemap reference
+Sitemap: https://reda-website.vercel.app/sitemap.xml
+
+
+# ===========================
+# Additional Instructions
+# ===========================
+
+# Allow Googlebot to index images, scripts, and CSS
+User-agent: Googlebot
+Allow: /*.js$
+Allow: /*.css$
+Allow: /images/
+
+# Specific bots (performance)
+User-agent: Bingbot
+Crawl-delay: 5
+
+User-agent: Yandex
+Disallow: /cgi-bin/
+
+# ===========================
+# End of file
+# ===========================
