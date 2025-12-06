@@ -4,76 +4,105 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Light mode colors */
-  --background: oklch(0.98 0 0);
-  --foreground: oklch(0.15 0 0);
-  --card: oklch(0.95 0.01 280);
-  --card-foreground: oklch(0.15 0 0);
-  --popover: oklch(0.95 0.01 280);
-  --popover-foreground: oklch(0.15 0 0);
-  --primary: oklch(0.45 0.3 280);
-  --primary-foreground: oklch(0.95 0 0);
-  --secondary: oklch(0.75 0.15 280);
-  --secondary-foreground: oklch(0.15 0 0);
-  --muted: oklch(0.85 0 0);
-  --muted-foreground: oklch(0.45 0 0);
-  --accent: oklch(0.65 0.25 50);
-  --accent-foreground: oklch(0.08 0 0);
+  /* Minimal Silicon Valley Palette - Light Mode ONLY */
+  --background: oklch(0.985 0.002 247.8);
+  /* Slate 50 */
+  --foreground: oklch(0.34 0.04 255);
+  /* Slate 700 */
+  --card: oklch(1 0 0);
+  /* White */
+  --card-foreground: oklch(0.34 0.04 255);
+  /* Slate 700 */
+  --popover: oklch(1 0 0);
+  /* White */
+  --popover-foreground: oklch(0.34 0.04 255);
+  /* Slate 700 */
+  --primary: oklch(0.55 0.22 270);
+  /* Indigo 500 */
+  --primary-foreground: oklch(1 0 0);
+  /* White */
+  --secondary: oklch(0.96 0.01 247);
+  /* Slate 100 */
+  --secondary-foreground: oklch(0.34 0.04 255);
+  /* Slate 700 */
+  --muted: oklch(0.96 0.01 247);
+  /* Slate 100 */
+  --muted-foreground: oklch(0.55 0.04 250);
+  /* Slate 500 */
+  --accent: oklch(0.55 0.22 270);
+  /* Indigo 500 */
+  --accent-foreground: oklch(1 0 0);
+  /* White */
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.95 0 0);
-  --border: oklch(0.85 0.02 280);
-  --input: oklch(0.9 0.02 280);
-  --ring: oklch(0.45 0.3 280);
-  --chart-1: oklch(0.65 0.25 50);
-  --chart-2: oklch(0.45 0.3 280);
-  --chart-3: oklch(0.55 0.2 200);
-  --chart-4: oklch(0.5 0.25 30);
-  --chart-5: oklch(0.6 0.2 150);
+  --border: oklch(0.87 0.02 250);
+  /* Slate 300 */
+  --input: oklch(0.87 0.02 250);
+  /* Slate 300 */
+  --ring: oklch(0.55 0.22 270);
+  /* Indigo 500 */
+  --chart-1: oklch(0.55 0.22 270);
+  --chart-2: oklch(0.40 0.06 250);
+  --chart-3: oklch(0.96 0.01 247);
+  --chart-4: oklch(0.87 0.02 250);
+  --chart-5: oklch(0.34 0.04 255);
   --radius: 0.5rem;
-  --sidebar: oklch(0.95 0.01 280);
-  --sidebar-foreground: oklch(0.15 0 0);
-  --sidebar-primary: oklch(0.45 0.3 280);
-  --sidebar-primary-foreground: oklch(0.95 0 0);
-  --sidebar-accent: oklch(0.65 0.25 50);
-  --sidebar-accent-foreground: oklch(0.08 0 0);
-  --sidebar-border: oklch(0.85 0.02 280);
-  --sidebar-ring: oklch(0.45 0.3 280);
+  --sidebar: oklch(0.985 0.002 247.8);
+  --sidebar-foreground: oklch(0.34 0.04 255);
+  --sidebar-primary: oklch(0.55 0.22 270);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.96 0.01 247);
+  --sidebar-accent-foreground: oklch(0.34 0.04 255);
+  --sidebar-border: oklch(0.87 0.02 250);
+  --sidebar-ring: oklch(0.55 0.22 270);
 }
 
 .dark {
-  /* Dark mode colors */
-  --background: oklch(0.08 0 0);
-  --foreground: oklch(0.95 0 0);
-  --card: oklch(0.12 0.02 280);
-  --card-foreground: oklch(0.95 0 0);
-  --popover: oklch(0.12 0.02 280);
-  --popover-foreground: oklch(0.95 0 0);
-  --primary: oklch(0.45 0.3 280);
-  --primary-foreground: oklch(0.95 0 0);
-  --secondary: oklch(0.25 0.15 280);
-  --secondary-foreground: oklch(0.95 0 0);
-  --muted: oklch(0.25 0 0);
-  --muted-foreground: oklch(0.65 0 0);
-  --accent: oklch(0.65 0.25 50);
-  --accent-foreground: oklch(0.08 0 0);
+  /* Dark Mode Palette - Slate 950 / Indigo 400 */
+  --background: oklch(0.12 0.02 260);
+  /* Slate 950 */
+  --foreground: oklch(0.985 0.002 247.8);
+  /* Slate 50 */
+  --card: oklch(0.17 0.02 260);
+  /* Slate 900 */
+  --card-foreground: oklch(0.985 0.002 247.8);
+  --popover: oklch(0.17 0.02 260);
+  /* Slate 900 */
+  --popover-foreground: oklch(0.985 0.002 247.8);
+  --primary: oklch(0.65 0.22 270);
+  /* Indigo 400 */
+  --primary-foreground: oklch(1 0 0);
+  /* White */
+  --secondary: oklch(0.25 0.03 260);
+  /* Slate 800 */
+  --secondary-foreground: oklch(0.985 0.002 247.8);
+  --muted: oklch(0.25 0.03 260);
+  /* Slate 800 */
+  --muted-foreground: oklch(0.70 0.04 250);
+  /* Slate 400 */
+  --accent: oklch(0.65 0.22 270);
+  /* Indigo 400 */
+  --accent-foreground: oklch(1 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.95 0 0);
-  --border: oklch(0.2 0.02 280);
-  --input: oklch(0.15 0.02 280);
-  --ring: oklch(0.45 0.3 280);
-  --chart-1: oklch(0.65 0.25 50);
-  --chart-2: oklch(0.45 0.3 280);
-  --chart-3: oklch(0.55 0.2 200);
-  --chart-4: oklch(0.5 0.25 30);
-  --chart-5: oklch(0.6 0.2 150);
-  --sidebar: oklch(0.1 0.01 280);
-  --sidebar-foreground: oklch(0.95 0 0);
-  --sidebar-primary: oklch(0.45 0.3 280);
-  --sidebar-primary-foreground: oklch(0.95 0 0);
-  --sidebar-accent: oklch(0.65 0.25 50);
-  --sidebar-accent-foreground: oklch(0.08 0 0);
-  --sidebar-border: oklch(0.2 0.02 280);
-  --sidebar-ring: oklch(0.45 0.3 280);
+  --border: oklch(0.25 0.03 260);
+  /* Slate 800 */
+  --input: oklch(0.25 0.03 260);
+  --ring: oklch(0.65 0.22 270);
+  /* Indigo 400 */
+  --chart-1: oklch(0.65 0.22 270);
+  --chart-2: oklch(0.40 0.06 250);
+  --chart-3: oklch(0.96 0.01 247);
+  --chart-4: oklch(0.87 0.02 250);
+  --chart-5: oklch(0.34 0.04 255);
+  --sidebar: oklch(0.12 0.02 260);
+  --sidebar-foreground: oklch(0.985 0.002 247.8);
+  --sidebar-primary: oklch(0.65 0.22 270);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.25 0.03 260);
+  --sidebar-accent-foreground: oklch(0.985 0.002 247.8);
+  --sidebar-border: oklch(0.25 0.03 260);
+  --sidebar-ring: oklch(0.65 0.22 270);
 }
 
 @theme inline {
@@ -121,6 +150,7 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground scroll-smooth;
   }
@@ -128,20 +158,24 @@
 
 /* Gaming-inspired animations and glow effects */
 @keyframes glow {
+
   0%,
   100% {
     box-shadow: 0 0 5px rgba(114, 88, 188, 0.5), inset 0 0 5px rgba(114, 88, 188, 0.1);
   }
+
   50% {
     box-shadow: 0 0 20px rgba(114, 88, 188, 0.8), inset 0 0 10px rgba(114, 88, 188, 0.2);
   }
 }
 
 @keyframes float {
+
   0%,
   100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-10px);
   }
@@ -152,6 +186,7 @@
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -196,6 +231,7 @@
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -203,9 +239,12 @@
 }
 
 @keyframes gradient {
-  0%, 100% {
+
+  0%,
+  100% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }

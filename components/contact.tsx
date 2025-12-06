@@ -7,7 +7,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import { SendIcon } from "lucide-react";
 
-  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -16,15 +16,15 @@ export default function Contact() {
     subject: "",
     message: "",
   });
-  
+
   const [isValidEmail, setIsValidEmail] = useState(false);
 
-   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    
+
     // تحقق من صحة البريد الإلكتروني عند تغييره
     if (name === 'email') {
       setIsValidEmail(emailRegex.test(value));
@@ -39,7 +39,7 @@ export default function Contact() {
     event.preventDefault();
     setResult(true);
     const formDataObj = new FormData(event.currentTarget);
-    formDataObj.append("access_key",`${process.env.NEXT_PUBLIC_WEBFORMS}`);
+    formDataObj.append("access_key", `${process.env.NEXT_PUBLIC_WEBFORMS}`);
 
     const response = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
@@ -63,11 +63,11 @@ export default function Contact() {
     {
       // Email (red) - provide bg for icon wrapper
       icon: (
-        <span className="relative z-20 text-red-600 dark:text-red-300">
+        <span className="relative z-20 text-red-600">
           <EmailIcon />
         </span>
       ),
-      bg: 'bg-red-100 dark:bg-red-900/20',
+      bg: 'bg-red-100',
       label: "Email",
       value: "redasalem287@gmail.com",
       href: "mailto:redasalem287@gmail.com",
@@ -75,11 +75,11 @@ export default function Contact() {
     {
       // WhatsApp (brand green)
       icon: (
-        <span className="relative z-20 text-[#25D366] dark:text-[#1EBE55]">
+        <span className="relative z-20 text-[#25D366]">
           <WhatsAppIcon />
         </span>
       ),
-      bg: 'bg-green-100 dark:bg-green-900/20',
+      bg: 'bg-green-100',
       label: "Phone",
       value: "+20 112 169 6299",
       href: "tel:+201121696299",
@@ -87,11 +87,11 @@ export default function Contact() {
     {
       // LinkedIn (brand blue)
       icon: (
-        <span className="relative z-20 text-[#0A66C2] dark:text-[#0A66C2]">
+        <span className="relative z-20 text-[#0A66C2]">
           <LinkedInIcon />
         </span>
       ),
-      bg: 'bg-blue-100 dark:bg-blue-900/20',
+      bg: 'bg-blue-100',
       href: "https://www.linkedin.com/in/reda-salem-dev/",
       label: "LinkedIn",
       value: "LinkedIn Profile",
@@ -99,9 +99,9 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="min-h-screen py-20 px-4 md:px-8 relative">
+    <section id="contact" className="min-h-screen py-20 px-4 md:px-8 relative bg-background transition-colors duration-300">
       {/* Background glow */}
-      <div className="absolute inset-0 bg-linear-to-b from-transparent via-accent/5 to-primary/5 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-50/50 to-background pointer-events-none dark:via-indigo-950/20 dark:to-background" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="mb-16 animate-fade-in">
@@ -165,9 +165,8 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
-                  className={`w-full px-4 py-2 rounded-lg bg-input border text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-300 ${
-                    formData.email ? (isValidEmail ? 'border-green-500' : 'border-red-500') : 'border-border'
-                  }`}
+                  className={`w-full px-4 py-2 rounded-lg bg-input border text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-300 ${formData.email ? (isValidEmail ? 'border-green-500' : 'border-red-500') : 'border-border'
+                    }`}
                   placeholder="your@email.com"
                 />
               </div>
@@ -213,7 +212,7 @@ export default function Contact() {
                   </>
                 ) : (
                   <>
-                    <span><SendIcon/></span>
+                    <span><SendIcon /></span>
                     Send Message
                   </>
                 )}

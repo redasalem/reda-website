@@ -10,22 +10,22 @@ const config: Config = {
     extend: {
       colors: {
         light: {
-          primary: "#8B5CF6",    // رائع بنفسجي
-          secondary: "#EC4899",  // وردي جميل
-          accent: "#06B6D4",     // سماوي منعش
-          background: "#F0F4F8", // رمادي فاتح مريح للعين
-          foreground: "#1E293B", // كحلي غامق للنصوص
-          muted: "#64748B",      // رمادي متوسط للنصوص الثانوية
-          border: "#E2E8F0",     // رمادي فاتح جداً للحدود
+          primary: "#6366F1",    // Indigo 500
+          secondary: "#64748B",  // Slate 500
+          accent: "#4F46E5",     // Indigo 600
+          background: "#F8FAFC", // Slate 50
+          foreground: "#334155", // Slate 700
+          muted: "#94A3B8",      // Slate 400
+          border: "#E2E8F0",     // Slate 300
         },
         dark: {
-          primary: "#8B5CF6",    // نفس البنفسجي
-          secondary: "#EC4899",  // نفس الوردي
-          accent: "#06B6D4",     // نفس السماوي
-          background: "#0F172A", // كحلي غامق
-          foreground: "#F8FAFC", // أبيض مائل للرمادي
-          muted: "#94A3B8",      // رمادي فاتح
-          border: "#1E293B",     // كحلي متوسط
+          primary: "#818CF8",    // Indigo 400
+          secondary: "#94A3B8",  // Slate 400
+          accent: "#818CF8",     // Indigo 400
+          background: "#020617", // Slate 950
+          foreground: "#F8FAFC", // Slate 50
+          muted: "#1E293B",      // Slate 800
+          border: "#1E293B",     // Slate 800
         }
       },
       animation: {
