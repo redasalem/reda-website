@@ -154,7 +154,7 @@ export default function Sidebar() {
             <button
               key={item.id}
               onClick={() => scrollToSection(item.id)}
-              className={`w-full text-left px-4 py-2 rounded-lg text-sm font-medium text-sidebar-foreground hover:bg-sidebar-primary/20 hover:text-sidebar-accent transition-all duration-300 group relative overflow-hidden animate-fade-in ${
+              className={`w-full text-left px-4 py-2 rounded-lg text-sm font-medium text-sidebar-foreground dark:text-white hover:bg-sidebar-primary/20 transition-all duration-300 group relative overflow-hidden animate-fade-in ${
                 !isExpanded && "flex justify-center px-2"
               }`}
               style={{ animationDelay: `${0.2 + index * 0.1}s` }}
