@@ -132,7 +132,7 @@ export default function HeroSection() {
                 whileTap={{ scale: 0.95 }}
                 className="cursor-pointer px-8 py-4 bg-linear-to-r from-purple-600 to-pink-600 dark:from-purple-500 dark:to-pink-500 text-white font-semibold rounded-full shadow-lg hover:shadow-purple-500/50 transition-all flex items-center gap-2"
               >
-                <Link target='_blank' href='https://drive.google.com/file/d/1QWJNypNVCROgw3_Jz32KCIV_K60-JrJ-/view' className='flex items-center gap-2'>
+                <Link target='_blank' href='https://drive.google.com/file/d/1mUY7CPgjKr8DBDFMMr28SMGcZIAFh7xO/view' className='flex items-center gap-2'>
                   <Download className="w-5 h-5" />
                   Download Resume
                 </Link>
