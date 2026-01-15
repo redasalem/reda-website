@@ -1,0 +1,91 @@
+{
+  "name": "Reda Salem - Front-End Developer Portfolio",
+  "short_name": "Reda Salem",
+  "description": "Professional Front-End Developer specializing in modern web development, UI/UX, and performance optimization. Explore my projects, skills, and contact information.",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["standalone", "fullscreen", "minimal-ui", "browser"],
+  "orientation": "portrait-primary",
+  "theme_color": "#000000",
+  "background_color": "#000000",
+  "lang": "en-US",
+  "dir": "ltr",
+  "categories": ["business", "technology", "portfolio", "productivity"],
+  "prefer_related_applications": false,
+
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+
+  "screenshots": [
+    {
+      "src": "/screenshots/home-light.png",
+      "type": "image/png",
+      "sizes": "1080x1920",
+      "form_factor": "narrow",
+      "label": "Homepage – Light Mode"
+    },
+    {
+      "src": "/screenshots/home-dark.png",
+      "type": "image/png",
+      "sizes": "1080x1920",
+      "form_factor": "narrow",
+      "label": "Homepage – Dark Mode"
+    }
+  ],
+
+  "shortcuts": [
+    {
+      "name": "Projects",
+      "short_name": "Projects",
+      "description": "Quick shortcut to the Projects section",
+      "url": "/#projects",
+      "icons": [{ "src": "/shortcut-projects.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Contact Me",
+      "short_name": "Contact",
+      "description": "Quick access to the contact section",
+      "url": "/#contact",
+      "icons": [{ "src": "/shortcut-contact.png", "sizes": "96x96" }]
+    }
+  ],
+
+  "edge_side_panel": {
+    "preferred_width": 500
+  }
+}
