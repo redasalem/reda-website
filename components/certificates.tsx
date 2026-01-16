@@ -36,9 +36,9 @@ export default function Certificates() {
       image: "/images/reda_iti.png",
     },
     {
-      title: "Full-Stack Training Internship",
+      title: "Front-End Development Training",
       issuer: "Huma-volve",
-      date: "Jan 2024",
+      date: "Dec 2025",
       description:
         "Intense hands-on experience in problem analysis, back-end systems, and professional team collaboration.",
       link: "#",
