@@ -41,7 +41,7 @@ export default function Certificates() {
       date: "Dec 2025",
       description:
         "Intense hands-on experience in problem analysis, back-end systems, and professional team collaboration.",
-      link: "#",
+      link: "https://www.linkedin.com/posts/reda-salem-dev_frontend-react-professionalgrowth-activity-7416949321494982656-bim4?utm_source=share&utm_medium=member_desktop&rcm=ACoAAELm9IAB5ccC-E7q6WGg2fPYNK2bK5i7Yys",
       color: "from-orange-500 to-red-500",
       icon: "🚀",
       image: "/images/huma-volve.jpg",
