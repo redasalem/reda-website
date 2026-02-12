@@ -32,7 +32,7 @@ export default function HeroSection() {
 
   return (
     <section
-      id="About Me"
+      id="about"
       className="relative min-h-screen overflow-hidden flex items-center bg-background"
     >
       {/* Animated Background - يتغير مع الثيم */}

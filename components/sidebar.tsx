@@ -26,7 +26,7 @@ export default function Sidebar() {
   };
 
   const navItems = [
-    { label: "About Me", id: "About Me" },
+    { label: "About Me", id: "about" },
     { label: "Skills", id: "skills" },
     { label: "Projects", id: "projects" },
     { label: "Certificates", id: "certificates" },
@@ -89,8 +89,10 @@ export default function Sidebar() {
           >
             <Image
               src="/images/reda.png"
-              alt="Reda Salem"
+              alt="Reda Salem - Full Stack Developer"
               fill
+              priority
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="object-cover"
             />
           </div>

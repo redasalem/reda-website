@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 import LaunchIcon from "@mui/icons-material/Launch";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import CodeIcon from "@mui/icons-material/Code";
@@ -34,7 +35,10 @@ export default function Projects() {
     );
   }
   return (
-    <section id="projects" className="py-20 md:py-32 relative overflow-hidden bg-background transition-colors duration-500">
+    <section
+      id="projects"
+      className="py-20 md:py-32 relative overflow-hidden bg-background transition-colors duration-500"
+    >
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-72 h-72 bg-accent/5 rounded-full blur-3xl opacity-50 md:opacity-100" />
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl opacity-50 md:opacity-100" />
@@ -50,11 +54,13 @@ export default function Projects() {
         >
           <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-accent/10 border border-accent/20 backdrop-blur-sm mb-4">
             <CodeIcon className="text-accent w-3 h-3 md:w-4 md:h-4" />
-            <span className="text-xs md:text-sm font-semibold text-accent">My Work</span>
+            <span className="text-xs md:text-sm font-semibold text-accent">
+              My Work
+            </span>
           </div>
 
           <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight">
-            <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
+            <span className="bg-linear-to-r from-primary via-accent to-primary bg-clip-text text-transparent bg-size-[200%_auto] animate-gradient">
               Featured Projects
             </span>
           </h2>
@@ -63,7 +69,7 @@ export default function Projects() {
             Explore my latest work and creative solutions
           </p>
 
-          <div className="w-20 md:w-24 h-1.5 mx-auto bg-gradient-to-r from-primary to-accent rounded-full mt-6" />
+          <div className="w-20 md:w-24 h-1.5 mx-auto bg-linear-to-r from-primary to-accent rounded-full mt-6" />
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
@@ -80,15 +86,16 @@ export default function Projects() {
                 onMouseLeave={() => setHoveredIndex(null)}
               >
                 <div className="relative flex flex-col h-full bg-card border border-border/50 rounded-3xl overflow-hidden hover:shadow-xl hover:shadow-primary/5 hover:border-primary/20 transition-all duration-500 group-hover:-translate-y-2">
-
                   {/* Image Container */}
                   <div className="relative h-48 md:h-60 w-full overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+                    <div className="absolute inset-0 bg-linear-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
 
-                    <img
+                    <Image
                       src={project.image || "/images/placeholder.png"}
-                      alt={project.title}
-                      className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                      alt={`${project.title} - ${project.tech.join(", ")}`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-cover transform group-hover:scale-105 transition-transform duration-700"
                     />
 
                     <div className="absolute top-4 right-4 z-20 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
@@ -102,7 +109,7 @@ export default function Projects() {
                   {/* Content Container */}
                   <div className="flex flex-col flex-grow p-5 md:p-6 space-y-4">
                     <div className="flex items-start justify-between gap-2">
-                      <h3 className="text-xl md:text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
+                      <h3 className="text-xl md:text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300 grow">
                         {project.title}
                       </h3>
                       <motion.div
@@ -112,13 +119,10 @@ export default function Projects() {
                         <LaunchIcon sx={{ fontSize: 16 }} />
                       </motion.div>
                     </div>
-
                     <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2">
                       {project.description}
                     </p>
-
-                    <div className="flex-grow" /> {/* Spacer to push content down */}
-
+                    <div className="grow" /> {/* Spacer to push content down */}
                     {/* Tech Stack */}
                     <div className="flex flex-wrap gap-2 pt-2">
                       {project.tech.map((tech, i) => (
@@ -130,9 +134,7 @@ export default function Projects() {
                         </span>
                       ))}
                     </div>
-
                     <div className="h-px bg-border/50 my-4" />
-
                     <div className="flex gap-3 mt-auto">
                       {project.demo && (
                         <a
@@ -173,9 +175,7 @@ export default function Projects() {
             transition={{ delay: 0.2 }}
           >
             <div className="inline-flex flex-col items-center gap-4">
-              <p className="text-muted-foreground">
-                Want to see more?
-              </p>
+              <p className="text-muted-foreground">Want to see more?</p>
               <a
                 href="https://github.com/redasalem"
                 target="_blank"
@@ -185,7 +185,10 @@ export default function Projects() {
                 <span className="relative flex items-center gap-2 text-foreground font-medium group-hover:text-primary transition-colors">
                   <GitHubIcon />
                   View All Projects on GitHub
-                  <LaunchIcon className="transform group-hover:translate-x-1 transition-transform duration-300" sx={{ fontSize: 18 }} />
+                  <LaunchIcon
+                    className="transform group-hover:translate-x-1 transition-transform duration-300"
+                    sx={{ fontSize: 18 }}
+                  />
                 </span>
               </a>
             </div>

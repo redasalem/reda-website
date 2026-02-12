@@ -24,45 +24,45 @@ export default function BottomNavbar() {
     {
       icon: <InfoIcon />,
       label: "About",
-      id: "About Me",
+      id: "about",
       activeColor: "text-primary",
-      bgColor: "bg-primary/10"
+      bgColor: "bg-primary/10",
     },
     {
       icon: <MenuIcon />,
       label: "Skills",
       id: "skills",
       activeColor: "text-accent",
-      bgColor: "bg-accent/10"
+      bgColor: "bg-accent/10",
     },
     {
       icon: <WorkIcon />,
       label: "Projects",
       id: "projects",
       activeColor: "text-primary",
-      bgColor: "bg-primary/10"
+      bgColor: "bg-primary/10",
     },
     {
       icon: <EmojiEventsIcon />,
       label: "Certificates",
       id: "certificates",
       activeColor: "text-amber-500",
-      bgColor: "bg-amber-500/10"
+      bgColor: "bg-amber-500/10",
     },
     {
       icon: <ContactMailIcon />,
       label: "Contact",
       id: "contact",
       activeColor: "text-pink-500",
-      bgColor: "bg-pink-500/10"
+      bgColor: "bg-pink-500/10",
     },
     {
       icon: theme === "dark" ? <DarkModeIcon /> : <LightModeIcon />,
       label: theme === "dark" ? "Dark" : "Light",
       action: "theme",
       activeColor: "text-yellow-500",
-      bgColor: "bg-yellow-500/10"
-    }
+      bgColor: "bg-yellow-500/10",
+    },
   ];
 
   const handleClick = (item: any, index: number) => {
@@ -83,7 +83,6 @@ export default function BottomNavbar() {
     >
       {/* Main Container */}
       <div className="relative bg-card/80 dark:bg-card/60 backdrop-blur-xl rounded-2xl border border-border shadow-xl shadow-black/5 overflow-hidden">
-
         {/* Active Background Indicator */}
         <motion.div
           className={`absolute top-0 bottom-0 ${navItems[activeIndex].bgColor} rounded-2xl`}
@@ -91,7 +90,7 @@ export default function BottomNavbar() {
           transition={{ type: "spring", damping: 25, stiffness: 300 }}
           style={{
             width: `${100 / navItems.length}%`,
-            left: `${(activeIndex * 100) / navItems.length}%`
+            left: `${(activeIndex * 100) / navItems.length}%`,
           }}
         />
 
@@ -113,17 +112,16 @@ export default function BottomNavbar() {
                   className="relative"
                   animate={{
                     scale: isActive ? 1.1 : 1,
-                    y: isActive ? -2 : 0
+                    y: isActive ? -2 : 0,
                   }}
                   transition={{ type: "spring", damping: 20, stiffness: 300 }}
                 >
                   <motion.span
-                    className={`text-xl transition-colors duration-200 ${isActive
-                      ? item.activeColor
-                      : 'text-muted-foreground'
-                      }`}
+                    className={`text-xl transition-colors duration-200 ${
+                      isActive ? item.activeColor : "text-muted-foreground"
+                    }`}
                     animate={{
-                      rotate: 0
+                      rotate: 0,
                     }}
                     transition={{ duration: 0.3 }}
                   >
@@ -133,12 +131,11 @@ export default function BottomNavbar() {
 
                 {/* Label */}
                 <motion.span
-                  className={`text-[9px] font-medium truncate w-full text-center transition-colors duration-200 ${isActive
-                    ? item.activeColor
-                    : 'text-muted-foreground'
-                    }`}
+                  className={`text-[9px] font-medium truncate w-full text-center transition-colors duration-200 ${
+                    isActive ? item.activeColor : "text-muted-foreground"
+                  }`}
                   animate={{
-                    opacity: isActive ? 1 : 0.7
+                    opacity: isActive ? 1 : 0.7,
                   }}
                 >
                   {item.label}
@@ -148,8 +145,9 @@ export default function BottomNavbar() {
                 <AnimatePresence>
                   {isActive && (
                     <motion.div
-                      className={`absolute -bottom-1 w-1 h-1 rounded-full ${item.activeColor.split(' ')[0].replace('text-', 'bg-')
-                        }`}
+                      className={`absolute -bottom-1 w-1 h-1 rounded-full ${item.activeColor
+                        .split(" ")[0]
+                        .replace("text-", "bg-")}`}
                       initial={{ scale: 0, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
                       exit={{ scale: 0, opacity: 0 }}

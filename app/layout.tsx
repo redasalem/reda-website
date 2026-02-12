@@ -38,7 +38,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://reda-website.vercel.app"
+    process.env.NEXT_PUBLIC_SITE_URL || "https://reda-website.vercel.app",
   ),
 
   title: {
@@ -52,6 +52,10 @@ export const metadata: Metadata = {
 
   keywords: [
     // Primary Keywords
+    "React Native Developer Egypt",
+    "Mobile App Developer",
+    "Full Stack React Native",
+    "Next.js Developer",
     "reda salem",
     "Reda Salem",
     "react developer",
@@ -310,7 +314,7 @@ export default function RootLayout({
     url: "https://reda-website.vercel.app",
     image: {
       "@type": "ImageObject",
-      url: "https://reda-website.vercel.app/reda.png",
+      url: "https://reda-website.vercel.app/images/reda.png",
       width: 800,
       height: 800,
       caption: "Reda Salem - Full-Stack Developer",
@@ -321,7 +325,7 @@ export default function RootLayout({
       name: "Freelance / Remote",
     },
     description:
-      "Creative and performance-driven Full-Stack Developer specializing in React, Next.js, React Native, TypeScript, Node.js, Express, MongoDB. Building modern, scalable web & mobile applications.",
+      "Creative and performance-driven Full-Stack Developer specializing in React, Next.js, React Native, TypeScript, Node.js, Express, MongoDB. Top-rated Mobile App Developer and React Native Expert in Egypt.",
     knowsAbout: [
       {
         "@type": "Thing",
@@ -438,6 +442,21 @@ export default function RootLayout({
         currency: "USD",
       },
     },
+  };
+
+  // Site Navigation Schema
+  const navigationSchema = {
+    "@context": "https://schema.org",
+    "@type": "SiteNavigationElement",
+    name: ["About", "Skills", "Projects", "Certificates", "Contact", "Blog"],
+    url: [
+      "https://reda-website.vercel.app/#about",
+      "https://reda-website.vercel.app/#skills",
+      "https://reda-website.vercel.app/#projects",
+      "https://reda-website.vercel.app/#certificates",
+      "https://reda-website.vercel.app/#contact",
+      "https://reda-website.vercel.app/blog",
+    ],
   };
 
   // Website Schema
@@ -578,7 +597,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
 
         {/* Preload critical assets */}
-        <link rel="preload" as="image" href="/reda.png" />
+        <link rel="preload" as="image" href="/images/reda.png" />
 
         {/* Icons */}
         <meta name="msapplication-TileColor" content="#000000" />
@@ -612,7 +631,7 @@ export default function RootLayout({
         />
         <meta
           property="og:image"
-          content="https://reda-website.vercel.app/reda.png"
+          content="https://reda-website.vercel.app/images/reda.png"
         />
         <meta property="og:url" content="https://reda-website.vercel.app" />
         <meta property="og:site_name" content="Reda Salem Portfolio" />
@@ -629,7 +648,7 @@ export default function RootLayout({
         />
         <meta
           name="twitter:image"
-          content="https://reda-website.vercel.app/reda.png"
+          content="https://reda-website.vercel.app/images/reda.png"
         />
 
         {/* Keywords (مهمة جدًا للـ semantic SEO) */}
@@ -700,6 +719,13 @@ export default function RootLayout({
               __html: JSON.stringify(breadcrumbSchema),
             }}
             key="breadcrumb-schema"
+          />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(navigationSchema),
+            }}
+            key="navigation-schema"
           />
         </ThemeProvider>
 

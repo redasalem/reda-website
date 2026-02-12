@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useState, useRef } from "react";
+import Image from "next/image";
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 
 export default function Certificates() {
@@ -57,7 +58,7 @@ export default function Certificates() {
       className="min-h-screen py-32 px-4 md:px-8 relative overflow-hidden bg-linear-to-b from-background via-background/95 to-background"
     >
       {/* Animated Background Grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(139,92,246,0.03)_2px,transparent_2px),linear-gradient(90deg,rgba(139,92,246,0.03)_2px,transparent_2px)] bg-[size:80px_80px]" />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(139,92,246,0.03)_2px,transparent_2px),linear-gradient(90deg,rgba(139,92,246,0.03)_2px,transparent_2px)] bg-size-[80px_80px]" />
 
       {/* Floating Orbs */}
       <motion.div
@@ -169,15 +170,21 @@ export default function Certificates() {
                   />
 
                   {/* Background Image */}
-                  <motion.img
-                    src={cert.image}
-                    alt={cert.title}
-                    className="w-full h-full object-cover"
+                  <motion.div
+                    className="relative w-full h-full"
                     animate={{
                       scale: hoveredIndex === index ? 1.1 : 1,
                     }}
                     transition={{ duration: 0.6 }}
-                  />
+                  >
+                    <Image
+                      src={cert.image}
+                      alt={cert.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-cover"
+                    />
+                  </motion.div>
 
                   {/* Trophy Icon */}
                   <motion.div
