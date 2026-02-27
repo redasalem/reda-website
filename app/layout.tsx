@@ -43,19 +43,23 @@ export const metadata: Metadata = {
 
   title: {
     default:
-      "Reda Salem | Full-Stack Developer | React, Next.js, Node.js & MongoDB",
-    template: "%s | Reda Salem - Full-Stack Developer",
+      "Reda Salem | Performance Optimization Engineer & React Developer Egypt",
+    template: "%s | Reda Salem - Full-Stack Engineer",
   },
 
   description:
-    "Creative and performance-driven Full-Stack Developer specializing in Backend (Node.js, Express, MongoDB) and Frontend (React, Next.js, TypeScript) development. Expert in building high-performance React Native mobile apps for Android and iOS. Focus on clean architecture, scalable APIs, and modern UI/UX. Available for freelance projects and remote positions.",
+    "Hire Reda Salem, a Remote JavaScript Developer & Performance Optimization Engineer in Egypt. Achieving Google PageSpeed 99, I specialize in scalable web applications using React, Next.js, React Native, and Node.js.",
 
   keywords: [
     // Primary Keywords
-    "React Native Developer Egypt",
-    "Mobile App Developer",
-    "Full Stack React Native",
+    "Full Stack Developer Egypt",
+    "React Developer Egypt",
     "Next.js Developer",
+    "React Native Developer",
+    "Performance Optimization Engineer",
+    "Google PageSpeed 99",
+    "Scalable Web Applications",
+    "Remote JavaScript Developer",
     "reda salem",
     "Reda Salem",
     "react developer",
@@ -178,6 +182,14 @@ export const metadata: Metadata = {
     "Android & iOS Apps Developer",
     "Scalable Backend Architecture",
     "High-Performance Frontend",
+    "Performance Optimization Engineer",
+    "Google PageSpeed 99",
+    "Scalable Web Applications",
+    "Stripe Integration Developer",
+    "Clean Code Architecture",
+    "Remote JavaScript Developer",
+    "AI-Driven Developer",
+    "High-Performance JavaScript Architect",
   ],
 
   authors: [
@@ -212,9 +224,9 @@ export const metadata: Metadata = {
     alternateLocale: ["ar_EG"],
     url: "https://reda-website.vercel.app",
     siteName: "Reda Salem - Professional Portfolio",
-    title: "Reda Salem | Full-Stack Developer Portfolio",
+    title: "Reda Salem | Performance Optimization Engineer & React Developer",
     description:
-      "Creative Full-Stack Developer building modern, scalable web & mobile applications with React, Next.js, React Native, Node.js, and MongoDB.",
+      "Hire Reda Salem, a Remote JavaScript Developer & Performance Optimization Engineer in Egypt. Achieving Google PageSpeed 99 on scalable web applications.",
     images: [
       {
         url: "/og-image.png",
@@ -237,9 +249,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@redasalem",
     creator: "@redasalem",
-    title: "Reda Salem | Full-Stack Developer",
+    title: "Reda Salem | Performance Optimization Engineer",
     description:
-      "Building modern, scalable web & mobile apps with React, Next.js, Node.js & MongoDB",
+      "Achieving Google PageSpeed 99 on scalable web apps using React, Next.js, and Node.js.",
     images: {
       url: "https://pbs.twimg.com/profile_images/1976036993797623808/axU7IrRA_400x400.jpg",
       alt: "Reda Salem Portfolio",
@@ -319,13 +331,13 @@ export default function RootLayout({
       height: 800,
       caption: "Reda Salem - Full-Stack Developer",
     },
-    jobTitle: "Full-Stack Developer",
+    jobTitle: "Performance Optimization Engineer & React Developer",
     worksFor: {
       "@type": "Organization",
       name: "Freelance / Remote",
     },
     description:
-      "Creative and performance-driven Full-Stack Developer specializing in React, Next.js, React Native, TypeScript, Node.js, Express, MongoDB. Top-rated Mobile App Developer and React Native Expert in Egypt.",
+      "Remote JavaScript Developer and Performance Optimization Engineer in Egypt, achieving 99/100 PageSpeed scores. Specializing in highly scalable web applications, React, Next.js, React Native, and Node.js.",
     knowsAbout: [
       {
         "@type": "Thing",

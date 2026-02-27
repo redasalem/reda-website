@@ -1,7 +1,7 @@
 "use client"
 
-import type React from "react"
-import { useState } from "react"
+import type React from "react";
+import { useState, memo } from "react";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import EmailIcon from "@mui/icons-material/Email";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
@@ -9,7 +9,7 @@ import { SendIcon } from "lucide-react";
 
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-export default function Contact() {
+const Contact = memo(function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -101,7 +101,7 @@ export default function Contact() {
   return (
     <section id="contact" className="min-h-screen py-20 px-4 md:px-8 relative bg-background transition-colors duration-300">
       {/* Background glow */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-50/50 to-background pointer-events-none dark:via-indigo-950/20 dark:to-background" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-orange-50/50 to-background pointer-events-none dark:via-orange-950/20 dark:to-background" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="mb-16 animate-fade-in">
@@ -235,4 +235,6 @@ export default function Contact() {
       </div>
     </section>
   );
-}
+});
+
+export default Contact;

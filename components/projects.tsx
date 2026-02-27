@@ -9,7 +9,7 @@ import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import { getProjects, ProjectData } from "@/lib/firestore";
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function Projects() {
+const Projects = React.memo(function Projects() {
   const [projects, setProjects] = useState<ProjectData[]>([]);
   const [loading, setLoading] = useState(true);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -197,4 +197,6 @@ export default function Projects() {
       </div>
     </section>
   );
-}
+});
+
+export default Projects;

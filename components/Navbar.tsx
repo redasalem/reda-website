@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "@/lib/theme-provider";
 import HomeIcon from "@mui/icons-material/Home";
@@ -11,7 +11,7 @@ import ContactMailIcon from "@mui/icons-material/ContactMail";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 
-export default function BottomNavbar() {
+const BottomNavbar = React.memo(function BottomNavbar() {
   const { theme, toggleTheme } = useTheme();
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -20,7 +20,7 @@ export default function BottomNavbar() {
     element?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const navItems = [
+  const navItems = useMemo(() => [
     {
       icon: <InfoIcon />,
       label: "About",
@@ -53,8 +53,8 @@ export default function BottomNavbar() {
       icon: <ContactMailIcon />,
       label: "Contact",
       id: "contact",
-      activeColor: "text-pink-500",
-      bgColor: "bg-pink-500/10",
+      activeColor: "text-orange-500",
+      bgColor: "bg-orange-500/10",
     },
     {
       icon: theme === "dark" ? <DarkModeIcon /> : <LightModeIcon />,
@@ -63,7 +63,7 @@ export default function BottomNavbar() {
       activeColor: "text-yellow-500",
       bgColor: "bg-yellow-500/10",
     },
-  ];
+  ], [theme]);
 
   const handleClick = (item: any, index: number) => {
     setActiveIndex(index);
@@ -117,9 +117,8 @@ export default function BottomNavbar() {
                   transition={{ type: "spring", damping: 20, stiffness: 300 }}
                 >
                   <motion.span
-                    className={`text-xl transition-colors duration-200 ${
-                      isActive ? item.activeColor : "text-muted-foreground"
-                    }`}
+                    className={`text-xl transition-colors duration-200 ${isActive ? item.activeColor : "text-muted-foreground"
+                      }`}
                     animate={{
                       rotate: 0,
                     }}
@@ -131,9 +130,8 @@ export default function BottomNavbar() {
 
                 {/* Label */}
                 <motion.span
-                  className={`text-[9px] font-medium truncate w-full text-center transition-colors duration-200 ${
-                    isActive ? item.activeColor : "text-muted-foreground"
-                  }`}
+                  className={`text-[9px] font-medium truncate w-full text-center transition-colors duration-200 ${isActive ? item.activeColor : "text-muted-foreground"
+                    }`}
                   animate={{
                     opacity: isActive ? 1 : 0.7,
                   }}
@@ -162,4 +160,6 @@ export default function BottomNavbar() {
       </div>
     </motion.nav>
   );
-}
+});
+
+export default BottomNavbar;

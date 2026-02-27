@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import React, { useState, useMemo } from "react";
 import Image from "next/image";
 import { useTheme } from "@/lib/theme-provider";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -16,7 +16,7 @@ import WorkIcon from "@mui/icons-material/Work";
 import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
 import ContactsIcon from "@mui/icons-material/Contacts";
 
-export default function Sidebar() {
+const Sidebar = React.memo(function Sidebar() {
   const { theme, toggleTheme } = useTheme();
   const [isExpanded, setIsExpanded] = useState(true);
 
@@ -25,15 +25,15 @@ export default function Sidebar() {
     element?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const navItems = [
+  const navItems = useMemo(() => [
     { label: "About Me", id: "about" },
     { label: "Skills", id: "skills" },
     { label: "Projects", id: "projects" },
     { label: "Certificates", id: "certificates" },
     { label: "Contact", id: "contact" },
-  ];
+  ], []);
 
-  const socialLinks = [
+  const socialLinks = useMemo(() => [
     {
       icon: <GitHub />,
       href: "https://github.com/redasalem",
@@ -58,13 +58,12 @@ export default function Sidebar() {
       label: "Phone",
       color: "#25D366",
     },
-  ];
+  ], []);
 
   return (
     <aside
-      className={`hidden sm:flex sticky left-0 top-0 h-screen bg-sidebar text-sidebar-foreground border-r border-sidebar-border p-6 flex-col z-40 overflow-auto animate-fade-in transition-all duration-300 ${
-        isExpanded ? "w-72" : "w-20"
-      }`}
+      className={`hidden sm:flex sticky left-0 top-0 h-screen bg-sidebar text-sidebar-foreground border-r border-sidebar-border p-6 flex-col z-40 overflow-auto animate-fade-in transition-all duration-300 ${isExpanded ? "w-72" : "w-20"
+        }`}
     >
       {/* Toggle Button */}
       <button
@@ -158,9 +157,8 @@ export default function Sidebar() {
             <button
               key={item.id}
               onClick={() => scrollToSection(item.id)}
-              className={`w-full text-left px-4 py-2 rounded-lg text-sm font-medium text-sidebar-foreground dark:text-white hover:bg-sidebar-primary/20 transition-all duration-300 group relative overflow-hidden animate-fade-in ${
-                !isExpanded && "flex justify-center px-2"
-              }`}
+              className={`w-full text-left px-4 py-2 rounded-lg text-sm font-medium text-sidebar-foreground dark:text-white hover:bg-sidebar-primary/20 transition-all duration-300 group relative overflow-hidden animate-fade-in ${!isExpanded && "flex justify-center px-2"
+                }`}
               style={{ animationDelay: `${0.2 + index * 0.1}s` }}
               title={!isExpanded ? item.label : ""}
             >
@@ -218,4 +216,6 @@ export default function Sidebar() {
       </div>
     </aside>
   );
-}
+});
+
+export default Sidebar;

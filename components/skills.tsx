@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import React, { useRef, useMemo } from "react";
 import {
   Code as HtmlIcon,
   Palette as PaletteIcon,
@@ -29,10 +29,18 @@ import {
   Hub as NodeIcon,
   Terminal as TerminalIcon,
   CloudQueue as ConvexIcon,
+  Speed as PerfIcon,
+  Memory as NextjsProdIcon,
+  AccountTree as ScalabilityIcon,
+  Insights as SeoIcon,
+  Loop as DevopsIcon,
+  BugReport as TestingIcon,
+  Security as SecurityIcon,
+  Architecture as ArchitectureIcon,
 } from "@mui/icons-material";
 
-export default function Skills() {
-  const skillCategories = [
+const Skills = React.memo(function Skills() {
+  const skillCategories = useMemo(() => [
     {
       title: "Frontend Technologies",
       skills: [
@@ -124,6 +132,7 @@ export default function Skills() {
           icon: <TerminalIcon sx={{ color: "#000000" }} />,
         },
         { name: "MongoDB", icon: <TerminalIcon sx={{ color: "#47A248" }} /> },
+        { name: "PostgreSQL & Redis", icon: <NodeIcon sx={{ color: "#336791" }} /> },
         { name: "Convex", icon: <ConvexIcon sx={{ color: "#F05138" }} /> },
       ],
     },
@@ -134,7 +143,25 @@ export default function Skills() {
         { name: "Postman", icon: <ApiIcon sx={{ color: "#FF6C37" }} /> },
       ],
     },
-  ];
+    {
+      title: "Architecture & Performance",
+      skills: [
+        { name: "React Performance", icon: <PerfIcon sx={{ color: "#61dafb" }} /> },
+        { name: "Next.js Production", icon: <NextjsProdIcon sx={{ color: "#000000" }} /> },
+        { name: "System Scalability", icon: <ScalabilityIcon sx={{ color: "#ff9800" }} /> },
+        { name: "PWA & Cloud Native", icon: <ArchitectureIcon sx={{ color: "#4caf50" }} /> },
+      ],
+    },
+    {
+      title: "Testing, DevOps & Security",
+      skills: [
+        { name: "CI/CD & Docker", icon: <DevopsIcon sx={{ color: "#2196f3" }} /> },
+        { name: "Automated Testing", icon: <TestingIcon sx={{ color: "#e91e63" }} /> },
+        { name: "Web Security", icon: <SecurityIcon sx={{ color: "#9c27b0" }} /> },
+        { name: "Design Patterns", icon: <ArchitectureIcon sx={{ color: "#795548" }} /> },
+      ],
+    },
+  ], []);
 
   const containerRef = useRef(null);
 
@@ -214,4 +241,6 @@ export default function Skills() {
       </div>
     </section>
   );
-}
+});
+
+export default Skills;

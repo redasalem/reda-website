@@ -1,11 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Sidebar from "@/components/sidebar";
 import Hero from "@/components/hero";
 import BottomNavbar from "@/components/Navbar";
-
 // Lazy load heavy components
 const Skills = dynamic(() => import("@/components/skills"), {
   loading: () => <div className="h-screen bg-background animate-pulse" />,
@@ -29,7 +28,7 @@ const ChatBot = dynamic(() => import("@/components/chatbot"), {
   loading: () => null, // No loader for chat bubble, it just appears
 });
 
-export default function Home() {
+function Home() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -63,3 +62,5 @@ export default function Home() {
     </div>
   );
 }
+
+export default Home;
