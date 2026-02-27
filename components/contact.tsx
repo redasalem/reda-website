@@ -106,7 +106,7 @@ const Contact = memo(function Contact() {
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="mb-16 animate-fade-in">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="bg-linear-to-r from-accent to-primary bg-clip-text text-transparent">Get In Touch</span>
+            <span className="bg-linear-to-r from-accent to-primary bg-clip-text text-transparent">Let's Build Something</span>
           </h2>
           <div className="w-20 h-1 bg-linear-to-r from-accent to-primary rounded-full" />
         </div>

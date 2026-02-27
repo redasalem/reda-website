@@ -55,7 +55,7 @@ const Projects = React.memo(function Projects() {
           <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-accent/10 border border-accent/20 backdrop-blur-sm mb-4">
             <CodeIcon className="text-accent w-3 h-3 md:w-4 md:h-4" />
             <span className="text-xs md:text-sm font-semibold text-accent">
-              My Work
+              Case Studies
             </span>
           </div>
 
@@ -66,7 +66,7 @@ const Projects = React.memo(function Projects() {
           </h2>
 
           <p className="text-muted-foreground max-w-2xl mx-auto text-base md:text-lg">
-            Explore my latest work and creative solutions
+            Production-grade apps delivering measurable results — from 99/100 PageSpeed to live payment integrations and cross-platform mobile.
           </p>
 
           <div className="w-20 md:w-24 h-1.5 mx-auto bg-linear-to-r from-primary to-accent rounded-full mt-6" />

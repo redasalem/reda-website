@@ -187,7 +187,7 @@ const Skills = React.memo(function Skills() {
           <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-accent/10 border border-accent/20 backdrop-blur-sm mb-4 md:mb-6">
             <ShadcnIcon className="text-accent w-3 h-3 md:w-4 md:h-4" />
             <span className="text-xs md:text-sm font-semibold text-accent">
-              Technical Proficiency
+              Production Stack
             </span>
           </div>
 

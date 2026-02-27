@@ -90,7 +90,7 @@ const HeroSection = React.memo(function HeroSection() {
               className="inline-block mt-4"
             >
               <span className="px-4 py-2  bg-orange-500/20 dark:bg-orange-500/30 border border-orange-500/50 dark:border-orange-400/50 rounded-full text-orange-700 dark:text-orange-300 text-sm font-medium backdrop-blur-sm">
-                ✨ Available for freelance
+                ⚡ Open to Remote & Freelance
               </span>
             </motion.div>
 
@@ -114,7 +114,7 @@ const HeroSection = React.memo(function HeroSection() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                Performance-Driven Full-Stack Engineer
+                Full-Stack Engineer · 99/100 PageSpeed · 2× Faster Apps
               </motion.h2>
             </div>
 
@@ -125,14 +125,13 @@ const HeroSection = React.memo(function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
             >
-              Performance-driven{" "}
-              <strong>Full-Stack Engineer</strong> who builds blazing-fast web &
-              mobile applications achieving{" "}
-              <strong>99/100 PageSpeed scores</strong> and{" "}
-              <strong>2× faster load times</strong>. Focused on clean
-              architecture, scalable systems, and measurable impact — delivering
-              <strong> +30% user engagement</strong> through modern React,
-              Next.js, and Node.js solutions.
+              I build production-grade web & mobile products that ship fast and
+              scale further. From delivering{" "}
+              <strong>99/100 PageSpeed</strong> on the C4R Car Rental platform
+              to enabling <strong>Stripe & PayPal</strong> payments and shipping
+              cross-platform <strong>React Native</strong> apps — I bring
+              measurable engineering to every engagement. React · Next.js ·
+              Node.js · TypeScript.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -160,7 +159,7 @@ const HeroSection = React.memo(function HeroSection() {
                 className="cursor-pointer px-8 py-4 bg-gray-200/80 dark:bg-white/10 backdrop-blur-sm border border-gray-300 dark:border-white/20 text-gray-900 dark:text-white font-semibold rounded-full hover:bg-gray-300/80 dark:hover:bg-white/20 transition-all flex items-center gap-2"
               >
                 <ArrowDown className="w-5 h-5" />
-                Let's Talk
+                Hire Me
               </motion.button>
             </motion.div>
 
@@ -268,7 +267,7 @@ const HeroSection = React.memo(function HeroSection() {
                   <motion.div className="space-y-3 font-mono text-sm">
                     {[
                       {
-                        code: "const developer = {",
+                        code: "const engineer = {",
                         color: "text-orange-700 dark:text-orange-400",
                         delay: 0,
                       },
@@ -278,17 +277,17 @@ const HeroSection = React.memo(function HeroSection() {
                         delay: 0.1,
                       },
                       {
-                        code: '  role: "Full-Stack Engineer",',
+                        code: '  focus: "Performance & Scale",',
                         color: "text-green-700 dark:text-green-400",
                         delay: 0.2,
                       },
                       {
-                        code: '  skills: ["React", "Next.js", "Node"],',
+                        code: '  stack: ["React", "Next.js", "React Native", "Node.js"],',
                         color: "text-cyan-700 dark:text-cyan-400",
                         delay: 0.25,
                       },
                       {
-                        code: '  impact: "99 PageSpeed ⚡"',
+                        code: '  results: ["99 PageSpeed ⚡", "2x Faster", "+30% Engagement"]',
                         color: "text-amber-700 dark:text-amber-400",
                         delay: 0.3,
                       },
