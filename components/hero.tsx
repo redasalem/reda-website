@@ -1,14 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { Download, ArrowDown } from "lucide-react";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import EmailIcon from "@mui/icons-material/Email";
 import Link from "next/link";
 
-export default function HeroSection() {
+const HeroSection = React.memo(function HeroSection() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -23,12 +23,15 @@ export default function HeroSection() {
   }, []);
 
   // Smooth scroll to contact section
-  const scrollToContact = () => {
+  const scrollToContact = useCallback(() => {
     const contactSection = document.getElementById("contact");
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: "smooth", block: "start" });
     }
-  };
+  }, []);
+
+  // Memoize the background particles array to avoid recreating it on every render
+  const backgroundParticles = useMemo(() => [...Array(50)], []);
 
   return (
     <section
@@ -37,10 +40,10 @@ export default function HeroSection() {
     >
       {/* Animated Background - يتغير مع الثيم */}
       <div className="absolute inset-0">
-        {[...Array(50)].map((_, i) => (
+        {backgroundParticles.map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 bg-purple-500 dark:bg-purple-400 rounded-full opacity-60 dark:opacity-40"
+            className="absolute w-1 h-1 bg-orange-500 dark:bg-orange-400 rounded-full opacity-60 dark:opacity-40"
             initial={{
               x:
                 Math.random() *
@@ -54,7 +57,7 @@ export default function HeroSection() {
               y: [
                 null,
                 Math.random() *
-                  (typeof window !== "undefined" ? window.innerHeight : 1000),
+                (typeof window !== "undefined" ? window.innerHeight : 1000),
               ],
               opacity: [0, 1, 0],
             }}
@@ -68,7 +71,7 @@ export default function HeroSection() {
       </div>
 
       {/* Grid Background - يتكيف مع الثيم */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(139,92,246,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(139,92,246,0.05)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(139,92,246,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(139,92,246,0.1)_1px,transparent_1px)] bg-size-[100px_100px] mask-[radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(249,115,22,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(249,115,22,0.05)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(249,115,22,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(249,115,22,0.1)_1px,transparent_1px)] bg-size-[100px_100px] mask-[radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]" />
 
       <div className="container mx-auto px-6 z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -86,7 +89,7 @@ export default function HeroSection() {
               transition={{ duration: 0.6 }}
               className="inline-block mt-4"
             >
-              <span className="px-4 py-2  bg-purple-500/20 dark:bg-purple-500/30 border border-purple-500/50 dark:border-purple-400/50 rounded-full text-purple-700 dark:text-purple-300 text-sm font-medium backdrop-blur-sm">
+              <span className="px-4 py-2  bg-orange-500/20 dark:bg-orange-500/30 border border-orange-500/50 dark:border-orange-400/50 rounded-full text-orange-700 dark:text-orange-300 text-sm font-medium backdrop-blur-sm">
                 ✨ Available for freelance
               </span>
             </motion.div>
@@ -100,18 +103,18 @@ export default function HeroSection() {
                 transition={{ duration: 0.8, delay: 0.3 }}
               >
                 Hi, I'm{" "}
-                <span className="bg-linear-to-r from-purple-600 via-pink-600 to-purple-600 dark:from-purple-400 dark:via-pink-400 dark:to-purple-400 bg-clip-text text-transparent bg-size-[200%_auto] animate-gradient">
+                <span className="bg-linear-to-r from-orange-500 via-amber-500 to-orange-500 dark:from-orange-400 dark:via-amber-400 dark:to-orange-400 bg-clip-text text-transparent bg-size-[200%_auto] animate-gradient">
                   Reda Salem
                 </span>
               </motion.h1>
 
               <motion.h2
-                className="text-3xl lg:text-4xl font-semibold text-purple-700 dark:text-purple-300"
+                className="text-3xl lg:text-4xl font-semibold text-orange-700 dark:text-orange-300"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                Full-Stack Developer
+                Performance-Driven Full-Stack Engineer
               </motion.h2>
             </div>
 
@@ -122,11 +125,14 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
             >
-              Creative and performance-driven{" "}
-              <strong>Full-Stack Developer</strong> specialized in building
-              modern, responsive, and user-focused web & mobile applications. I
-              focus on writing clean, maintainable code and delivering real
-              business value through scalable, high-performance solutions.
+              Performance-driven{" "}
+              <strong>Full-Stack Engineer</strong> who builds blazing-fast web &
+              mobile applications achieving{" "}
+              <strong>99/100 PageSpeed scores</strong> and{" "}
+              <strong>2× faster load times</strong>. Focused on clean
+              architecture, scalable systems, and measurable impact — delivering
+              <strong> +30% user engagement</strong> through modern React,
+              Next.js, and Node.js solutions.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -140,10 +146,10 @@ export default function HeroSection() {
               <motion.button
                 whileHover={{
                   scale: 1.05,
-                  boxShadow: "0 0 25px rgba(168, 85, 247, 0.5)",
+                  boxShadow: "0 0 25px rgba(249, 115, 22, 0.5)",
                 }}
                 whileTap={{ scale: 0.95 }}
-                className="cursor-pointer px-8 py-4 bg-linear-to-r from-purple-600 to-pink-600 dark:from-purple-500 dark:to-pink-500 text-white font-semibold rounded-full shadow-lg hover:shadow-purple-500/50 transition-all flex items-center gap-2"
+                className="cursor-pointer px-8 py-4 bg-linear-to-r from-orange-500 to-amber-500 dark:from-orange-500 dark:to-amber-500 text-white font-semibold rounded-full shadow-lg hover:shadow-orange-500/50 transition-all flex items-center gap-2"
               >
                 <Link
                   target="_blank"
@@ -210,7 +216,7 @@ export default function HeroSection() {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.2, rotate: 5 }}
                   whileTap={{ scale: 0.9 }}
-                  className="w-12 h-12 bg-gray-200/80 dark:bg-white/10 backdrop-blur-sm border border-gray-300 dark:border-white/20 rounded-full flex items-center justify-center hover:bg-purple-600 dark:hover:bg-purple-500/30 hover:border-purple-600 dark:hover:border-purple-500/50 transition-all group"
+                  className="w-12 h-12 bg-gray-200/80 dark:bg-white/10 backdrop-blur-sm border border-gray-300 dark:border-white/20 rounded-full flex items-center justify-center hover:bg-orange-500 dark:hover:bg-orange-500/30 hover:border-orange-500 dark:hover:border-orange-500/50 transition-all group"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.8 + i * 0.1 }}
@@ -230,14 +236,13 @@ export default function HeroSection() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.4 }}
             style={{
-              transform: `perspective(1000px) rotateY(${
-                mousePosition.x
-              }deg) rotateX(${-mousePosition.y}deg)`,
+              transform: `perspective(1000px) rotateY(${mousePosition.x
+                }deg) rotateX(${-mousePosition.y}deg)`,
             }}
           >
             {/* Glowing Background */}
             <motion.div
-              className="absolute inset-0 bg-linear-to-r from-purple-600 to-pink-600 dark:from-purple-500 dark:to-pink-500 rounded-3xl blur-3xl opacity-20 dark:opacity-30"
+              className="absolute inset-0 bg-linear-to-r from-orange-500 to-amber-500 dark:from-orange-500 dark:to-amber-500 rounded-3xl blur-3xl opacity-20 dark:opacity-30"
               animate={{
                 scale: [1, 1.2, 1],
                 opacity: [0.2, 0.4, 0.2],
@@ -250,7 +255,7 @@ export default function HeroSection() {
             />
 
             {/* Computer Container */}
-            <div className="relative bg-linear-to-br from-gray-200 to-gray-300 dark:from-slate-800 dark:to-slate-900 rounded-2xl p-4 border border-gray-300 dark:border-purple-500/30 shadow-2xl">
+            <div className="relative bg-linear-to-br from-gray-200 to-gray-300 dark:from-slate-800 dark:to-slate-900 rounded-2xl p-4 border border-gray-300 dark:border-orange-500/30 shadow-2xl">
               {/* Screen */}
               <div className="bg-linear-to-br from-gray-100 to-gray-200 dark:from-slate-900 dark:to-black rounded-xl overflow-hidden border border-gray-300 dark:border-slate-700 shadow-inner">
                 {/* Screen Header */}
@@ -272,7 +277,7 @@ export default function HeroSection() {
                     {[
                       {
                         code: "const developer = {",
-                        color: "text-purple-700 dark:text-purple-400",
+                        color: "text-orange-700 dark:text-orange-400",
                         delay: 0,
                       },
                       {
@@ -281,23 +286,23 @@ export default function HeroSection() {
                         delay: 0.1,
                       },
                       {
-                        code: '  role: "Front-End Dev",',
+                        code: '  role: "Full-Stack Engineer",',
                         color: "text-green-700 dark:text-green-400",
                         delay: 0.2,
                       },
                       {
-                        code: '  skills: ["React", "Next.js"],',
+                        code: '  skills: ["React", "Next.js", "Node"],',
                         color: "text-cyan-700 dark:text-cyan-400",
                         delay: 0.25,
                       },
                       {
-                        code: '  passion: "Building Magic ✨"',
-                        color: "text-pink-700 dark:text-pink-400",
+                        code: '  impact: "99 PageSpeed ⚡"',
+                        color: "text-amber-700 dark:text-amber-400",
                         delay: 0.3,
                       },
                       {
                         code: "}",
-                        color: "text-purple-700 dark:text-purple-400",
+                        color: "text-orange-700 dark:text-orange-400",
                         delay: 0.4,
                       },
                     ].map((line, i) => (
@@ -312,7 +317,7 @@ export default function HeroSection() {
                         <motion.span
                           animate={{ opacity: [1, 0, 1] }}
                           transition={{ duration: 1, repeat: Infinity }}
-                          className="inline-block w-2 h-4 bg-purple-600 dark:bg-purple-500 ml-1"
+                          className="inline-block w-2 h-4 bg-orange-500 dark:bg-orange-400 ml-1"
                         />
                       </motion.div>
                     ))}
@@ -320,7 +325,7 @@ export default function HeroSection() {
 
                   {/* Floating Elements */}
                   <motion.div
-                    className="absolute top-10 right-10 w-16 h-16 bg-purple-500/30 dark:bg-purple-500/20 rounded-lg backdrop-blur-sm border border-purple-500/50 dark:border-purple-500/30"
+                    className="absolute top-10 right-10 w-16 h-16 bg-orange-500/30 dark:bg-orange-500/20 rounded-lg backdrop-blur-sm border border-orange-500/50 dark:border-orange-500/30"
                     animate={{
                       y: [0, -20, 0],
                       rotate: [0, 10, 0],
@@ -337,7 +342,7 @@ export default function HeroSection() {
                   </motion.div>
 
                   <motion.div
-                    className="absolute bottom-10 right-20 w-12 h-12 bg-pink-500/30 dark:bg-pink-500/20 rounded-full backdrop-blur-sm border border-pink-500/50 dark:border-pink-500/30"
+                    className="absolute bottom-10 right-20 w-12 h-12 bg-amber-500/30 dark:bg-amber-500/20 rounded-full backdrop-blur-sm border border-amber-500/50 dark:border-amber-500/30"
                     animate={{
                       y: [0, 15, 0],
                       x: [0, 10, 0],
@@ -363,7 +368,7 @@ export default function HeroSection() {
                     <motion.div
                       key={i}
                       className="h-8 bg-gray-400 dark:bg-slate-700 rounded border border-gray-500 dark:border-slate-600"
-                      whileHover={{ scale: 0.95, backgroundColor: "#6366f1" }}
+                      whileHover={{ scale: 0.95, backgroundColor: "#F97316" }}
                       transition={{ duration: 0.1 }}
                     />
                   ))}
@@ -373,7 +378,7 @@ export default function HeroSection() {
 
             {/* Floating Orbs */}
             <motion.div
-              className="absolute -top-10 -right-10 w-40 h-40 bg-purple-500 dark:bg-purple-600 rounded-full blur-3xl opacity-15 dark:opacity-20"
+              className="absolute -top-10 -right-10 w-40 h-40 bg-orange-500 dark:bg-orange-600 rounded-full blur-3xl opacity-15 dark:opacity-20"
               animate={{
                 scale: [1, 1.3, 1],
                 x: [0, 20, 0],
@@ -387,7 +392,7 @@ export default function HeroSection() {
             />
 
             <motion.div
-              className="absolute -bottom-10 -left-10 w-32 h-32 bg-pink-500 dark:bg-pink-600 rounded-full blur-3xl opacity-15 dark:opacity-20"
+              className="absolute -bottom-10 -left-10 w-32 h-32 bg-amber-500 dark:bg-amber-600 rounded-full blur-3xl opacity-15 dark:opacity-20"
               animate={{
                 scale: [1, 1.4, 1],
                 x: [0, -15, 0],
@@ -421,4 +426,6 @@ export default function HeroSection() {
       </motion.div>
     </section>
   );
-}
+});
+
+export default HeroSection;

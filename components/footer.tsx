@@ -1,11 +1,12 @@
+import React, { useMemo } from "react";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import EmailIcon from "@mui/icons-material/Email";
 
-export default function Footer() {
+const Footer = React.memo(function Footer() {
   const currentYear = new Date().getFullYear();
 
-  const socialLinks = [
+  const socialLinks = useMemo(() => [
     {
       // GitHub: black in light, white in dark for visibility
       icon: (
@@ -39,7 +40,7 @@ export default function Footer() {
       href: "mailto:redasalem287@gmail.com",
       label: "Email",
     },
-  ];
+  ], []);
 
   return (
     <footer className="border-t border-border bg-background/50 backdrop-blur-md mb-24 sm:mb-0 transition-colors duration-300">
@@ -148,4 +149,6 @@ export default function Footer() {
       </div>
     </footer>
   );
-}
+});
+
+export default Footer;

@@ -1,11 +1,11 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useState, useRef } from "react";
+import React, { useState, useRef, useMemo } from "react";
 import Image from "next/image";
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 
-export default function Certificates() {
+const Certificates = React.memo(function Certificates() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -13,7 +13,7 @@ export default function Certificates() {
     offset: ["start end", "end start"],
   });
 
-  const certificates = [
+  const certificates = useMemo(() => [
     {
       title: "Front-End Certificate",
       issuer: "Hsoub Academy",
@@ -21,7 +21,7 @@ export default function Certificates() {
       description:
         "Comprehensive front-end development certification covering modern web technologies",
       link: "https://academy.hsoub.com/certificate/8CT2XWQB10SJXDYDRM4PT6GED.pdf",
-      color: "from-purple-500 to-pink-500",
+      color: "from-orange-500 to-amber-500",
       icon: "💻",
       image: "/images/hasoup.webp",
     },
@@ -47,7 +47,7 @@ export default function Certificates() {
       icon: "🚀",
       image: "/images/huma-volve.jpg",
     },
-  ];
+  ], []);
 
   const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
 
@@ -58,23 +58,23 @@ export default function Certificates() {
       className="min-h-screen py-32 px-4 md:px-8 relative overflow-hidden bg-linear-to-b from-background via-background/95 to-background"
     >
       {/* Animated Background Grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(139,92,246,0.03)_2px,transparent_2px),linear-gradient(90deg,rgba(139,92,246,0.03)_2px,transparent_2px)] bg-size-[80px_80px]" />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(249,115,22,0.03)_2px,transparent_2px),linear-gradient(90deg,rgba(249,115,22,0.03)_2px,transparent_2px)] bg-size-[80px_80px]" />
 
       {/* Floating Orbs */}
       <motion.div
         style={{ y }}
-        className="absolute top-20 right-10 w-96 h-96 bg-purple-500 rounded-full blur-[150px] opacity-10"
+        className="absolute top-20 right-10 w-96 h-96 bg-orange-500 rounded-full blur-[150px] opacity-10"
       />
       <motion.div
         style={{ y: useTransform(scrollYProgress, [0, 1], [-80, 80]) }}
-        className="absolute bottom-20 left-10 w-80 h-80 bg-pink-500 rounded-full blur-[120px] opacity-10"
+        className="absolute bottom-20 left-10 w-80 h-80 bg-amber-500 rounded-full blur-[120px] opacity-10"
       />
 
       {/* Floating Particles */}
       {[...Array(15)].map((_, i) => (
         <motion.div
           key={i}
-          className="absolute w-2 h-2 bg-purple-400/20 rounded-full"
+          className="absolute w-2 h-2 bg-orange-400/20 rounded-full"
           style={{
             left: `${Math.random() * 100}%`,
             top: `${Math.random() * 100}%`,
@@ -108,13 +108,13 @@ export default function Certificates() {
             transition={{ duration: 0.8, delay: 0.3 }}
             viewport={{ once: true }}
           >
-            <span className="bg-linear-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-orange-400 via-amber-400 to-orange-400 bg-clip-text text-transparent">
               Certificates
             </span>
           </motion.h2>
 
           <motion.div
-            className="w-24 h-1.5 bg-linear-to-r from-purple-500 to-pink-500 rounded-full mx-auto"
+            className="w-24 h-1.5 bg-linear-to-r from-orange-500 to-amber-500 rounded-full mx-auto"
             initial={{ width: 0 }}
             whileInView={{ width: 96 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -157,7 +157,7 @@ export default function Certificates() {
               <motion.div
                 whileHover={{ y: -8 }}
                 transition={{ duration: 0.3 }}
-                className="relative bg-card/80 backdrop-blur-xl rounded-3xl overflow-hidden border border-border group-hover:border-purple-500/50 shadow-xl group-hover:shadow-2xl group-hover:shadow-purple-500/20 transition-all duration-500"
+                className="relative bg-card/80 backdrop-blur-xl rounded-3xl overflow-hidden border border-border group-hover:border-orange-500/50 shadow-xl group-hover:shadow-2xl group-hover:shadow-orange-500/20 transition-all duration-500"
               >
                 {/* Image Section */}
                 <div className="relative h-48 overflow-hidden">
@@ -242,12 +242,12 @@ export default function Certificates() {
                 <div className="p-6 space-y-4">
                   {/* Title & Issuer */}
                   <div>
-                    <motion.h3 className="text-2xl font-bold text-foreground group-hover:text-transparent group-hover:bg-linear-to-r group-hover:bg-clip-text group-hover:from-purple-400 group-hover:to-pink-400 transition-all duration-300 mb-2">
+                    <motion.h3 className="text-2xl font-bold text-foreground group-hover:text-transparent group-hover:bg-linear-to-r group-hover:bg-clip-text group-hover:from-orange-400 group-hover:to-amber-400 transition-all duration-300 mb-2">
                       {cert.title}
                     </motion.h3>
-                    <motion.p className="text-purple-400 font-semibold flex items-center gap-2">
+                    <motion.p className="text-orange-400 font-semibold flex items-center gap-2">
                       <motion.span
-                        className="w-2 h-2 rounded-full bg-purple-500"
+                        className="w-2 h-2 rounded-full bg-orange-500"
                         animate={{
                           scale: hoveredIndex === index ? [1, 1.5, 1] : 1,
                           opacity: hoveredIndex === index ? [1, 0.5, 1] : 1,
@@ -311,4 +311,6 @@ export default function Certificates() {
       </div>
     </section>
   );
-}
+});
+
+export default Certificates;

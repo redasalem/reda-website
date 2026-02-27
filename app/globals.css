@@ -4,13 +4,13 @@
 @custom-variant dark (&:is(.dark *));
 
 /* =========================
-   Custom Pink/Red Scrollbar
+   Custom Orange Scrollbar
    ========================= */
 
 /* Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #ff2d55 #00000010;
+  scrollbar-color: #F97316 #00000010;
 }
 
 /* Chrome, Edge, Safari */
@@ -24,16 +24,16 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #ff6b81, #ff2d55);
+  background: linear-gradient(180deg, #FB923C, #F97316);
   border-radius: 20px;
   border: 2px solid transparent;
   background-clip: padding-box;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
   transition: 0.25s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #ff8fa1, #ff3b63);
+  background: linear-gradient(180deg, #FDBA74, #EA580C);
   transform: scale(1.05);
 }
 
@@ -52,8 +52,8 @@
   /* White */
   --popover-foreground: oklch(0.34 0.04 255);
   /* Slate 700 */
-  --primary: oklch(0.55 0.22 270);
-  /* Indigo 500 */
+  --primary: oklch(0.65 0.21 50);
+  /* Orange 500 — #F97316 */
   --primary-foreground: oklch(1 0 0);
   /* White */
   --secondary: oklch(0.96 0.01 247);
@@ -64,8 +64,8 @@
   /* Slate 100 */
   --muted-foreground: oklch(0.55 0.04 250);
   /* Slate 500 */
-  --accent: oklch(0.55 0.22 270);
-  /* Indigo 500 */
+  --accent: oklch(0.60 0.22 45);
+  /* Deep Orange — #EA580C */
   --accent-foreground: oklch(1 0 0);
   /* White */
   --destructive: oklch(0.577 0.245 27.325);
@@ -74,8 +74,8 @@
   /* Slate 300 */
   --input: oklch(0.87 0.02 250);
   /* Slate 300 */
-  --ring: oklch(0.55 0.22 270);
-  /* Indigo 500 */
+  --ring: oklch(0.65 0.21 50);
+  /* Orange 500 */
   --chart-1: oklch(0.55 0.22 270);
   --chart-2: oklch(0.40 0.06 250);
   --chart-3: oklch(0.96 0.01 247);
@@ -84,12 +84,12 @@
   --radius: 0.5rem;
   --sidebar: oklch(0.985 0.002 247.8);
   --sidebar-foreground: oklch(0.34 0.04 255);
-  --sidebar-primary: oklch(0.55 0.22 270);
+  --sidebar-primary: oklch(0.65 0.21 50);
   --sidebar-primary-foreground: oklch(1 0 0);
   --sidebar-accent: oklch(0.96 0.01 247);
   --sidebar-accent-foreground: oklch(0.34 0.04 255);
   --sidebar-border: oklch(0.87 0.02 250);
-  --sidebar-ring: oklch(0.55 0.22 270);
+  --sidebar-ring: oklch(0.65 0.21 50);
 }
 
 .dark {
@@ -104,8 +104,8 @@
   --popover: oklch(0.17 0.02 260);
   /* Slate 900 */
   --popover-foreground: oklch(0.985 0.002 247.8);
-  --primary: oklch(0.65 0.22 270);
-  /* Indigo 400 */
+  --primary: oklch(0.72 0.19 55);
+  /* Orange 400 — #FB923C */
   --primary-foreground: oklch(1 0 0);
   /* White */
   --secondary: oklch(0.25 0.03 260);
@@ -115,29 +115,29 @@
   /* Slate 800 */
   --muted-foreground: oklch(0.70 0.04 250);
   /* Slate 400 */
-  --accent: oklch(0.65 0.22 270);
-  /* Indigo 400 */
+  --accent: oklch(0.72 0.19 55);
+  /* Orange 400 — #FB923C */
   --accent-foreground: oklch(1 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.95 0 0);
   --border: oklch(0.25 0.03 260);
   /* Slate 800 */
   --input: oklch(0.25 0.03 260);
-  --ring: oklch(0.65 0.22 270);
-  /* Indigo 400 */
-  --chart-1: oklch(0.65 0.22 270);
+  --ring: oklch(0.72 0.19 55);
+  /* Orange 400 */
+  --chart-1: oklch(0.72 0.19 55);
   --chart-2: oklch(0.40 0.06 250);
   --chart-3: oklch(0.96 0.01 247);
   --chart-4: oklch(0.87 0.02 250);
   --chart-5: oklch(0.34 0.04 255);
   --sidebar: oklch(0.12 0.02 260);
   --sidebar-foreground: oklch(0.985 0.002 247.8);
-  --sidebar-primary: oklch(0.65 0.22 270);
+  --sidebar-primary: oklch(0.72 0.19 55);
   --sidebar-primary-foreground: oklch(1 0 0);
   --sidebar-accent: oklch(0.25 0.03 260);
   --sidebar-accent-foreground: oklch(0.985 0.002 247.8);
   --sidebar-border: oklch(0.25 0.03 260);
-  --sidebar-ring: oklch(0.65 0.22 270);
+  --sidebar-ring: oklch(0.72 0.19 55);
 }
 
 @theme inline {
@@ -196,11 +196,11 @@
 
   0%,
   100% {
-    box-shadow: 0 0 5px rgba(114, 88, 188, 0.5), inset 0 0 5px rgba(114, 88, 188, 0.1);
+    box-shadow: 0 0 5px rgba(249, 115, 22, 0.5), inset 0 0 5px rgba(249, 115, 22, 0.1);
   }
 
   50% {
-    box-shadow: 0 0 20px rgba(114, 88, 188, 0.8), inset 0 0 10px rgba(114, 88, 188, 0.2);
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.8), inset 0 0 10px rgba(249, 115, 22, 0.2);
   }
 }
 
