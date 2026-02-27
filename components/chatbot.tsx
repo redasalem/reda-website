@@ -202,7 +202,9 @@ const ChatBot = React.memo(function ChatBot() {
           <div className="border-t border-gray-200 dark:border-gray-800 p-4 bg-white dark:bg-gray-900">
             <form onSubmit={handleSendMessage} className="flex gap-2 items-end">
               <div className="flex-1 relative">
+                <label htmlFor="chat-input" className="sr-only">Chat message</label>
                 <input
+                  id="chat-input"
                   type="text"
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
@@ -218,6 +220,7 @@ const ChatBot = React.memo(function ChatBot() {
               <button
                 type="submit"
                 disabled={isLoading || !inputValue.trim()}
+                aria-label="Send message"
                 className="px-4 py-3 rounded-xl bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white font-medium transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg hover:shadow-orange-500/50 hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2 group"
               >
                 <Send className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" />

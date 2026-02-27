@@ -143,8 +143,9 @@ const Contact = memo(function Contact() {
             <div className="space-y-4">
               {/* Name Input */}
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">Name</label>
+                <label htmlFor="contact-name" className="block text-sm font-medium text-foreground mb-2">Name</label>
                 <input
+                  id="contact-name"
                   type="text"
                   name="name"
                   value={formData.name}
@@ -157,8 +158,9 @@ const Contact = memo(function Contact() {
 
               {/* Email Input */}
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">Email</label>
+                <label htmlFor="contact-email" className="block text-sm font-medium text-foreground mb-2">Email</label>
                 <input
+                  id="contact-email"
                   type="email"
                   name="email"
                   value={formData.email}
@@ -173,8 +175,9 @@ const Contact = memo(function Contact() {
 
               {/* Subject Input */}
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">Subject</label>
+                <label htmlFor="contact-subject" className="block text-sm font-medium text-foreground mb-2">Subject</label>
                 <input
+                  id="contact-subject"
                   type="text"
                   name="subject"
                   value={formData.subject}
@@ -187,8 +190,9 @@ const Contact = memo(function Contact() {
 
               {/* Message Textarea */}
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">Message</label>
+                <label htmlFor="contact-message" className="block text-sm font-medium text-foreground mb-2">Message</label>
                 <textarea
+                  id="contact-message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}

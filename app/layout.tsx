@@ -598,98 +598,24 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        {/* Performance */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        {/* Performance hints */}
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
 
-        {/* Preload critical assets */}
-        <link rel="preload" as="image" href="/images/reda.png" />
-
-        {/* Icons */}
+        {/* Microsoft tile config */}
         <meta name="msapplication-TileColor" content="#000000" />
-        <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
         <meta name="msapplication-config" content="/browserconfig.xml" />
 
-        {/* Google Verification */}
-        <meta
-          name="google-site-verification"
-          content="WdJppG3mAkZoon8ptYrXM7OGEllTG3SK7u3T__GSNtk"
-        />
+        {/* Additional Google Verification */}
         <meta
           name="google-site-verification"
           content="e2jaxxJkIU5x1v3Bl0_iodK_aWiOznLFl1mUANYd_Qc"
         />
 
-        {/* SEO Core */}
-        <meta name="author" content="Reda Salem" />
-        <meta name="copyright" content="Reda Salem" />
-        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-
-        {/* OpenGraph (Facebook + LinkedIn) */}
-        <meta property="og:type" content="website" />
-        <meta
-          property="og:title"
-          content="Reda Salem | Full-Stack Developer Portfolio"
-        />
-        <meta
-          property="og:description"
-          content="React & Next.js Full-Stack Developer building high-performance web applications."
-        />
-        <meta
-          property="og:image"
-          content="https://reda-website.vercel.app/images/reda.png"
-        />
-        <meta property="og:url" content="https://reda-website.vercel.app" />
-        <meta property="og:site_name" content="Reda Salem Portfolio" />
-
-        {/* Twitter SEO */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:title"
-          content="Reda Salem | Full-Stack Developer Portfolio"
-        />
-        <meta
-          name="twitter:description"
-          content="React & Next.js Full-Stack Developer building modern web experiences."
-        />
-        <meta
-          name="twitter:image"
-          content="https://reda-website.vercel.app/images/reda.png"
-        />
-
-        {/* Keywords (مهمة جدًا للـ semantic SEO) */}
-        <meta
-          name="keywords"
-          content="
-    Reda Salem,
-    React Developer Egypt,
-    Full-Stack Developer Cairo,
-    Next.js Developer,
-    TypeScript Developer,
-    JavaScript Developer,
-    Freelance Full-Stack Developer,
-    Web Developer Egypt,
-    React 19 Developer,
-    Next.js 15 Developer,
-    Shadcn UI Developer,
-    Tailwind CSS Developer
-  "
-        />
-
-        {/* Geo */}
+        {/* Geo targeting */}
         <meta name="geo.region" content="EG-C" />
         <meta name="geo.placename" content="Cairo" />
         <meta name="geo.position" content="30.0444;31.2357" />
         <meta name="ICBM" content="30.0444, 31.2357" />
-
-        {/* Canonical URL */}
-        <link rel="canonical" href="https://reda-website.vercel.app" />
       </head>
 
       <body

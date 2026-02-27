@@ -1,42 +1,34 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Sidebar from "@/components/sidebar";
 import Hero from "@/components/hero";
 import BottomNavbar from "@/components/Navbar";
-// Lazy load heavy components
+
+// Lazy load below-fold components
 const Skills = dynamic(() => import("@/components/skills"), {
-  loading: () => <div className="h-screen bg-background animate-pulse" />,
+  loading: () => <div className="h-96 bg-background animate-pulse" />,
   ssr: true,
 });
 const Projects = dynamic(() => import("@/components/projects"), {
-  loading: () => <div className="h-screen bg-background animate-pulse" />,
+  loading: () => <div className="h-96 bg-background animate-pulse" />,
   ssr: true,
 });
 const Certificates = dynamic(() => import("@/components/certificates"), {
-  loading: () => <div className="h-screen bg-background animate-pulse" />,
+  loading: () => <div className="h-96 bg-background animate-pulse" />,
   ssr: true,
 });
 const Contact = dynamic(() => import("@/components/contact"), {
-  loading: () => <div className="h-screen bg-background animate-pulse" />,
+  loading: () => <div className="h-96 bg-background animate-pulse" />,
   ssr: true,
 });
 const Footer = dynamic(() => import("@/components/footer"), { ssr: true });
 const ChatBot = dynamic(() => import("@/components/chatbot"), {
-  ssr: false, // Client-only for ChatBot to avoid hydration issues
-  loading: () => null, // No loader for chat bubble, it just appears
+  ssr: false,
+  loading: () => null,
 });
 
-function Home() {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return null;
-
+export default function Home() {
   return (
     <div className="flex flex-row min-h-screen bg-background">
       {/* Sidebar */}
@@ -48,7 +40,7 @@ function Home() {
           <BottomNavbar />
           <Hero />
 
-          {/* Deferred usage of heavy components */}
+          {/* Below-fold sections (lazy loaded) */}
           <Skills />
           <Projects />
           <Certificates />
@@ -62,5 +54,3 @@ function Home() {
     </div>
   );
 }
-
-export default Home;

@@ -31,7 +31,7 @@ const HeroSection = React.memo(function HeroSection() {
   }, []);
 
   // Memoize the background particles array to avoid recreating it on every render
-  const backgroundParticles = useMemo(() => [...Array(50)], []);
+  const backgroundParticles = useMemo(() => [...Array(10)], []);
 
   return (
     <section
@@ -143,23 +143,14 @@ const HeroSection = React.memo(function HeroSection() {
               transition={{ duration: 0.8, delay: 0.6 }}
             >
               {/* Download Resume Button */}
-              <motion.button
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: "0 0 25px rgba(249, 115, 22, 0.5)",
-                }}
-                whileTap={{ scale: 0.95 }}
-                className="cursor-pointer px-8 py-4 bg-linear-to-r from-orange-500 to-amber-500 dark:from-orange-500 dark:to-amber-500 text-white font-semibold rounded-full shadow-lg hover:shadow-orange-500/50 transition-all flex items-center gap-2"
+              <Link
+                target="_blank"
+                href="https://drive.google.com/file/d/1MNYifjkRpiy6xXKeAqiXCinVBkOh6mrZ/view?usp=sharing"
+                className="px-8 py-4 bg-linear-to-r from-orange-500 to-amber-500 dark:from-orange-500 dark:to-amber-500 text-white font-semibold rounded-full shadow-lg hover:shadow-orange-500/50 transition-all flex items-center gap-2 hover:scale-105 active:scale-95"
               >
-                <Link
-                  target="_blank"
-                  href="https://drive.google.com/file/d/1MNYifjkRpiy6xXKeAqiXCinVBkOh6mrZ/view?usp=sharing"
-                  className="flex items-center gap-2"
-                >
-                  <Download className="w-5 h-5" />
-                  Download Resume
-                </Link>
-              </motion.button>
+                <Download className="w-5 h-5" />
+                Download Resume
+              </Link>
 
               {/* Contact Button */}
               <motion.button
@@ -214,6 +205,7 @@ const HeroSection = React.memo(function HeroSection() {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={`Visit Reda Salem on ${social.name}`}
                   whileHover={{ scale: 1.2, rotate: 5 }}
                   whileTap={{ scale: 0.9 }}
                   className="w-12 h-12 bg-gray-200/80 dark:bg-white/10 backdrop-blur-sm border border-gray-300 dark:border-white/20 rounded-full flex items-center justify-center hover:bg-orange-500 dark:hover:bg-orange-500/30 hover:border-orange-500 dark:hover:border-orange-500/50 transition-all group"

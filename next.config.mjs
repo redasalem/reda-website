@@ -3,6 +3,9 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  experimental: {
+    optimizePackageImports: ['@mui/icons-material', '@mui/material', 'lucide-react', 'framer-motion'],
+  },
   compress: true,
   poweredByHeader: false,
   images: {
