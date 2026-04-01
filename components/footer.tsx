@@ -49,7 +49,7 @@ const Footer = React.memo(function Footer() {
           {/* Brand */}
           <div className="flex flex-col items-center md:items-start space-y-4">
             <div className="space-y-2">
-              <h3 className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              <h3 className="text-xl font-bold bg-linear-to-r from-brand-mint-500 to-brand-mint-600 bg-clip-text text-transparent">
                 Reda Salem
               </h3>
               <p className="text-sm text-muted-foreground max-w-xs mx-auto md:mx-0 leading-relaxed">
@@ -138,10 +138,10 @@ const Footer = React.memo(function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-muted-foreground animate-fade-in text-center md:text-left">
           <p>© {currentYear} Reda Salem. All rights reserved.</p>
           <div className="flex flex-wrap justify-center gap-6">
-            <a href="#" className="hover:text-accent transition-colors">
+            <a href="#" className="hover:text-brand-mint-500 transition-colors">
               Privacy Policy
             </a>
-            <a href="#" className="hover:text-accent transition-colors">
+            <a href="#" className="hover:text-brand-mint-500 transition-colors">
               Terms of Service
             </a>
           </div>

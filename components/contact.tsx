@@ -101,14 +101,14 @@ const Contact = memo(function Contact() {
   return (
     <section id="contact" className="min-h-screen py-20 px-4 md:px-8 relative bg-background transition-colors duration-300">
       {/* Background glow */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-orange-50/50 to-background pointer-events-none dark:via-orange-950/20 dark:to-background" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-brand-mint-50/50 to-background pointer-events-none dark:via-brand-mint-950/20 dark:to-background" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="mb-16 animate-fade-in">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="bg-linear-to-r from-accent to-primary bg-clip-text text-transparent">Let's Build Something</span>
+            <span className="bg-linear-to-r from-brand-mint-500 to-brand-mint-600 bg-clip-text text-transparent">Let's Build Something</span>
           </h2>
-          <div className="w-20 h-1 bg-linear-to-r from-accent to-primary rounded-full" />
+          <div className="w-20 h-1 bg-linear-to-r from-brand-mint-500 to-brand-mint-600 rounded-full" />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

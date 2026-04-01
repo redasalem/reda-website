@@ -190,6 +190,14 @@ export const metadata: Metadata = {
     "Remote JavaScript Developer",
     "AI-Driven Developer",
     "High-Performance JavaScript Architect",
+    "Senior Full-Stack Engineer Egypt",
+    "Software Architect Portfolio",
+    "System Design Architect Egypt",
+    "High Performance Web Architect",
+    "Professional Full-Stack Developer Cairo",
+    "Remote React Developer Middle East",
+    "Best Freelance Web Developer Egypt",
+    "Expert Software Engineer Portfolio",
   ],
 
   authors: [
@@ -600,6 +608,11 @@ export default function RootLayout({
       <head>
         {/* Performance hints */}
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.clarity.ms" />
+        <link rel="preconnect" href="https://www.google-analytics.com" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.clarity.ms" crossOrigin="anonymous" />
 
         {/* Microsoft tile config */}
         <meta name="msapplication-TileColor" content="#000000" />

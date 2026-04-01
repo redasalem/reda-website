@@ -80,7 +80,7 @@ const Sidebar = React.memo(function Sidebar() {
       >
         <div className={`mb-4 flex justify-center ${!isExpanded && "mb-0"}`}>
           <div
-            className={`relative rounded-full overflow-hidden border-2 border-blue-700 dark:border-green-500 glow-effect transition-all duration-300`}
+            className={`relative rounded-full overflow-hidden border-2 border-brand-mint-600 dark:border-brand-mint-400 glow-effect-mint transition-all duration-300`}
             style={{
               width: isExpanded ? "96px" : "30px",
               height: isExpanded ? "96px" : "30px",
@@ -120,7 +120,7 @@ const Sidebar = React.memo(function Sidebar() {
         >
           <div className="w-10 h-6 rounded-full bg-sidebar-primary/30 flex items-center relative">
             <div
-              className="w-5 h-5 rounded-full bg-sidebar-accent absolute transition-transform duration-300"
+              className="w-5 h-5 rounded-full bg-brand-mint-500 absolute transition-transform duration-300"
               style={{
                 transform:
                   theme === "dark" ? "translateX(18px)" : "translateX(2px)",

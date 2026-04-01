@@ -10,9 +10,11 @@ import Link from "next/link";
 
 const HeroSection = React.memo(function HeroSection() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    const handleMouseMove = (e: any) => {
+    setIsClient(true);
+    const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({
         x: (e.clientX / window.innerWidth - 0.5) * 20,
         y: (e.clientY / window.innerHeight - 0.5) * 20,
@@ -22,56 +24,53 @@ const HeroSection = React.memo(function HeroSection() {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  // Smooth scroll to contact section
   const scrollToContact = useCallback(() => {
-    const contactSection = document.getElementById("contact");
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, []);
 
-  // Memoize the background particles array to avoid recreating it on every render
-  const backgroundParticles = useMemo(() => [...Array(10)], []);
+  const backgroundParticles = useMemo(() => {
+    if (typeof window === "undefined") return [];
+    return Array.from({ length: 6 }, (_, i) => ({
+      id: i,
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      scale: Math.random() * 1.5,
+      duration: Math.random() * 5 + 5,
+    }));
+  }, []);
 
   return (
     <section
       id="about"
       className="relative min-h-screen overflow-hidden flex items-center bg-background"
     >
-      {/* Animated Background - يتغير مع الثيم */}
-      <div className="absolute inset-0">
-        {backgroundParticles.map((_, i) => (
+      {/* Animated Background - CSS-based for better performance */}
+      <div className="absolute inset-0" aria-hidden="true">
+        {isClient && backgroundParticles.map((particle) => (
           <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-orange-500 dark:bg-orange-400 rounded-full opacity-60 dark:opacity-40"
+            key={particle.id}
+            className="absolute w-1 h-1 bg-brand-mint-500 dark:bg-brand-mint-400 rounded-full opacity-60 dark:opacity-40"
             initial={{
-              x:
-                Math.random() *
-                (typeof window !== "undefined" ? window.innerWidth : 1000),
-              y:
-                Math.random() *
-                (typeof window !== "undefined" ? window.innerHeight : 1000),
-              scale: Math.random() * 1.5,
+              x: particle.x,
+              y: particle.y,
+              scale: particle.scale,
             }}
             animate={{
-              y: [
-                null,
-                Math.random() *
-                (typeof window !== "undefined" ? window.innerHeight : 1000),
-              ],
+              y: [null, window.innerHeight],
               opacity: [0, 1, 0],
             }}
             transition={{
-              duration: Math.random() * 5 + 5,
+              duration: particle.duration,
               repeat: Infinity,
               ease: "linear",
             }}
+            style={{ willChange: "transform, opacity" }}
           />
         ))}
       </div>
 
       {/* Grid Background - يتكيف مع الثيم */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(249,115,22,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(249,115,22,0.05)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(249,115,22,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(249,115,22,0.1)_1px,transparent_1px)] bg-size-[100px_100px] mask-[radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,159,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,159,0.05)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(0,255,159,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,159,0.1)_1px,transparent_1px)] bg-size-[100px_100px] mask-[radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]" />
 
       <div className="container mx-auto px-6 z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -89,7 +88,7 @@ const HeroSection = React.memo(function HeroSection() {
               transition={{ duration: 0.6 }}
               className="inline-block mt-4"
             >
-              <span className="px-4 py-2  bg-orange-500/20 dark:bg-orange-500/30 border border-orange-500/50 dark:border-orange-400/50 rounded-full text-orange-700 dark:text-orange-300 text-sm font-medium backdrop-blur-sm">
+              <span className="px-4 py-2  bg-brand-mint-500/20 dark:bg-brand-mint-500/30 border border-brand-mint-500/50 dark:border-brand-mint-400/50 rounded-full text-brand-mint-700 dark:text-brand-mint-300 text-sm font-medium backdrop-blur-sm">
                 ⚡ Open to Remote & Freelance
               </span>
             </motion.div>
@@ -103,13 +102,13 @@ const HeroSection = React.memo(function HeroSection() {
                 transition={{ duration: 0.8, delay: 0.3 }}
               >
                 Hi, I'm{" "}
-                <span className="bg-linear-to-r from-orange-500 via-amber-500 to-orange-500 dark:from-orange-400 dark:via-amber-400 dark:to-orange-400 bg-clip-text text-transparent bg-size-[200%_auto] animate-gradient">
+                <span className="bg-linear-to-r from-brand-mint-500 via-brand-mint-600 to-brand-mint-500 dark:from-brand-mint-400 dark:via-brand-mint-500 dark:to-brand-mint-400 bg-clip-text text-transparent bg-size-[200%_auto] animate-gradient">
                   Reda Salem
                 </span>
               </motion.h1>
 
               <motion.h2
-                className="text-3xl lg:text-4xl font-semibold text-orange-700 dark:text-orange-300"
+                className="text-3xl lg:text-4xl font-semibold text-brand-mint-700 dark:text-brand-mint-300"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
@@ -145,7 +144,7 @@ const HeroSection = React.memo(function HeroSection() {
               <Link
                 target="_blank"
                 href="https://drive.google.com/file/d/1MNYifjkRpiy6xXKeAqiXCinVBkOh6mrZ/view?usp=sharing"
-                className="px-8 py-4 bg-linear-to-r from-orange-500 to-amber-500 dark:from-orange-500 dark:to-amber-500 text-white font-semibold rounded-full shadow-lg hover:shadow-orange-500/50 transition-all flex items-center gap-2 hover:scale-105 active:scale-95"
+                className="px-8 py-4 bg-linear-to-r from-brand-mint-500 to-brand-mint-600 dark:from-brand-mint-500 dark:to-brand-mint-600 text-white font-semibold rounded-full shadow-lg hover:shadow-brand-mint-500/50 transition-all flex items-center gap-2 hover:scale-105 active:scale-95"
               >
                 <Download className="w-5 h-5" />
                 Download Resume
@@ -207,7 +206,7 @@ const HeroSection = React.memo(function HeroSection() {
                   aria-label={`Visit Reda Salem on ${social.name}`}
                   whileHover={{ scale: 1.2, rotate: 5 }}
                   whileTap={{ scale: 0.9 }}
-                  className="w-12 h-12 bg-gray-200/80 dark:bg-white/10 backdrop-blur-sm border border-gray-300 dark:border-white/20 rounded-full flex items-center justify-center hover:bg-orange-500 dark:hover:bg-orange-500/30 hover:border-orange-500 dark:hover:border-orange-500/50 transition-all group"
+                  className="w-12 h-12 bg-gray-200/80 dark:bg-white/10 backdrop-blur-sm border border-gray-300 dark:border-white/20 rounded-full flex items-center justify-center hover:bg-brand-mint-500 dark:hover:bg-brand-mint-500/30 hover:border-brand-mint-500 dark:hover:border-brand-mint-500/50 transition-all group"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.8 + i * 0.1 }}
@@ -233,7 +232,7 @@ const HeroSection = React.memo(function HeroSection() {
           >
             {/* Glowing Background */}
             <motion.div
-              className="absolute inset-0 bg-linear-to-r from-orange-500 to-amber-500 dark:from-orange-500 dark:to-amber-500 rounded-3xl blur-3xl opacity-20 dark:opacity-30"
+              className="absolute inset-0 bg-linear-to-r from-brand-mint-500 to-brand-mint-600 dark:from-brand-mint-500 dark:to-brand-mint-600 rounded-3xl blur-3xl opacity-20 dark:opacity-30"
               animate={{
                 scale: [1, 1.2, 1],
                 opacity: [0.2, 0.4, 0.2],
@@ -246,7 +245,7 @@ const HeroSection = React.memo(function HeroSection() {
             />
 
             {/* Computer Container */}
-            <div className="relative bg-linear-to-br from-gray-200 to-gray-300 dark:from-slate-800 dark:to-slate-900 rounded-2xl p-4 border border-gray-300 dark:border-orange-500/30 shadow-2xl">
+            <div className="relative bg-linear-to-br from-gray-200 to-gray-300 dark:from-slate-800 dark:to-slate-900 rounded-2xl p-4 border border-gray-300 dark:border-brand-mint-500/30 shadow-2xl">
               {/* Screen */}
               <div className="bg-linear-to-br from-gray-100 to-gray-200 dark:from-slate-900 dark:to-black rounded-xl overflow-hidden border border-gray-300 dark:border-slate-700 shadow-inner">
                 {/* Screen Header */}
@@ -268,7 +267,7 @@ const HeroSection = React.memo(function HeroSection() {
                     {[
                       {
                         code: "const engineer = {",
-                        color: "text-orange-700 dark:text-orange-400",
+                        color: "text-brand-mint-700 dark:text-brand-mint-400",
                         delay: 0,
                       },
                       {
@@ -288,12 +287,12 @@ const HeroSection = React.memo(function HeroSection() {
                       },
                       {
                         code: '  results: ["99 PageSpeed ⚡", "2x Faster", "+30% Engagement"]',
-                        color: "text-amber-700 dark:text-amber-400",
+                        color: "text-brand-mint-700 dark:text-brand-mint-300",
                         delay: 0.3,
                       },
                       {
                         code: "}",
-                        color: "text-orange-700 dark:text-orange-400",
+                        color: "text-brand-mint-700 dark:text-brand-mint-400",
                         delay: 0.4,
                       },
                     ].map((line, i) => (
@@ -308,93 +307,53 @@ const HeroSection = React.memo(function HeroSection() {
                         <motion.span
                           animate={{ opacity: [1, 0, 1] }}
                           transition={{ duration: 1, repeat: Infinity }}
-                          className="inline-block w-2 h-4 bg-orange-500 dark:bg-orange-400 ml-1"
+                          className="inline-block w-2 h-4 bg-brand-mint-500 dark:bg-brand-mint-400 ml-1"
                         />
                       </motion.div>
                     ))}
                   </motion.div>
 
-                  {/* Floating Elements */}
-                  <motion.div
-                    className="absolute top-10 right-10 w-16 h-16 bg-orange-500/30 dark:bg-orange-500/20 rounded-lg backdrop-blur-sm border border-orange-500/50 dark:border-orange-500/30"
-                    animate={{
-                      y: [0, -20, 0],
-                      rotate: [0, 10, 0],
-                    }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
+                  {/* Floating Elements - CSS animated for performance */}
+                  <div
+                    className="absolute top-10 right-10 w-16 h-16 bg-brand-mint-500/30 dark:bg-brand-mint-500/20 rounded-lg backdrop-blur-sm border border-brand-mint-500/50 dark:border-brand-mint-500/30 animate-float"
                   >
                     <div className="w-full h-full flex items-center justify-center text-2xl">
                       ⚡
                     </div>
-                  </motion.div>
+                  </div>
 
-                  <motion.div
-                    className="absolute bottom-10 right-20 w-12 h-12 bg-amber-500/30 dark:bg-amber-500/20 rounded-full backdrop-blur-sm border border-amber-500/50 dark:border-amber-500/30"
-                    animate={{
-                      y: [0, 15, 0],
-                      x: [0, 10, 0],
-                    }}
-                    transition={{
-                      duration: 4,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      delay: 0.5,
-                    }}
+                  <div
+                    className="absolute bottom-10 right-20 w-12 h-12 bg-brand-mint-600/30 dark:bg-brand-mint-600/20 rounded-full backdrop-blur-sm border border-brand-mint-600/50 dark:border-brand-mint-600/30 animate-float-slow"
                   >
                     <div className="w-full h-full flex items-center justify-center text-xl">
                       🚀
                     </div>
-                  </motion.div>
+                  </div>
                 </div>
               </div>
 
-              {/* Keyboard */}
+              {/* Keyboard - CSS hover for performance */}
               <div className="mt-4 bg-gray-300 dark:bg-slate-800 rounded-lg p-3 border border-gray-400 dark:border-slate-700">
                 <div className="grid grid-cols-12 gap-1">
                   {[...Array(36)].map((_, i) => (
-                    <motion.div
+                    <div
                       key={i}
-                      className="h-8 bg-gray-400 dark:bg-slate-700 rounded border border-gray-500 dark:border-slate-600"
-                      whileHover={{ scale: 0.95, backgroundColor: "#F97316" }}
-                      transition={{ duration: 0.1 }}
+                      className="h-8 bg-gray-400 dark:bg-slate-700 rounded border border-gray-500 dark:border-slate-600 transition-all duration-100 hover:bg-brand-mint-500 hover:scale-95 cursor-pointer"
                     />
                   ))}
                 </div>
               </div>
             </div>
 
-            {/* Floating Orbs */}
-            <motion.div
-              className="absolute -top-10 -right-10 w-40 h-40 bg-orange-500 dark:bg-orange-600 rounded-full blur-3xl opacity-15 dark:opacity-20"
-              animate={{
-                scale: [1, 1.3, 1],
-                x: [0, 20, 0],
-                y: [0, -20, 0],
-              }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
+            {/* Floating Orbs - CSS animated */}
+            <div
+              className="absolute -top-10 -right-10 w-40 h-40 bg-brand-mint-500 dark:bg-brand-mint-600 rounded-full blur-3xl opacity-15 dark:opacity-20 animate-pulse-slow"
+              style={{ willChange: "transform, opacity" }}
             />
 
-            <motion.div
-              className="absolute -bottom-10 -left-10 w-32 h-32 bg-amber-500 dark:bg-amber-600 rounded-full blur-3xl opacity-15 dark:opacity-20"
-              animate={{
-                scale: [1, 1.4, 1],
-                x: [0, -15, 0],
-                y: [0, 15, 0],
-              }}
-              transition={{
-                duration: 5,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 1,
-              }}
+            <div
+              className="absolute -bottom-10 -left-10 w-32 h-32 bg-brand-mint-600 dark:bg-teal-600 rounded-full blur-3xl opacity-15 dark:opacity-20 animate-pulse-slow-delay"
+              style={{ willChange: "transform, opacity" }}
             />
           </motion.div>
         </div>

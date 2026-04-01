@@ -70,6 +70,7 @@ const Skills = React.memo(function Skills() {
         },
         { name: "React.js", icon: <ReactIcon sx={{ color: "#61dafb" }} /> },
         { name: "Next.js", icon: <NextIcon sx={{ color: "#bdbdbd" }} /> },
+        { name: "Server Components", icon: <NextIcon sx={{ color: "#000000" }} /> },
         {
           name: "React Native",
           icon: <ReactNativeIcon sx={{ color: "#61dafb" }} />,
@@ -84,6 +85,8 @@ const Skills = React.memo(function Skills() {
           icon: <MaterialUIIcon sx={{ color: "#00b0ff" }} />,
         },
         { name: "ShadCN UI", icon: <ShadcnIcon sx={{ color: "#ab47bc" }} /> },
+        { name: "Zustand", icon: <NodeIcon sx={{ color: "#433333" }} /> },
+        { name: "Storybook", icon: <PaletteIcon sx={{ color: "#FF4785" }} /> },
         { name: "DaisyUI", icon: <PaletteIcon sx={{ color: "#ff9800" }} /> },
         { name: "Nivo", icon: <NivoIcon sx={{ color: "#ff9800" }} /> },
         {
@@ -104,6 +107,7 @@ const Skills = React.memo(function Skills() {
           icon: <FirebaseIcon sx={{ color: "#ffb300" }} />,
         },
         { name: "Clerk", icon: <ClerkIcon sx={{ color: "#5c6bc0" }} /> },
+        { name: "GraphQL", icon: <ApiIcon sx={{ color: "#E10098" }} /> },
         {
           name: "PayPal Integration",
           icon: <PaypalIcon sx={{ color: "#2196f3" }} />,
@@ -140,6 +144,7 @@ const Skills = React.memo(function Skills() {
       title: "Workspace & Collaboration",
       skills: [
         { name: "Git & GitHub", icon: <HtmlIcon sx={{ color: "#F05032" }} /> },
+        { name: "Figma", icon: <PaletteIcon sx={{ color: "#F24E1E" }} /> },
         { name: "Postman", icon: <ApiIcon sx={{ color: "#FF6C37" }} /> },
       ],
     },
@@ -148,6 +153,7 @@ const Skills = React.memo(function Skills() {
       skills: [
         { name: "React Performance", icon: <PerfIcon sx={{ color: "#61dafb" }} /> },
         { name: "Next.js Production", icon: <NextjsProdIcon sx={{ color: "#000000" }} /> },
+        { name: "Lighthouse", icon: <PerfIcon sx={{ color: "#F44B3E" }} /> },
         { name: "System Scalability", icon: <ScalabilityIcon sx={{ color: "#ff9800" }} /> },
         { name: "PWA & Cloud Native", icon: <ArchitectureIcon sx={{ color: "#4caf50" }} /> },
       ],
@@ -156,7 +162,7 @@ const Skills = React.memo(function Skills() {
       title: "Testing, DevOps & Security",
       skills: [
         { name: "CI/CD & Docker", icon: <DevopsIcon sx={{ color: "#2196f3" }} /> },
-        { name: "Automated Testing", icon: <TestingIcon sx={{ color: "#e91e63" }} /> },
+        { name: "Jest & Cypress", icon: <TestingIcon sx={{ color: "#C21325" }} /> },
         { name: "Web Security", icon: <SecurityIcon sx={{ color: "#9c27b0" }} /> },
         { name: "Design Patterns", icon: <ArchitectureIcon sx={{ color: "#795548" }} /> },
       ],

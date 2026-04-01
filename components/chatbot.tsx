@@ -64,8 +64,8 @@ const ChatBot = React.memo(function ChatBot() {
         <button
           onClick={() => setIsOpen(!isOpen)}
           className={`w-16 h-16 rounded-full shadow-2xl flex items-center justify-center transition-all duration-500 hover:scale-110 ${isOpen
-            ? "bg-linear-to-br from-red-500 to-orange-600 rotate-90"
-            : "bg-linear-to-br from-orange-500 via-amber-500 to-orange-600 hover:shadow-orange-500/50 animate-pulse"
+            ? "bg-linear-to-br from-red-500 to-brand-mint-600 rotate-90"
+            : "bg-linear-to-br from-brand-mint-500 via-brand-mint-600 to-brand-mint-600 hover:shadow-brand-mint-500/50 animate-pulse"
             }`}
           aria-label={isOpen ? "Close chat" : "Open chat"}
         >
@@ -94,8 +94,8 @@ const ChatBot = React.memo(function ChatBot() {
         <div className="fixed md:bottom-28 bottom-44 right-6 z-40 md:w-[420px] w-[390px] max-w-[calc(100vw-3rem)] md:h-[600px] h-[500px] max-h-[calc(100vh-10rem)] rounded-2xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 shadow-2xl flex flex-col overflow-hidden backdrop-blur-xl transition-all duration-500 animate-in slide-in-from-bottom-5">
 
           {/* Header - خلفية متدرجة خرافية */}
-          <div className="relative bg-gradient-to-br from-orange-500 via-amber-500 to-orange-600 p-5 text-white overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-orange-500/50 via-amber-500/50 to-orange-600/50 animate-pulse" />
+          <div className="relative bg-gradient-to-br from-brand-mint-500 via-brand-mint-600 to-brand-mint-600 p-5 text-white overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-brand-mint-500/50 via-brand-mint-600/50 to-brand-mint-600/50 animate-pulse" />
 
             <div className="relative flex items-center gap-3">
               <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border-2 border-white/30 shadow-lg">
@@ -115,14 +115,14 @@ const ChatBot = React.memo(function ChatBot() {
 
             {/* تأثيرات الخلفية */}
             <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-            <div className="absolute bottom-0 left-0 w-32 h-32 bg-amber-400/20 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2" />
+            <div className="absolute bottom-0 left-0 w-32 h-32 bg-brand-mint-400/20 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2" />
           </div>
 
           {/* Messages Area */}
           <div className="flex-1 overflow-y-auto p-5 space-y-4 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950">
             {messages.length === 0 && (
               <div className="flex flex-col items-center justify-center h-full text-center px-4">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center mb-4 shadow-lg">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-brand-mint-500 to-brand-mint-600 flex items-center justify-center mb-4 shadow-lg">
                   <Bot className="w-8 h-8 text-white" />
                 </div>
                 <h4 className="text-lg font-bold text-gray-800 dark:text-gray-200 mb-2">
@@ -143,7 +143,7 @@ const ChatBot = React.memo(function ChatBot() {
               >
                 {/* Avatar للـ AI */}
                 {message.sender === "ai" && (
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center flex-shrink-0 shadow-lg">
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-brand-mint-500 to-brand-mint-600 flex items-center justify-center flex-shrink-0 shadow-lg">
                     <Bot className="w-4 h-4 text-white" />
                   </div>
                 )}
@@ -152,7 +152,7 @@ const ChatBot = React.memo(function ChatBot() {
                 <div className={`max-w-[75%] ${message.sender === "user" ? "order-first" : ""}`}>
                   <div
                     className={`px-4 py-3 rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl ${message.sender === "user"
-                      ? "bg-gradient-to-br from-orange-500 to-amber-600 text-white rounded-br-md"
+                      ? "bg-gradient-to-br from-brand-mint-500 to-brand-mint-600 text-white rounded-br-md"
                       : "bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 border border-gray-200 dark:border-gray-700 rounded-bl-md"
                       }`}
                   >
@@ -172,7 +172,7 @@ const ChatBot = React.memo(function ChatBot() {
 
                 {/* Avatar للـ User */}
                 {message.sender === "user" && (
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center flex-shrink-0 shadow-lg">
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-teal-500 to-brand-mint-500 flex items-center justify-center flex-shrink-0 shadow-lg">
                     <User className="w-4 h-4 text-white" />
                   </div>
                 )}
@@ -187,9 +187,9 @@ const ChatBot = React.memo(function ChatBot() {
                 </div>
                 <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 px-5 py-3 rounded-2xl rounded-bl-md shadow-lg">
                   <div className="flex gap-1.5">
-                    <div className="w-2.5 h-2.5 bg-gradient-to-r from-orange-500 to-amber-500 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-                    <div className="w-2.5 h-2.5 bg-gradient-to-r from-amber-500 to-orange-600 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-                    <div className="w-2.5 h-2.5 bg-gradient-to-r from-orange-600 to-orange-500 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+                    <div className="w-2.5 h-2.5 bg-gradient-to-r from-brand-mint-500 to-brand-mint-600 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
+                    <div className="w-2.5 h-2.5 bg-gradient-to-r from-teal-500 to-brand-mint-600 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
+                    <div className="w-2.5 h-2.5 bg-gradient-to-r from-brand-mint-600 to-brand-mint-500 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
                   </div>
                 </div>
               </div>
@@ -210,7 +210,7 @@ const ChatBot = React.memo(function ChatBot() {
                   onChange={(e) => setInputValue(e.target.value)}
                   placeholder="Type your message..."
                   disabled={isLoading}
-                  className="w-full px-4 py-3 pr-12 rounded-xl bg-gray-100 dark:bg-gray-800 border-2 border-transparent text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:border-orange-500 dark:focus:border-amber-500 focus:bg-white dark:focus:bg-gray-800 transition-all duration-300 disabled:opacity-50 text-sm shadow-sm"
+                  className="w-full px-4 py-3 pr-12 rounded-xl bg-gray-100 dark:bg-gray-800 border-2 border-transparent text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:border-brand-mint-500 dark:focus:border-brand-mint-500 focus:bg-white dark:focus:bg-gray-800 transition-all duration-300 disabled:opacity-50 text-sm shadow-sm"
                 />
                 <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
                   <Sparkles className="w-4 h-4 text-gray-400 dark:text-gray-500" />
@@ -221,7 +221,7 @@ const ChatBot = React.memo(function ChatBot() {
                 type="submit"
                 disabled={isLoading || !inputValue.trim()}
                 aria-label="Send message"
-                className="px-4 py-3 rounded-xl bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white font-medium transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg hover:shadow-orange-500/50 hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2 group"
+                className="px-4 py-3 rounded-xl bg-gradient-to-r from-brand-mint-500 to-brand-mint-600 hover:from-brand-mint-600 hover:to-brand-mint-700 text-white font-medium transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg hover:shadow-brand-mint-500/50 hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2 group"
               >
                 <Send className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" />
               </button>
