@@ -12,7 +12,6 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 
 const BottomNavbar = React.memo(function BottomNavbar() {
-  const { theme, toggleTheme } = useTheme();
   const [activeIndex, setActiveIndex] = useState(0);
 
   const scrollToSection = (id: string) => {
@@ -25,22 +24,22 @@ const BottomNavbar = React.memo(function BottomNavbar() {
       icon: <InfoIcon />,
       label: "About",
       id: "about",
-      activeColor: "text-primary",
-      bgColor: "bg-primary/10",
+      activeColor: "text-brand-mint-500",
+      bgColor: "bg-brand-mint-500/10",
     },
     {
       icon: <MenuIcon />,
       label: "Skills",
       id: "skills",
-      activeColor: "text-accent",
-      bgColor: "bg-accent/10",
+      activeColor: "text-brand-mint-500",
+      bgColor: "bg-brand-mint-500/10",
     },
     {
       icon: <WorkIcon />,
       label: "Projects",
       id: "projects",
-      activeColor: "text-primary",
-      bgColor: "bg-primary/10",
+      activeColor: "text-brand-mint-500",
+      bgColor: "bg-brand-mint-500/10",
     },
     {
       icon: <EmojiEventsIcon />,
@@ -134,9 +133,7 @@ const BottomNavbar = React.memo(function BottomNavbar() {
                 <AnimatePresence>
                   {isActive && (
                     <motion.div
-                      className={`absolute -bottom-1 w-1 h-1 rounded-full ${item.activeColor
-                        .split(" ")[0]
-                        .replace("text-", "bg-")}`}
+                      className="absolute -bottom-1 w-1 h-1 rounded-full bg-brand-mint-500"
                       initial={{ scale: 0, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
                       exit={{ scale: 0, opacity: 0 }}

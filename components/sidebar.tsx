@@ -38,25 +38,25 @@ const Sidebar = React.memo(function Sidebar() {
       icon: <GitHub />,
       href: "https://github.com/redasalem",
       label: "GitHub",
-      color: "#171515",
+      color: "hover:text-brand-mint-400",
     },
     {
       icon: <LinkedIn />,
       href: "https://www.linkedin.com/in/reda-salem-dev/",
       label: "LinkedIn",
-      color: "#0077B5",
+      color: "hover:text-brand-mint-500",
     },
     {
       icon: <Email />,
       href: "mailto:redasalem287@gmail.com",
       label: "Email",
-      color: "#EA4335",
+      color: "hover:text-red-400",
     },
     {
       icon: <WhatsApp />,
       href: "tel:+201121696299",
       label: "Phone",
-      color: "#25D366",
+      color: "hover:text-green-400",
     },
   ], []);
 

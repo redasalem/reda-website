@@ -21,7 +21,7 @@ const Certificates = React.memo(function Certificates() {
       description:
         "Comprehensive front-end development certification covering modern web technologies",
       link: "https://academy.hsoub.com/certificate/8CT2XWQB10SJXDYDRM4PT6GED.pdf",
-      color: "from-brand-mint-400 to-brand-mint-600",
+      color: "from-brand-mint-500/20 to-brand-mint-600/20",
       icon: "💻",
       image: "/images/hasoup.webp",
     },
@@ -32,7 +32,7 @@ const Certificates = React.memo(function Certificates() {
       description:
         "Professional training in front-end development with hands-on projects",
       link: "https://drive.google.com/file/d/1irnR_hedjneoMh7poPI9CM4SwqXeLAOU/view",
-      color: "from-brand-mint-500 to-teal-500",
+      color: "from-brand-mint-500/20 to-brand-mint-600/20",
       icon: "💻",
       image: "/images/reda_iti.png",
     },
@@ -43,7 +43,7 @@ const Certificates = React.memo(function Certificates() {
       description:
         "Intense hands-on experience in problem analysis, back-end systems, and professional team collaboration.",
       link: "https://www.linkedin.com/posts/reda-salem-dev_frontend-react-professionalgrowth-activity-7416949321494982656-bim4?utm_source=share&utm_medium=member_desktop&rcm=ACoAAELm9IAB5ccC-E7q6WGg2fPYNK2bK5i7Yys",
-      color: "from-brand-mint-600 to-brand-mint-400",
+      color: "from-brand-mint-500/20 to-brand-mint-600/20",
       icon: "🚀",
       image: "/images/huma-volve.jpg",
     },

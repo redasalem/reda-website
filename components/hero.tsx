@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import React, { useState, useEffect, useCallback, useMemo } from "react";
-import { Download, ArrowDown } from "lucide-react";
+import { Download, ArrowDown, ArrowRight, Briefcase, MessageSquare } from "lucide-react";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import EmailIcon from "@mui/icons-material/Email";
@@ -102,7 +102,7 @@ const HeroSection = React.memo(function HeroSection() {
                 transition={{ duration: 0.8, delay: 0.3 }}
               >
                 Hi, I'm{" "}
-                <span className="bg-gradient-to-r from-brand-mint-400 via-brand-mint-500 to-brand-mint-300 bg-clip-text text-transparent bg-size-[200%_auto] animate-gradient font-extrabold">
+                <span className="text-gradient-mint font-extrabold drop-shadow-[0_0_15px_rgba(0,255,159,0.3)]">
                    Reda Salem
                 </span>
               </motion.h1>
@@ -144,11 +144,20 @@ const HeroSection = React.memo(function HeroSection() {
               <Link
                 target="_blank"
                 href="https://drive.google.com/file/d/1MNYifjkRpiy6xXKeAqiXCinVBkOh6mrZ/view?usp=sharing"
-                className="px-8 py-4 bg-linear-to-r from-brand-mint-500 to-brand-mint-600 dark:from-brand-mint-500 dark:to-brand-mint-600 text-white font-semibold rounded-full shadow-lg hover:shadow-brand-mint-500/50 transition-all flex items-center gap-2 hover:scale-105 active:scale-95"
+                className="btn-premium"
               >
                 <Download className="w-5 h-5" />
                 Download Resume
               </Link>
+
+              {/* View Projects Button */}
+              <button
+                onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+                className="btn-secondary group"
+              >
+                View My Projects
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </button>
 
               {/* Contact Button */}
               <motion.button

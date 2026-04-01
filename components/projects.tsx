@@ -85,7 +85,7 @@ const Projects = React.memo(function Projects() {
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
               >
-                <div className="relative flex flex-col h-full bg-card border border-border/50 rounded-3xl overflow-hidden hover:border-brand-mint-500/50 transition-all duration-500 group-hover:-translate-y-2">
+                <div className="glass-card flex flex-col h-full group-hover:-translate-y-2 transition-all duration-500 relative overflow-hidden">
                   {/* Image Container */}
                   <div className="relative h-48 md:h-60 w-full overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
@@ -99,9 +99,9 @@ const Projects = React.memo(function Projects() {
                     />
 
                     <div className="absolute top-4 right-4 z-20 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                      <div className="px-3 py-1 rounded-full bg-accent/90 backdrop-blur-md text-white text-xs font-bold flex items-center gap-1 border border-white/20">
+                      <div className="px-3 py-1 rounded-full bg-brand-mint-500/90 backdrop-blur-md text-black text-[10px] font-black flex items-center gap-1 border border-white/20 shadow-lg uppercase tracking-wider">
                         <AutoAwesomeIcon sx={{ fontSize: 14 }} />
-                        Featured
+                        FEATURED
                       </div>
                     </div>
                   </div>
@@ -125,26 +125,26 @@ const Projects = React.memo(function Projects() {
                     <div className="grow" /> {/* Spacer to push content down */}
                     {/* Tech Stack */}
                     <div className="flex flex-wrap gap-2 pt-2">
-                      {project.tech.map((tech, i) => (
+                      {project.tech.map((techItem, i) => (
                         <span
                           key={i}
-                          className="px-2 md:px-2.5 py-1 rounded-lg bg-secondary/50 text-secondary-foreground text-[10px] md:text-xs font-medium border border-border/50"
+                          className="px-2.5 py-1 rounded-lg bg-brand-mint-500/5 text-brand-mint-300 text-[10px] md:text-xs font-bold border border-brand-mint-500/10 backdrop-blur-sm uppercase tracking-tight"
                         >
-                          {tech}
+                          {techItem}
                         </span>
                       ))}
                     </div>
                     <div className="h-px bg-border/50 my-4" />
-                    <div className="flex gap-3 mt-auto">
+                    <div className="flex gap-3">
                       {project.demo && (
                         <a
                           href={project.demo}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-brand-mint-500 text-white text-sm font-semibold hover:bg-brand-mint-600 transition-all duration-300 transform active:scale-95"
+                          className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 bg-gradient-to-r from-brand-mint-500 to-brand-mint-600 text-black text-xs font-black rounded-xl hover:from-brand-mint-400 hover:to-brand-mint-500 transition-all duration-300 shadow-lg shadow-brand-mint-500/10 active:scale-95 uppercase tracking-wider"
                         >
-                          <LaunchIcon sx={{ fontSize: 18 }} />
-                          Live Demo
+                          Demo
+                          <LaunchIcon sx={{ fontSize: 16 }} />
                         </a>
                       )}
                       {project.code && (
@@ -152,10 +152,10 @@ const Projects = React.memo(function Projects() {
                           href={project.code}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-secondary text-secondary-foreground border border-border hover:bg-secondary/80 text-sm font-semibold transition-all duration-300 transform active:scale-95"
+                          className="p-3 bg-white/5 border border-white/10 text-white rounded-xl hover:bg-white/10 hover:border-brand-mint-500/50 transition-all duration-300 group"
+                          aria-label="View Code"
                         >
-                          <GitHubIcon sx={{ fontSize: 18 }} />
-                          Code
+                          <GitHubIcon className="w-5 h-5 group-hover:text-brand-mint-400" />
                         </a>
                       )}
                     </div>
