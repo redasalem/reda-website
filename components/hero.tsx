@@ -159,7 +159,7 @@ const HeroSection = React.memo(function HeroSection() {
                 className="cursor-pointer px-8 py-4 bg-gray-200/80 dark:bg-white/10 backdrop-blur-sm border border-gray-300 dark:border-white/20 text-gray-900 dark:text-white font-semibold rounded-full hover:bg-gray-300/80 dark:hover:bg-white/20 transition-all flex items-center gap-2"
               >
                 <ArrowDown className="w-5 h-5" />
-                Hire Me
+                Take Me
               </motion.button>
             </motion.div>
 
