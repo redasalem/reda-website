@@ -56,20 +56,11 @@ const BottomNavbar = React.memo(function BottomNavbar() {
       activeColor: "text-brand-mint-500",
       bgColor: "bg-brand-mint-500/10",
     },
-    {
-      icon: theme === "dark" ? <DarkModeIcon /> : <LightModeIcon />,
-      label: theme === "dark" ? "Dark" : "Light",
-      action: "theme",
-      activeColor: "text-yellow-500",
-      bgColor: "bg-yellow-500/10",
-    },
-  ], [theme]);
+  ], []);
 
   const handleClick = (item: any, index: number) => {
     setActiveIndex(index);
-    if (item.action === "theme") {
-      toggleTheme();
-    } else if (item.id) {
+    if (item.id) {
       scrollToSection(item.id);
     }
   };

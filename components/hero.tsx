@@ -102,8 +102,8 @@ const HeroSection = React.memo(function HeroSection() {
                 transition={{ duration: 0.8, delay: 0.3 }}
               >
                 Hi, I'm{" "}
-                <span className="bg-linear-to-r from-brand-mint-500 via-brand-mint-600 to-brand-mint-500 dark:from-brand-mint-400 dark:via-brand-mint-500 dark:to-brand-mint-400 bg-clip-text text-transparent bg-size-[200%_auto] animate-gradient">
-                  Reda Salem
+                <span className="bg-gradient-to-r from-brand-mint-400 via-brand-mint-500 to-brand-mint-300 bg-clip-text text-transparent bg-size-[200%_auto] animate-gradient font-extrabold">
+                   Reda Salem
                 </span>
               </motion.h1>
 

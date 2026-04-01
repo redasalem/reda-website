@@ -602,7 +602,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geist.variable} ${geistMono.variable} scroll-smooth`}
+      className={`${geist.variable} ${geistMono.variable} dark scroll-smooth`}
       suppressHydrationWarning
     >
       <head>

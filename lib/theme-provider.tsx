@@ -13,23 +13,17 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>("dark")
+  const [theme] = useState<Theme>("dark")
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    // Always start with dark theme
-    setTheme("dark")
+    // Always force dark theme
     document.documentElement.classList.add("dark")
     setMounted(true)
   }, [])
 
   const toggleTheme = () => {
-    setTheme((prev) => {
-      const newTheme = prev === "dark" ? "light" : "dark"
-      localStorage.setItem("theme", newTheme)
-      document.documentElement.classList.toggle("dark", newTheme === "dark")
-      return newTheme
-    })
+    // No-op to disable switching
   }
 
   return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>

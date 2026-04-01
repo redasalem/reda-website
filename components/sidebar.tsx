@@ -111,39 +111,8 @@ const Sidebar = React.memo(function Sidebar() {
         )}
       </div>
 
-      {/* Theme Toggle */}
-      {isExpanded ? (
-        <div
-          className="mb-8 flex items-center justify-center gap-2 p-3 rounded-lg bg-sidebar-primary/10 border border-sidebar-primary/20 animate-fade-in cursor-pointer hover:bg-sidebar-primary/20 transition-colors"
-          onClick={toggleTheme}
-          style={{ animationDelay: "0.1s" }}
-        >
-          <div className="w-10 h-6 rounded-full bg-sidebar-primary/30 flex items-center relative">
-            <div
-              className="w-5 h-5 rounded-full bg-brand-mint-500 absolute transition-transform duration-300"
-              style={{
-                transform:
-                  theme === "dark" ? "translateX(18px)" : "translateX(2px)",
-              }}
-            />
-          </div>
-          <span className="text-xs font-medium text-sidebar-foreground/70">
-            {theme === "dark" ? "Dark" : "Light"} Mode
-          </span>
-        </div>
-      ) : (
-        <button
-          onClick={toggleTheme}
-          className="mb-8 p-2 cursor-pointer transition-colors flex items-center justify-center"
-          title={
-            theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"
-          }
-        >
-          <span className="text-xl">
-            {theme === "dark" ? <BedtimeIcon /> : <SunnyIcon />}
-          </span>
-        </button>
-      )}
+      {/* Divider */}
+      <div className="h-px bg-sidebar-border mb-8 opacity-50" />
 
       {/* Navigation */}
       <nav className="flex-1 mb-8">

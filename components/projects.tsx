@@ -85,10 +85,10 @@ const Projects = React.memo(function Projects() {
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
               >
-                <div className="relative flex flex-col h-full bg-card border border-border/50 rounded-3xl overflow-hidden hover:shadow-xl hover:shadow-primary/5 hover:border-primary/20 transition-all duration-500 group-hover:-translate-y-2">
+                <div className="relative flex flex-col h-full bg-card border border-border/50 rounded-3xl overflow-hidden hover:border-brand-mint-500/50 transition-all duration-500 group-hover:-translate-y-2">
                   {/* Image Container */}
                   <div className="relative h-48 md:h-60 w-full overflow-hidden">
-                    <div className="absolute inset-0 bg-linear-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
 
                     <Image
                       src={project.image || "/images/placeholder.png"}
@@ -99,7 +99,7 @@ const Projects = React.memo(function Projects() {
                     />
 
                     <div className="absolute top-4 right-4 z-20 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                      <div className="px-3 py-1 rounded-full bg-accent/90 backdrop-blur-md text-white text-xs font-bold shadow-lg flex items-center gap-1">
+                      <div className="px-3 py-1 rounded-full bg-accent/90 backdrop-blur-md text-white text-xs font-bold flex items-center gap-1 border border-white/20">
                         <AutoAwesomeIcon sx={{ fontSize: 14 }} />
                         Featured
                       </div>
@@ -109,11 +109,11 @@ const Projects = React.memo(function Projects() {
                   {/* Content Container */}
                   <div className="flex flex-col flex-grow p-5 md:p-6 space-y-4">
                     <div className="flex items-start justify-between gap-2">
-                      <h3 className="text-xl md:text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300 grow">
+                      <h3 className="text-xl md:text-2xl font-bold text-foreground group-hover:text-brand-mint-400 transition-colors duration-300 grow">
                         {project.title}
                       </h3>
                       <motion.div
-                        className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary"
+                        className="w-8 h-8 rounded-full bg-brand-mint-500/10 flex items-center justify-center text-brand-mint-400 font-bold"
                         animate={{ rotate: hoveredIndex === index ? 45 : 0 }}
                       >
                         <LaunchIcon sx={{ fontSize: 16 }} />
@@ -141,7 +141,7 @@ const Projects = React.memo(function Projects() {
                           href={project.demo}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-primary text-primary-foreground text-sm font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 hover:bg-primary/90 transition-all duration-300"
+                          className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-brand-mint-500 text-white text-sm font-semibold hover:bg-brand-mint-600 transition-all duration-300 transform active:scale-95"
                         >
                           <LaunchIcon sx={{ fontSize: 18 }} />
                           Live Demo
@@ -152,7 +152,7 @@ const Projects = React.memo(function Projects() {
                           href={project.code}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-secondary text-secondary-foreground border border-border hover:bg-secondary/80 text-sm font-semibold transition-all duration-300"
+                          className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-secondary text-secondary-foreground border border-border hover:bg-secondary/80 text-sm font-semibold transition-all duration-300 transform active:scale-95"
                         >
                           <GitHubIcon sx={{ fontSize: 18 }} />
                           Code

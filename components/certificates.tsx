@@ -21,7 +21,7 @@ const Certificates = React.memo(function Certificates() {
       description:
         "Comprehensive front-end development certification covering modern web technologies",
       link: "https://academy.hsoub.com/certificate/8CT2XWQB10SJXDYDRM4PT6GED.pdf",
-      color: "from-brand-mint-500 to-brand-mint-600",
+      color: "from-brand-mint-400 to-brand-mint-600",
       icon: "💻",
       image: "/images/hasoup.webp",
     },
@@ -32,7 +32,7 @@ const Certificates = React.memo(function Certificates() {
       description:
         "Professional training in front-end development with hands-on projects",
       link: "https://drive.google.com/file/d/1irnR_hedjneoMh7poPI9CM4SwqXeLAOU/view",
-      color: "from-blue-500 to-cyan-500",
+      color: "from-brand-mint-500 to-teal-500",
       icon: "💻",
       image: "/images/reda_iti.png",
     },
@@ -43,7 +43,7 @@ const Certificates = React.memo(function Certificates() {
       description:
         "Intense hands-on experience in problem analysis, back-end systems, and professional team collaboration.",
       link: "https://www.linkedin.com/posts/reda-salem-dev_frontend-react-professionalgrowth-activity-7416949321494982656-bim4?utm_source=share&utm_medium=member_desktop&rcm=ACoAAELm9IAB5ccC-E7q6WGg2fPYNK2bK5i7Yys",
-      color: "from-brand-mint-600 to-teal-500",
+      color: "from-brand-mint-600 to-brand-mint-400",
       icon: "🚀",
       image: "/images/huma-volve.jpg",
     },
@@ -55,7 +55,7 @@ const Certificates = React.memo(function Certificates() {
     <section
       id="certificates"
       ref={containerRef}
-      className="min-h-screen py-32 px-4 md:px-8 relative overflow-hidden bg-linear-to-b from-background via-background/95 to-background"
+      className="min-h-screen py-32 px-4 md:px-8 relative overflow-hidden bg-gradient-to-b from-background via-background/95 to-background"
     >
       {/* Animated Background Grid */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,159,0.03)_2px,transparent_2px),linear-gradient(90deg,rgba(0,255,159,0.03)_2px,transparent_2px)] bg-size-[80px_80px]" />
@@ -108,13 +108,13 @@ const Certificates = React.memo(function Certificates() {
             transition={{ duration: 0.8, delay: 0.3 }}
             viewport={{ once: true }}
           >
-            <span className="bg-linear-to-r from-brand-mint-400 via-brand-mint-500 to-brand-mint-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-brand-mint-400 via-brand-mint-500 to-brand-mint-400 bg-clip-text text-transparent">
               Certificates
             </span>
           </motion.h2>
 
           <motion.div
-            className="w-24 h-1.5 bg-linear-to-r from-brand-mint-500 to-brand-mint-600 rounded-full mx-auto"
+            className="w-24 h-1.5 bg-gradient-to-r from-brand-mint-500 to-brand-mint-600 rounded-full mx-auto"
             initial={{ width: 0 }}
             whileInView={{ width: 96 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -147,7 +147,7 @@ const Certificates = React.memo(function Certificates() {
             >
               {/* Card Glow Effect */}
               <motion.div
-                className={`absolute -inset-1 bg-linear-to-r ${cert.color} rounded-3xl blur-xl opacity-20 group-hover:opacity-50 transition-opacity duration-500`}
+                className={`absolute -inset-1 bg-gradient-to-r ${cert.color} rounded-3xl blur-xl opacity-20 group-hover:opacity-50 transition-opacity duration-500`}
                 animate={{
                   scale: hoveredIndex === index ? 1.05 : 1,
                 }}
@@ -163,7 +163,7 @@ const Certificates = React.memo(function Certificates() {
                 <div className="relative h-48 overflow-hidden">
                   {/* Gradient Overlay */}
                   <motion.div
-                    className={`absolute inset-0 bg-linear-to-br ${cert.color} opacity-60 mix-blend-multiply z-10`}
+                    className={`absolute inset-0 bg-gradient-to-br ${cert.color} opacity-60 mix-blend-multiply z-10`}
                     animate={{
                       opacity: hoveredIndex === index ? 0.7 : 0.6,
                     }}
@@ -215,7 +215,7 @@ const Certificates = React.memo(function Certificates() {
 
                   {/* Shine Effect */}
                   <motion.div
-                    className="absolute inset-0 bg-linear-to-r from-transparent via-white/30 to-transparent -translate-x-full z-20"
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full z-20"
                     animate={{
                       x: hoveredIndex === index ? "200%" : "-100%",
                     }}
@@ -231,7 +231,7 @@ const Certificates = React.memo(function Certificates() {
                     viewport={{ once: true }}
                   >
                     <span
-                      className={`px-4 py-2 bg-linear-to-r ${cert.color} text-white text-sm font-bold rounded-full shadow-lg`}
+                      className={`px-4 py-2 bg-gradient-to-r ${cert.color} text-white text-sm font-bold rounded-full shadow-lg`}
                     >
                       {cert.date}
                     </span>
@@ -242,8 +242,8 @@ const Certificates = React.memo(function Certificates() {
                 <div className="p-6 space-y-4">
                   {/* Title & Issuer */}
                   <div>
-                    <motion.h3 className="text-2xl font-bold text-foreground group-hover:text-transparent group-hover:bg-linear-to-r group-hover:bg-clip-text group-hover:from-brand-mint-400 group-hover:to-brand-mint-500 transition-all duration-300 mb-2">
-                      {cert.title}
+                    <motion.h3 className="text-2xl font-bold text-foreground group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text group-hover:from-brand-mint-400 group-hover:to-brand-mint-500 transition-all duration-300 mb-2">
+                       {cert.title}
                     </motion.h3>
                     <motion.p className="text-brand-mint-400 font-semibold flex items-center gap-2">
                       <motion.span
@@ -272,7 +272,7 @@ const Certificates = React.memo(function Certificates() {
                     target="_blank"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className={`group/btn flex items-center justify-center gap-3 w-full py-3.5 rounded-xl bg-linear-to-r ${cert.color} text-white font-semibold shadow-lg hover:shadow-2xl transition-all duration-300 relative overflow-hidden`}
+                    className={`group/btn flex items-center justify-center gap-3 w-full py-3.5 rounded-xl bg-gradient-to-r ${cert.color} text-white font-semibold shadow-lg hover:shadow-2xl transition-all duration-300 relative overflow-hidden`}
                   >
                     <motion.span
                       className="absolute inset-0 bg-white/20"
@@ -298,7 +298,7 @@ const Certificates = React.memo(function Certificates() {
 
                 {/* Corner Decoration */}
                 <motion.div
-                  className={`absolute -bottom-10 -right-10 w-40 h-40 bg-linear-to-br ${cert.color} opacity-10 blur-3xl rounded-full`}
+                  className={`absolute -bottom-10 -right-10 w-40 h-40 bg-gradient-to-br ${cert.color} opacity-10 blur-3xl rounded-full`}
                   animate={{
                     scale: hoveredIndex === index ? 1.5 : 1,
                     opacity: hoveredIndex === index ? 0.2 : 0.1,
