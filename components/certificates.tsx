@@ -3,7 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import React, { useState, useRef, useMemo } from "react";
 import Image from "next/image";
-import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
+import { Award } from "lucide-react";
 
 const Certificates = React.memo(function Certificates() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -195,7 +195,7 @@ const Certificates = React.memo(function Certificates() {
                     }}
                     transition={{ duration: 0.5 }}
                   >
-                    <EmojiEventsIcon className="text-brand-mint-400 text-3xl" />
+                    <Award className="text-brand-mint-400 text-3xl" />
                   </motion.div>
 
                   {/* Floating Emoji */}
@@ -273,7 +273,7 @@ const Certificates = React.memo(function Certificates() {
                     className="btn-premium w-full !py-4"
                   >
                     <span className="relative z-10">View Certificate</span>
-                    <EmojiEventsIcon className="w-5 h-5 ml-2" />
+                    <Award className="w-5 h-5 ml-2" />
                   </motion.a>
                 </div>
 

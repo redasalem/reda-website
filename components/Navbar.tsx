@@ -3,15 +3,7 @@ import React, { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "@/lib/theme-provider";
 import Link from "next/link";
-import HomeIcon from "@mui/icons-material/Home";
-import InfoIcon from "@mui/icons-material/Info";
-import MenuIcon from "@mui/icons-material/Menu";
-import WorkIcon from "@mui/icons-material/Work";
-import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
-import ContactMailIcon from "@mui/icons-material/ContactMail";
-import DownloadIcon from "@mui/icons-material/Download";
-import LightModeIcon from "@mui/icons-material/LightMode";
-import DarkModeIcon from "@mui/icons-material/DarkMode";
+import { Home, User, Menu, Briefcase, Award, Mail, Download, Sun, Moon, Info } from "lucide-react";
 
 const BottomNavbar = React.memo(function BottomNavbar() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -23,7 +15,7 @@ const BottomNavbar = React.memo(function BottomNavbar() {
 
   const navItems = useMemo(() => [
     {
-      icon: <DownloadIcon />,
+      icon: <Download />,
       label: "CV",
       href: "/download",
       activeColor: "text-brand-mint-500",
@@ -31,35 +23,35 @@ const BottomNavbar = React.memo(function BottomNavbar() {
       isExternal: true,
     },
     {
-      icon: <InfoIcon />,
+      icon: <Info />,
       label: "About",
       id: "about",
       activeColor: "text-brand-mint-500",
       bgColor: "bg-brand-mint-500/10",
     },
     {
-      icon: <MenuIcon />,
+      icon: <Menu />,
       label: "Skills",
       id: "skills",
       activeColor: "text-brand-mint-500",
       bgColor: "bg-brand-mint-500/10",
     },
     {
-      icon: <WorkIcon />,
+      icon: <Briefcase />,
       label: "Projects",
       id: "projects",
       activeColor: "text-brand-mint-500",
       bgColor: "bg-brand-mint-500/10",
     },
     {
-      icon: <EmojiEventsIcon />,
+      icon: <Award />,
       label: "Certs",
       id: "certificates",
       activeColor: "text-brand-mint-500",
       bgColor: "bg-brand-mint-500/10",
     },
     {
-      icon: <ContactMailIcon />,
+      icon: <Mail />,
       label: "Contact",
       id: "contact",
       activeColor: "text-brand-mint-500",

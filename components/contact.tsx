@@ -2,10 +2,7 @@
 
 import type React from "react";
 import { useState, memo } from "react";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import EmailIcon from "@mui/icons-material/Email";
-import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-import { SendIcon } from "lucide-react";
+import { Users, Mailbox, Phone, Send } from "lucide-react";
 
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -64,7 +61,7 @@ const Contact = memo(function Contact() {
       // Email (red) - provide bg for icon wrapper
       icon: (
         <span className="relative z-20 text-red-600">
-          <EmailIcon />
+          <Mailbox />
         </span>
       ),
       bg: 'bg-red-100',
@@ -76,7 +73,7 @@ const Contact = memo(function Contact() {
       // WhatsApp (brand green)
       icon: (
         <span className="relative z-20 text-[#25D366]">
-          <WhatsAppIcon />
+          <Phone />
         </span>
       ),
       bg: 'bg-green-100',
@@ -88,7 +85,7 @@ const Contact = memo(function Contact() {
       // LinkedIn (brand blue)
       icon: (
         <span className="relative z-20 text-[#0A66C2]">
-          <LinkedInIcon />
+          <Users />
         </span>
       ),
       bg: 'bg-blue-100',
@@ -216,7 +213,7 @@ const Contact = memo(function Contact() {
                   </>
                 ) : (
                   <>
-                    <span><SendIcon /></span>
+                    <span><Send className="w-5 h-5" /></span>
                     Send Message
                   </>
                 )}

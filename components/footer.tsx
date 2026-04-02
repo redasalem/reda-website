@@ -1,17 +1,14 @@
 import React, { useMemo } from "react";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import EmailIcon from "@mui/icons-material/Email";
+import { Code2, Users, Mailbox } from "lucide-react";
 
 const Footer = React.memo(function Footer() {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = useMemo(() => [
     {
-      // GitHub: black in light, white in dark for visibility
       icon: (
         <span className="relative z-20 text-[#181717] dark:text-white group-hover:text-[#181717] dark:group-hover:text-white">
-          <GitHubIcon />
+          <Code2 className="w-5 h-5" />
         </span>
       ),
       bg: "bg-slate-100 dark:bg-slate-800",
@@ -19,10 +16,9 @@ const Footer = React.memo(function Footer() {
       label: "GitHub",
     },
     {
-      // LinkedIn: brand blue
       icon: (
         <span className="relative z-20 text-[#0A66C2]">
-          <LinkedInIcon />
+          <Users className="w-5 h-5" />
         </span>
       ),
       bg: "bg-blue-50 dark:bg-blue-900/20",
@@ -30,10 +26,9 @@ const Footer = React.memo(function Footer() {
       label: "LinkedIn",
     },
     {
-      // Email: red envelope color
       icon: (
         <span className="relative z-20 text-red-600">
-          <EmailIcon />
+          <Mailbox className="w-5 h-5" />
         </span>
       ),
       bg: "bg-red-50 dark:bg-red-900/20",

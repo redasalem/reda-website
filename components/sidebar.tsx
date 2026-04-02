@@ -3,18 +3,7 @@ import React, { useState, useMemo } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "@/lib/theme-provider";
-import MenuIcon from "@mui/icons-material/Menu";
-import CloseIcon from "@mui/icons-material/Close";
-import GitHub from "@mui/icons-material/GitHub";
-import LinkedIn from "@mui/icons-material/LinkedIn";
-import Email from "@mui/icons-material/Email";
-import WhatsApp from "@mui/icons-material/WhatsApp";
-import InfoIcon from "@mui/icons-material/Info";
-import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
-import WorkIcon from "@mui/icons-material/Work";
-import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
-import ContactsIcon from "@mui/icons-material/Contacts";
-import DownloadIcon from "@mui/icons-material/Download";
+import { Menu, X, Github, Linkedin, Mail, Phone, User, List, Briefcase, Award, Contact, Download } from "lucide-react";
 
 const sidebarVariants = {
   expanded: { width: 288, transition: { type: "spring" as const, stiffness: 200, damping: 25 } },
@@ -39,38 +28,38 @@ const Sidebar = React.memo(function Sidebar() {
   };
 
   const navItems = useMemo(() => [
-    { label: "About Me", id: "about", icon: <InfoIcon /> },
-    { label: "Skills", id: "skills", icon: <FormatListBulletedIcon /> },
-    { label: "Projects", id: "projects", icon: <WorkIcon /> },
-    { label: "Certificates", id: "certificates", icon: <WorkspacePremiumIcon /> },
-    { label: "Contact", id: "contact", icon: <ContactsIcon /> },
+    { label: "About Me", id: "about", icon: <User /> },
+    { label: "Skills", id: "skills", icon: <List /> },
+    { label: "Projects", id: "projects", icon: <Briefcase /> },
+    { label: "Certificates", id: "certificates", icon: <Award /> },
+    { label: "Contact", id: "contact", icon: <Contact /> },
   ], []);
 
   const externalNavItems = useMemo(() => [
-    { label: "Download Resume", href: "/download", icon: <DownloadIcon /> },
+    { label: "Download Resume", href: "/download", icon: <Download /> },
   ], []);
 
   const socialLinks = useMemo(() => [
     {
-      icon: <GitHub />,
+      icon: <Github />,
       href: "https://github.com/redasalem",
       label: "GitHub",
       color: "hover:text-brand-mint-400",
     },
     {
-      icon: <LinkedIn />,
+      icon: <Linkedin />,
       href: "https://www.linkedin.com/in/reda-salem-dev/",
       label: "LinkedIn",
       color: "hover:text-brand-mint-500",
     },
     {
-      icon: <Email />,
+      icon: <Mail />,
       href: "mailto:redasalem287@gmail.com",
       label: "Email",
       color: "hover:text-red-400",
     },
     {
-      icon: <WhatsApp />,
+      icon: <Phone />,
       href: "tel:+201121696299",
       label: "Phone",
       color: "hover:text-green-400",
@@ -96,7 +85,7 @@ const Sidebar = React.memo(function Sidebar() {
           animate={{ rotate: isExpanded ? 0 : 180 }}
           transition={{ duration: 0.3 }}
         >
-          {isExpanded ? <CloseIcon /> : <MenuIcon />}
+          {isExpanded ? <X /> : <Menu />}
         </motion.div>
       </motion.button>
 

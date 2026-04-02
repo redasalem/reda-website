@@ -2,10 +2,7 @@
 
 import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
-import LaunchIcon from "@mui/icons-material/Launch";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import CodeIcon from "@mui/icons-material/Code";
-import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
+import { ExternalLink, Github, Code, Sparkles } from "lucide-react";
 import { getProjects, ProjectData } from "@/lib/firestore";
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Link from "next/link";
@@ -109,7 +106,7 @@ const ProjectCard = ({ project, index }: { project: ProjectData; index: number }
                 animate={{ rotate: isHovered ? 360 : 0 }}
                 transition={{ duration: 0.5 }}
               >
-                <AutoAwesomeIcon sx={{ fontSize: 14 }} />
+                <Sparkles size={14} />
               </motion.span>
               FEATURED
             </div>
@@ -158,7 +155,7 @@ const ProjectCard = ({ project, index }: { project: ProjectData; index: number }
               animate={{ rotate: isHovered ? 45 : 0, backgroundColor: isHovered ? "rgba(0, 255, 159, 0.2)" : "rgba(0, 255, 159, 0.1)" }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
-              <LaunchIcon sx={{ fontSize: 16 }} />
+              <ExternalLink size={16} />
             </motion.div>
           </div>
           <motion.p
@@ -210,7 +207,7 @@ const ProjectCard = ({ project, index }: { project: ProjectData; index: number }
                     animate={{ x: isHovered ? [0, 3, 0] : 0 }}
                     transition={{ duration: 0.5, repeat: isHovered ? Infinity : 0 }}
                   >
-                    <LaunchIcon sx={{ fontSize: 16 }} />
+                    <ExternalLink size={16} />
                   </motion.span>
                   Demo
                 </Link>
@@ -227,7 +224,7 @@ const ProjectCard = ({ project, index }: { project: ProjectData; index: number }
                   target="_blank"
                   className="btn-secondary flex-1 !py-3 !text-xs"
                 >
-                  <GitHubIcon sx={{ fontSize: 16 }} />
+                  <Github size={16} />
                   Code
                 </Link>
               </motion.div>
@@ -267,7 +264,7 @@ const Projects = React.memo(function Projects() {
             animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
             transition={{ duration: 1.5, repeat: Infinity }}
           >
-            <AutoAwesomeIcon className="text-primary w-8 h-8" />
+            <Sparkles className="text-primary w-8 h-8" />
           </motion.div>
         </motion.div>
       </div>
@@ -316,7 +313,7 @@ const Projects = React.memo(function Projects() {
               animate={{ rotate: [0, 360] }}
               transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
             >
-              <CodeIcon className="text-accent w-3 h-3 md:w-4 md:h-4" />
+              <Code className="text-accent w-3 h-3 md:w-4 md:h-4" />
             </motion.div>
             <span className="text-xs md:text-sm font-semibold text-accent">
               Case Studies
@@ -382,11 +379,11 @@ const Projects = React.memo(function Projects() {
                 className="group relative overflow-hidden px-8 py-3 rounded-full bg-card border border-border hover:border-primary/50 transition-colors duration-300"
               >
                 <span className="relative flex items-center gap-2 text-foreground font-medium group-hover:text-primary transition-colors">
-                  <GitHubIcon />
+                  <Github />
                   View All Projects on GitHub
-                  <LaunchIcon
+                  <ExternalLink
                     className="transform group-hover:translate-x-1 transition-transform duration-300"
-                    sx={{ fontSize: 18 }}
+                    size={18}
                   />
                 </span>
               </a>

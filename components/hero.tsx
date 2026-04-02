@@ -2,10 +2,7 @@
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import React, { useState, useEffect, useCallback, useMemo } from "react";
-import { Download, ArrowDown, ArrowRight, Briefcase, MessageSquare, Sparkles } from "lucide-react";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import EmailIcon from "@mui/icons-material/Email";
+import { Download, ArrowDown, ArrowRight, Briefcase, MessageSquare, Sparkles, PenTool, Coffee, Send, Code2, Users, Mailbox, Terminal } from "lucide-react";
 import Link from "next/link";
 
 const HeroSection = React.memo(function HeroSection() {
@@ -185,7 +182,7 @@ const HeroSection = React.memo(function HeroSection() {
             {/* Main Heading */}
             <div className="space-y-4">
               <motion.h1
-                className="text-6xl lg:text-7xl font-bold text-foreground leading-tight"
+                className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
@@ -270,7 +267,7 @@ const HeroSection = React.memo(function HeroSection() {
                   name: "github",
                   icon: (
                     <span className="relative z-20 text-[#181717] dark:text-white">
-                      <GitHubIcon />
+                      <Code2 className="w-5 h-5" />
                     </span>
                   ),
                   url: "https://github.com/redasalem",
@@ -280,7 +277,7 @@ const HeroSection = React.memo(function HeroSection() {
                   name: "linkedin",
                   icon: (
                     <span className="relative z-20 text-[#0A66C2] dark:text-[#0A66C2]">
-                      <LinkedInIcon />
+                      <Users className="w-5 h-5" />
                     </span>
                   ),
                   url: "https://www.linkedin.com/in/reda-salem-dev/",
@@ -290,7 +287,7 @@ const HeroSection = React.memo(function HeroSection() {
                   name: "email",
                   icon: (
                     <span className="relative z-20 text-red-600 dark:text-red-300">
-                      <EmailIcon />
+                      <Mailbox className="w-5 h-5" />
                     </span>
                   ),
                   url: "mailto:redasalem287@gmail.com",

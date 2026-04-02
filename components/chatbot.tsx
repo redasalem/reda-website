@@ -108,7 +108,7 @@ const ChatBot = React.memo(function ChatBot() {
             initial={{ opacity: 0, y: 50, scale: 0.9, filter: "blur(15px)" }}
             animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
             exit={{ opacity: 0, y: 50, scale: 0.9, filter: "blur(15px)" }}
-            className="fixed md:bottom-28 bottom-44 right-6 z-40 md:w-[420px] w-[380px] max-w-[calc(100vw-3rem)] md:h-[600px] h-[500px] max-h-[calc(100vh-10rem)] rounded-[32px] bg-gray-950/80 backdrop-blur-3xl border border-white/10 shadow-[0_32px_128px_rgba(0,0,0,0.8)] flex flex-col overflow-hidden transition-all duration-500"
+            className="fixed md:bottom-28 bottom-32 right-6 z-40 md:w-[420px] w-[350px] max-w-[calc(100vw-3rem)] md:h-[600px] h-[480px] max-h-[calc(100vh-10rem)] rounded-[32px] bg-gray-950/80 backdrop-blur-3xl border border-white/10 shadow-[0_32px_128px_rgba(0,0,0,0.8)] flex flex-col overflow-hidden transition-all duration-500"
           >
             {/* Liquid Header */}
             <div className="relative bg-gradient-to-br from-brand-mint-500/20 via-brand-mint-600/10 to-transparent p-6 border-b border-white/5">
