@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useMemo } from "react";
 import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "@/lib/theme-provider";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
@@ -8,8 +9,6 @@ import GitHub from "@mui/icons-material/GitHub";
 import LinkedIn from "@mui/icons-material/LinkedIn";
 import Email from "@mui/icons-material/Email";
 import WhatsApp from "@mui/icons-material/WhatsApp";
-import BedtimeIcon from "@mui/icons-material/Bedtime";
-import SunnyIcon from "@mui/icons-material/Sunny";
 import InfoIcon from "@mui/icons-material/Info";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import WorkIcon from "@mui/icons-material/Work";
@@ -17,21 +16,34 @@ import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
 import ContactsIcon from "@mui/icons-material/Contacts";
 import DownloadIcon from "@mui/icons-material/Download";
 
+const sidebarVariants = {
+  expanded: { width: 288, transition: { type: "spring" as const, stiffness: 200, damping: 25 } },
+  collapsed: { width: 80, transition: { type: "spring" as const, stiffness: 200, damping: 25 } },
+};
+
+const navItemVariants = {
+  expanded: { x: 0, opacity: 1 },
+  collapsed: { x: -10, opacity: 0 },
+};
+
 const Sidebar = React.memo(function Sidebar() {
-  const { theme, toggleTheme } = useTheme();
+  const { theme } = useTheme();
   const [isExpanded, setIsExpanded] = useState(true);
+  const [activeItem, setActiveItem] = useState<string | null>(null);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     element?.scrollIntoView({ behavior: "smooth" });
+    setActiveItem(id);
+    setTimeout(() => setActiveItem(null), 1000);
   };
 
   const navItems = useMemo(() => [
-    { label: "About Me", id: "about" },
-    { label: "Skills", id: "skills" },
-    { label: "Projects", id: "projects" },
-    { label: "Certificates", id: "certificates" },
-    { label: "Contact", id: "contact" },
+    { label: "About Me", id: "about", icon: <InfoIcon /> },
+    { label: "Skills", id: "skills", icon: <FormatListBulletedIcon /> },
+    { label: "Projects", id: "projects", icon: <WorkIcon /> },
+    { label: "Certificates", id: "certificates", icon: <WorkspacePremiumIcon /> },
+    { label: "Contact", id: "contact", icon: <ContactsIcon /> },
   ], []);
 
   const externalNavItems = useMemo(() => [
@@ -66,156 +78,248 @@ const Sidebar = React.memo(function Sidebar() {
   ], []);
 
   return (
-    <aside
-      className={`hidden sm:flex sticky left-0 top-0 h-screen bg-sidebar text-sidebar-foreground border-r border-sidebar-border p-6 flex-col z-40 overflow-auto animate-fade-in transition-all duration-300 ${isExpanded ? "w-72" : "w-20"
-        }`}
+    <motion.aside
+      className={`hidden sm:flex sticky left-0 top-0 h-screen bg-sidebar text-sidebar-foreground border-r border-sidebar-border p-6 flex-col z-40 overflow-auto transition-all duration-300 ${isExpanded ? "w-72" : "w-20"}`}
+      variants={sidebarVariants}
+      initial="expanded"
+      animate={isExpanded ? "expanded" : "collapsed"}
     >
       {/* Toggle Button */}
-      <button
+      <motion.button
         onClick={() => setIsExpanded(!isExpanded)}
         className="absolute cursor-pointer top-4 right-4 p-2 rounded-lg hover:bg-sidebar-primary/20 transition-colors z-10"
         aria-label={isExpanded ? "Collapse menu" : "Expand menu"}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
       >
-        {isExpanded ? <CloseIcon /> : <MenuIcon />}
-      </button>
+        <motion.div
+          animate={{ rotate: isExpanded ? 0 : 180 }}
+          transition={{ duration: 0.3 }}
+        >
+          {isExpanded ? <CloseIcon /> : <MenuIcon />}
+        </motion.div>
+      </motion.button>
 
       {/* Developer Info */}
-      <div
-        className={`text-center mb-8 animate-fade-in ${!isExpanded && "mt-12"}`}
+      <motion.div
+        className={`text-center mb-8 ${!isExpanded && "mt-12"}`}
+        layout
       >
-        <div className={`mb-4 flex justify-center ${!isExpanded && "mb-0"}`}>
-          <div
+        <motion.div 
+          className={`mb-4 flex justify-center ${!isExpanded && "mb-0"}`}
+          layout
+        >
+          <motion.div
             className={`relative rounded-full overflow-hidden border-2 border-brand-mint-600 dark:border-brand-mint-400 glow-effect-mint transition-all duration-300`}
+            layout
             style={{
-              width: isExpanded ? "96px" : "30px",
-              height: isExpanded ? "96px" : "30px",
+              width: isExpanded ? 96 : 30,
+              height: isExpanded ? 96 : 30,
             }}
+            whileHover={{ scale: 1.05, borderColor: "rgb(0, 255, 159)" }}
           >
             <Image
               src="/images/reda.png"
               alt="Reda Salem - Full Stack Developer"
               fill
               priority
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              sizes="96px"
               className="object-cover"
             />
-          </div>
-        </div>
-        {isExpanded && (
-          <>
-            <h1 className="text-2xl font-bold text-sidebar-foreground mb-2">
-              Reda Salem
-            </h1>
-            <p className="text-lg text-sidebar-foreground/80">
-              Full-Stack Developer
-            </p>
-            <p className="text-sm mt-1 text-sidebar-foreground/70">
-              React | Next.js | React Native | Node.js | MongoDB
-            </p>
-          </>
-        )}
-      </div>
+          </motion.div>
+        </motion.div>
+        <AnimatePresence mode="wait">
+          {isExpanded && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+            >
+              <h1 className="text-2xl font-bold text-sidebar-foreground mb-2">
+                Reda Salem
+              </h1>
+              <p className="text-lg text-sidebar-foreground/80">
+                Full-Stack Developer
+              </p>
+              <p className="text-sm mt-1 text-sidebar-foreground/70">
+                React | Next.js | React Native | Node.js | MongoDB
+              </p>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
 
       {/* Divider */}
-      <div className="h-px bg-sidebar-border mb-8 opacity-50" />
+      <motion.div 
+        className="h-px bg-sidebar-border mb-8 opacity-50" 
+        layout
+      />
 
       {/* Navigation */}
       <nav className="flex-1 mb-8">
-        {isExpanded && (
-          <p className="text-xs font-semibold text-sidebar-foreground/70 uppercase tracking-wider mb-4">
-            Navigation
-          </p>
-        )}
+        <AnimatePresence>
+          {isExpanded && (
+            <motion.p 
+              className="text-xs font-semibold text-sidebar-foreground/70 uppercase tracking-wider mb-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              Navigation
+            </motion.p>
+          )}
+        </AnimatePresence>
         <div className="space-y-2">
           {navItems.map((item, index) => (
-            <button
+            <motion.button
               key={item.id}
               onClick={() => scrollToSection(item.id)}
-              className={`w-full text-left px-4 py-2 rounded-lg text-sm font-medium text-sidebar-foreground dark:text-white hover:bg-sidebar-primary/20 transition-all duration-300 group relative overflow-hidden animate-fade-in ${!isExpanded && "flex justify-center px-2"
-                }`}
-              style={{ animationDelay: `${0.2 + index * 0.1}s` }}
+              className={`w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium text-sidebar-foreground dark:text-white hover:bg-sidebar-primary/20 transition-all duration-300 group relative overflow-hidden ${!isExpanded && "flex justify-center px-2"}`}
               title={!isExpanded ? item.label : ""}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: index * 0.05 }}
+              whileHover={{ x: isExpanded ? 4 : 0 }}
+              whileTap={{ scale: 0.98 }}
             >
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-brand-mint-500/0 via-brand-mint-500/20 to-brand-mint-500/0 opacity-0 group-hover:opacity-100 transition-opacity"
+                initial={{ x: "-100%" }}
+                whileHover={{ x: "200%" }}
+                transition={{ duration: 0.5 }}
+              />
+              
               {isExpanded ? (
                 <>
-                  <span className="relative z-10">{item.label}</span>
-                  <div className="absolute inset-0 bg-linear-to-r from-sidebar-primary/0 via-sidebar-primary/20 to-sidebar-primary/0 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <motion.span className="relative z-10" layout>
+                    {item.label}
+                  </motion.span>
+                  {activeItem === item.id && (
+                    <motion.div
+                      className="absolute inset-0 bg-brand-mint-500/20 rounded-lg"
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      layoutId="activeIndicator"
+                    />
+                  )}
                 </>
               ) : (
-                <span className="text-lg">
-                  {item.label === "About Me" && <InfoIcon />}
-                  {item.label === "Skills" && <FormatListBulletedIcon />}
-                  {item.label === "Projects" && <WorkIcon />}
-                  {item.label === "Certificates" && <WorkspacePremiumIcon />}
-                  {item.label === "Contact" && <ContactsIcon />}
-                </span>
+                <motion.span 
+                  className="text-lg relative z-10"
+                  whileHover={{ scale: 1.2, color: "rgb(0, 255, 159)" }}
+                >
+                  {item.icon}
+                </motion.span>
               )}
-            </button>
+            </motion.button>
           ))}
         </div>
       </nav>
 
       {/* External Links */}
-      <div
-        className="space-y-4 animate-fade-in mb-4"
-        style={{ animationDelay: "0.4s" }}
-      >
-        {isExpanded && (
-          <p className="text-xs font-semibold text-sidebar-foreground/70 uppercase tracking-wider mb-2">
-            Quick Access
-          </p>
-        )}
+      <div className="space-y-4 mb-4">
+        <AnimatePresence>
+          {isExpanded && (
+            <motion.p 
+              className="text-xs font-semibold text-sidebar-foreground/70 uppercase tracking-wider mb-2"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              Quick Access
+            </motion.p>
+          )}
+        </AnimatePresence>
         <div className="space-y-2">
           {externalNavItems.map((item, index) => (
-            <a
+            <motion.a
               key={item.label}
               href={item.href}
-              className={`w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium text-sidebar-foreground dark:text-white bg-sidebar-primary/10 hover:bg-sidebar-primary/30 transition-all duration-300 group flex items-center gap-3 animate-fade-in ${!isExpanded && "justify-center px-2"
-                }`}
-              style={{ animationDelay: `${0.5 + index * 0.1}s` }}
+              className={`w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium text-sidebar-foreground dark:text-white bg-sidebar-primary/10 hover:bg-sidebar-primary/30 transition-all duration-300 group flex items-center gap-3 ${!isExpanded && "justify-center px-2"}`}
               title={!isExpanded ? item.label : ""}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3 + index * 0.05 }}
+              whileHover={{ x: isExpanded ? 4 : 0, scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
             >
-              <span className="text-lg flex-shrink-0">{item.icon}</span>
-              {isExpanded && <span className="relative z-10">{item.label}</span>}
-            </a>
+              <motion.span 
+                className="text-lg flex-shrink-0 relative z-10"
+                whileHover={{ rotate: [0, -10, 10, 0] }}
+                transition={{ duration: 0.3 }}
+              >
+                {item.icon}
+              </motion.span>
+              <AnimatePresence>
+                {isExpanded && (
+                  <motion.span 
+                    className="relative z-10"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                  >
+                    {item.label}
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            </motion.a>
           ))}
         </div>
       </div>
 
       {/* Social Links */}
-      <div
-        className="space-y-4 animate-fade-in"
-        style={{ animationDelay: "0.5s" }}
-      >
-        {isExpanded && (
-          <p className="text-xs font-semibold text-sidebar-foreground/70 uppercase tracking-wider">
-            Connect
-          </p>
-        )}
-        <div className={`flex gap-3 ${!isExpanded && "flex-col"}`}>
+      <div className="space-y-4">
+        <AnimatePresence>
+          {isExpanded && (
+            <motion.p 
+              className="text-xs font-semibold text-sidebar-foreground/70 uppercase tracking-wider"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              Connect
+            </motion.p>
+          )}
+        </AnimatePresence>
+        <motion.div 
+          className={`flex gap-3 ${!isExpanded && "flex-col"}`}
+          layout
+        >
           {socialLinks.map((social, index) => (
-            <a
+            <motion.a
               key={social.label}
               href={social.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-lg bg-sidebar-primary/10 hover:bg-sidebar-primary/20 transition-all duration-300 group hover:scale-110 hover:rotate-5 animate-fade-in text-lg flex items-center justify-center"
+              className="p-2.5 rounded-lg bg-sidebar-primary/10 hover:bg-sidebar-primary/20 transition-all duration-300 text-lg flex items-center justify-center relative overflow-hidden"
               style={{
                 color:
                   theme === "dark"
                     ? `color-mix(in srgb, ${social.color} 80%, white 50%)`
                     : `color-mix(in srgb, ${social.color} 70%, #64748B 30%)`,
                 opacity: theme === "dark" ? 1 : 0.85,
-                animationDelay: `${0.6 + index * 0.1}s`,
               }}
               title={social.label}
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.4 + index * 0.05 }}
+              whileHover={{ scale: 1.15, rotate: 5, y: -2 }}
+              whileTap={{ scale: 0.9 }}
             >
-              {social.icon}
-            </a>
+              <motion.div
+                className="absolute inset-0 rounded-lg"
+                initial={{ opacity: 0 }}
+                whileHover={{ opacity: 1, backgroundColor: "rgba(0, 255, 159, 0.1)" }}
+              />
+              <span className="relative z-10">
+                {social.icon}
+              </span>
+            </motion.a>
           ))}
-        </div>
+        </motion.div>
       </div>
-    </aside>
+    </motion.aside>
   );
 });
 

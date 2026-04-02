@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import React, { useRef, useMemo } from "react";
+import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import React, { useRef, useMemo, useState } from "react";
 import {
   Code as HtmlIcon,
   Palette as PaletteIcon,
@@ -38,6 +38,103 @@ import {
   Security as SecurityIcon,
   Architecture as ArchitectureIcon,
 } from "@mui/icons-material";
+
+const SkillBadge = ({ name, icon, delay }: { name: string; icon: React.ReactNode; delay: number }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  
+  return (
+    <motion.div
+      className="relative flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs md:text-sm font-medium
+      bg-secondary/50 border border-border/50 text-foreground/80 cursor-default"
+      initial={{ opacity: 0, scale: 0.8, y: 10 }}
+      whileInView={{ opacity: 1, scale: 1, y: 0 }}
+      viewport={{ once: true }}
+      whileHover={{ 
+        scale: 1.08, 
+        backgroundColor: "rgba(0, 255, 159, 0.1)",
+        borderColor: "rgba(0, 255, 159, 0.3)",
+      }}
+      transition={{ delay, duration: 0.3, type: "spring", stiffness: 400, damping: 25 }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Glow effect on hover */}
+      <motion.div
+        className="absolute inset-0 rounded-xl bg-brand-mint-500/20"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isHovered ? 1 : 0 }}
+        transition={{ duration: 0.2 }}
+        style={{ filter: "blur(8px)" }}
+      />
+      <motion.span 
+        className="relative z-10 flex items-center justify-center w-4 h-4 md:w-5 md:h-5 transition-transform"
+        animate={{ rotate: isHovered ? 360 : 0 }}
+        transition={{ duration: 0.5, type: "spring" }}
+      >
+        {icon}
+      </motion.span>
+      <motion.span 
+        className="relative z-10 pt-0.5 transition-colors"
+        animate={{ color: isHovered ? "rgb(0, 255, 159)" : "inherit" }}
+      >
+        {name}
+      </motion.span>
+    </motion.div>
+  );
+};
+
+const SkillCategory = ({ title, skills, index }: { title: string; skills: Array<{name: string; icon: React.ReactNode}>; index: number }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  
+  return (
+    <motion.div
+      ref={ref}
+      className="group relative h-full p-6 md:p-8 rounded-3xl border border-border/50 
+      bg-card/50 backdrop-blur-xl hover:bg-card/80 transition-all duration-500
+      shadow-lg hover:shadow-primary/5 dark:shadow-none flex flex-col overflow-hidden"
+      initial={{ opacity: 0, y: 60, scale: 0.95 }}
+      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+      transition={{ delay: index * 0.1, duration: 0.6, ease: "easeOut" }}
+      whileHover={{ y: -8, transition: { duration: 0.3 } }}
+    >
+      {/* Animated background gradient */}
+      <motion.div
+        className="absolute inset-0 rounded-3xl bg-gradient-to-b from-primary/10 via-transparent to-transparent"
+        initial={{ opacity: 0 }}
+        whileHover={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      />
+      
+      {/* Corner glow effect */}
+      <motion.div
+        className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-brand-mint-500/20 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        initial={{ scale: 0 }}
+        whileHover={{ scale: 1 }}
+        transition={{ duration: 0.5 }}
+      />
+
+      <motion.h3 
+        className="relative text-xl md:text-2xl font-bold mb-4 md:mb-6 text-foreground group-hover:text-primary transition-colors duration-300"
+        whileHover={{ x: 5 }}
+        transition={{ type: "spring", stiffness: 400 }}
+      >
+        {title}
+      </motion.h3>
+
+      <div className="relative flex flex-wrap gap-2 md:gap-3">
+        {skills.map((skill, idx) => (
+          <SkillBadge
+            key={idx}
+            name={skill.name}
+            icon={skill.icon}
+            delay={index * 0.1 + idx * 0.05}
+          />
+        ))}
+      </div>
+    </motion.div>
+  );
+};
 
 const Skills = React.memo(function Skills() {
   const skillCategories = useMemo(() => [
@@ -207,41 +304,12 @@ const Skills = React.memo(function Skills() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {skillCategories.map((category, i) => (
-            <motion.div
+            <SkillCategory
               key={i}
-              className="group relative h-full p-6 md:p-8 rounded-3xl border border-border/50 
-              bg-card/50 backdrop-blur-xl hover:bg-card/80 transition-all duration-500
-              shadow-lg hover:shadow-primary/5 dark:shadow-none flex flex-col"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: i * 0.1, duration: 0.6 }}
-              whileHover={{ y: -5 }}
-            >
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-b from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-              <h3 className="relative text-xl md:text-2xl font-bold mb-4 md:mb-6 text-foreground group-hover:text-primary transition-colors duration-300">
-                {category.title}
-              </h3>
-
-              <div className="relative flex flex-wrap gap-2 md:gap-3">
-                {category.skills.map((skill, idx) => (
-                  <motion.div
-                    key={idx}
-                    className="flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs md:text-sm font-medium
-                    bg-secondary/50 border border-border/50 text-foreground/80
-                    hover:bg-primary/10 hover:border-primary/30 hover:text-primary transition-colors duration-300 cursor-default"
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                  >
-                    <span className="flex items-center justify-center w-4 h-4 md:w-5 md:h-5">
-                      {skill.icon}
-                    </span>
-                    <span className="pt-0.5">{skill.name}</span>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
+              title={category.title}
+              skills={category.skills}
+              index={i}
+            />
           ))}
         </div>
       </div>
