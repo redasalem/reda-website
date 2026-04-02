@@ -16,19 +16,19 @@ const Skills = dynamic(() => import("@/components/skills"), {
 });
 const Projects = dynamic(() => import("@/components/projects"), {
   loading: () => <SectionSkeleton />,
-  ssr: true,
+  ssr: false,
 });
 const Certificates = dynamic(() => import("@/components/certificates"), {
   loading: () => <SectionSkeleton />,
-  ssr: true,
+  ssr: false,
 });
 const Contact = dynamic(() => import("@/components/contact"), {
   loading: () => <SectionSkeleton />,
-  ssr: true,
+  ssr: false,
 });
 const Footer = dynamic(() => import("@/components/footer"), {
   loading: () => <SectionSkeleton />,
-  ssr: true,
+  ssr: false,
 });
 const ChatBot = dynamic(() => import("@/components/chatbot"), {
   ssr: false,

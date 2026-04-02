@@ -127,8 +127,8 @@ const HeroSection = React.memo(function HeroSection() {
         </motion.div>
       </div>
 
-      {/* Enhanced Particle System */}
-      <div className="absolute inset-0" aria-hidden="true">
+      {/* Enhanced Particle System - Desktop only for performance */}
+      <div className="absolute inset-0 hidden md:block" aria-hidden="true">
         {isClient && backgroundParticles.map((particle) => (
           <motion.div
             key={particle.id}
