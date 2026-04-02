@@ -154,18 +154,18 @@ const Skills = React.memo(function Skills() {
       skills: [
         {
           name: "JavaScript (ES6+)",
-          icon: <JavascriptIcon sx={{ color: "#f7df1e" }} />,
+          icon: <FileCode className="w-4 h-4" style={{ color: "#f7df1e" }} />,
         },
         {
           name: "TypeScript",
-          icon: <TypescriptIcon sx={{ color: "#3178c6" }} />,
+          icon: <Braces className="w-4 h-4" style={{ color: "#3178c6" }} />,
         },
-        { name: "React.js", icon: <ReactIcon sx={{ color: "#61dafb" }} /> },
-        { name: "Next.js", icon: <NextIcon sx={{ color: "#bdbdbd" }} /> },
-        { name: "Server Components", icon: <NextIcon sx={{ color: "#000000" }} /> },
+        { name: "React.js", icon: <Atom className="w-4 h-4" style={{ color: "#61dafb" }} /> },
+        { name: "Next.js", icon: <CloudFog className="w-4 h-4" style={{ color: "#bdbdbd" }} /> },
+        { name: "Server Components", icon: <CloudFog className="w-4 h-4" style={{ color: "#000000" }} /> },
         {
           name: "React Native",
-          icon: <ReactNativeIcon sx={{ color: "#61dafb" }} />,
+          icon: <Smartphone className="w-4 h-4" style={{ color: "#61dafb" }} />,
         },
       ],
     },
@@ -174,16 +174,16 @@ const Skills = React.memo(function Skills() {
       skills: [
         {
           name: "Material UI",
-          icon: <MaterialUIIcon sx={{ color: "#00b0ff" }} />,
+          icon: <LayoutGrid className="w-4 h-4" style={{ color: "#00b0ff" }} />,
         },
-        { name: "ShadCN UI", icon: <ShadcnIcon sx={{ color: "#ab47bc" }} /> },
-        { name: "Zustand", icon: <NodeIcon sx={{ color: "#433333" }} /> },
-        { name: "Storybook", icon: <Palette sx={{ color: "#FF4785" }} /> },
-        { name: "DaisyUI", icon: <Palette sx={{ color: "#ff9800" }} /> },
-        { name: "Nivo", icon: <NivoIcon sx={{ color: "#ff9800" }} /> },
+        { name: "ShadCN UI", icon: <Sparkles className="w-4 h-4" style={{ color: "#ab47bc" }} /> },
+        { name: "Zustand", icon: <Cpu className="w-4 h-4" style={{ color: "#433333" }} /> },
+        { name: "Storybook", icon: <Palette className="w-4 h-4" style={{ color: "#FF4785" }} /> },
+        { name: "DaisyUI", icon: <Palette className="w-4 h-4" style={{ color: "#ff9800" }} /> },
+        { name: "Nivo", icon: <BarChart3 className="w-4 h-4" style={{ color: "#ff9800" }} /> },
         {
           name: "React Query",
-          icon: <ReactQueryIcon sx={{ color: "#f06292" }} />,
+          icon: <Database className="w-4 h-4" style={{ color: "#f06292" }} />,
         },
       ],
     },
@@ -192,71 +192,71 @@ const Skills = React.memo(function Skills() {
       skills: [
         {
           name: "API Integration",
-          icon: <ApiIcon sx={{ color: "#00e676" }} />,
+          icon: <Globe className="w-4 h-4" style={{ color: "#00e676" }} />,
         },
         {
           name: "Firebase Auth & Firestore",
-          icon: <FirebaseIcon sx={{ color: "#ffb300" }} />,
+          icon: <Flame className="w-4 h-4" style={{ color: "#ffb300" }} />,
         },
-        { name: "Clerk", icon: <ClerkIcon sx={{ color: "#5c6bc0" }} /> },
-        { name: "GraphQL", icon: <ApiIcon sx={{ color: "#E10098" }} /> },
+        { name: "Clerk", icon: <UserCheck className="w-4 h-4" style={{ color: "#5c6bc0" }} /> },
+        { name: "GraphQL", icon: <Globe className="w-4 h-4" style={{ color: "#E10098" }} /> },
         {
           name: "PayPal Integration",
-          icon: <PaypalIcon sx={{ color: "#2196f3" }} />,
+          icon: <CreditCard className="w-4 h-4" style={{ color: "#2196f3" }} />,
         },
       ],
     },
     {
       title: "Build & Deployment",
       skills: [
-        { name: "Webpack", icon: <WebpackIcon sx={{ color: "#4fc3f7" }} /> },
-        { name: "Vite", icon: <ViteIcon sx={{ color: "#d500f9" }} /> },
+        { name: "Webpack", icon: <Box className="w-4 h-4" style={{ color: "#4fc3f7" }} /> },
+        { name: "Vite", icon: <Zap className="w-4 h-4" style={{ color: "#d500f9" }} /> },
         {
           name: "Firebase Hosting",
-          icon: <FirebaseHostingIcon sx={{ color: "#ffa000" }} />,
+          icon: <Cloud className="w-4 h-4" style={{ color: "#ffa000" }} />,
         },
-        { name: "Vercel", icon: <VercelIcon sx={{ color: "#eeeeee" }} /> },
-        { name: "Netlify", icon: <NetlifyIcon sx={{ color: "#00bfa5" }} /> },
+        { name: "Vercel", icon: <Cloud className="w-4 h-4" style={{ color: "#eeeeee" }} /> },
+        { name: "Netlify", icon: <Globe className="w-4 h-4" style={{ color: "#00bfa5" }} /> },
       ],
     },
     {
       title: "Backend & Database",
       skills: [
-        { name: "Node.js", icon: <NodeIcon sx={{ color: "#339933" }} /> },
+        { name: "Node.js", icon: <Cpu className="w-4 h-4" style={{ color: "#339933" }} /> },
         {
           name: "Express.js",
-          icon: <TerminalIcon sx={{ color: "#000000" }} />,
+          icon: <Terminal className="w-4 h-4" style={{ color: "#000000" }} />,
         },
-        { name: "MongoDB", icon: <TerminalIcon sx={{ color: "#47A248" }} /> },
-        { name: "PostgreSQL & Redis", icon: <NodeIcon sx={{ color: "#336791" }} /> },
-        { name: "Convex", icon: <ConvexIcon sx={{ color: "#F05138" }} /> },
+        { name: "MongoDB", icon: <Database className="w-4 h-4" style={{ color: "#47A248" }} /> },
+        { name: "PostgreSQL & Redis", icon: <Cpu className="w-4 h-4" style={{ color: "#336791" }} /> },
+        { name: "Convex", icon: <CloudFog className="w-4 h-4" style={{ color: "#F05138" }} /> },
       ],
     },
     {
       title: "Workspace & Collaboration",
       skills: [
-        { name: "Git & GitHub", icon: <HtmlIcon sx={{ color: "#F05032" }} /> },
-        { name: "Figma", icon: <Palette sx={{ color: "#F24E1E" }} /> },
-        { name: "Postman", icon: <ApiIcon sx={{ color: "#FF6C37" }} /> },
+        { name: "Git & GitHub", icon: <GitBranch className="w-4 h-4" style={{ color: "#F05032" }} /> },
+        { name: "Figma", icon: <Palette className="w-4 h-4" style={{ color: "#F24E1E" }} /> },
+        { name: "Postman", icon: <Globe className="w-4 h-4" style={{ color: "#FF6C37" }} /> },
       ],
     },
     {
       title: "Architecture & Performance",
       skills: [
-        { name: "React Performance", icon: <PerfIcon sx={{ color: "#61dafb" }} /> },
-        { name: "Next.js Production", icon: <NextjsProdIcon sx={{ color: "#000000" }} /> },
-        { name: "Lighthouse", icon: <PerfIcon sx={{ color: "#F44B3E" }} /> },
-        { name: "System Scalability", icon: <ScalabilityIcon sx={{ color: "#ff9800" }} /> },
-        { name: "PWA & Cloud Native", icon: <ArchitectureIcon sx={{ color: "#4caf50" }} /> },
+        { name: "React Performance", icon: <Gauge className="w-4 h-4" style={{ color: "#61dafb" }} /> },
+        { name: "Next.js Production", icon: <CloudFog className="w-4 h-4" style={{ color: "#000000" }} /> },
+        { name: "Lighthouse", icon: <Gauge className="w-4 h-4" style={{ color: "#F44B3E" }} /> },
+        { name: "System Scalability", icon: <GitBranch className="w-4 h-4" style={{ color: "#ff9800" }} /> },
+        { name: "PWA & Cloud Native", icon: <Cpu className="w-4 h-4" style={{ color: "#4caf50" }} /> },
       ],
     },
     {
       title: "Testing, DevOps & Security",
       skills: [
-        { name: "CI/CD & Docker", icon: <DevopsIcon sx={{ color: "#2196f3" }} /> },
-        { name: "Jest & Cypress", icon: <TestingIcon sx={{ color: "#C21325" }} /> },
-        { name: "Web Security", icon: <SecurityIcon sx={{ color: "#9c27b0" }} /> },
-        { name: "Design Patterns", icon: <ArchitectureIcon sx={{ color: "#795548" }} /> },
+        { name: "CI/CD & Docker", icon: <RefreshCw className="w-4 h-4" style={{ color: "#2196f3" }} /> },
+        { name: "Jest & Cypress", icon: <Bug className="w-4 h-4" style={{ color: "#C21325" }} /> },
+        { name: "Web Security", icon: <Shield className="w-4 h-4" style={{ color: "#9c27b0" }} /> },
+        { name: "Design Patterns", icon: <Cpu className="w-4 h-4" style={{ color: "#795548" }} /> },
       ],
     },
   ], []);
@@ -283,7 +283,7 @@ const Skills = React.memo(function Skills() {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-accent/10 border border-accent/20 backdrop-blur-sm mb-4 md:mb-6">
-            <ShadcnIcon className="text-accent w-3 h-3 md:w-4 md:h-4" />
+            <Sparkles className="text-accent w-3 h-3 md:w-4 md:h-4" />
             <span className="text-xs md:text-sm font-semibold text-accent">
               Production Stack
             </span>
