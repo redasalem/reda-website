@@ -64,7 +64,7 @@ const SkillBadge = ({ name, arabicName, icon, delay }: { name: string; arabicNam
         animate={{ color: isHovered ? "rgb(0, 255, 159)" : "inherit" }}
       >
         {name}
-        {arabicName && <span className="sr-only"> ({arabicName})</span>}
+        {arabicName && <span className="text-muted-foreground/60 text-xs mr-1" dir="rtl">({arabicName})</span>}
       </motion.span>
     </motion.div>
   );
@@ -85,7 +85,7 @@ const SkillCategory = ({ title, titleArabic, skills, index }: { title: string; t
     >
       <h3 className="text-lg font-bold mb-4 text-foreground flex items-center gap-2">
         {title}
-        {titleArabic && <span className="sr-only"> - {titleArabic}</span>}
+        {titleArabic && <span className="text-sm text-muted-foreground font-normal">- {titleArabic}</span>}
       </h3>
       <div className="flex flex-wrap gap-2">
         {skills.map((skill, i) => {

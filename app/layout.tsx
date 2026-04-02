@@ -55,6 +55,10 @@ export const metadata: Metadata = {
       en: "https://reda-website.vercel.app",
       ar: "https://reda-website.vercel.app",
     },
+    canonical: "https://reda-website.vercel.app",
+    types: {
+      "application/rss+xml": "https://reda-website.vercel.app/rss.xml",
+    },
   },
 
   keywords: [
@@ -195,13 +199,6 @@ export const metadata: Metadata = {
     email: true,
     address: true,
     telephone: true,
-  },
-
-  alternates: {
-    canonical: "https://reda-website.vercel.app",
-    types: {
-      "application/rss+xml": "https://reda-website.vercel.app/rss.xml",
-    },
   },
 
   openGraph: {

@@ -209,6 +209,17 @@ const HeroSection = React.memo(function HeroSection() {
               >
                 Full-Stack Engineer · 99/100 PageSpeed · 2× Faster Apps
               </motion.h2>
+
+              {/* Arabic subtitle */}
+              <motion.p
+                className="text-xl lg:text-2xl font-semibold text-muted-foreground/80"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.45 }}
+                dir="rtl"
+              >
+                مهندس برمجيات متخصص · 99/100 سرعة الصفحة · تطبيقات أسرع مرتين
+              </motion.p>
             </div>
 
             {/* Description - وصف احترافي */}
@@ -218,7 +229,6 @@ const HeroSection = React.memo(function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
             >
-              <span className="sr-only">مهندس برمجيات متخصص في بناء تطبيقات الويب والموبايل بأعلى أداء</span>
               I build production-grade web & mobile products that ship fast and
               scale further. From delivering{" "}
               <strong>99/100 PageSpeed</strong> on the C4R Car Rental platform
@@ -226,6 +236,19 @@ const HeroSection = React.memo(function HeroSection() {
               cross-platform <strong>React Native</strong> apps — I bring
               measurable engineering to every engagement. React · Next.js ·
               Node.js · TypeScript.
+            </motion.p>
+
+            {/* Arabic Description */}
+            <motion.p
+              className="text-base text-muted-foreground/80 leading-relaxed max-w-xl"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.55 }}
+              dir="rtl"
+            >
+              أقوم ببناء منتجات ويب و موبايل احترافية تصلح للإنتاج وتتميز بالسرعة والقابلية للتوسع. من تحقيق{" "}
+              <strong>99/100 PageSpeed</strong> في منصة تأجير السيارات C4R إلى دمج مدفوعات{" "}
+              <strong>Stripe و PayPal</strong> وتطبيقات React Native متعددة المنصات — أحضر هندسة قابلة للقياس لكل مشروع.
             </motion.p>
 
             {/* CTA Buttons */}

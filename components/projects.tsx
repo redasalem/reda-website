@@ -330,6 +330,18 @@ const Projects = React.memo(function Projects() {
             </motion.span>
           </h2>
 
+          {/* Arabic subtitle */}
+          <motion.p
+            className="text-xl md:text-2xl font-semibold text-muted-foreground/80 mt-2"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            dir="rtl"
+          >
+            أبرز المشاريع
+          </motion.p>
+
           <motion.p
             className="text-muted-foreground max-w-2xl mx-auto text-base md:text-lg"
             initial={{ opacity: 0, y: 20 }}

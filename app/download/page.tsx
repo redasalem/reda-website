@@ -4,7 +4,12 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Link from "next/link";
 import { Download, FileText, Star, Zap, Clock, Award, CheckCircle2, Sparkles, ArrowRight, Mail, Briefcase, Code, Database, Smartphone } from "lucide-react";
 import React, { useState, useEffect } from "react";
-import ChatBot from "@/components/chatbot";
+import dynamic from "next/dynamic";
+
+const ChatBot = dynamic(() => import("@/components/chatbot"), {
+  ssr: false,
+  loading: () => null,
+});
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
