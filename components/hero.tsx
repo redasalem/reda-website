@@ -150,8 +150,7 @@ const HeroSection = React.memo(function HeroSection() {
             >
               {/* Download Resume Button */}
               <Link
-                target="_blank"
-                href="https://drive.google.com/file/d/1MNYifjkRpiy6xXKeAqiXCinVBkOh6mrZ/view?usp=sharing"
+                href="/download"
                 className="btn-premium"
               >
                 <Download className="w-5 h-5" />

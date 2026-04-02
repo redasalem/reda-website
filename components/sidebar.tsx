@@ -15,6 +15,7 @@ import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import WorkIcon from "@mui/icons-material/Work";
 import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
 import ContactsIcon from "@mui/icons-material/Contacts";
+import DownloadIcon from "@mui/icons-material/Download";
 
 const Sidebar = React.memo(function Sidebar() {
   const { theme, toggleTheme } = useTheme();
@@ -31,6 +32,10 @@ const Sidebar = React.memo(function Sidebar() {
     { label: "Projects", id: "projects" },
     { label: "Certificates", id: "certificates" },
     { label: "Contact", id: "contact" },
+  ], []);
+
+  const externalNavItems = useMemo(() => [
+    { label: "Download Resume", href: "/download", icon: <DownloadIcon /> },
   ], []);
 
   const socialLinks = useMemo(() => [
@@ -149,6 +154,33 @@ const Sidebar = React.memo(function Sidebar() {
           ))}
         </div>
       </nav>
+
+      {/* External Links */}
+      <div
+        className="space-y-4 animate-fade-in mb-4"
+        style={{ animationDelay: "0.4s" }}
+      >
+        {isExpanded && (
+          <p className="text-xs font-semibold text-sidebar-foreground/70 uppercase tracking-wider mb-2">
+            Quick Access
+          </p>
+        )}
+        <div className="space-y-2">
+          {externalNavItems.map((item, index) => (
+            <a
+              key={item.label}
+              href={item.href}
+              className={`w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium text-sidebar-foreground dark:text-white bg-sidebar-primary/10 hover:bg-sidebar-primary/30 transition-all duration-300 group flex items-center gap-3 animate-fade-in ${!isExpanded && "justify-center px-2"
+                }`}
+              style={{ animationDelay: `${0.5 + index * 0.1}s` }}
+              title={!isExpanded ? item.label : ""}
+            >
+              <span className="text-lg flex-shrink-0">{item.icon}</span>
+              {isExpanded && <span className="relative z-10">{item.label}</span>}
+            </a>
+          ))}
+        </div>
+      </div>
 
       {/* Social Links */}
       <div
