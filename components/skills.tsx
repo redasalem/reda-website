@@ -1,38 +1,29 @@
 "use client";
 
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
-import React, { useRef, useMemo, useState } from "react";
+import React, { useRef, useState, useMemo } from "react";
 import {
-  Code,
-  Palette,
-  Brush,
-  Layers,
-  Waves,
-  FileCode,
-  Braces,
-  Atom,
-  Smartphone,
-  LayoutGrid,
-  Sparkles,
-  BarChart3,
-  Database,
-  Flame,
-  UserCheck,
-  CreditCard,
-  Box,
-  Zap,
-  Cloud,
-  Globe,
-  Terminal,
-  CloudFog,
-  Gauge,
-  GitBranch,
-  Search,
-  RefreshCw,
-  Bug,
-  Shield,
-  Cpu,
+  Code, Palette, Brush, Layers, Waves, FileCode, Braces, Atom,
+  Smartphone, LayoutGrid, Sparkles, Database, Flame, UserCheck,
+  CreditCard, Box, Zap, Cloud, Globe, Terminal, CloudFog, Gauge,
+  GitBranch, RefreshCw, Bug, Shield, Cpu, BarChart
 } from "lucide-react";
+import { skillsData, SkillCategoryData } from "@/data/skills";
+
+const iconMap: Record<string, React.ComponentType<{ className?: string; style?: React.CSSProperties }>> = {
+  HTML: Code, CSS: Palette, Sass: Brush, Bootstrap: Layers, "Tailwind CSS": Waves,
+  "JavaScript (ES6+)": FileCode, TypeScript: Braces, "React.js": Atom, "Next.js": CloudFog,
+  "Server Components": CloudFog, "React Native": Smartphone, "Material UI": LayoutGrid,
+  "ShadCN UI": Sparkles, Zustand: Cpu, Storybook: Palette, DaisyUI: Palette, Nivo: BarChart,
+  "React Query": Database, "API Integration": Globe, "Firebase Auth & Firestore": Flame,
+  Clerk: UserCheck, GraphQL: Globe, "PayPal Integration": CreditCard, Webpack: Box, Vite: Zap,
+  "Firebase Hosting": Cloud, Vercel: Cloud, Netlify: Globe, "Node.js": Cpu, "Express.js": Terminal,
+  MongoDB: Database, "PostgreSQL & Redis": Cpu, Convex: CloudFog, "Git & GitHub": GitBranch,
+  Figma: Palette, Postman: Globe, "React Performance": Gauge, "Next.js Production": CloudFog,
+  Lighthouse: Gauge, "System Scalability": GitBranch, "PWA & Cloud Native": Cpu,
+  "CI/CD & Docker": RefreshCw, "Jest & Cypress": Bug, "Web Security": Shield,
+  "Design Patterns": Cpu
+};
 
 const SkillBadge = ({ name, icon, delay }: { name: string; icon: React.ReactNode; delay: number }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -78,188 +69,46 @@ const SkillBadge = ({ name, icon, delay }: { name: string; icon: React.ReactNode
   );
 };
 
-const SkillCategory = ({ title, skills, index }: { title: string; skills: Array<{name: string; icon: React.ReactNode}>; index: number }) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+const SkillCategory = ({ title, skills, index }: { title: string; skills: Array<{name: string; color: string}>; index: number }) => {
+  const [isHoveredCategory, setIsHoveredCategory] = useState(false);
   
   return (
     <motion.div
-      ref={ref}
-      className="group relative h-full p-6 md:p-8 rounded-3xl border border-border/50 
-      bg-card/50 backdrop-blur-xl hover:bg-card/80 transition-all duration-500
-      shadow-lg hover:shadow-primary/5 dark:shadow-none flex flex-col overflow-hidden"
-      initial={{ opacity: 0, y: 60, scale: 0.95 }}
-      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-      transition={{ delay: index * 0.1, duration: 0.6, ease: "easeOut" }}
-      whileHover={{ y: -8, transition: { duration: 0.3 } }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="glass-card p-6"
+      onMouseEnter={() => setIsHoveredCategory(true)}
+      onMouseLeave={() => setIsHoveredCategory(false)}
     >
-      {/* Animated background gradient */}
-      <motion.div
-        className="absolute inset-0 rounded-3xl bg-gradient-to-b from-primary/10 via-transparent to-transparent"
-        initial={{ opacity: 0 }}
-        whileHover={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      />
-      
-      {/* Corner glow effect */}
-      <motion.div
-        className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-brand-mint-500/20 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-        initial={{ scale: 0 }}
-        whileHover={{ scale: 1 }}
-        transition={{ duration: 0.5 }}
-      />
-
-      <motion.h3 
-        className="relative text-xl md:text-2xl font-bold mb-4 md:mb-6 text-foreground group-hover:text-primary transition-colors duration-300"
-        whileHover={{ x: 5 }}
-        transition={{ type: "spring", stiffness: 400 }}
-      >
+      <h3 className="text-lg font-bold mb-4 text-foreground flex items-center gap-2">
         {title}
-      </motion.h3>
-
-      <div className="relative flex flex-wrap gap-2 md:gap-3">
-        {skills.map((skill, idx) => (
-          <SkillBadge
-            key={idx}
-            name={skill.name}
-            icon={skill.icon}
-            delay={index * 0.1 + idx * 0.05}
-          />
-        ))}
+      </h3>
+      <div className="flex flex-wrap gap-2">
+        {skills.map((skill, i) => {
+          const Icon = iconMap[skill.name];
+          return (
+            <SkillBadge
+              key={i}
+              name={skill.name}
+              icon={Icon ? <Icon className="w-4 h-4" style={{ color: skill.color }} /> : <Code className="w-4 h-4" style={{ color: skill.color }} />}
+              delay={i * 0.05}
+            />
+          );
+        })}
       </div>
     </motion.div>
   );
 };
 
 const Skills = React.memo(function Skills() {
-  const skillCategories = useMemo(() => [
-    {
-      title: "Frontend Technologies",
-      skills: [
-        { name: "HTML", icon: <Code className="w-4 h-4" style={{ color: "#ff5722" }} /> },
-        { name: "CSS", icon: <Palette className="w-4 h-4" style={{ color: "#2196f3" }} /> },
-        { name: "Sass", icon: <Brush className="w-4 h-4" style={{ color: "#e91e63" }} /> },
-        {
-          name: "Bootstrap",
-          icon: <Layers className="w-4 h-4" style={{ color: "#9c27b0" }} />,
-        },
-        {
-          name: "Tailwind CSS",
-          icon: <Waves className="w-4 h-4" style={{ color: "#06b6d4" }} />,
-        },
-      ],
-    },
-    {
-      title: "JavaScript & Frameworks",
-      skills: [
-        {
-          name: "JavaScript (ES6+)",
-          icon: <FileCode className="w-4 h-4" style={{ color: "#f7df1e" }} />,
-        },
-        {
-          name: "TypeScript",
-          icon: <Braces className="w-4 h-4" style={{ color: "#3178c6" }} />,
-        },
-        { name: "React.js", icon: <Atom className="w-4 h-4" style={{ color: "#61dafb" }} /> },
-        { name: "Next.js", icon: <CloudFog className="w-4 h-4" style={{ color: "#bdbdbd" }} /> },
-        { name: "Server Components", icon: <CloudFog className="w-4 h-4" style={{ color: "#000000" }} /> },
-        {
-          name: "React Native",
-          icon: <Smartphone className="w-4 h-4" style={{ color: "#61dafb" }} />,
-        },
-      ],
-    },
-    {
-      title: "UI Libraries & Tools",
-      skills: [
-        {
-          name: "Material UI",
-          icon: <LayoutGrid className="w-4 h-4" style={{ color: "#00b0ff" }} />,
-        },
-        { name: "ShadCN UI", icon: <Sparkles className="w-4 h-4" style={{ color: "#ab47bc" }} /> },
-        { name: "Zustand", icon: <Cpu className="w-4 h-4" style={{ color: "#433333" }} /> },
-        { name: "Storybook", icon: <Palette className="w-4 h-4" style={{ color: "#FF4785" }} /> },
-        { name: "DaisyUI", icon: <Palette className="w-4 h-4" style={{ color: "#ff9800" }} /> },
-        { name: "Nivo", icon: <BarChart3 className="w-4 h-4" style={{ color: "#ff9800" }} /> },
-        {
-          name: "React Query",
-          icon: <Database className="w-4 h-4" style={{ color: "#f06292" }} />,
-        },
-      ],
-    },
-    {
-      title: "Integrations & Authentication",
-      skills: [
-        {
-          name: "API Integration",
-          icon: <Globe className="w-4 h-4" style={{ color: "#00e676" }} />,
-        },
-        {
-          name: "Firebase Auth & Firestore",
-          icon: <Flame className="w-4 h-4" style={{ color: "#ffb300" }} />,
-        },
-        { name: "Clerk", icon: <UserCheck className="w-4 h-4" style={{ color: "#5c6bc0" }} /> },
-        { name: "GraphQL", icon: <Globe className="w-4 h-4" style={{ color: "#E10098" }} /> },
-        {
-          name: "PayPal Integration",
-          icon: <CreditCard className="w-4 h-4" style={{ color: "#2196f3" }} />,
-        },
-      ],
-    },
-    {
-      title: "Build & Deployment",
-      skills: [
-        { name: "Webpack", icon: <Box className="w-4 h-4" style={{ color: "#4fc3f7" }} /> },
-        { name: "Vite", icon: <Zap className="w-4 h-4" style={{ color: "#d500f9" }} /> },
-        {
-          name: "Firebase Hosting",
-          icon: <Cloud className="w-4 h-4" style={{ color: "#ffa000" }} />,
-        },
-        { name: "Vercel", icon: <Cloud className="w-4 h-4" style={{ color: "#eeeeee" }} /> },
-        { name: "Netlify", icon: <Globe className="w-4 h-4" style={{ color: "#00bfa5" }} /> },
-      ],
-    },
-    {
-      title: "Backend & Database",
-      skills: [
-        { name: "Node.js", icon: <Cpu className="w-4 h-4" style={{ color: "#339933" }} /> },
-        {
-          name: "Express.js",
-          icon: <Terminal className="w-4 h-4" style={{ color: "#000000" }} />,
-        },
-        { name: "MongoDB", icon: <Database className="w-4 h-4" style={{ color: "#47A248" }} /> },
-        { name: "PostgreSQL & Redis", icon: <Cpu className="w-4 h-4" style={{ color: "#336791" }} /> },
-        { name: "Convex", icon: <CloudFog className="w-4 h-4" style={{ color: "#F05138" }} /> },
-      ],
-    },
-    {
-      title: "Workspace & Collaboration",
-      skills: [
-        { name: "Git & GitHub", icon: <GitBranch className="w-4 h-4" style={{ color: "#F05032" }} /> },
-        { name: "Figma", icon: <Palette className="w-4 h-4" style={{ color: "#F24E1E" }} /> },
-        { name: "Postman", icon: <Globe className="w-4 h-4" style={{ color: "#FF6C37" }} /> },
-      ],
-    },
-    {
-      title: "Architecture & Performance",
-      skills: [
-        { name: "React Performance", icon: <Gauge className="w-4 h-4" style={{ color: "#61dafb" }} /> },
-        { name: "Next.js Production", icon: <CloudFog className="w-4 h-4" style={{ color: "#000000" }} /> },
-        { name: "Lighthouse", icon: <Gauge className="w-4 h-4" style={{ color: "#F44B3E" }} /> },
-        { name: "System Scalability", icon: <GitBranch className="w-4 h-4" style={{ color: "#ff9800" }} /> },
-        { name: "PWA & Cloud Native", icon: <Cpu className="w-4 h-4" style={{ color: "#4caf50" }} /> },
-      ],
-    },
-    {
-      title: "Testing, DevOps & Security",
-      skills: [
-        { name: "CI/CD & Docker", icon: <RefreshCw className="w-4 h-4" style={{ color: "#2196f3" }} /> },
-        { name: "Jest & Cypress", icon: <Bug className="w-4 h-4" style={{ color: "#C21325" }} /> },
-        { name: "Web Security", icon: <Shield className="w-4 h-4" style={{ color: "#9c27b0" }} /> },
-        { name: "Design Patterns", icon: <Cpu className="w-4 h-4" style={{ color: "#795548" }} /> },
-      ],
-    },
-  ], []);
+  const skillCategories: SkillCategoryData[] = useMemo(() => skillsData, []);
+
+  const getIcon = (name: string) => {
+    const Icon = iconMap[name];
+    return Icon ? <Icon className="w-4 h-4" /> : <Code className="w-4 h-4" />;
+  };
 
   const containerRef = useRef(null);
 
