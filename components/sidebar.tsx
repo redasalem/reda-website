@@ -3,7 +3,7 @@ import React, { useState, useMemo } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "@/lib/theme-provider";
-import { Menu, X, Github, Linkedin, Mail, Phone, User, List, Briefcase, Award, Contact, Download } from "lucide-react";
+import { Menu, X, Code2, Users, Mail, Phone, User, List, Briefcase, Award, Contact, Download } from "lucide-react";
 
 const sidebarVariants = {
   expanded: { width: 288, transition: { type: "spring" as const, stiffness: 200, damping: 25 } },
@@ -41,13 +41,13 @@ const Sidebar = React.memo(function Sidebar() {
 
   const socialLinks = useMemo(() => [
     {
-      icon: <Github />,
+      icon: <Code2 />,
       href: "https://github.com/redasalem",
       label: "GitHub",
       color: "hover:text-brand-mint-400",
     },
     {
-      icon: <Linkedin />,
+      icon: <Users />,
       href: "https://www.linkedin.com/in/reda-salem-dev/",
       label: "LinkedIn",
       color: "hover:text-brand-mint-500",

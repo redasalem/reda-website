@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
-import { ExternalLink, Github, Code, Sparkles } from "lucide-react";
+import { ExternalLink, Code2, Code, Sparkles } from "lucide-react";
 import { getProjects, ProjectData } from "@/lib/firestore";
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Link from "next/link";
@@ -224,7 +224,7 @@ const ProjectCard = ({ project, index }: { project: ProjectData; index: number }
                   target="_blank"
                   className="btn-secondary flex-1 !py-3 !text-xs"
                 >
-                  <Github size={16} />
+                  <Code2 size={16} />
                   Code
                 </Link>
               </motion.div>
@@ -379,7 +379,7 @@ const Projects = React.memo(function Projects() {
                 className="group relative overflow-hidden px-8 py-3 rounded-full bg-card border border-border hover:border-primary/50 transition-colors duration-300"
               >
                 <span className="relative flex items-center gap-2 text-foreground font-medium group-hover:text-primary transition-colors">
-                  <Github />
+                  <Code2 />
                   View All Projects on GitHub
                   <ExternalLink
                     className="transform group-hover:translate-x-1 transition-transform duration-300"
