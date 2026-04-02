@@ -231,7 +231,7 @@ const Certificates = React.memo(function Certificates() {
                     viewport={{ once: true }}
                   >
                     <span
-                      className={`px-4 py-2 bg-gradient-to-r ${cert.color} text-white text-sm font-bold rounded-full shadow-lg`}
+                      className="px-4 py-2 bg-gradient-to-r from-brand-mint-500 to-brand-mint-600 text-black text-xs font-black rounded-full shadow-lg shadow-brand-mint-500/20 uppercase tracking-widest"
                     >
                       {cert.date}
                     </span>
@@ -266,33 +266,14 @@ const Certificates = React.memo(function Certificates() {
                     {cert.description}
                   </p>
 
-                  {/* Action Button */}
+                  {/* Action Button - Unified Premium Style */}
                   <motion.a
                     href={cert.link}
                     target="_blank"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className={`group/btn flex items-center justify-center gap-3 w-full py-3.5 rounded-xl bg-gradient-to-r ${cert.color} text-white font-semibold shadow-lg hover:shadow-2xl transition-all duration-300 relative overflow-hidden`}
+                    className="btn-premium w-full !py-4"
                   >
-                    <motion.span
-                      className="absolute inset-0 bg-white/20"
-                      initial={{ x: "-100%" }}
-                      whileHover={{ x: "100%" }}
-                      transition={{ duration: 0.5 }}
-                    />
                     <span className="relative z-10">View Certificate</span>
-                    <motion.span
-                      className="relative z-10 text-xl"
-                      animate={{
-                        x: hoveredIndex === index ? [0, 5, 0] : 0,
-                      }}
-                      transition={{
-                        duration: 0.5,
-                        repeat: hoveredIndex === index ? Infinity : 0,
-                      }}
-                    >
-                      ↗
-                    </motion.span>
+                    <EmojiEventsIcon className="w-5 h-5 ml-2" />
                   </motion.a>
                 </div>
 

@@ -215,7 +215,7 @@ const ChatBot = React.memo(function ChatBot() {
                 <button
                   type="submit"
                   disabled={isLoading || !inputValue.trim()}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 w-12 h-12 rounded-xl bg-gradient-to-r from-brand-mint-500 to-brand-mint-600 text-white flex items-center justify-center transition-all duration-300 disabled:opacity-30 hover:scale-105 active:scale-95 shadow-lg shadow-brand-mint-500/20"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 w-12 h-12 rounded-xl bg-gradient-to-r from-brand-mint-500 to-brand-mint-600 text-black flex items-center justify-center transition-all duration-300 disabled:opacity-30 hover:scale-105 active:scale-95 shadow-lg shadow-brand-mint-500/30"
                 >
                   <Send className="w-5 h-5" />
                 </button>

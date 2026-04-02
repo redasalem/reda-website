@@ -266,11 +266,50 @@
 
 /* Premium Component Utilities */
 .btn-premium {
-  @apply relative px-8 py-4 bg-gradient-to-r from-brand-mint-500 to-brand-mint-600 text-black font-extrabold rounded-full shadow-lg hover:shadow-brand-mint-500/50 transition-all duration-300 flex items-center justify-center gap-2 hover:scale-105 active:scale-95 border border-white/20;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  padding: 1rem 2rem !important;
+  border-radius: 9999px !important;
+  font-weight: 800 !important;
+  font-size: 1rem !important;
+  color: #000000 !important;
+  background: linear-gradient(90deg, #00FF9F 0%, #00CC80 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 4px 15px rgba(0, 255, 159, 0.2) !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+}
+
+.btn-premium:hover {
+  transform: translateY(-2px) scale(1.05) !important;
+  box-shadow: 0 0 25px rgba(0, 255, 159, 0.5) !important;
+  background: linear-gradient(90deg, #00FF9F 20%, #00CC80 80%) !important;
 }
 
 .btn-secondary {
-  @apply relative px-8 py-4 bg-white/5 backdrop-blur-md text-white font-bold rounded-full border border-white/10 hover:bg-white/10 hover:border-brand-mint-500/50 transition-all duration-300 flex items-center justify-center gap-2 hover:scale-105 active:scale-95;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  padding: 1rem 2rem !important;
+  border-radius: 9999px !important;
+  font-weight: 700 !important;
+  font-size: 1rem !important;
+  color: #FFFFFF !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  transition: all 0.3s ease !important;
+}
+
+.btn-secondary:hover {
+  transform: translateY(-2px) scale(1.05) !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(0, 255, 159, 0.5) !important;
+  box-shadow: 0 0 15px rgba(0, 255, 159, 0.2) !important;
 }
 
 .glass-card {

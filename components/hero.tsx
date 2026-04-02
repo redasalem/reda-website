@@ -102,7 +102,15 @@ const HeroSection = React.memo(function HeroSection() {
                 transition={{ duration: 0.8, delay: 0.3 }}
               >
                 Hi, I'm{" "}
-                <span className="text-gradient-mint font-extrabold drop-shadow-[0_0_15px_rgba(0,255,159,0.3)]">
+                <span 
+                  className="font-extrabold"
+                  style={{
+                    background: 'linear-gradient(90deg, #FFFFFF 0%, #00FF9F 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    filter: 'drop-shadow(0 0 10px rgba(0,255,159,0.3))'
+                  }}
+                >
                    Reda Salem
                 </span>
               </motion.h1>

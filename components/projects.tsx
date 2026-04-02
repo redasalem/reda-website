@@ -8,6 +8,7 @@ import CodeIcon from "@mui/icons-material/Code";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import { getProjects, ProjectData } from "@/lib/firestore";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 
 const Projects = React.memo(function Projects() {
   const [projects, setProjects] = useState<ProjectData[]>([]);
@@ -135,28 +136,26 @@ const Projects = React.memo(function Projects() {
                       ))}
                     </div>
                     <div className="h-px bg-border/50 my-4" />
-                    <div className="flex gap-3">
+                    <div className="flex gap-4 mt-auto">
                       {project.demo && (
-                        <a
+                        <Link
                           href={project.demo}
                           target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 bg-gradient-to-r from-brand-mint-500 to-brand-mint-600 text-black text-xs font-black rounded-xl hover:from-brand-mint-400 hover:to-brand-mint-500 transition-all duration-300 shadow-lg shadow-brand-mint-500/10 active:scale-95 uppercase tracking-wider"
+                          className="btn-premium flex-1 !py-3 !text-xs"
                         >
-                          Demo
                           <LaunchIcon sx={{ fontSize: 16 }} />
-                        </a>
+                          Demo
+                        </Link>
                       )}
                       {project.code && (
-                        <a
+                        <Link
                           href={project.code}
                           target="_blank"
-                          rel="noopener noreferrer"
-                          className="p-3 bg-white/5 border border-white/10 text-white rounded-xl hover:bg-white/10 hover:border-brand-mint-500/50 transition-all duration-300 group"
-                          aria-label="View Code"
+                          className="btn-secondary flex-1 !py-3 !text-xs"
                         >
-                          <GitHubIcon className="w-5 h-5 group-hover:text-brand-mint-400" />
-                        </a>
+                          <GitHubIcon sx={{ fontSize: 16 }} />
+                          Code
+                        </Link>
                       )}
                     </div>
                   </div>
