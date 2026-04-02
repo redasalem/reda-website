@@ -237,39 +237,6 @@ const HeroSection = React.memo(function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              {/* Enhanced Download Resume Button with Shimmer */}
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.98 }}
-                className="relative group"
-              >
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"
-                  initial={{ x: "-100%" }}
-                  whileHover={{ x: "200%" }}
-                  transition={{ duration: 0.8, ease: "easeInOut" }}
-                  style={{ width: "50%", height: "100%" }}
-                />
-                <Link
-                  href="/download"
-                  className="btn-premium relative overflow-hidden"
-                >
-                  <motion.div
-                    animate={{
-                      boxShadow: [
-                        "0 4px 15px rgba(0, 255, 159, 0.2)",
-                        "0 4px 25px rgba(0, 255, 159, 0.4)",
-                        "0 4px 15px rgba(0, 255, 159, 0.2)",
-                      ],
-                    }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  >
-                    <Sparkles className="w-5 h-5 animate-pulse" />
-                    Download Resume
-                  </motion.div>
-                </Link>
-              </motion.div>
-
               {/* View Projects Button */}
               <button
                 onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
