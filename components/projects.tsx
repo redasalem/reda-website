@@ -89,7 +89,7 @@ const ProjectCard = ({ project, index }: { project: ProjectData; index: number }
 
           <Image
             src={project.image || "/images/placeholder.png"}
-            alt={`${project.title} - ${project.tech.join(", ")}`}
+            alt={`${project.title} - ${project.tech.join(", ")} - مشروع ${project.title} بتقنية ${project.tech.join(" و ")}`}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="object-cover"

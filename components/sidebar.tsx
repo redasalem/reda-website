@@ -109,7 +109,7 @@ const Sidebar = React.memo(function Sidebar() {
           >
             <Image
               src="/images/reda.png"
-              alt="Reda Salem - Full Stack Developer"
+              alt="Reda Salem - Full Stack Developer - ريدا سالم مبرمج فول ستاك"
               fill
               priority
               sizes="96px"

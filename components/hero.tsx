@@ -218,6 +218,7 @@ const HeroSection = React.memo(function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
             >
+              <span className="sr-only">مهندس برمجيات متخصص في بناء تطبيقات الويب والموبايل بأعلى أداء</span>
               I build production-grade web & mobile products that ship fast and
               scale further. From delivering{" "}
               <strong>99/100 PageSpeed</strong> on the C4R Car Rental platform

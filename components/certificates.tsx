@@ -16,10 +16,13 @@ const Certificates = React.memo(function Certificates() {
   const certificates = useMemo(() => [
     {
       title: "Front-End Certificate",
+      titleArabic: "شهادة الواجهة الأمامية",
       issuer: "Hsoub Academy",
       date: "May 2025",
       description:
         "Comprehensive front-end development certification covering modern web technologies",
+      descriptionArabic:
+        "شهادة شاملة في تطوير الواجهة الأمامية تغطي تقنيات الويب الحديثة",
       link: "https://academy.hsoub.com/certificate/8CT2XWQB10SJXDYDRM4PT6GED.pdf",
       color: "from-brand-mint-500/20 to-brand-mint-600/20",
       icon: "💻",
@@ -27,10 +30,13 @@ const Certificates = React.memo(function Certificates() {
     },
     {
       title: "Full-Stack Development Training",
+      titleArabic: "تدريب تطوير الويب الكامل",
       issuer: "Information Technology Institute (ITI)",
       date: "Sep 2022",
       description:
         "Professional training in front-end development with hands-on projects",
+      descriptionArabic:
+        "تدريب احترافي في تطوير الواجهة الأمامية مع مشاريع عملية",
       link: "https://drive.google.com/file/d/1irnR_hedjneoMh7poPI9CM4SwqXeLAOU/view",
       color: "from-brand-mint-500/20 to-brand-mint-600/20",
       icon: "💻",
@@ -38,10 +44,13 @@ const Certificates = React.memo(function Certificates() {
     },
     {
       title: "Front-End Development Training",
+      titleArabic: "تدريب تطوير الواجهة الأمامية",
       issuer: "Huma-volve",
       date: "Dec 2025",
       description:
         "Intense hands-on experience in problem analysis, back-end systems, and professional team collaboration.",
+      descriptionArabic:
+        "خبرة عملية مكثفة في تحليل الأنظمة الخلفية والتعاون المهني",
       link: "https://www.linkedin.com/posts/reda-salem-dev_frontend-react-professionalgrowth-activity-7416949321494982656-bim4?utm_source=share&utm_medium=member_desktop&rcm=ACoAAELm9IAB5ccC-E7q6WGg2fPYNK2bK5i7Yys",
       color: "from-brand-mint-500/20 to-brand-mint-600/20",
       icon: "🚀",
@@ -179,7 +188,7 @@ const Certificates = React.memo(function Certificates() {
                   >
                     <Image
                       src={cert.image}
-                      alt={cert.title}
+                      alt={`${cert.title} - ${cert.issuer} - ${cert.titleArabic || ''} - شهادة ${cert.titleArabic || cert.title}`}
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className="object-cover"
