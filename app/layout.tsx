@@ -156,7 +156,7 @@ export const metadata: Metadata = {
     "مبرمج فول ستاك",
     "مطور ويب",
     "هندسة البرمجيات",
-    "ريدا سالم",
+    "رضا سالم",
     "تطوير تطبيقات",
     "React Next.js Developer Egypt",
     "مطور React",
