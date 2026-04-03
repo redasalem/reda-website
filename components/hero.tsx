@@ -207,47 +207,21 @@ const HeroSection = React.memo(function HeroSection() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                Full-Stack Engineer · 99/100 PageSpeed · 2× Faster Apps
+                Specialized Full-Stack Engineer · 99/100 PageSpeed · 2× Faster Apps
               </motion.h2>
-
-              {/* Secondary Subtitle */}
-              <motion.p
-                className="text-xl lg:text-2xl font-semibold text-muted-foreground/80"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.45 }}
-              >
-                Specialized Software Engineer · 99/100 Page Speed · 2x Faster Apps
-              </motion.p>
             </div>
 
-            {/* Description */}
+            {/* Combined Concise Description */}
             <motion.p
               className="text-lg text-muted-foreground leading-relaxed max-w-xl"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
             >
-              I build production-grade web & mobile products that ship fast and
-              scale further. From delivering{" "}
-              <strong>99/100 PageSpeed</strong> on the C4R Car Rental platform
-              to enabling <strong>Stripe & PayPal</strong> payments and shipping
-              cross-platform <strong>React Native</strong> apps — I bring
-              measurable engineering to every engagement. React · Next.js ·
-              Node.js · TypeScript.
-            </motion.p>
-
-            {/* Secondary Description */}
-            <motion.p
-              className="text-base text-muted-foreground/80 leading-relaxed max-w-xl"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.55 }}
-            >
-              I build professional, production-ready web and mobile products characterized by speed and scalability. From achieving{" "}
-              <strong>99/100 PageSpeed</strong> on the C4R car rental platform to integrating{" "}
-              <strong>Stripe and PayPal</strong> payments, and developing cross-platform{" "}
-              <strong>React Native</strong> applications — I bring measurable engineering to every project.
+              I engineer production-ready web and mobile products optimized for speed and scale. From achieving{" "}
+              <strong>99/100 PageSpeed</strong> on the C4R platform, to integrating{" "}
+              <strong>Stripe & PayPal</strong> flows and shipping cross-platform{" "}
+              <strong>React Native</strong> apps — I bring measurable performance to every project. React · Next.js · Node.js · TypeScript.
             </motion.p>
 
             {/* CTA Buttons */}
