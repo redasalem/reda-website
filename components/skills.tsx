@@ -64,7 +64,7 @@ const SkillBadge = ({ name, arabicName, icon, delay }: { name: string; arabicNam
         animate={{ color: isHovered ? "rgb(0, 255, 159)" : "inherit" }}
       >
         {name}
-        {arabicName && <span className="text-muted-foreground/60 text-xs mr-1" dir="rtl">({arabicName})</span>}
+        {arabicName && <span className="text-muted-foreground/60 text-xs mr-1" dir="rtl">{arabicName}</span>}
       </motion.span>
     </motion.div>
   );
