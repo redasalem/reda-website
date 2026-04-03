@@ -155,7 +155,7 @@ const HeroSection = React.memo(function HeroSection() {
         ))}
       </div>
 
-      {/* Grid Background - يتكيف مع الثيم */}
+      {/* Grid Background */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,159,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,159,0.05)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(0,255,159,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,159,0.1)_1px,transparent_1px)] bg-size-[100px_100px] mask-[radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]" />
 
       <div className="container mx-auto px-6 z-10">
@@ -210,19 +210,18 @@ const HeroSection = React.memo(function HeroSection() {
                 Full-Stack Engineer · 99/100 PageSpeed · 2× Faster Apps
               </motion.h2>
 
-              {/* Arabic subtitle */}
+              {/* Secondary Subtitle */}
               <motion.p
                 className="text-xl lg:text-2xl font-semibold text-muted-foreground/80"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.45 }}
-                dir="rtl"
               >
-                مهندس برمجيات متخصص · 99/100 سرعة الصفحة · تطبيقات أسرع مرتين
+                Specialized Software Engineer · 99/100 Page Speed · 2x Faster Apps
               </motion.p>
             </div>
 
-            {/* Description - وصف احترافي */}
+            {/* Description */}
             <motion.p
               className="text-lg text-muted-foreground leading-relaxed max-w-xl"
               initial={{ opacity: 0, y: 20 }}
@@ -238,17 +237,17 @@ const HeroSection = React.memo(function HeroSection() {
               Node.js · TypeScript.
             </motion.p>
 
-            {/* Arabic Description */}
+            {/* Secondary Description */}
             <motion.p
               className="text-base text-muted-foreground/80 leading-relaxed max-w-xl"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.55 }}
-              dir="rtl"
             >
-              أقوم ببناء منتجات ويب و موبايل احترافية تصلح للإنتاج وتتميز بالسرعة والقابلية للتوسع. من تحقيق{" "}
-              <strong>99/100 PageSpeed</strong> في منصة تأجير السيارات C4R إلى دمج مدفوعات{" "}
-              <strong>Stripe و PayPal</strong> وتطبيقات React Native متعددة المنصات — أحضر هندسة قابلة للقياس لكل مشروع.
+              I build professional, production-ready web and mobile products characterized by speed and scalability. From achieving{" "}
+              <strong>99/100 PageSpeed</strong> on the C4R car rental platform to integrating{" "}
+              <strong>Stripe and PayPal</strong> payments, and developing cross-platform{" "}
+              <strong>React Native</strong> applications — I bring measurable engineering to every project.
             </motion.p>
 
             {/* CTA Buttons */}
