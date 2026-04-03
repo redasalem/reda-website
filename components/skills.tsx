@@ -25,7 +25,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string; style?: 
   "Design Patterns": Cpu
 };
 
-const SkillBadge = ({ name, arabicName, icon, delay }: { name: string; arabicName?: string; icon: React.ReactNode; delay: number }) => {
+const SkillBadge = ({ name, icon, delay }: { name: string; icon: React.ReactNode; delay: number }) => {
   const [isHovered, setIsHovered] = useState(false);
   
   return (
@@ -64,13 +64,12 @@ const SkillBadge = ({ name, arabicName, icon, delay }: { name: string; arabicNam
         animate={{ color: isHovered ? "rgb(0, 255, 159)" : "inherit" }}
       >
         {name}
-        {arabicName && <span className="text-muted-foreground/60 text-xs mr-1" dir="rtl">{arabicName}</span>}
       </motion.span>
     </motion.div>
   );
 };
 
-const SkillCategory = ({ title, titleArabic, skills, index }: { title: string; titleArabic?: string; skills: Array<{name: string; arabicName?: string; color: string}>; index: number }) => {
+const SkillCategory = ({ title, skills, index }: { title: string; skills: Array<{name: string; color: string}>; index: number }) => {
   const [isHoveredCategory, setIsHoveredCategory] = useState(false);
   
   return (
@@ -85,7 +84,6 @@ const SkillCategory = ({ title, titleArabic, skills, index }: { title: string; t
     >
       <h3 className="text-lg font-bold mb-4 text-foreground flex items-center gap-2">
         {title}
-        {titleArabic && <span className="text-sm text-muted-foreground font-normal">- {titleArabic}</span>}
       </h3>
       <div className="flex flex-wrap gap-2">
         {skills.map((skill, i) => {
@@ -94,7 +92,6 @@ const SkillCategory = ({ title, titleArabic, skills, index }: { title: string; t
             <SkillBadge
               key={i}
               name={skill.name}
-              arabicName={skill.arabicName}
               icon={Icon ? <Icon className="w-4 h-4" style={{ color: skill.color }} /> : <Code className="w-4 h-4" style={{ color: skill.color }} />}
               delay={i * 0.05}
             />
@@ -154,7 +151,6 @@ const Skills = React.memo(function Skills() {
             <SkillCategory
               key={i}
               title={category.title}
-              titleArabic={category.titleArabic}
               skills={category.skills}
               index={i}
             />
