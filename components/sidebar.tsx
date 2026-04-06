@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useMemo } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "@/lib/theme-provider";
 import { Menu, X, Code2, Users, Mail, Phone, User, List, Briefcase, Award, Contact, Download } from "lucide-react";
@@ -35,20 +36,6 @@ const Sidebar = React.memo(function Sidebar() {
     { label: "Contact", id: "contact", icon: <Contact /> },
   ], []);
 
-  const resumeLinks = useMemo(() => [
-    {
-      label: "Front-End & Mobile CV",
-      subtitle: "React · Next.js · React Native",
-      href: "https://drive.google.com/file/d/1oWh42fPLSHUGyTq9-bIelRpOttUkwTIE/view",
-      icon: <Download />,
-    },
-    {
-      label: "Full-Stack Strategy CV",
-      subtitle: "System Design · Architecture",
-      href: "https://drive.google.com/file/d/1MNYifjkRpiy6xXKeAqiXCinVBkOh6mrZ/view",
-      icon: <Download />,
-    },
-  ], []);
 
   const socialLinks = useMemo(() => [
     {
@@ -217,7 +204,7 @@ const Sidebar = React.memo(function Sidebar() {
         </div>
       </nav>
 
-      {/* Resume Downloads */}
+      {/* Resume CTA */}
       <div className="space-y-3 mb-4">
         <AnimatePresence>
           {isExpanded && (
@@ -231,44 +218,40 @@ const Sidebar = React.memo(function Sidebar() {
             </motion.p>
           )}
         </AnimatePresence>
-        <div className="space-y-2">
-          {resumeLinks.map((item, index) => (
-            <motion.a
-              key={item.label}
-              href={item.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium text-sidebar-foreground dark:text-white bg-sidebar-primary/10 hover:bg-brand-mint-500/20 border border-transparent hover:border-brand-mint-500/30 transition-all duration-300 group flex items-center gap-3 ${!isExpanded && "justify-center px-2"}`}
-              title={!isExpanded ? item.label : item.subtitle}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.3 + index * 0.05 }}
-              whileHover={{ x: isExpanded ? 4 : 0, scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.3 }}
+          whileHover={{ x: isExpanded ? 4 : 0, scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          <Link
+            href="/download"
+            className={`w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium text-sidebar-foreground dark:text-white bg-sidebar-primary/10 hover:bg-brand-mint-500/20 border border-transparent hover:border-brand-mint-500/30 transition-all duration-300 group flex items-center gap-3 ${!isExpanded && "justify-center px-2"}`}
+            title={!isExpanded ? "View Resumes" : "Front-End & Full-Stack CVs"}
+          >
+            <motion.span 
+              className="text-lg flex-shrink-0 relative z-10 text-brand-mint-400"
+              whileHover={{ rotate: [0, -10, 10, 0] }}
+              transition={{ duration: 0.3 }}
             >
-              <motion.span 
-                className="text-lg flex-shrink-0 relative z-10 text-brand-mint-400"
-                whileHover={{ rotate: [0, -10, 10, 0] }}
-                transition={{ duration: 0.3 }}
-              >
-                {item.icon}
-              </motion.span>
-              <AnimatePresence>
-                {isExpanded && (
-                  <motion.div
-                    className="relative z-10 flex flex-col"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                  >
-                    <span className="text-xs font-semibold leading-tight">{item.label}</span>
-                    <span className="text-[10px] text-sidebar-foreground/50 leading-tight mt-0.5">{item.subtitle}</span>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.a>
-          ))}
-        </div>
+              <Download />
+            </motion.span>
+            <AnimatePresence>
+              {isExpanded && (
+                <motion.div
+                  className="relative z-10 flex flex-col"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                >
+                  <span className="text-xs font-semibold leading-tight">View Resumes</span>
+                  <span className="text-[10px] text-sidebar-foreground/50 leading-tight mt-0.5">Front-End · Full-Stack CVs</span>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </Link>
+        </motion.div>
       </div>
 
       {/* Social Links */}

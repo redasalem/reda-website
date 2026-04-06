@@ -78,7 +78,7 @@ const HeroSection = React.memo(function HeroSection() {
 
   return (
     <section
-      id="About Me"
+      id="about"
       className="relative min-h-screen overflow-hidden flex items-center bg-background"
     >
       {/* Animated Morphing Gradient Orbs */}

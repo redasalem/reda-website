@@ -62,7 +62,7 @@ const Footer = React.memo(function Footer() {
             <ul className="space-y-3 text-sm text-muted-foreground">
               <li>
                 <a
-                  href="#About Me"
+                  href="#about"
                   className="hover:text-primary transition-colors flex items-center gap-2 justify-center md:justify-start"
                 >
                   About Me
