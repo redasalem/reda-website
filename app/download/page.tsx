@@ -301,65 +301,87 @@ export default function DownloadPage() {
             Available in multiple formats for your convenience.
           </motion.p>
 
-          {/* Enhanced Main Download Button */}
-          <motion.div variants={fadeInUp} className="flex justify-center">
+          {/* Strategic Dual-CV Buttons */}
+          <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row justify-center gap-4 max-w-2xl mx-auto">
+            {/* Front-End & Mobile CV */}
             <motion.a
-              href="https://drive.google.com/file/d/1MNYifjkRpiy6xXKeAqiXCinVBkOh6mrZ/view?usp=sharing"
+              href="https://drive.google.com/file/d/1oWh42fPLSHUGyTq9-bIelRpOttUkwTIE/view"
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.08, boxShadow: "0 0 60px rgba(0,255,159,0.6)" }}
+              whileHover={{ scale: 1.05, boxShadow: "0 0 50px rgba(0,255,159,0.5)" }}
               whileTap={{ scale: 0.95 }}
-              className="group relative inline-flex items-center gap-4 px-10 py-5 bg-gradient-to-r from-brand-mint-500 via-brand-mint-400 to-brand-mint-500 bg-[length:200%_100%] text-black font-bold text-xl rounded-full shadow-2xl shadow-brand-mint-500/40 hover:shadow-brand-mint-500/60 transition-all duration-500 overflow-hidden"
+              className="group relative flex-1 inline-flex items-center justify-center gap-3 px-8 py-5 bg-gradient-to-r from-brand-mint-500 via-brand-mint-400 to-brand-mint-500 bg-[length:200%_100%] text-black font-bold text-lg rounded-full shadow-2xl shadow-brand-mint-500/30 transition-all duration-500 overflow-hidden"
               animate={{
                 boxShadow: [
-                  "0 4px 30px rgba(0, 255, 159, 0.2)",
-                  "0 4px 40px rgba(0, 255, 159, 0.4)",
-                  "0 4px 30px rgba(0, 255, 159, 0.2)",
+                  "0 4px 25px rgba(0, 255, 159, 0.2)",
+                  "0 4px 35px rgba(0, 255, 159, 0.4)",
+                  "0 4px 25px rgba(0, 255, 159, 0.2)",
                 ],
               }}
               transition={{ duration: 2, repeat: Infinity }}
             >
-              {/* Shimmer effect */}
+              {/* Shimmer */}
               <motion.div 
                 className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0"
                 animate={{ x: ["-100%", "200%"] }}
-                transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 2 }}
+                transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 3 }}
               />
-              
-              {/* Glow particles */}
-              {[...Array(3)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute w-2 h-2 bg-white rounded-full opacity-60"
-                  initial={{ x: "0%", y: "50%", opacity: 0 }}
-                  animate={{
-                    x: ["0%", "100%"],
-                    opacity: [0, 1, 0],
-                  }}
-                  transition={{
-                    duration: 1,
-                    delay: i * 0.2,
-                    repeat: Infinity,
-                    repeatDelay: 2,
-                  }}
-                />
-              ))}
-              
               <motion.div
-                animate={{ 
-                  rotate: [0, 15, -15, 0],
-                  scale: [1, 1.2, 1]
-                }}
-                transition={{ duration: 1, repeat: Infinity }}
+                animate={{ rotate: [0, 15, -15, 0], scale: [1, 1.15, 1] }}
+                transition={{ duration: 1.2, repeat: Infinity, repeatDelay: 2 }}
               >
-                <Download className="w-7 h-7 relative z-10" />
+                <Code className="w-6 h-6 relative z-10" />
               </motion.div>
-              <span className="relative z-10">Download Resume</span>
+              <div className="relative z-10 flex flex-col items-start">
+                <span className="text-base font-extrabold leading-tight">Front-End & Mobile CV</span>
+                <span className="text-xs font-medium opacity-70 leading-tight">React · Next.js · React Native</span>
+              </div>
               <motion.div
-                animate={{ x: [0, 5, 0] }}
+                animate={{ x: [0, 4, 0] }}
                 transition={{ duration: 1, repeat: Infinity }}
               >
-                <ArrowRight className="w-6 h-6 relative z-10" />
+                <ArrowRight className="w-5 h-5 relative z-10" />
+              </motion.div>
+            </motion.a>
+
+            {/* Full-Stack Strategy CV */}
+            <motion.a
+              href="https://drive.google.com/file/d/1MNYifjkRpiy6xXKeAqiXCinVBkOh6mrZ/view"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.05, boxShadow: "0 0 50px rgba(0,255,159,0.3)" }}
+              whileTap={{ scale: 0.95 }}
+              className="group relative flex-1 inline-flex items-center justify-center gap-3 px-8 py-5 bg-card/80 backdrop-blur-sm border-2 border-brand-mint-500/40 text-foreground font-bold text-lg rounded-full shadow-xl hover:border-brand-mint-500 transition-all duration-500 overflow-hidden"
+              animate={{
+                borderColor: [
+                  "rgba(0, 255, 159, 0.3)",
+                  "rgba(0, 255, 159, 0.6)",
+                  "rgba(0, 255, 159, 0.3)",
+                ],
+              }}
+              transition={{ duration: 3, repeat: Infinity }}
+            >
+              {/* Shimmer */}
+              <motion.div 
+                className="absolute inset-0 bg-gradient-to-r from-brand-mint-500/0 via-brand-mint-500/10 to-brand-mint-500/0"
+                animate={{ x: ["-100%", "200%"] }}
+                transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+              />
+              <motion.div
+                animate={{ rotate: [0, -10, 10, 0], scale: [1, 1.15, 1] }}
+                transition={{ duration: 1.2, repeat: Infinity, repeatDelay: 2 }}
+              >
+                <Database className="w-6 h-6 relative z-10 text-brand-mint-500" />
+              </motion.div>
+              <div className="relative z-10 flex flex-col items-start">
+                <span className="text-base font-extrabold leading-tight">Full-Stack Strategy CV</span>
+                <span className="text-xs font-medium text-muted-foreground leading-tight">System Design · Architecture</span>
+              </div>
+              <motion.div
+                animate={{ x: [0, 4, 0] }}
+                transition={{ duration: 1, repeat: Infinity }}
+              >
+                <ArrowRight className="w-5 h-5 relative z-10 text-brand-mint-500" />
               </motion.div>
             </motion.a>
           </motion.div>
