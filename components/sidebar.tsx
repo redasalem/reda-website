@@ -35,8 +35,19 @@ const Sidebar = React.memo(function Sidebar() {
     { label: "Contact", id: "contact", icon: <Contact /> },
   ], []);
 
-  const externalNavItems = useMemo(() => [
-    { label: "Download Resume", href: "/download", icon: <Download /> },
+  const resumeLinks = useMemo(() => [
+    {
+      label: "Front-End & Mobile CV",
+      subtitle: "React · Next.js · React Native",
+      href: "https://drive.google.com/file/d/1oWh42fPLSHUGyTq9-bIelRpOttUkwTIE/view",
+      icon: <Download />,
+    },
+    {
+      label: "Full-Stack Strategy CV",
+      subtitle: "System Design · Architecture",
+      href: "https://drive.google.com/file/d/1MNYifjkRpiy6xXKeAqiXCinVBkOh6mrZ/view",
+      icon: <Download />,
+    },
   ], []);
 
   const socialLinks = useMemo(() => [
@@ -109,7 +120,7 @@ const Sidebar = React.memo(function Sidebar() {
           >
             <Image
               src="/images/reda.png"
-              alt="Reda Salem - Full Stack Developer - ريدا سالم مبرمج فول ستاك"
+              alt="Reda Salem - Full-Stack Engineer"
               fill
               priority
               sizes="96px"
@@ -129,10 +140,10 @@ const Sidebar = React.memo(function Sidebar() {
                 Reda Salem
               </h1>
               <p className="text-lg text-sidebar-foreground/80">
-                Full-Stack Developer
+                Full-Stack Engineer
               </p>
               <p className="text-sm mt-1 text-sidebar-foreground/70">
-                React | Next.js | React Native | Node.js | MongoDB
+                Next.js · React · React Native · Node.js
               </p>
             </motion.div>
           )}
@@ -206,8 +217,8 @@ const Sidebar = React.memo(function Sidebar() {
         </div>
       </nav>
 
-      {/* External Links */}
-      <div className="space-y-4 mb-4">
+      {/* Resume Downloads */}
+      <div className="space-y-3 mb-4">
         <AnimatePresence>
           {isExpanded && (
             <motion.p 
@@ -216,17 +227,19 @@ const Sidebar = React.memo(function Sidebar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              Quick Access
+              Strategic Documentation
             </motion.p>
           )}
         </AnimatePresence>
         <div className="space-y-2">
-          {externalNavItems.map((item, index) => (
+          {resumeLinks.map((item, index) => (
             <motion.a
               key={item.label}
               href={item.href}
-              className={`w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium text-sidebar-foreground dark:text-white bg-sidebar-primary/10 hover:bg-sidebar-primary/30 transition-all duration-300 group flex items-center gap-3 ${!isExpanded && "justify-center px-2"}`}
-              title={!isExpanded ? item.label : ""}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium text-sidebar-foreground dark:text-white bg-sidebar-primary/10 hover:bg-brand-mint-500/20 border border-transparent hover:border-brand-mint-500/30 transition-all duration-300 group flex items-center gap-3 ${!isExpanded && "justify-center px-2"}`}
+              title={!isExpanded ? item.label : item.subtitle}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.3 + index * 0.05 }}
@@ -234,7 +247,7 @@ const Sidebar = React.memo(function Sidebar() {
               whileTap={{ scale: 0.98 }}
             >
               <motion.span 
-                className="text-lg flex-shrink-0 relative z-10"
+                className="text-lg flex-shrink-0 relative z-10 text-brand-mint-400"
                 whileHover={{ rotate: [0, -10, 10, 0] }}
                 transition={{ duration: 0.3 }}
               >
@@ -242,14 +255,15 @@ const Sidebar = React.memo(function Sidebar() {
               </motion.span>
               <AnimatePresence>
                 {isExpanded && (
-                  <motion.span 
-                    className="relative z-10"
+                  <motion.div
+                    className="relative z-10 flex flex-col"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                   >
-                    {item.label}
-                  </motion.span>
+                    <span className="text-xs font-semibold leading-tight">{item.label}</span>
+                    <span className="text-[10px] text-sidebar-foreground/50 leading-tight mt-0.5">{item.subtitle}</span>
+                  </motion.div>
                 )}
               </AnimatePresence>
             </motion.a>

@@ -22,7 +22,7 @@ const Contact = memo(function Contact() {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
 
-    // تحقق من صحة البريد الإلكتروني عند تغييره
+    // Validate email on change
     if (name === 'email') {
       setIsValidEmail(emailRegex.test(value));
     }
@@ -115,6 +115,7 @@ const Contact = memo(function Contact() {
               <a
                 key={index}
                 href={info.href}
+                {...(info.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                 className="group p-4 rounded-lg bg-card border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 hover:translate-x-1 animate-fade-in"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >

@@ -133,12 +133,12 @@ const Footer = React.memo(function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-muted-foreground animate-fade-in text-center md:text-left">
           <p>© {currentYear} Reda Salem. All rights reserved.</p>
           <div className="flex flex-wrap justify-center gap-6">
-            <a href="#" className="hover:text-brand-mint-500 transition-colors">
+            <span className="text-muted-foreground/50 cursor-default">
               Privacy Policy
-            </a>
-            <a href="#" className="hover:text-brand-mint-500 transition-colors">
+            </span>
+            <span className="text-muted-foreground/50 cursor-default">
               Terms of Service
-            </a>
+            </span>
           </div>
         </div>
       </div>

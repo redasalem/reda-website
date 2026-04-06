@@ -188,7 +188,7 @@ const Certificates = React.memo(function Certificates() {
                   >
                     <Image
                       src={cert.image}
-                      alt={`${cert.title} - ${cert.issuer} - ${cert.titleArabic || ''} - شهادة ${cert.titleArabic || cert.title}`}
+                      alt={`Certificate: ${cert.title} — Issued by ${cert.issuer}`}
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className="object-cover"
@@ -279,6 +279,7 @@ const Certificates = React.memo(function Certificates() {
                   <motion.a
                     href={cert.link}
                     target="_blank"
+                    rel="noopener noreferrer"
                     className="btn-premium w-full !py-4"
                   >
                     <span className="relative z-10">View Certificate</span>

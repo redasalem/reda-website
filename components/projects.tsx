@@ -89,7 +89,7 @@ const ProjectCard = ({ project, index }: { project: ProjectData; index: number }
 
           <Image
             src={project.image || "/images/placeholder.png"}
-            alt={`${project.title} - ${project.tech.join(", ")} - مشروع ${project.title} بتقنية ${project.tech.join(" و ")}`}
+            alt={`${project.title} - Project showcase built with ${project.tech.join(", ")}`}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="object-cover"
@@ -201,6 +201,7 @@ const ProjectCard = ({ project, index }: { project: ProjectData; index: number }
                 <Link
                   href={project.demo}
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="btn-premium flex-1 !py-3 !text-xs"
                 >
                   <motion.span
@@ -222,6 +223,7 @@ const ProjectCard = ({ project, index }: { project: ProjectData; index: number }
                 <Link
                   href={project.code}
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="btn-secondary flex-1 !py-3 !text-xs"
                 >
                   <Code2 size={16} />
@@ -331,16 +333,7 @@ const Projects = React.memo(function Projects() {
           </h2>
 
           {/* Arabic subtitle */}
-          <motion.p
-            className="text-xl md:text-2xl font-semibold text-muted-foreground/80 mt-2"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            dir="rtl"
-          >
-            أبرز المشاريع
-          </motion.p>
+
 
           <motion.p
             className="text-muted-foreground max-w-2xl mx-auto text-base md:text-lg"
@@ -349,7 +342,8 @@ const Projects = React.memo(function Projects() {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            Production-grade apps delivering measurable results — from 99/100 PageSpeed to live payment integrations and cross-platform mobile.
+            End-to-end ecosystems engineered for precision — from a{" "}
+            <strong className="text-foreground">99/100 Lighthouse score</strong>{" "}achieved through optimized Next.js App Router architecture, to secure payment data flows and seamless cross-platform React Native experiences.
           </motion.p>
 
           <motion.div

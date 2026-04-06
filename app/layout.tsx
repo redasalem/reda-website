@@ -215,14 +215,14 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Reda Salem - Full-Stack Developer Portfolio showcasing modern web and mobile applications",
+        alt: "Reda Salem - Full-Stack Engineer Portfolio showcasing modern web and mobile applications",
         type: "image/png",
       },
       {
         url: "/reda.png",
         width: 800,
         height: 800,
-        alt: "Reda Salem - Full-Stack Developer",
+        alt: "Reda Salem - Full-Stack Engineer",
         type: "image/png",
       },
     ],
@@ -312,9 +312,9 @@ export default function RootLayout({
       url: "https://reda-website.vercel.app/images/reda.png",
       width: 800,
       height: 800,
-      caption: "Reda Salem - Full-Stack Developer",
+      caption: "Reda Salem - Full-Stack Engineer",
     },
-    jobTitle: "Performance Optimization Engineer & React Developer",
+    jobTitle: "Full-Stack Engineer & Performance Optimization Specialist",
     worksFor: {
       "@type": "Organization",
       name: "Freelance / Remote",
@@ -426,7 +426,7 @@ export default function RootLayout({
     },
     hasOccupation: {
       "@type": "Occupation",
-      name: "Full-Stack Developer",
+      name: "Full-Stack Engineer",
       occupationLocation: {
         "@type": "Country",
         name: "Egypt",
@@ -460,8 +460,8 @@ export default function RootLayout({
     "@type": "WebSite",
     "@id": "https://reda-website.vercel.app/#website",
     url: "https://reda-website.vercel.app",
-    name: "Reda Salem - Full-Stack Developer Portfolio",
-    alternateName: "Reda Salem Full-Stack Developer",
+    name: "Reda Salem - Full-Stack Engineer Portfolio",
+    alternateName: "Reda Salem Full-Stack Engineer",
     description:
       "Professional portfolio showcasing full-stack web development projects, React applications, and Node.js backend expertise.",
     keywords: [
@@ -497,7 +497,7 @@ export default function RootLayout({
   const professionalServiceSchema = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    name: "Reda Salem - Full-Stack Development Services",
+    name: "Reda Salem - Full-Stack Engineering Services",
     image: "https://reda-website.vercel.app/images/reda.png",
     description:
       "Professional full-stack development services specializing in Backend (Node.js, Express, MongoDB), Frontend (React, Next.js), and Mobile App Development (React Native). High-performance, scalable, and SEO-optimized solutions for web and mobile.",

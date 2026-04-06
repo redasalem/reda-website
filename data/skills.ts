@@ -12,6 +12,32 @@ export interface SkillCategoryData {
 
 export const skillsData: SkillCategoryData[] = [
   {
+    title: "⚡ Primary Stack",
+    titleArabic: "المكدس الأساسي",
+    skills: [
+      { name: "Next.js", arabicName: "Next.js", color: "#bdbdbd" },
+      { name: "React.js", arabicName: "React.js", color: "#61dafb" },
+      { name: "React Native", arabicName: "React Native", color: "#61dafb" },
+      { name: "TypeScript", arabicName: "تايب سكريبت", color: "#3178c6" },
+      { name: "JavaScript (ES6+)", arabicName: "جافاسكريبت", color: "#f7df1e" },
+      { name: "Server Components", arabicName: "مكونات الخادم", color: "#00bfa5" },
+    ],
+  },
+  {
+    title: "🔩 Security & Engineering Foundation",
+    titleArabic: "أساس الأمان والهندسة",
+    skills: [
+      { name: "Node.js", arabicName: "Node.js", color: "#339933" },
+      { name: "Express.js", arabicName: "Express.js", color: "#888888" },
+      { name: "MongoDB", arabicName: "MongoDB", color: "#47A248" },
+      { name: "PostgreSQL & Redis", arabicName: "PostgreSQL & Redis", color: "#336791" },
+      { name: "Convex", arabicName: "Convex", color: "#F05138" },
+      { name: "CI/CD & Docker", arabicName: "CI/CD وDocker", color: "#2196f3" },
+      { name: "Web Security", arabicName: "أمان الويب", color: "#9c27b0" },
+      { name: "Design Patterns", arabicName: "أنماط التصميم", color: "#795548" },
+    ],
+  },
+  {
     title: "Frontend Technologies",
     titleArabic: "تقنيات الواجهة الأمامية",
     skills: [
@@ -23,19 +49,7 @@ export const skillsData: SkillCategoryData[] = [
     ],
   },
   {
-    title: "JavaScript & Frameworks",
-    titleArabic: "جافاسكريبت والإطارات",
-    skills: [
-      { name: "JavaScript (ES6+)", arabicName: "جافاسكريبت", color: "#f7df1e" },
-      { name: "TypeScript", arabicName: "تايب سكريبت", color: "#3178c6" },
-      { name: "React.js", arabicName: "React.js", color: "#61dafb" },
-      { name: "Next.js", arabicName: "Next.js", color: "#bdbdbd" },
-      { name: "Server Components", arabicName: "مكونات الخادم", color: "#000000" },
-      { name: "React Native", arabicName: "React Native", color: "#61dafb" },
-    ],
-  },
-  {
-    title: "UI Libraries & Tools",
+    title: "UI Libraries & State",
     titleArabic: "مكتبات وأدوات UI",
     skills: [
       { name: "Material UI", arabicName: "Material UI", color: "#00b0ff" },
@@ -69,17 +83,7 @@ export const skillsData: SkillCategoryData[] = [
       { name: "Netlify", arabicName: "Netlify", color: "#00bfa5" },
     ],
   },
-  {
-    title: "Backend & Database",
-    titleArabic: "الخلفي وقاعدة البيانات",
-    skills: [
-      { name: "Node.js", arabicName: "Node.js", color: "#339933" },
-      { name: "Express.js", arabicName: "Express.js", color: "#000000" },
-      { name: "MongoDB", arabicName: "MongoDB", color: "#47A248" },
-      { name: "PostgreSQL & Redis", arabicName: "PostgreSQL & Redis", color: "#336791" },
-      { name: "Convex", arabicName: "Convex", color: "#F05138" },
-    ],
-  },
+
   {
     title: "Workspace & Collaboration",
     titleArabic: "العمل والتعاون",
@@ -98,16 +102,7 @@ export const skillsData: SkillCategoryData[] = [
       { name: "Lighthouse", arabicName: "Lighthouse", color: "#F44B3E" },
       { name: "System Scalability", arabicName: "قابلية التوسع", color: "#ff9800" },
       { name: "PWA & Cloud Native", arabicName: "PWA وCloud", color: "#4caf50" },
-    ],
-  },
-  {
-    title: "Testing, DevOps & Security",
-    titleArabic: "الاختبار والديفوبس والأمان",
-    skills: [
-      { name: "CI/CD & Docker", arabicName: "CI/CD وDocker", color: "#2196f3" },
       { name: "Jest & Cypress", arabicName: "Jest & Cypress", color: "#C21325" },
-      { name: "Web Security", arabicName: "أمان الويب", color: "#9c27b0" },
-      { name: "Design Patterns", arabicName: "أنماط التصميم", color: "#795548" },
     ],
   },
 ];

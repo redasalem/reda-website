@@ -2,11 +2,9 @@
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import React, { useState, useEffect, useCallback, useMemo } from "react";
-import { Download, ArrowDown, ArrowRight, Briefcase, MessageSquare, Sparkles, PenTool, Coffee, Send, Code2, Users, Mailbox, Terminal } from "lucide-react";
-import Link from "next/link";
+import { ArrowDown, ArrowRight, Code2, Users, Mailbox } from "lucide-react";
 
 const HeroSection = React.memo(function HeroSection() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isClient, setIsClient] = useState(false);
   const [typingIndex, setTypingIndex] = useState(0);
   const [showCursor, setShowCursor] = useState(true);
@@ -20,8 +18,6 @@ const HeroSection = React.memo(function HeroSection() {
   
   const rotateX = useTransform(springY, [-0.5, 0.5], [5, -5]);
   const rotateY = useTransform(springX, [-0.5, 0.5], [-5, 5]);
-  const glowX = useTransform(springX, [-0.5, 0.5], [-30, 30]);
-  const glowY = useTransform(springY, [-0.5, 0.5], [-30, 30]);
 
   const codeLines = [
     'const engineer = {',
@@ -37,7 +33,6 @@ const HeroSection = React.memo(function HeroSection() {
     const handleMouseMove = (e: MouseEvent) => {
       const x = (e.clientX / window.innerWidth - 0.5);
       const y = (e.clientY / window.innerHeight - 0.5);
-      setMousePosition({ x: x * 20, y: y * 20 });
       mouseX.set(x);
       mouseY.set(y);
     };
@@ -207,7 +202,7 @@ const HeroSection = React.memo(function HeroSection() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                Specialized Full-Stack Engineer · 99/100 PageSpeed · 2× Faster Apps
+                Engineering Precision · Exceptional User Experiences
               </motion.h2>
             </div>
 
@@ -218,10 +213,21 @@ const HeroSection = React.memo(function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
             >
-              I engineer production-ready web and mobile products optimized for speed and scale. From achieving{" "}
-              <strong>99/100 PageSpeed</strong> on the C4R platform, to integrating{" "}
-              <strong>Stripe & PayPal</strong> flows and shipping cross-platform{" "}
-              <strong>React Native</strong> apps — I bring measurable performance to every project. React · Next.js · Node.js · TypeScript.
+              I architect end-to-end digital products with a{" "}
+              <strong>system-first mindset</strong>. Understanding how the server breathes — through{" "}
+              <strong>Node.js, Express & MongoDB</strong> — empowers me to build smarter, faster, and more secure{" "}
+              <strong>React, Next.js & React Native</strong> applications. The result: a{" "}
+              <strong>99/100 PageSpeed</strong> score, live payment integrations, and cross-platform mobile apps that ship on time and scale under pressure.
+            </motion.p>
+
+            {/* Engineering Philosophy */}
+            <motion.p
+              className="text-sm text-muted-foreground/70 italic max-w-xl"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+            >
+              Driven by Clean Code (SOLID) and AI-augmented development workflows for scalable, future-proof systems.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -248,7 +254,7 @@ const HeroSection = React.memo(function HeroSection() {
                 className="cursor-pointer px-8 py-4 bg-gray-200/80 dark:bg-white/10 backdrop-blur-sm border border-gray-300 dark:border-white/20 text-gray-900 dark:text-white font-semibold rounded-full hover:bg-gray-300/80 dark:hover:bg-white/20 transition-all flex items-center gap-2"
               >
                 <ArrowDown className="w-5 h-5" />
-                Take Me
+                Let's Connect
               </motion.button>
             </motion.div>
 
