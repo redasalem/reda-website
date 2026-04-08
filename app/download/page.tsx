@@ -1,6 +1,6 @@
 "use client";
 
-import { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useState, useEffect } from "react";
 import Link from "next/link";
 import { Download, FileText, ArrowRight, Mail, Code, Database, Smartphone, CheckCircle2, Sparkles } from "lucide-react";
 
@@ -38,11 +38,11 @@ const floatingOrb = (delay: number, size: string, position: string) => ({
 });
 
 const AnimatedCounter = ({ value, suffix = "" }: { value: string; suffix?: string }) => {
-  const [displayValue, setDisplayValue] = React.useState("0");
+  const [displayValue, setDisplayValue] = useState("0");
   const numericValue = parseInt(value.replace(/[^0-9]/g, ""), 10) || 0;
   const prefix = value.match(/[^0-9]*/)?.[0] || "";
 
-  React.useEffect(() => {
+  useEffect(() => {
     let start = 0;
     const duration = 1500;
     const increment = numericValue / (duration / 16);
