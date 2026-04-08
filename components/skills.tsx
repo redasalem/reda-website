@@ -1,7 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
-import React, { useRef, useState, useMemo } from "react";
+import React, { useRef, useMemo } from "react";
 import {
   Code, Palette, Brush, Layers, Waves, FileCode, Braces, Atom,
   Smartphone, LayoutGrid, Sparkles, Database, Flame, UserCheck,
@@ -26,61 +25,24 @@ const iconMap: Record<string, React.ComponentType<{ className?: string; style?: 
 };
 
 const SkillBadge = ({ name, icon, delay }: { name: string; icon: React.ReactNode; delay: number }) => {
-  const [isHovered, setIsHovered] = useState(false);
-  
   return (
-    <motion.div
-      className="relative flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs md:text-sm font-medium
-      bg-secondary/50 border border-border/50 text-foreground/80 cursor-default"
-      initial={{ opacity: 0, scale: 0.8, y: 10 }}
-      whileInView={{ opacity: 1, scale: 1, y: 0 }}
-      viewport={{ once: true }}
-      whileHover={{ 
-        scale: 1.08, 
-        backgroundColor: "rgba(0, 255, 159, 0.1)",
-        borderColor: "rgba(0, 255, 159, 0.3)",
-      }}
-      transition={{ delay, duration: 0.3, type: "spring", stiffness: 400, damping: 25 }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+    <div
+      className="skill-badge-hover relative flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs md:text-sm font-medium bg-secondary/50 border border-border/50 text-foreground/80 cursor-default animate-skill-badge"
+      style={{ animationDelay: `${delay}s` }}
     >
-      {/* Glow effect on hover */}
-      <motion.div
-        className="absolute inset-0 rounded-xl bg-brand-mint-500/20"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isHovered ? 1 : 0 }}
-        transition={{ duration: 0.2 }}
-        style={{ filter: "blur(8px)" }}
-      />
-      <motion.span 
-        className="relative z-10 flex items-center justify-center w-4 h-4 md:w-5 md:h-5 transition-transform"
-        animate={{ rotate: isHovered ? 360 : 0 }}
-        transition={{ duration: 0.5, type: "spring" }}
-      >
+      <span className="flex items-center justify-center w-4 h-4 md:w-5 md:h-5 transition-transform group-hover:rotate-180">
         {icon}
-      </motion.span>
-      <motion.span 
-        className="relative z-10 pt-0.5 transition-colors"
-        animate={{ color: isHovered ? "rgb(0, 255, 159)" : "inherit" }}
-      >
-        {name}
-      </motion.span>
-    </motion.div>
+      </span>
+      <span className="pt-0.5">{name}</span>
+    </div>
   );
 };
 
 const SkillCategory = ({ title, skills, index }: { title: string; skills: Array<{name: string; color: string}>; index: number }) => {
-  const [isHoveredCategory, setIsHoveredCategory] = useState(false);
-  
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="glass-card p-6"
-      onMouseEnter={() => setIsHoveredCategory(true)}
-      onMouseLeave={() => setIsHoveredCategory(false)}
+    <div
+      className="glass-card p-6 animate-page-fade-in"
+      style={{ animationDelay: `${index * 0.1}s` }}
     >
       <h3 className="text-lg font-bold mb-4 text-foreground flex items-center gap-2">
         {title}
@@ -98,18 +60,12 @@ const SkillCategory = ({ title, skills, index }: { title: string; skills: Array<
           );
         })}
       </div>
-    </motion.div>
+    </div>
   );
 };
 
 const Skills = React.memo(function Skills() {
   const skillCategories: SkillCategoryData[] = useMemo(() => skillsData, []);
-
-  const getIcon = (name: string) => {
-    const Icon = iconMap[name];
-    return Icon ? <Icon className="w-4 h-4" /> : <Code className="w-4 h-4" />;
-  };
-
   const containerRef = useRef(null);
 
   return (
@@ -124,13 +80,7 @@ const Skills = React.memo(function Skills() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10">
-        <motion.div
-          className="mb-16 md:mb-24 text-center"
-          initial={{ opacity: 0, y: -50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
+        <div className="mb-16 md:mb-24 text-center animate-page-fade-in">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-accent/10 border border-accent/20 backdrop-blur-sm mb-4 md:mb-6">
             <Sparkles className="text-accent w-3 h-3 md:w-4 md:h-4" />
             <span className="text-xs md:text-sm font-semibold text-accent">
@@ -144,7 +94,7 @@ const Skills = React.memo(function Skills() {
             </span>
           </h2>
           <div className="w-20 md:w-24 h-1.5 mx-auto bg-gradient-to-r from-primary to-accent rounded-full" />
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {skillCategories.map((category, i) => (

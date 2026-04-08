@@ -1,10 +1,10 @@
 "use client";
 
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { lazy, Suspense } from "react";
 import Link from "next/link";
-import { Download, FileText, Star, Zap, Clock, Award, CheckCircle2, Sparkles, ArrowRight, Mail, Briefcase, Code, Database, Smartphone } from "lucide-react";
-import React, { useState, useEffect } from "react";
-import ChatbotLoader from "@/components/chatbot-loader";
+import { Download, FileText, ArrowRight, Mail, Code, Database, Smartphone, CheckCircle2, Sparkles } from "lucide-react";
+
+const ChatbotLoader = lazy(() => import("@/components/chatbot-loader"));
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -38,11 +38,11 @@ const floatingOrb = (delay: number, size: string, position: string) => ({
 });
 
 const AnimatedCounter = ({ value, suffix = "" }: { value: string; suffix?: string }) => {
-  const [displayValue, setDisplayValue] = useState("0");
+  const [displayValue, setDisplayValue] = React.useState("0");
   const numericValue = parseInt(value.replace(/[^0-9]/g, ""), 10) || 0;
   const prefix = value.match(/[^0-9]*/)?.[0] || "";
 
-  useEffect(() => {
+  React.useEffect(() => {
     let start = 0;
     const duration = 1500;
     const increment = numericValue / (duration / 16);
@@ -64,99 +64,43 @@ const AnimatedCounter = ({ value, suffix = "" }: { value: string; suffix?: strin
 };
 
 const SkillBadge = ({ skill, delay }: { skill: string; delay: number }) => {
-  const [isHovered, setIsHovered] = useState(false);
-  
   return (
-    <motion.span
-      key={skill}
-      initial={{ opacity: 0, scale: 0.5, y: 20 }}
-      whileInView={{ opacity: 1, scale: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay, duration: 0.4, type: "spring", stiffness: 200 }}
-      whileHover={{ scale: 1.15, y: -4 }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className="relative px-5 py-2.5 bg-card/80 backdrop-blur-sm border border-border rounded-full font-medium text-sm cursor-default overflow-hidden"
+    <span
+      className="animate-skill-badge skill-badge-hover relative px-5 py-2.5 bg-card/80 backdrop-blur-sm border border-border rounded-full font-medium text-sm cursor-default overflow-hidden stagger-1"
+      style={{ animationDelay: `${delay}s` }}
     >
-      <motion.div
-        className="absolute inset-0 bg-gradient-to-r from-brand-mint-500/20 to-brand-mint-400/20"
-        initial={{ x: "-100%" }}
-        animate={{ x: isHovered ? "200%" : "-100%" }}
-        transition={{ duration: 0.6 }}
-      />
-      <motion.span
-        animate={{ color: isHovered ? "rgb(0, 255, 159)" : "inherit" }}
-        className="relative z-10"
-      >
-        {skill}
-      </motion.span>
-    </motion.span>
+      <span className="relative z-10">{skill}</span>
+    </span>
   );
 };
 
 const HighlightCard = ({ item, index }: { item: { icon: React.ReactNode; title: string; description: string }; index: number }) => {
-  const [isHovered, setIsHovered] = useState(false);
-  
   return (
-    <motion.div
-      key={index}
-      initial={{ opacity: 0, y: 40, scale: 0.95 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ delay: index * 0.1, duration: 0.5, type: "spring", stiffness: 100 }}
-      whileHover={{ y: -8, scale: 1.02 }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className="group relative bg-card/50 backdrop-blur-sm border border-border rounded-2xl p-6 hover:border-brand-mint-500/50 transition-all duration-300 overflow-hidden"
+    <div
+      className="group card-hover-lift relative bg-card/50 backdrop-blur-sm border border-border rounded-2xl p-6 overflow-hidden animate-page-stagger"
+      style={{ animationDelay: `${index * 0.1}s` }}
     >
-      <motion.div 
-        className="absolute inset-0 bg-gradient-to-br from-brand-mint-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-      />
-      
-      {/* Animated border glow */}
-      <motion.div
-        className="absolute inset-0 rounded-2xl p-[1px]"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isHovered ? 1 : 0 }}
-        style={{
-          background: "linear-gradient(135deg, rgba(0, 255, 159, 0.5), transparent, rgba(0, 255, 159, 0.3))",
-          WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-          WebkitMaskComposite: "xor",
-          maskComposite: "exclude",
-        }}
-      />
+      <div className="absolute inset-0 bg-gradient-to-br from-brand-mint-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       
       <div className="relative z-10">
-        <motion.div 
-          className="w-14 h-14 bg-brand-mint-500/20 rounded-xl flex items-center justify-center text-brand-mint-500 mb-4 transition-transform duration-300"
-          animate={{ scale: isHovered ? 1.15 : 1, rotate: isHovered ? 5 : 0 }}
-          whileInView={{ rotate: [0, -5, 5, 0] }}
-          viewport={{ once: true }}
-          transition={{ delay: index * 0.1 + 0.5, duration: 0.5 }}
-        >
-          <motion.div
-            animate={{ rotate: isHovered ? 360 : 0 }}
-            transition={{ duration: 0.5 }}
-          >
+        <div className="w-14 h-14 bg-brand-mint-500/20 rounded-xl flex items-center justify-center text-brand-mint-500 mb-4 transition-transform duration-300 group-hover:scale-115 group-hover:rotate-5">
+          <div className="transition-transform duration-300 group-hover:rotate-360">
             {item.icon}
-          </motion.div>
-        </motion.div>
-        <motion.h3 
-          className="text-xl font-bold mb-2"
-          animate={{ color: isHovered ? "rgb(0, 255, 159)" : "inherit" }}
-        >
+          </div>
+        </div>
+        <h3 className="text-xl font-bold mb-2 group-hover:text-brand-mint-500 transition-colors duration-300">
           {item.title}
-        </motion.h3>
+        </h3>
         <p className="text-muted-foreground text-sm">{item.description}</p>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
 export default function DownloadPage() {
   const resumeHighlights = [
     {
-      icon: <Zap className="w-6 h-6" />,
+      icon: <Code className="w-6 h-6" />,
       title: "99/100 PageSpeed",
       description: "Performance optimization specialist with proven results"
     },
@@ -176,12 +120,12 @@ export default function DownloadPage() {
       description: "Scalable APIs with Express & MongoDB"
     },
     {
-      icon: <Briefcase className="w-6 h-6" />,
+      icon: <Code className="w-6 h-6" />,
       title: "Production Experience",
       description: "Real-world projects with Stripe & PayPal"
     },
     {
-      icon: <Award className="w-6 h-6" />,
+      icon: <Database className="w-6 h-6" />,
       title: "Clean Architecture",
       description: "Maintainable, testable code patterns"
     },
@@ -192,232 +136,94 @@ export default function DownloadPage() {
     "Tailwind CSS", "MongoDB", "Express.js", "Prisma", "Redux"
   ];
 
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-  const springX = useSpring(mouseX, { stiffness: 50, damping: 20 });
-  const springY = useSpring(mouseY, { stiffness: 50, damping: 20 });
-  const glowX = useTransform(springX, [-0.5, 0.5], [-100, 100]);
-  const glowY = useTransform(springY, [-0.5, 0.5], [-100, 100]);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseX.set((e.clientX / window.innerWidth - 0.5) * 2);
-      mouseY.set((e.clientY / window.innerHeight - 0.5) * 2);
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [mouseX, mouseY]);
-
   return (
     <div className="min-h-screen bg-background relative overflow-hidden">
-      {/* Animated Background with Mouse-reactive Glow */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div 
-          {...floatingOrb(0, "w-[600px] h-[600px]", "top-[-200px] left-[-200px]")}
-        />
-        <motion.div 
-          {...floatingOrb(2, "w-[400px] h-[400px]", "top-[20%] right-[-150px]")}
-        />
-        <motion.div 
-          {...floatingOrb(4, "w-[500px] h-[500px]", "bottom-[-200px] right-[10%]")}
-        />
+        <div {...floatingOrb(0, "w-[600px] h-[600px]", "top-[-200px] left-[-200px]")} />
+        <div {...floatingOrb(2, "w-[400px] h-[400px]", "top-[20%] right-[-150px]")} />
+        <div {...floatingOrb(4, "w-[500px] h-[500px]", "bottom-[-200px] right-[10%]")} />
         
-        {/* Mouse-reactive spotlight */}
-        <motion.div
-          className="absolute w-[400px] h-[400px] rounded-full bg-brand-mint-500/10 blur-[100px] pointer-events-none"
-          style={{
-            x: glowX,
-            y: glowY,
-            translateX: "-50%",
-            translateY: "-50%",
-          }}
-        />
-        
-        {/* Grid Pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,159,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,159,0.03)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(0,255,159,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,159,0.08)_1px,transparent_1px)] bg-size-[80px_80px]" />
         
-        {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background/80" />
       </div>
 
       <div className="relative z-10 container mx-auto px-6 py-16">
-        {/* Hero Section */}
-        <motion.div 
-          initial="initial"
-          animate="animate"
-          variants={staggerContainer}
-          className="text-center mb-20"
-        >
-          {/* Animated Badge */}
-          <motion.div variants={fadeInUp} className="mb-8">
-            <motion.span
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-brand-mint-500/15 border border-brand-mint-500/30 rounded-full text-brand-mint-600 dark:text-brand-mint-300 text-sm font-medium backdrop-blur-sm"
-              whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(0, 255, 159, 0.3)" }}
-            >
-              <motion.div
-                animate={{ rotate: 360, scale: [1, 1.2, 1] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-              >
-                <Sparkles className="w-4 h-4" />
-              </motion.div>
+        <div className="text-center mb-20 animate-page-fade-in">
+          <div className="mb-8">
+            <span className="inline-flex items-center gap-2 px-5 py-2.5 bg-brand-mint-500/15 border border-brand-mint-500/30 rounded-full text-brand-mint-600 dark:text-brand-mint-300 text-sm font-medium backdrop-blur-sm hover:scale-105 transition-transform">
+              <Sparkles className="w-4 h-4 animate-icon-spin" />
               Professional Resume
-            </motion.span>
-          </motion.div>
+            </span>
+          </div>
 
-          {/* Animated Title */}
-          <motion.h1 
-            variants={fadeInUp}
-            className="text-5xl md:text-7xl font-black mb-6"
-          >
-            <motion.span 
-              className="block"
-              animate={{
-                backgroundPosition: ["0% center", "100% center", "0% center"],
-              }}
-              transition={{ duration: 5, repeat: Infinity }}
-              style={{
-                background: 'linear-gradient(135deg, #FFFFFF 0%, #00FF9F 50%, #00CC80 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                filter: 'drop-shadow(0 0 30px rgba(0,255,159,0.3))',
-                backgroundSize: "200% auto",
-              }}
+          <h1 className="text-5xl md:text-7xl font-black mb-6">
+            <span 
+              className="block bg-gradient-to-r from-white via-brand-mint-400 to-brand-mint-500 bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient"
             >
               Download My Resume
-            </motion.span>
-          </motion.h1>
+            </span>
+          </h1>
 
-          {/* Subtitle */}
-          <motion.p 
-            variants={fadeInUp}
-            className="text-xl text-muted-foreground max-w-2xl mx-auto mb-10"
-          >
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-10">
             Get the complete overview of my skills, experience, and achievements. 
             Available in multiple formats for your convenience.
-          </motion.p>
+          </p>
 
-          {/* Strategic Dual-CV Buttons */}
-          <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row justify-center gap-4 max-w-2xl mx-auto">
-            {/* Front-End & Mobile CV */}
-            <motion.a
+          <div className="flex flex-col sm:flex-row justify-center gap-4 max-w-2xl mx-auto">
+            <a
               href="https://drive.google.com/file/d/1oWh42fPLSHUGyTq9-bIelRpOttUkwTIE/view"
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.05, boxShadow: "0 0 50px rgba(0,255,159,0.5)" }}
-              whileTap={{ scale: 0.95 }}
-              className="group relative flex-1 inline-flex items-center justify-center gap-3 px-8 py-5 bg-gradient-to-r from-brand-mint-500 via-brand-mint-400 to-brand-mint-500 bg-[length:200%_100%] text-black font-bold text-lg rounded-full shadow-2xl shadow-brand-mint-500/30 transition-all duration-500 overflow-hidden"
-              animate={{
-                boxShadow: [
-                  "0 4px 25px rgba(0, 255, 159, 0.2)",
-                  "0 4px 35px rgba(0, 255, 159, 0.4)",
-                  "0 4px 25px rgba(0, 255, 159, 0.2)",
-                ],
-              }}
-              transition={{ duration: 2, repeat: Infinity }}
+              className="group relative flex-1 inline-flex items-center justify-center gap-3 px-8 py-5 bg-gradient-to-r from-brand-mint-500 via-brand-mint-400 to-brand-mint-500 bg-[length:200%_100%] text-black font-bold text-lg rounded-full shadow-2xl shadow-brand-mint-500/30 transition-all duration-500 overflow-hidden hover:scale-105 hover:shadow-[0_0_50px_rgba(0,255,159,0.5)]"
             >
-              {/* Shimmer */}
-              <motion.div 
-                className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0"
-                animate={{ x: ["-100%", "200%"] }}
-                transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 3 }}
-              />
-              <motion.div
-                animate={{ rotate: [0, 15, -15, 0], scale: [1, 1.15, 1] }}
-                transition={{ duration: 1.2, repeat: Infinity, repeatDelay: 2 }}
-              >
-                <Code className="w-6 h-6 relative z-10" />
-              </motion.div>
+              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0 animate-shimmer" />
+              <Code className="w-6 h-6 relative z-10 group-hover:rotate-12 transition-transform" />
               <div className="relative z-10 flex flex-col items-start">
                 <span className="text-base font-extrabold leading-tight">Front-End & Mobile CV</span>
                 <span className="text-xs font-medium opacity-70 leading-tight">React · Next.js · React Native</span>
               </div>
-              <motion.div
-                animate={{ x: [0, 4, 0] }}
-                transition={{ duration: 1, repeat: Infinity }}
-              >
-                <ArrowRight className="w-5 h-5 relative z-10" />
-              </motion.div>
-            </motion.a>
+              <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
+            </a>
 
-            {/* Full-Stack Strategy CV */}
-            <motion.a
+            <a
               href="https://drive.google.com/file/d/1MNYifjkRpiy6xXKeAqiXCinVBkOh6mrZ/view"
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.05, boxShadow: "0 0 50px rgba(0,255,159,0.3)" }}
-              whileTap={{ scale: 0.95 }}
-              className="group relative flex-1 inline-flex items-center justify-center gap-3 px-8 py-5 bg-card/80 backdrop-blur-sm border-2 border-brand-mint-500/40 text-foreground font-bold text-lg rounded-full shadow-xl hover:border-brand-mint-500 transition-all duration-500 overflow-hidden"
-              animate={{
-                borderColor: [
-                  "rgba(0, 255, 159, 0.3)",
-                  "rgba(0, 255, 159, 0.6)",
-                  "rgba(0, 255, 159, 0.3)",
-                ],
-              }}
-              transition={{ duration: 3, repeat: Infinity }}
+              className="group relative flex-1 inline-flex items-center justify-center gap-3 px-8 py-5 bg-card/80 backdrop-blur-sm border-2 border-brand-mint-500/40 text-foreground font-bold text-lg rounded-full shadow-xl hover:border-brand-mint-500 transition-all duration-500 overflow-hidden hover:scale-105"
             >
-              {/* Shimmer */}
-              <motion.div 
-                className="absolute inset-0 bg-gradient-to-r from-brand-mint-500/0 via-brand-mint-500/10 to-brand-mint-500/0"
-                animate={{ x: ["-100%", "200%"] }}
-                transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
-              />
-              <motion.div
-                animate={{ rotate: [0, -10, 10, 0], scale: [1, 1.15, 1] }}
-                transition={{ duration: 1.2, repeat: Infinity, repeatDelay: 2 }}
-              >
-                <Database className="w-6 h-6 relative z-10 text-brand-mint-500" />
-              </motion.div>
+              <div className="absolute inset-0 bg-gradient-to-r from-brand-mint-500/0 via-brand-mint-500/10 to-brand-mint-500/0 animate-shimmer" style={{ animationDelay: "1s" }} />
+              <Database className="w-6 h-6 relative z-10 text-brand-mint-500 group-hover:-rotate-12 transition-transform" />
               <div className="relative z-10 flex flex-col items-start">
                 <span className="text-base font-extrabold leading-tight">Full-Stack Strategy CV</span>
                 <span className="text-xs font-medium text-muted-foreground leading-tight">System Design · Architecture</span>
               </div>
-              <motion.div
-                animate={{ x: [0, 4, 0] }}
-                transition={{ duration: 1, repeat: Infinity }}
-              >
-                <ArrowRight className="w-5 h-5 relative z-10 text-brand-mint-500" />
-              </motion.div>
-            </motion.a>
-          </motion.div>
+              <ArrowRight className="w-5 h-5 relative z-10 text-brand-mint-500 group-hover:translate-x-1 transition-transform" />
+            </a>
+          </div>
 
-          {/* Animated Quick Stats */}
-          <motion.div 
-            variants={fadeInUp}
-            className="flex flex-wrap justify-center gap-8 mt-12"
-          >
+          <div className="flex flex-wrap justify-center gap-8 mt-12">
             {[
               { value: "2+", label: "Years Experience" },
               { value: "15+", label: "Projects Completed" },
               { value: "99/100", label: "PageSpeed Score" },
               { value: "10+", label: "Technologies" },
             ].map((stat, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, scale: 0.5, y: 20 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.8 + i * 0.1, duration: 0.5, type: "spring" }}
-                whileHover={{ scale: 1.1, y: -5 }}
-                className="text-center"
+                className="text-center animate-page-stagger hover:scale-110 hover:-translate-y-2 transition-transform"
+                style={{ animationDelay: `${0.8 + i * 0.1}s` }}
               >
                 <div className="text-4xl font-black text-brand-mint-500">
                   <AnimatedCounter value={stat.value} />
                 </div>
                 <div className="text-sm text-muted-foreground mt-1">{stat.label}</div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
-        {/* Resume Highlights */}
-        <motion.section
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4, duration: 0.8 }}
-          className="mb-20"
-        >
+        <section className="mb-20 animate-page-fade-in" style={{ animationDelay: "0.4s" }}>
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               What You&apos;ll Find in My Resume
@@ -432,16 +238,9 @@ export default function DownloadPage() {
               <HighlightCard key={i} item={item} index={i} />
             ))}
           </div>
-        </motion.section>
+        </section>
 
-        {/* Tech Stack */}
-        <motion.section
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.8, duration: 0.8 }}
-          className="mb-20"
-        >
+        <section className="mb-20 animate-page-fade-in" style={{ animationDelay: "0.8s" }}>
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Tech Stack Proficiency
@@ -451,41 +250,17 @@ export default function DownloadPage() {
             </p>
           </div>
 
-          <motion.div 
-            className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto"
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-          >
+          <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
             {skills.map((skill, i) => (
               <SkillBadge key={skill} skill={skill} delay={i * 0.05} />
             ))}
-          </motion.div>
-        </motion.section>
+          </div>
+        </section>
 
-        {/* Features List */}
-        <motion.section
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 1, duration: 0.8 }}
-          className="mb-20"
-        >
+        <section className="mb-20 animate-page-fade-in" style={{ animationDelay: "1s" }}>
           <div className="max-w-4xl mx-auto">
-            <motion.div 
-              className="bg-gradient-to-br from-card to-card/50 backdrop-blur-sm border border-border rounded-3xl p-8 md:p-12 relative overflow-hidden"
-              whileHover={{ scale: 1.01 }}
-              transition={{ duration: 0.3 }}
-            >
-              <motion.div 
-                className="absolute top-0 right-0 w-64 h-64 bg-brand-mint-500/10 rounded-full blur-3xl"
-                animate={{
-                  scale: [1, 1.2, 1],
-                  x: [0, 20, 0],
-                }}
-                transition={{ duration: 6, repeat: Infinity }}
-              />
+            <div className="bg-gradient-to-br from-card to-card/50 backdrop-blur-sm border border-border rounded-3xl p-8 md:p-12 relative overflow-hidden hover:scale-[1.01] transition-transform">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-brand-mint-500/10 rounded-full blur-3xl animate-pulse-glow" />
               
               <div className="relative z-10">
                 <h2 className="text-3xl font-bold mb-8 text-center">
@@ -501,127 +276,59 @@ export default function DownloadPage() {
                     "Notable Projects with Impact Metrics",
                     "Contact Information & Social Links",
                   ].map((item, i) => (
-                    <motion.div
+                    <div
                       key={i}
-                      initial={{ opacity: 0, x: -30 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 1.2 + i * 0.1, type: "spring", stiffness: 100 }}
-                      whileHover={{ x: 10, color: "rgb(0, 255, 159)" }}
-                      className="flex items-start gap-3 cursor-default"
+                      className="flex items-start gap-3 cursor-default animate-page-stagger group-hover:text-brand-mint-500 transition-colors"
+                      style={{ animationDelay: `${1.2 + i * 0.1}s` }}
                     >
-                      <motion.div
-                        animate={{ scale: [1, 1.2, 1] }}
-                        transition={{ duration: 2, repeat: Infinity, delay: i * 0.2 }}
-                      >
-                        <CheckCircle2 className="w-6 h-6 text-brand-mint-500 flex-shrink-0 mt-0.5" />
-                      </motion.div>
+                      <CheckCircle2 className="w-6 h-6 text-brand-mint-500 flex-shrink-0 mt-0.5 group-hover:scale-120 transition-transform" />
                       <span className="text-lg">{item}</span>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
-        </motion.section>
+        </section>
 
-        {/* CTA Section */}
-        <motion.section
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 1.3, duration: 0.6 }}
-          className="text-center mb-16"
-        >
+        <section className="text-center mb-16 animate-page-fade-in" style={{ animationDelay: "1.3s" }}>
           <div className="inline-flex flex-col items-center gap-6">
-            <motion.p
-              className="text-muted-foreground text-lg"
-              animate={{ opacity: [0.7, 1, 0.7] }}
-              transition={{ duration: 3, repeat: Infinity }}
-            >
+            <p className="text-muted-foreground text-lg animate-pulse-slow">
               Interested in working together?
-            </motion.p>
+            </p>
             
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Link
-                href="/#contact"
-                className="inline-flex items-center gap-3 px-8 py-4 bg-secondary/50 backdrop-blur-sm border border-border rounded-full font-semibold hover:bg-brand-mint-500/20 hover:border-brand-mint-500/50 transition-all"
-              >
-                <motion.div
-                  animate={{ x: [0, 5, 0] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                >
-                  <Mail className="w-5 h-5" />
-                </motion.div>
-                Get In Touch
-              </Link>
-            </motion.div>
-          </div>
-        </motion.section>
-
-        {/* Back Link */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 1.5 }}
-          className="text-center"
-        >
-          <motion.div
-            whileHover={{ x: -5 }}
-            className="inline-flex"
-          >
             <Link
-              href="/"
-              className="inline-flex items-center gap-2 text-muted-foreground hover:text-brand-mint-500 transition-colors"
+              href="/#contact"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-secondary/50 backdrop-blur-sm border border-border rounded-full font-semibold hover:bg-brand-mint-500/20 hover:border-brand-mint-500/50 transition-all hover:scale-105"
             >
-              <ArrowRight className="w-4 h-4 rotate-180" />
-              Back to Home
+              <Mail className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              Get In Touch
             </Link>
-          </motion.div>
-        </motion.div>
+          </div>
+        </section>
+
+        <div className="text-center animate-page-fade-in" style={{ animationDelay: "1.5s" }}>
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 text-muted-foreground hover:text-brand-mint-500 transition-colors hover:-translate-x-1"
+          >
+            <ArrowRight className="w-4 h-4 rotate-180" />
+            Back to Home
+          </Link>
+        </div>
       </div>
 
-      {/* Floating Document Icons */}
-      <ChatbotLoader />
-      <motion.div
-        initial={{ opacity: 0, y: 100, rotate: -10 }}
-        animate={{ 
-          opacity: [0.1, 0.3, 0.1],
-          y: [100, 80, 100],
-          rotate: [-10, -5, -10],
-          scale: [1, 1.1, 1],
-        }}
-        transition={{ 
-          duration: 6, 
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-        className="fixed bottom-10 right-10 w-32 h-32 pointer-events-none hidden lg:block"
-      >
-        <FileText className="w-full h-full text-brand-mint-500" />
-      </motion.div>
+      <Suspense fallback={null}>
+        <ChatbotLoader />
+      </Suspense>
 
-      <motion.div
-        initial={{ opacity: 0, y: 80, rotate: 15 }}
-        animate={{ 
-          opacity: [0.05, 0.15, 0.05],
-          y: [80, 60, 80],
-          rotate: [15, 20, 15],
-        }}
-        transition={{ 
-          duration: 8, 
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 1,
-        }}
-        className="fixed bottom-20 left-10 w-24 h-24 pointer-events-none hidden lg:block"
-      >
+      <div className="fixed bottom-10 right-10 w-32 h-32 pointer-events-none hidden lg:block animate-float">
+        <FileText className="w-full h-full text-brand-mint-500" />
+      </div>
+
+      <div className="fixed bottom-20 left-10 w-24 h-24 pointer-events-none hidden lg:block animate-float-slow" style={{ animationDelay: "1s" }}>
         <FileText className="w-full h-full text-brand-mint-400/50" />
-      </motion.div>
+      </div>
     </div>
   );
 }
