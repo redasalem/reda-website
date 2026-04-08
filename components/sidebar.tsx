@@ -1,311 +1,235 @@
 "use client";
-import React, { useState, useMemo } from "react";
+
+import React, { memo, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
-import { useTheme } from "@/lib/theme-provider";
-import { Menu, X, Code2, Users, Mail, Phone, User, List, Briefcase, Award, Contact, Download } from "lucide-react";
+import {
+  Award,
+  Briefcase,
+  Code2,
+  Contact,
+  Download,
+  List,
+  Mail,
+  Menu,
+  Phone,
+  User,
+  Users,
+  X,
+} from "lucide-react";
 
-const sidebarVariants = {
-  expanded: { width: 288, transition: { type: "spring" as const, stiffness: 200, damping: 25 } },
-  collapsed: { width: 80, transition: { type: "spring" as const, stiffness: 200, damping: 25 } },
-};
+const NAV_ITEMS = [
+  { label: "About Me", id: "about", icon: User },
+  { label: "Skills", id: "skills", icon: List },
+  { label: "Projects", id: "projects", icon: Briefcase },
+  { label: "Certificates", id: "certificates", icon: Award },
+  { label: "Contact", id: "contact", icon: Contact },
+];
 
-const navItemVariants = {
-  expanded: { x: 0, opacity: 1 },
-  collapsed: { x: -10, opacity: 0 },
-};
+const SOCIAL_LINKS = [
+  {
+    icon: Code2,
+    href: "https://github.com/redasalem",
+    label: "GitHub",
+    iconClassName: "hover:text-brand-mint-400",
+  },
+  {
+    icon: Users,
+    href: "https://www.linkedin.com/in/reda-salem-dev/",
+    label: "LinkedIn",
+    iconClassName: "hover:text-brand-mint-500",
+  },
+  {
+    icon: Mail,
+    href: "mailto:redasalem287@gmail.com",
+    label: "Email",
+    iconClassName: "hover:text-red-400",
+  },
+  {
+    icon: Phone,
+    href: "tel:+201121696299",
+    label: "Phone",
+    iconClassName: "hover:text-green-400",
+  },
+];
 
-const Sidebar = React.memo(function Sidebar() {
-  const { theme } = useTheme();
+const Sidebar = memo(function Sidebar() {
   const [isExpanded, setIsExpanded] = useState(true);
   const [activeItem, setActiveItem] = useState<string | null>(null);
+  const timeoutRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current !== null) {
+        window.clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    element?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     setActiveItem(id);
-    setTimeout(() => setActiveItem(null), 1000);
+
+    if (timeoutRef.current !== null) {
+      window.clearTimeout(timeoutRef.current);
+    }
+
+    timeoutRef.current = window.setTimeout(() => {
+      setActiveItem(null);
+    }, 1000);
   };
 
-  const navItems = useMemo(() => [
-    { label: "About Me", id: "about", icon: <User /> },
-    { label: "Skills", id: "skills", icon: <List /> },
-    { label: "Projects", id: "projects", icon: <Briefcase /> },
-    { label: "Certificates", id: "certificates", icon: <Award /> },
-    { label: "Contact", id: "contact", icon: <Contact /> },
-  ], []);
-
-
-  const socialLinks = useMemo(() => [
-    {
-      icon: <Code2 />,
-      href: "https://github.com/redasalem",
-      label: "GitHub",
-      color: "hover:text-brand-mint-400",
-    },
-    {
-      icon: <Users />,
-      href: "https://www.linkedin.com/in/reda-salem-dev/",
-      label: "LinkedIn",
-      color: "hover:text-brand-mint-500",
-    },
-    {
-      icon: <Mail />,
-      href: "mailto:redasalem287@gmail.com",
-      label: "Email",
-      color: "hover:text-red-400",
-    },
-    {
-      icon: <Phone />,
-      href: "tel:+201121696299",
-      label: "Phone",
-      color: "hover:text-green-400",
-    },
-  ], []);
-
   return (
-    <motion.aside
-      className={`hidden sm:flex sticky left-0 top-0 h-screen bg-sidebar text-sidebar-foreground border-r border-sidebar-border p-6 flex-col z-40 overflow-auto transition-all duration-300 ${isExpanded ? "w-72" : "w-20"}`}
-      variants={sidebarVariants}
-      initial="expanded"
-      animate={isExpanded ? "expanded" : "collapsed"}
+    <aside
+      className={`hidden sm:flex sticky left-0 top-0 h-screen bg-sidebar text-sidebar-foreground border-r border-sidebar-border p-6 flex-col z-40 overflow-auto transition-[width] duration-300 ${
+        isExpanded ? "w-72" : "w-20"
+      }`}
     >
-      {/* Toggle Button */}
-      <motion.button
-        onClick={() => setIsExpanded(!isExpanded)}
-        className="absolute cursor-pointer top-4 right-4 p-2 rounded-lg hover:bg-sidebar-primary/20 transition-colors z-10"
+      <button
+        type="button"
+        onClick={() => setIsExpanded((currentValue) => !currentValue)}
+        className="absolute cursor-pointer top-4 right-4 p-2 rounded-lg hover:bg-sidebar-primary/20 transition-colors z-10 hover:scale-105 active:scale-95"
         aria-label={isExpanded ? "Collapse menu" : "Expand menu"}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
       >
-        <motion.div
-          animate={{ rotate: isExpanded ? 0 : 180 }}
-          transition={{ duration: 0.3 }}
-        >
-          {isExpanded ? <X /> : <Menu />}
-        </motion.div>
-      </motion.button>
+        {isExpanded ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+      </button>
 
-      {/* Developer Info */}
-      <motion.div
-        className={`text-center mb-8 ${!isExpanded && "mt-12"}`}
-        layout
-      >
-        <motion.div 
-          className={`mb-4 flex justify-center ${!isExpanded && "mb-0"}`}
-          layout
-        >
-          <motion.div
-            className={`relative rounded-full overflow-hidden border-2 border-brand-mint-600 dark:border-brand-mint-400 glow-effect-mint transition-all duration-300`}
-            layout
-            style={{
-              width: isExpanded ? 96 : 30,
-              height: isExpanded ? 96 : 30,
-            }}
-            whileHover={{ scale: 1.05, borderColor: "rgb(0, 255, 159)" }}
+      <div className={`text-center mb-8 transition-all duration-300 ${!isExpanded ? "mt-12" : ""}`}>
+        <div className={`mb-4 flex justify-center transition-all duration-300 ${!isExpanded ? "mb-0" : ""}`}>
+          <div
+            className={`relative rounded-full overflow-hidden border-2 border-brand-mint-600 dark:border-brand-mint-400 glow-effect-mint transition-all duration-300 ${
+              isExpanded ? "w-24 h-24" : "w-[30px] h-[30px]"
+            }`}
           >
             <Image
               src="/images/reda.png"
               alt="Reda Salem - Full-Stack Engineer"
               fill
               priority
-              sizes="96px"
+              sizes={isExpanded ? "96px" : "30px"}
               className="object-cover"
             />
-          </motion.div>
-        </motion.div>
-        <AnimatePresence mode="wait">
-          {isExpanded && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.2 }}
-            >
-              <h1 className="text-2xl font-bold text-sidebar-foreground mb-2">
-                Reda Salem
-              </h1>
-              <p className="text-lg text-sidebar-foreground/80">
-                Full-Stack Engineer
-              </p>
-              <p className="text-sm mt-1 text-sidebar-foreground/70">
-                Next.js · React · React Native · Node.js
-              </p>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.div>
+          </div>
+        </div>
 
-      {/* Divider */}
-      <motion.div 
-        className="h-px bg-sidebar-border mb-8 opacity-50" 
-        layout
-      />
+        <div
+          className={`transition-all duration-200 ${
+            isExpanded ? "opacity-100 translate-y-0 max-h-32" : "opacity-0 -translate-y-2 max-h-0 overflow-hidden"
+          }`}
+        >
+          <h1 className="text-2xl font-bold text-sidebar-foreground mb-2">Reda Salem</h1>
+          <p className="text-lg text-sidebar-foreground/80">Full-Stack Engineer</p>
+          <p className="text-sm mt-1 text-sidebar-foreground/70">Next.js - React - React Native - Node.js</p>
+        </div>
+      </div>
 
-      {/* Navigation */}
+      <div className="h-px bg-sidebar-border mb-8 opacity-50" />
+
       <nav className="flex-1 mb-8">
-        <AnimatePresence>
-          {isExpanded && (
-            <motion.p 
-              className="text-xs font-semibold text-sidebar-foreground/70 uppercase tracking-wider mb-4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              Navigation
-            </motion.p>
-          )}
-        </AnimatePresence>
+        <p
+          className={`text-xs font-semibold text-sidebar-foreground/70 uppercase tracking-wider mb-4 transition-opacity duration-200 ${
+            isExpanded ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          Navigation
+        </p>
+
         <div className="space-y-2">
-          {navItems.map((item, index) => (
-            <motion.button
-              key={item.id}
-              onClick={() => scrollToSection(item.id)}
-              className={`w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium text-sidebar-foreground dark:text-white hover:bg-sidebar-primary/20 transition-all duration-300 group relative overflow-hidden ${!isExpanded && "flex justify-center px-2"}`}
-              title={!isExpanded ? item.label : ""}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: index * 0.05 }}
-              whileHover={{ x: isExpanded ? 4 : 0 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-brand-mint-500/0 via-brand-mint-500/20 to-brand-mint-500/0 opacity-0 group-hover:opacity-100 transition-opacity"
-                initial={{ x: "-100%" }}
-                whileHover={{ x: "200%" }}
-                transition={{ duration: 0.5 }}
-              />
-              
-              {isExpanded ? (
-                <>
-                  <motion.span className="relative z-10" layout>
-                    {item.label}
-                  </motion.span>
-                  {activeItem === item.id && (
-                    <motion.div
-                      className="absolute inset-0 bg-brand-mint-500/20 rounded-lg"
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      layoutId="activeIndicator"
-                    />
-                  )}
-                </>
-              ) : (
-                <motion.span 
-                  className="text-lg relative z-10"
-                  whileHover={{ scale: 1.2, color: "rgb(0, 255, 159)" }}
-                >
-                  {item.icon}
-                </motion.span>
-              )}
-            </motion.button>
-          ))}
+          {NAV_ITEMS.map((item) => {
+            const Icon = item.icon;
+            const isActive = activeItem === item.id;
+
+            return (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => scrollToSection(item.id)}
+                className={`w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium text-sidebar-foreground dark:text-white hover:bg-sidebar-primary/20 transition-all duration-300 group relative overflow-hidden ${
+                  !isExpanded ? "flex justify-center px-2" : ""
+                } ${isActive ? "bg-brand-mint-500/20" : ""}`}
+                title={!isExpanded ? item.label : ""}
+              >
+                <span className="absolute inset-0 bg-gradient-to-r from-brand-mint-500/0 via-brand-mint-500/20 to-brand-mint-500/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" aria-hidden="true" />
+
+                {isExpanded ? (
+                  <span className="relative z-10 flex items-center justify-between gap-3 transition-transform duration-300 group-hover:translate-x-1">
+                    <span>{item.label}</span>
+                    <Icon className={`w-4 h-4 transition-colors duration-300 ${isActive ? "text-brand-mint-400" : "text-sidebar-foreground/70"}`} />
+                  </span>
+                ) : (
+                  <span className="relative z-10 text-lg transition-all duration-300 group-hover:scale-110 group-hover:text-brand-mint-400">
+                    <Icon className="w-5 h-5" />
+                  </span>
+                )}
+              </button>
+            );
+          })}
         </div>
       </nav>
 
-      {/* Resume CTA */}
       <div className="space-y-3 mb-4">
-        <AnimatePresence>
-          {isExpanded && (
-            <motion.p 
-              className="text-xs font-semibold text-sidebar-foreground/70 uppercase tracking-wider mb-2"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              Strategic Documentation
-            </motion.p>
-          )}
-        </AnimatePresence>
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.3 }}
-          whileHover={{ x: isExpanded ? 4 : 0, scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
+        <p
+          className={`text-xs font-semibold text-sidebar-foreground/70 uppercase tracking-wider mb-2 transition-opacity duration-200 ${
+            isExpanded ? "opacity-100" : "opacity-0"
+          }`}
         >
-          <Link
-            href="/download"
-            className={`w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium text-sidebar-foreground dark:text-white bg-sidebar-primary/10 hover:bg-brand-mint-500/20 border border-transparent hover:border-brand-mint-500/30 transition-all duration-300 group flex items-center gap-3 ${!isExpanded && "justify-center px-2"}`}
-            title={!isExpanded ? "View Resumes" : "Front-End & Full-Stack CVs"}
+          Strategic Documentation
+        </p>
+
+        <Link
+          href="/download"
+          className={`w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium text-sidebar-foreground dark:text-white bg-sidebar-primary/10 hover:bg-brand-mint-500/20 border border-transparent hover:border-brand-mint-500/30 transition-all duration-300 group flex items-center gap-3 ${
+            !isExpanded ? "justify-center px-2" : ""
+          }`}
+          title={!isExpanded ? "View Resumes" : "Front-End & Full-Stack CVs"}
+        >
+          <span className="text-lg flex-shrink-0 relative z-10 text-brand-mint-400 transition-transform duration-300 group-hover:rotate-6">
+            <Download className="w-5 h-5" />
+          </span>
+
+          <span
+            className={`relative z-10 flex flex-col transition-all duration-200 ${
+              isExpanded ? "opacity-100 translate-x-0" : "opacity-0 absolute -translate-x-2 pointer-events-none"
+            }`}
           >
-            <motion.span 
-              className="text-lg flex-shrink-0 relative z-10 text-brand-mint-400"
-              whileHover={{ rotate: [0, -10, 10, 0] }}
-              transition={{ duration: 0.3 }}
-            >
-              <Download />
-            </motion.span>
-            <AnimatePresence>
-              {isExpanded && (
-                <motion.div
-                  className="relative z-10 flex flex-col"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                >
-                  <span className="text-xs font-semibold leading-tight">View Resumes</span>
-                  <span className="text-[10px] text-sidebar-foreground/50 leading-tight mt-0.5">Front-End · Full-Stack CVs</span>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </Link>
-        </motion.div>
+            <span className="text-xs font-semibold leading-tight">View Resumes</span>
+            <span className="text-[10px] text-sidebar-foreground/50 leading-tight mt-0.5">Front-End - Full-Stack CVs</span>
+          </span>
+        </Link>
       </div>
 
-      {/* Social Links */}
       <div className="space-y-4">
-        <AnimatePresence>
-          {isExpanded && (
-            <motion.p 
-              className="text-xs font-semibold text-sidebar-foreground/70 uppercase tracking-wider"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              Connect
-            </motion.p>
-          )}
-        </AnimatePresence>
-        <motion.div 
-          className={`flex gap-3 ${!isExpanded && "flex-col"}`}
-          layout
+        <p
+          className={`text-xs font-semibold text-sidebar-foreground/70 uppercase tracking-wider transition-opacity duration-200 ${
+            isExpanded ? "opacity-100" : "opacity-0"
+          }`}
         >
-          {socialLinks.map((social, index) => (
-            <motion.a
-              key={social.label}
-              href={social.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2.5 rounded-lg bg-sidebar-primary/10 hover:bg-sidebar-primary/20 transition-all duration-300 text-lg flex items-center justify-center relative overflow-hidden"
-              style={{
-                color:
-                  theme === "dark"
-                    ? `color-mix(in srgb, ${social.color} 80%, white 50%)`
-                    : `color-mix(in srgb, ${social.color} 70%, #64748B 30%)`,
-                opacity: theme === "dark" ? 1 : 0.85,
-              }}
-              title={social.label}
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.4 + index * 0.05 }}
-              whileHover={{ scale: 1.15, rotate: 5, y: -2 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <motion.div
-                className="absolute inset-0 rounded-lg"
-                initial={{ opacity: 0 }}
-                whileHover={{ opacity: 1, backgroundColor: "rgba(0, 255, 159, 0.1)" }}
-              />
-              <span className="relative z-10">
-                {social.icon}
-              </span>
-            </motion.a>
-          ))}
-        </motion.div>
+          Connect
+        </p>
+
+        <div className={`flex gap-3 transition-all duration-300 ${!isExpanded ? "flex-col" : ""}`}>
+          {SOCIAL_LINKS.map((social) => {
+            const Icon = social.icon;
+
+            return (
+              <a
+                key={social.label}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`p-2.5 rounded-lg bg-sidebar-primary/10 hover:bg-sidebar-primary/20 transition-all duration-300 text-lg flex items-center justify-center relative overflow-hidden text-sidebar-foreground/80 ${social.iconClassName}`}
+                title={social.label}
+              >
+                <span className="absolute inset-0 rounded-lg bg-brand-mint-500/10 opacity-0 transition-opacity duration-300 hover:opacity-100" aria-hidden="true" />
+                <span className="relative z-10 transition-transform duration-300 hover:-translate-y-0.5 hover:scale-110">
+                  <Icon className="w-5 h-5" />
+                </span>
+              </a>
+            );
+          })}
+        </div>
       </div>
-    </motion.aside>
+    </aside>
   );
 });
 

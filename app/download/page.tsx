@@ -4,12 +4,7 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Link from "next/link";
 import { Download, FileText, Star, Zap, Clock, Award, CheckCircle2, Sparkles, ArrowRight, Mail, Briefcase, Code, Database, Smartphone } from "lucide-react";
 import React, { useState, useEffect } from "react";
-import dynamic from "next/dynamic";
-
-const ChatBot = dynamic(() => import("@/components/chatbot"), {
-  ssr: false,
-  loading: () => null,
-});
+import ChatbotLoader from "@/components/chatbot-loader";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -591,7 +586,7 @@ export default function DownloadPage() {
       </div>
 
       {/* Floating Document Icons */}
-      <ChatBot />
+      <ChatbotLoader />
       <motion.div
         initial={{ opacity: 0, y: 100, rotate: -10 }}
         animate={{ 

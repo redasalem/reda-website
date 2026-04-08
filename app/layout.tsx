@@ -2,6 +2,7 @@ import type React from "react";
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/lib/theme-provider";
+import FirebaseAnalyticsLoader from "@/components/firebase-analytics-loader";
 import Script from "next/script";
 import "./globals.css";
 
@@ -620,6 +621,7 @@ export default function RootLayout({
           </a>
 
           <main id="main-content">{children}</main>
+          <FirebaseAnalyticsLoader />
 
           {/* JSON-LD Schemas - Maximum SEO Power */}
           <script

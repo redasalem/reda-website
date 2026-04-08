@@ -1,9 +1,5 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { getFirestore } from "firebase/firestore";
+import { getApp, getApps, initializeApp, type FirebaseApp } from "firebase/app";
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyD3fempHbWWycug5FSP3dBnpNdpZFV53i8",
   authDomain: "portfolio-projects-4d586.firebaseapp.com",
@@ -11,11 +7,37 @@ const firebaseConfig = {
   storageBucket: "portfolio-projects-4d586.firebasestorage.app",
   messagingSenderId: "907853502682",
   appId: "1:907853502682:web:512da8868d943c0ae72de3",
-  measurementId: "G-TRHHMMT7EZ"
+  measurementId: "G-TRHHMMT7EZ",
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = typeof window !== "undefined" ? getAnalytics(app) : null;
+let firebaseApp: FirebaseApp | null = null;
+let analyticsPromise: Promise<import("firebase/analytics").Analytics | null> | null = null;
 
-export const db = getFirestore(app);
+export function getFirebaseApp(): FirebaseApp {
+  if (firebaseApp) {
+    return firebaseApp;
+  }
+
+  firebaseApp = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
+  return firebaseApp;
+}
+
+export async function loadFirebaseAnalytics() {
+  if (typeof window === "undefined") {
+    return null;
+  }
+
+  if (!analyticsPromise) {
+    analyticsPromise = (async () => {
+      const analyticsModule = await import("firebase/analytics");
+
+      if (!(await analyticsModule.isSupported())) {
+        return null;
+      }
+
+      return analyticsModule.getAnalytics(getFirebaseApp());
+    })();
+  }
+
+  return analyticsPromise;
+}

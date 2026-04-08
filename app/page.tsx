@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import Sidebar from "@/components/sidebar";
 import Hero from "@/components/hero";
 import BottomNavbar from "@/components/Navbar";
+import ChatbotLoader from "@/components/chatbot-loader";
 
 function SectionSkeleton() {
   return <div className="min-h-96 bg-background animate-pulse" />;
@@ -12,7 +13,7 @@ function SectionSkeleton() {
 
 const Skills = dynamic(() => import("@/components/skills"), {
   loading: () => <SectionSkeleton />,
-  ssr: true,
+  ssr: false,
 });
 const Projects = dynamic(() => import("@/components/projects"), {
   loading: () => <SectionSkeleton />,
@@ -29,10 +30,6 @@ const Contact = dynamic(() => import("@/components/contact"), {
 const Footer = dynamic(() => import("@/components/footer"), {
   loading: () => <SectionSkeleton />,
   ssr: false,
-});
-const ChatBot = dynamic(() => import("@/components/chatbot"), {
-  ssr: false,
-  loading: () => null,
 });
 
 export default function Home() {
@@ -62,9 +59,7 @@ export default function Home() {
           </Suspense>
         </div>
 
-        <Suspense fallback={null}>
-          <ChatBot />
-        </Suspense>
+        <ChatbotLoader />
       </main>
     </div>
   );
