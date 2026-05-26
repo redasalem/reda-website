@@ -172,22 +172,7 @@ export default function DownloadPage() {
 
           <div className="flex flex-col sm:flex-row justify-center gap-4 max-w-2xl mx-auto">
             <a
-              href="https://drive.google.com/file/d/1oWh42fPLSHUGyTq9-bIelRpOttUkwTIE/view"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative flex-1 inline-flex items-center justify-center gap-3 px-8 py-5 bg-gradient-to-r from-brand-mint-500 via-brand-mint-400 to-brand-mint-500 bg-[length:200%_100%] text-black font-bold text-lg rounded-full shadow-2xl shadow-brand-mint-500/30 transition-all duration-500 overflow-hidden hover:scale-105 hover:shadow-[0_0_50px_rgba(0,255,159,0.5)]"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0 animate-shimmer" />
-              <Code className="w-6 h-6 relative z-10 group-hover:rotate-12 transition-transform" />
-              <div className="relative z-10 flex flex-col items-start">
-                <span className="text-base font-extrabold leading-tight">Front-End & Mobile CV</span>
-                <span className="text-xs font-medium opacity-70 leading-tight">React · Next.js · React Native</span>
-              </div>
-              <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
-            </a>
-
-            <a
-              href="https://drive.google.com/file/d/1MNYifjkRpiy6xXKeAqiXCinVBkOh6mrZ/view"
+              href="https://drive.google.com/file/d/16F5MI205bQZlWwt9JzOrqd6P8PNYPTQY/view"
               target="_blank"
               rel="noopener noreferrer"
               className="group relative flex-1 inline-flex items-center justify-center gap-3 px-8 py-5 bg-card/80 backdrop-blur-sm border-2 border-brand-mint-500/40 text-foreground font-bold text-lg rounded-full shadow-xl hover:border-brand-mint-500 transition-all duration-500 overflow-hidden hover:scale-105"
