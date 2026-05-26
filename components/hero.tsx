@@ -333,20 +333,20 @@ const HeroSection = memo(function HeroSection() {
               </h1>
 
               <h2 className="text-3xl lg:text-4xl font-semibold text-brand-mint-700 dark:text-brand-mint-300 opacity-0 animate-fade-in-delay-2">
-                Engineering Precision - Exceptional User Experiences
+                Strategic Full-Stack Engineer — Architecting Scalable Systems
               </h2>
             </div>
 
             <p className="text-lg text-muted-foreground leading-relaxed max-w-xl opacity-0 animate-fade-in-delay-2">
-              I architect end-to-end digital products with a <strong>system-first mindset</strong>. Understanding how
-              the server breathes through <strong>Node.js, Express &amp; MongoDB</strong> empowers me to build smarter,
-              faster, and more secure <strong>React, Next.js &amp; React Native</strong> applications. The result: a{" "}
-              <strong>99/100 PageSpeed</strong> score, live payment integrations, and cross-platform mobile apps that
-              ship on time and scale under pressure.
+              I architect high-throughput digital products with a <strong>system-first mindset</strong>. Deep fluency in
+              <strong>Node.js, Express &amp; MongoDB</strong> empowers me to engineer smarter,
+              faster, and more secure <strong>React, Next.js &amp; React Native</strong> frontends. The result: a{" "}
+              <strong>99/100 PageSpeed</strong> score, secure payment pipelines via Stripe Connect, and cross-platform
+              mobile apps that ship on time and scale under pressure.
             </p>
 
             <p className="text-sm text-muted-foreground/70 italic max-w-xl opacity-0 animate-fade-in-delay-3">
-              Driven by Clean Code (SOLID) and AI-augmented development workflows for scalable, future-proof systems.
+              Driven by Clean Code (SOLID), compile-time type safety with TypeScript 5, and AI-augmented workflows for scalable, production-grade systems.
             </p>
 
             <div className="flex flex-wrap gap-4 opacity-0 animate-fade-in-delay-3">

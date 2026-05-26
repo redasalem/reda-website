@@ -1,6 +1,7 @@
 // gemini.ts
 
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import { SYSTEM_INSTRUCTION } from "./prompt";
 
 const GOOGLE_API_KEY = process.env.NEXT_PUBLIC_GEMINI_API;
 
@@ -31,6 +32,7 @@ export async function getGeminiResponse(prompt: string): Promise<string> {
 
   const model = getGenAI().getGenerativeModel({ 
     model: "gemini-2.5-flash",
+    systemInstruction: SYSTEM_INSTRUCTION,
     generationConfig: {
       maxOutputTokens: 2048,
       temperature: 0.7,

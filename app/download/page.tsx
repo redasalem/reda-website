@@ -102,32 +102,32 @@ export default function DownloadPage() {
     {
       icon: <Code className="w-6 h-6" />,
       title: "99/100 PageSpeed",
-      description: "Performance optimization specialist with proven results"
+      description: "Core Web Vitals optimization specialist with proven Lighthouse results"
     },
     {
       icon: <Code className="w-6 h-6" />,
-      title: "Full-Stack Expert",
-      description: "React, Next.js, Node.js, TypeScript mastery"
+      title: "Full-Stack Architect",
+      description: "React, Next.js 14, Node.js, TypeScript 5 mastery"
     },
     {
       icon: <Smartphone className="w-6 h-6" />,
-      title: "Mobile Development",
-      description: "React Native cross-platform applications"
+      title: "Cross-Platform Engineering",
+      description: "React Native applications with scalable architecture"
     },
     {
       icon: <Database className="w-6 h-6" />,
       title: "Backend Architecture",
-      description: "Scalable APIs with Express & MongoDB"
+      description: "Scalable APIs with Express, MongoDB & secure JWT/RBAC flows"
     },
     {
       icon: <Code className="w-6 h-6" />,
-      title: "Production Experience",
-      description: "Real-world projects with Stripe & PayPal"
+      title: "Production Deployments",
+      description: "End-to-end Stripe Connect & CI/CD via GitHub Actions"
     },
     {
       icon: <Database className="w-6 h-6" />,
       title: "Clean Architecture",
-      description: "Maintainable, testable code patterns"
+      description: "Type-safe, compile-time validated code patterns at scale"
     },
   ];
 
@@ -166,8 +166,8 @@ export default function DownloadPage() {
           </h1>
 
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-10">
-            Get the complete overview of my skills, experience, and achievements. 
-            Available in multiple formats for your convenience.
+            Explore my strategic engineering profile — production-grade architectures, 
+            compile-time type safety, and measurable performance achievements.
           </p>
 
           <div className="flex flex-col sm:flex-row justify-center gap-4 max-w-2xl mx-auto">
@@ -214,7 +214,7 @@ export default function DownloadPage() {
               What You&apos;ll Find in My Resume
             </h2>
             <p className="text-muted-foreground max-w-xl mx-auto">
-              A comprehensive overview of my technical expertise and professional achievements
+              A strategic overview of engineering achievements, technical depth, and production impact
             </p>
           </div>
 
@@ -231,7 +231,7 @@ export default function DownloadPage() {
               Tech Stack Proficiency
             </h2>
             <p className="text-muted-foreground max-w-xl mx-auto">
-              Technologies I work with daily to build production-grade applications
+              Production-grade technologies I leverage daily to architect scalable applications
             </p>
           </div>
 

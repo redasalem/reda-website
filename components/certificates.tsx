@@ -20,7 +20,7 @@ const Certificates = React.memo(function Certificates() {
       issuer: "Hsoub Academy",
       date: "May 2025",
       description:
-        "Comprehensive front-end development certification covering modern web technologies",
+        "Rigorous front-end engineering certification validating deep expertise in React, Next.js (App Router), performance optimization, and modern web architectures.",
       descriptionArabic:
         "شهادة شاملة في تطوير الواجهة الأمامية تغطي تقنيات الويب الحديثة",
       link: "https://academy.hsoub.com/certificate/8CT2XWQB10SJXDYDRM4PT6GED.pdf",
@@ -34,7 +34,7 @@ const Certificates = React.memo(function Certificates() {
       issuer: "Information Technology Institute (ITI)",
       date: "Sep 2022",
       description:
-        "Professional training in front-end development with hands-on projects",
+        "Intensive professional training program focused on core frontend engineering, component architectures, and responsive web applications with hands-on project delivery.",
       descriptionArabic:
         "تدريب احترافي في تطوير الواجهة الأمامية مع مشاريع عملية",
       link: "https://drive.google.com/file/d/1irnR_hedjneoMh7poPI9CM4SwqXeLAOU/view",
@@ -48,7 +48,7 @@ const Certificates = React.memo(function Certificates() {
       issuer: "Huma-volve",
       date: "Dec 2025",
       description:
-        "Intense hands-on experience in problem analysis, back-end systems, and professional team collaboration.",
+        "Accelerated frontend engineering residency emphasizing production-grade component development, state management, complex API integration, and Agile team workflows.",
       descriptionArabic:
         "خبرة عملية مكثفة في تحليل الأنظمة الخلفية والتعاون المهني",
       link: "https://www.linkedin.com/posts/reda-salem-dev_frontend-react-professionalgrowth-activity-7416949321494982656-bim4?utm_source=share&utm_medium=member_desktop&rcm=ACoAAELm9IAB5ccC-E7q6WGg2fPYNK2bK5i7Yys",
@@ -137,7 +137,7 @@ const Certificates = React.memo(function Certificates() {
             transition={{ duration: 0.8, delay: 0.5 }}
             viewport={{ once: true }}
           >
-            Professional certifications from leading tech institutions
+            Verifiable credentials and professional certifications validating advanced expertise in modern frontend engineering, component architectures, and web standards.
           </motion.p>
         </motion.div>
 

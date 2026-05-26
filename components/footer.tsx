@@ -48,8 +48,8 @@ const Footer = React.memo(function Footer() {
                 Reda Salem
               </h3>
               <p className="text-sm text-muted-foreground max-w-xs mx-auto md:mx-0 leading-relaxed">
-                Performance-obsessed Full-Stack Engineer. 99/100 PageSpeed.
-                2× faster apps. Open to remote & freelance.
+                Strategic Full-Stack Engineer. 99/100 PageSpeed. Compile-time
+                type safety. Open to remote & freelance.
               </p>
             </div>
           </div>

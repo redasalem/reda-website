@@ -261,9 +261,9 @@ const Projects = memo(function Projects() {
           </h2>
 
           <p className="text-muted-foreground max-w-2xl mx-auto text-base md:text-lg">
-            End-to-end ecosystems engineered for precision from a{" "}
-            <strong className="text-foreground">99/100 Lighthouse score</strong> achieved through optimized Next.js
-            App Router architecture, to secure payment data flows and seamless cross-platform React Native experiences.
+            Production-grade platforms engineered for precision — from a{" "}
+            <strong className="text-foreground">95+ Lighthouse score</strong> achieved through optimized Next.js 14
+            App Router architecture, to secure Stripe Connect payment pipelines and scalable multi-vendor ecosystems.
           </p>
 
           <div className="w-20 md:w-24 h-1.5 mx-auto bg-linear-to-r from-primary to-accent rounded-full mt-6" />

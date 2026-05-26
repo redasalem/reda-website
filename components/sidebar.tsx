@@ -119,7 +119,7 @@ const Sidebar = memo(function Sidebar() {
         >
           <h1 className="text-2xl font-bold text-sidebar-foreground mb-2">Reda Salem</h1>
           <p className="text-lg text-sidebar-foreground/80">Full-Stack Engineer</p>
-          <p className="text-sm mt-1 text-sidebar-foreground/70">Next.js - React - React Native - Node.js</p>
+          <p className="text-sm mt-1 text-sidebar-foreground/70">Next.js · React · React Native · TypeScript</p>
         </div>
       </div>
 
