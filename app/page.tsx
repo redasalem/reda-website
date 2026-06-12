@@ -13,23 +13,18 @@ function SectionSkeleton() {
 
 const Skills = dynamic(() => import("@/components/skills"), {
   loading: () => <SectionSkeleton />,
-  ssr: false,
 });
 const Projects = dynamic(() => import("@/components/projects"), {
   loading: () => <SectionSkeleton />,
-  ssr: false,
 });
 const Certificates = dynamic(() => import("@/components/certificates"), {
   loading: () => <SectionSkeleton />,
-  ssr: false,
 });
 const Contact = dynamic(() => import("@/components/contact"), {
   loading: () => <SectionSkeleton />,
-  ssr: false,
 });
 const Footer = dynamic(() => import("@/components/footer"), {
   loading: () => <SectionSkeleton />,
-  ssr: false,
 });
 
 export default function Home() {

@@ -102,7 +102,7 @@ const Sidebar = memo(function Sidebar() {
             }`}
           >
             <Image
-              src="/images/reda.png"
+              src="/images/reda.jpeg"
               alt="Reda Salem - Full-Stack Engineer"
               fill
               priority
@@ -117,7 +117,7 @@ const Sidebar = memo(function Sidebar() {
             isExpanded ? "opacity-100 translate-y-0 max-h-32" : "opacity-0 -translate-y-2 max-h-0 overflow-hidden"
           }`}
         >
-          <h1 className="text-2xl font-bold text-sidebar-foreground mb-2">Reda Salem</h1>
+          <p className="text-2xl font-bold text-sidebar-foreground mb-2">Reda Salem</p>
           <p className="text-lg text-sidebar-foreground/80">Full-Stack Engineer</p>
           <p className="text-sm mt-1 text-sidebar-foreground/70">Next.js · React · React Native · TypeScript</p>
         </div>

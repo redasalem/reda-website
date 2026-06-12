@@ -220,11 +220,11 @@ export const metadata: Metadata = {
         type: "image/png",
       },
       {
-        url: "/reda.png",
+        url: "/images/reda.jpeg",
         width: 800,
         height: 800,
         alt: "Reda Salem - Full-Stack Engineer",
-        type: "image/png",
+        type: "image/jpeg",
       },
     ],
   },
@@ -280,10 +280,6 @@ export const metadata: Metadata = {
 
   verification: {
     google: "WdJppG3mAkZoon8ptYrXM7OGEllTG3SK7u3T__GSNtk",
-    yandex: "YOUR_YANDEX_CODE",
-    other: {
-      "msvalidate.01": "YOUR_BING_CODE",
-    },
   },
 
   appleWebApp: {
@@ -310,7 +306,7 @@ export default function RootLayout({
     url: "https://reda-website.vercel.app",
     image: {
       "@type": "ImageObject",
-      url: "https://reda-website.vercel.app/images/reda.png",
+      url: "https://reda-website.vercel.app/images/reda.jpeg",
       width: 800,
       height: 800,
       caption: "Reda Salem - Full-Stack Engineer",
@@ -499,7 +495,7 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     name: "Reda Salem - Full-Stack Engineering Services",
-    image: "https://reda-website.vercel.app/images/reda.png",
+    image: "https://reda-website.vercel.app/images/reda.jpeg",
     description:
       "Professional full-stack development services specializing in Backend (Node.js, Express, MongoDB), Frontend (React, Next.js), and Mobile App Development (React Native). High-performance, scalable, and SEO-optimized solutions for web and mobile.",
     address: {
@@ -582,6 +578,14 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        {/* Favicons (Forced override to ensure they appear in all browsers) */}
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+
         {/* Performance hints */}
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />

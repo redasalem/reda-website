@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import React, { useState, useRef, useMemo } from "react";
+import React, { useState, useRef, useMemo, useEffect } from "react";
 import Image from "next/image";
 import { Award } from "lucide-react";
 
@@ -12,6 +12,19 @@ const Certificates = React.memo(function Certificates() {
     target: containerRef,
     offset: ["start end", "end start"],
   });
+
+  const [particles, setParticles] = useState<{left: number, top: number, duration: number, delay: number}[]>([]);
+  
+  useEffect(() => {
+    setParticles(
+      Array.from({ length: 15 }).map(() => ({
+        left: Math.random() * 100,
+        top: Math.random() * 100,
+        duration: Math.random() * 3 + 2,
+        delay: Math.random() * 2,
+      }))
+    );
+  }, []);
 
   const certificates = useMemo(() => [
     {
@@ -80,13 +93,13 @@ const Certificates = React.memo(function Certificates() {
       />
 
       {/* Floating Particles */}
-      {[...Array(15)].map((_, i) => (
+      {particles.map((particle, i) => (
         <motion.div
           key={i}
           className="absolute w-2 h-2 bg-brand-mint-400/20 rounded-full"
           style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
+            left: `${particle.left}%`,
+            top: `${particle.top}%`,
           }}
           animate={{
             y: [0, -30, 0],
@@ -94,9 +107,9 @@ const Certificates = React.memo(function Certificates() {
             scale: [1, 1.5, 1],
           }}
           transition={{
-            duration: Math.random() * 3 + 2,
+            duration: particle.duration,
             repeat: Infinity,
-            delay: Math.random() * 2,
+            delay: particle.delay,
           }}
         />
       ))}
