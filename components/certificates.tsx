@@ -70,17 +70,17 @@ const Certificates = React.memo(function Certificates() {
       image: "/images/huma-volve.jpg",
     },
     {
-      title: "Google Professional Certification",
-      titleArabic: "شهادة جوجل الاحترافية",
-      issuer: "Google",
+      title: "Build with AI: Masr Edition",
+      titleArabic: "بناء الحلول بالذكاء الاصطناعي: نسخة مصر",
+      issuer: "Google for Developers & ITI",
       date: "2024",
       description:
-        "Prestigious Google certification demonstrating mastery in advanced Search Engine Optimization (SEO), Core Web Vitals, and building high-performance, user-centric web applications that drive digital growth.",
+        "Certified participation in Google for Developers' 'Build with AI' intensive sessions, validating hands-on exposure to advanced Artificial Intelligence tools, LLMs, and their integration into scalable web architectures.",
       descriptionArabic:
-        "شهادة معتمدة من جوجل تثبت الكفاءة العالية في تحسين محركات البحث (SEO)، وتطوير تطبيقات ويب سريعة الأداء تركز على تجربة المستخدم لتعزيز النمو الرقمي.",
-      link: "#",
-      color: "from-blue-500/20 to-brand-mint-500/20",
-      icon: "🏆",
+        "شهادة مشاركة معتمدة من جوجل للمطورين (Google for Developers) ومعهد ITI، تؤكد الإلمام بأحدث أدوات الذكاء الاصطناعي وطرق دمجها في مشاريع وتطبيقات الويب الحديثة لتقديم حلول مبتكرة.",
+      link: "https://drive.google.com/file/d/1-c0f0Ec5BMT8GZJUzQQyBX1X0AdGGkOu/view?usp=sharing",
+      color: "from-blue-500/20 to-yellow-500/20",
+      icon: "🤖",
       image: "/images/google.PNG",
     },
   ], []);
