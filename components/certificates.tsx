@@ -69,6 +69,20 @@ const Certificates = React.memo(function Certificates() {
       icon: "🚀",
       image: "/images/huma-volve.jpg",
     },
+    {
+      title: "Google Professional Certification",
+      titleArabic: "شهادة جوجل الاحترافية",
+      issuer: "Google",
+      date: "2024",
+      description:
+        "Prestigious Google certification demonstrating mastery in advanced Search Engine Optimization (SEO), Core Web Vitals, and building high-performance, user-centric web applications that drive digital growth.",
+      descriptionArabic:
+        "شهادة معتمدة من جوجل تثبت الكفاءة العالية في تحسين محركات البحث (SEO)، وتطوير تطبيقات ويب سريعة الأداء تركز على تجربة المستخدم لتعزيز النمو الرقمي.",
+      link: "#",
+      color: "from-blue-500/20 to-brand-mint-500/20",
+      icon: "🏆",
+      image: "/images/google.PNG",
+    },
   ], []);
 
   const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
@@ -150,7 +164,7 @@ const Certificates = React.memo(function Certificates() {
             transition={{ duration: 0.8, delay: 0.5 }}
             viewport={{ once: true }}
           >
-            Verifiable credentials and professional certifications validating advanced expertise in modern frontend engineering, component architectures, and web standards.
+            Verifiable credentials and professional certifications from tech leaders validating advanced expertise in modern frontend engineering, SEO optimization, and delivering high-performance, scalable web applications.
           </motion.p>
         </motion.div>
 
