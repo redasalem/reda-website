@@ -2,25 +2,33 @@
 
 import React, { useRef, useMemo } from "react";
 import {
-  Code, Palette, Brush, Layers, Waves, FileCode, Braces, Atom,
-  Smartphone, LayoutGrid, Sparkles, Database, Flame, UserCheck,
-  CreditCard, Box, Zap, Cloud, Globe, Terminal, CloudFog, Gauge,
-  GitBranch, RefreshCw, Bug, Shield, Cpu, BarChart
+  Code, Palette, Sparkles, Database,
+  CreditCard, Globe, CloudFog, Gauge,
+  GitBranch, Shield, Cpu, BarChart, Lock
 } from "lucide-react";
+import { 
+  SiHtml5, SiCss, SiSass, SiBootstrap, SiTailwindcss,
+  SiJavascript, SiTypescript, SiReact, SiNextdotjs,
+  SiMui, SiStorybook, SiFirebase, SiGraphql,
+  SiWebpack, SiVite, SiVercel, SiNetlify,
+  SiNodedotjs, SiExpress, SiMongodb, SiPostgresql,
+  SiGithub, SiFigma, SiPostman, SiLighthouse,
+  SiDocker, SiJest, SiPwa
+} from "react-icons/si";
 import { skillsData, SkillCategoryData } from "@/data/skills";
 
 const iconMap: Record<string, React.ComponentType<{ className?: string; style?: React.CSSProperties }>> = {
-  HTML: Code, CSS: Palette, Sass: Brush, Bootstrap: Layers, "Tailwind CSS": Waves,
-  "JavaScript (ES6+)": FileCode, TypeScript: Braces, "React.js": Atom, "Next.js": CloudFog,
-  "Server Components": CloudFog, "React Native": Smartphone, "Material UI": LayoutGrid,
-  "ShadCN UI": Sparkles, Zustand: Cpu, Storybook: Palette, DaisyUI: Palette, Nivo: BarChart,
-  "React Query": Database, "API Integration": Globe, "Firebase Auth & Firestore": Flame,
-  Clerk: UserCheck, GraphQL: Globe, "PayPal Integration": CreditCard, Webpack: Box, Vite: Zap,
-  "Firebase Hosting": Cloud, Vercel: Cloud, Netlify: Globe, "Node.js": Cpu, "Express.js": Terminal,
-  MongoDB: Database, "PostgreSQL & Redis": Cpu, Convex: CloudFog, "Git & GitHub": GitBranch,
-  Figma: Palette, Postman: Globe, "React Performance": Gauge, "Next.js Production": CloudFog,
-  Lighthouse: Gauge, "System Scalability": GitBranch, "PWA & Cloud Native": Cpu,
-  "CI/CD & Docker": RefreshCw, "Jest & Cypress": Bug, "Web Security": Shield,
+  HTML: SiHtml5, CSS: SiCss, Sass: SiSass, Bootstrap: SiBootstrap, "Tailwind CSS": SiTailwindcss,
+  "JavaScript (ES6+)": SiJavascript, TypeScript: SiTypescript, "React.js": SiReact, "Next.js": SiNextdotjs,
+  "Server Components": SiNextdotjs, "React Native": SiReact, "Material UI": SiMui,
+  "ShadCN UI": Sparkles, Zustand: Cpu, Storybook: SiStorybook, DaisyUI: Palette, Nivo: BarChart,
+  "React Query": Database, "API Integration": Globe, "Firebase Auth & Firestore": SiFirebase,
+  Clerk: Lock, GraphQL: SiGraphql, "PayPal Integration": CreditCard, Webpack: SiWebpack, Vite: SiVite,
+  "Firebase Hosting": SiFirebase, Vercel: SiVercel, Netlify: SiNetlify, "Node.js": SiNodedotjs, "Express.js": SiExpress,
+  MongoDB: SiMongodb, "PostgreSQL & Redis": SiPostgresql, Convex: CloudFog, "Git & GitHub": SiGithub,
+  Figma: SiFigma, Postman: SiPostman, "React Performance": Gauge, "Next.js Production": SiNextdotjs,
+  Lighthouse: SiLighthouse, "System Scalability": GitBranch, "PWA & Cloud Native": SiPwa,
+  "CI/CD & Docker": SiDocker, "Jest & Cypress": SiJest, "Web Security": Shield,
   "Design Patterns": Cpu
 };
 

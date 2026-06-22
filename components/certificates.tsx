@@ -3,7 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import React, { useState, useRef, useMemo, useEffect } from "react";
 import Image from "next/image";
-import { Award } from "lucide-react";
+import { Award, Code2, Rocket, Bot } from "lucide-react";
 
 const Certificates = React.memo(function Certificates() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -38,7 +38,7 @@ const Certificates = React.memo(function Certificates() {
         "شهادة شاملة في تطوير الواجهة الأمامية تغطي تقنيات الويب الحديثة",
       link: "https://academy.hsoub.com/certificate/8CT2XWQB10SJXDYDRM4PT6GED.pdf",
       color: "from-brand-mint-500/20 to-brand-mint-600/20",
-      icon: "💻",
+      icon: <Code2 className="w-8 h-8 text-brand-mint-400 drop-shadow-[0_0_15px_rgba(0,255,159,0.5)]" />,
       image: "/images/hasoup.webp",
     },
     {
@@ -52,7 +52,7 @@ const Certificates = React.memo(function Certificates() {
         "تدريب احترافي في تطوير الواجهة الأمامية مع مشاريع عملية",
       link: "https://drive.google.com/file/d/1irnR_hedjneoMh7poPI9CM4SwqXeLAOU/view",
       color: "from-brand-mint-500/20 to-brand-mint-600/20",
-      icon: "💻",
+      icon: <Code2 className="w-8 h-8 text-brand-mint-400 drop-shadow-[0_0_15px_rgba(0,255,159,0.5)]" />,
       image: "/images/reda_iti.png",
     },
     {
@@ -66,7 +66,7 @@ const Certificates = React.memo(function Certificates() {
         "خبرة عملية مكثفة في تحليل الأنظمة الخلفية والتعاون المهني",
       link: "https://www.linkedin.com/posts/reda-salem-dev_frontend-react-professionalgrowth-activity-7416949321494982656-bim4?utm_source=share&utm_medium=member_desktop&rcm=ACoAAELm9IAB5ccC-E7q6WGg2fPYNK2bK5i7Yys",
       color: "from-brand-mint-500/20 to-brand-mint-600/20",
-      icon: "🚀",
+      icon: <Rocket className="w-8 h-8 text-brand-mint-400 drop-shadow-[0_0_15px_rgba(0,255,159,0.5)]" />,
       image: "/images/huma-volve.jpg",
     },
     {
@@ -80,7 +80,7 @@ const Certificates = React.memo(function Certificates() {
         "شهادة مشاركة معتمدة من جوجل للمطورين (Google for Developers) ومعهد ITI، تؤكد الإلمام بأحدث أدوات الذكاء الاصطناعي وطرق دمجها في مشاريع وتطبيقات الويب الحديثة لتقديم حلول مبتكرة.",
       link: "https://drive.google.com/file/d/1-c0f0Ec5BMT8GZJUzQQyBX1X0AdGGkOu/view?usp=sharing",
       color: "from-blue-500/20 to-yellow-500/20",
-      icon: "🤖",
+      icon: <Bot className="w-8 h-8 text-brand-mint-400 drop-shadow-[0_0_15px_rgba(0,255,159,0.5)]" />,
       image: "/images/google.PNG",
     },
   ], []);
