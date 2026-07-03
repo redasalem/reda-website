@@ -33,7 +33,7 @@ const Certificates = React.memo(function Certificates() {
       issuer: "Hsoub Academy",
       date: "May 2025",
       description:
-        "Rigorous front-end engineering certification validating deep expertise in React, Next.js (App Router), performance optimization, and modern web architectures.",
+        "Comprehensive front-end engineering certification covering React, Next.js, performance optimization, and modern web development practices.",
       descriptionArabic:
         "شهادة شاملة في تطوير الواجهة الأمامية تغطي تقنيات الويب الحديثة",
       link: "https://academy.hsoub.com/certificate/8CT2XWQB10SJXDYDRM4PT6GED.pdf",
@@ -47,7 +47,7 @@ const Certificates = React.memo(function Certificates() {
       issuer: "Information Technology Institute (ITI)",
       date: "Sep 2022",
       description:
-        "Intensive professional training program focused on core frontend engineering, component architectures, and responsive web applications with hands-on project delivery.",
+        "Professional training program focused on frontend engineering fundamentals, component architectures, and responsive web applications with hands-on projects.",
       descriptionArabic:
         "تدريب احترافي في تطوير الواجهة الأمامية مع مشاريع عملية",
       link: "https://drive.google.com/file/d/1irnR_hedjneoMh7poPI9CM4SwqXeLAOU/view",
@@ -61,7 +61,7 @@ const Certificates = React.memo(function Certificates() {
       issuer: "Huma-volve",
       date: "Dec 2025",
       description:
-        "Accelerated frontend engineering residency emphasizing production-grade component development, state management, complex API integration, and Agile team workflows.",
+        "Frontend engineering internship covering production-grade component development, state management, API integration, and Agile team workflows.",
       descriptionArabic:
         "خبرة عملية مكثفة في تحليل الأنظمة الخلفية والتعاون المهني",
       link: "https://www.linkedin.com/posts/reda-salem-dev_frontend-react-professionalgrowth-activity-7416949321494982656-bim4?utm_source=share&utm_medium=member_desktop&rcm=ACoAAELm9IAB5ccC-E7q6WGg2fPYNK2bK5i7Yys",
@@ -75,7 +75,7 @@ const Certificates = React.memo(function Certificates() {
       issuer: "Google for Developers & ITI",
       date: "2024",
       description:
-        "Certified participation in Google for Developers' 'Build with AI' intensive sessions, validating hands-on exposure to advanced Artificial Intelligence tools, LLMs, and their integration into scalable web architectures.",
+        "Hands-on sessions with Google for Developers covering AI tools, LLMs, and their integration into web applications.",
       descriptionArabic:
         "شهادة مشاركة معتمدة من جوجل للمطورين (Google for Developers) ومعهد ITI، تؤكد الإلمام بأحدث أدوات الذكاء الاصطناعي وطرق دمجها في مشاريع وتطبيقات الويب الحديثة لتقديم حلول مبتكرة.",
       link: "https://drive.google.com/file/d/1-c0f0Ec5BMT8GZJUzQQyBX1X0AdGGkOu/view?usp=sharing",
@@ -94,31 +94,30 @@ const Certificates = React.memo(function Certificates() {
       className="min-h-screen py-32 px-4 md:px-8 relative overflow-hidden bg-gradient-to-b from-background via-background/95 to-background"
     >
       {/* Animated Background Grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,159,0.03)_2px,transparent_2px),linear-gradient(90deg,rgba(0,255,159,0.03)_2px,transparent_2px)] bg-size-[80px_80px]" />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,200,130,0.02)_2px,transparent_2px),linear-gradient(90deg,rgba(0,200,130,0.02)_2px,transparent_2px)] bg-size-[80px_80px]" />
 
       {/* Floating Orbs */}
       <motion.div
         style={{ y }}
-        className="absolute top-20 right-10 w-96 h-96 bg-brand-mint-500 rounded-full blur-[150px] opacity-10"
+        className="absolute top-20 right-10 w-96 h-96 bg-brand-mint-500 rounded-full blur-[150px] opacity-5"
       />
       <motion.div
         style={{ y: useTransform(scrollYProgress, [0, 1], [-80, 80]) }}
-        className="absolute bottom-20 left-10 w-80 h-80 bg-teal-500 rounded-full blur-[120px] opacity-10"
+        className="absolute bottom-20 left-10 w-80 h-80 bg-teal-500 rounded-full blur-[120px] opacity-5"
       />
 
       {/* Floating Particles */}
       {particles.map((particle, i) => (
         <motion.div
           key={i}
-          className="absolute w-2 h-2 bg-brand-mint-400/20 rounded-full"
+          className="absolute w-1.5 h-1.5 bg-brand-mint-400/10 rounded-full"
           style={{
             left: `${particle.left}%`,
             top: `${particle.top}%`,
           }}
           animate={{
-            y: [0, -30, 0],
-            opacity: [0.2, 0.8, 0.2],
-            scale: [1, 1.5, 1],
+            y: [0, -20, 0],
+            opacity: [0.1, 0.4, 0.1],
           }}
           transition={{
             duration: particle.duration,
@@ -164,7 +163,7 @@ const Certificates = React.memo(function Certificates() {
             transition={{ duration: 0.8, delay: 0.5 }}
             viewport={{ once: true }}
           >
-            Verifiable credentials and professional certifications from tech leaders validating advanced expertise in modern frontend engineering, SEO optimization, and delivering high-performance, scalable web applications.
+            Formal training and certifications that shaped how I build software.
           </motion.p>
         </motion.div>
 
@@ -183,9 +182,9 @@ const Certificates = React.memo(function Certificates() {
             >
               {/* Card Glow Effect */}
               <motion.div
-                className={`absolute -inset-1 bg-gradient-to-r ${cert.color} rounded-3xl blur-xl opacity-20 group-hover:opacity-50 transition-opacity duration-500`}
+                className={`absolute -inset-1 bg-gradient-to-r ${cert.color} rounded-3xl blur-xl opacity-10 group-hover:opacity-30 transition-opacity duration-500`}
                 animate={{
-                  scale: hoveredIndex === index ? 1.05 : 1,
+                  scale: hoveredIndex === index ? 1.02 : 1,
                 }}
               />
 

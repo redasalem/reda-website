@@ -10,13 +10,13 @@
 /* Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #00FF9F #00000010;
+  scrollbar-color: rgba(0, 200, 130, 0.4) transparent;
 }
 
 /* Chrome, Edge, Safari */
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -24,17 +24,14 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #00FF9F, #00D1B2);
+  background: rgba(0, 200, 130, 0.35);
   border-radius: 20px;
   border: 2px solid transparent;
   background-clip: padding-box;
-  box-shadow: 0 2px 6px rgba(0, 255, 159, 0.25);
-  transition: 0.25s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #00E08E, #0D9488);
-  transform: scale(1.05);
+  background: rgba(0, 200, 130, 0.55);
 }
 
 
@@ -201,15 +198,15 @@
   }
 }
 
-/* Gaming-inspired animations and glow effects */
+/* Subtle animations and effects */
 @keyframes glow {
   0%,
   100% {
-    box-shadow: 0 0 5px rgba(0, 255, 159, 0.5), inset 0 0 5px rgba(0, 255, 159, 0.1);
+    box-shadow: 0 0 4px rgba(0, 200, 130, 0.2);
   }
 
   50% {
-    box-shadow: 0 0 20px rgba(0, 255, 159, 0.8), inset 0 0 10px rgba(0, 255, 159, 0.2);
+    box-shadow: 0 0 10px rgba(0, 200, 130, 0.35);
   }
 }
 
@@ -242,17 +239,17 @@
 }
 
 .glow-effect-mint {
-  animation: glow-mint 3s ease-in-out infinite;
+  animation: glow-mint 4s ease-in-out infinite;
 }
 
 @keyframes glow-mint {
   0%, 100% {
-    box-shadow: 0 0 5px rgba(0, 255, 159, 0.5), inset 0 0 5px rgba(0, 255, 159, 0.1);
-    border-color: rgba(0, 255, 159, 0.5);
+    box-shadow: 0 0 4px rgba(0, 200, 130, 0.15);
+    border-color: rgba(0, 200, 130, 0.3);
   }
   50% {
-    box-shadow: 0 0 20px rgba(0, 255, 159, 0.8), inset 0 0 10px rgba(0, 255, 159, 0.2);
-    border-color: rgba(0, 255, 159, 0.8);
+    box-shadow: 0 0 12px rgba(0, 200, 130, 0.3);
+    border-color: rgba(0, 200, 130, 0.5);
   }
 }
 
@@ -264,56 +261,54 @@
   animation: fadeIn 0.8s ease-out forwards;
 }
 
-/* Premium Component Utilities */
+/* Component Utilities */
 .btn-premium {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 0.5rem !important;
-  padding: 1rem 2rem !important;
-  border-radius: 9999px !important;
-  font-weight: 800 !important;
-  font-size: 1rem !important;
-  color: #000000 !important;
-  background: linear-gradient(90deg, #00FF9F 0%, #00CC80 100%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
-  box-shadow: 0 4px 15px rgba(0, 255, 159, 0.2) !important;
-  transition: all 0.3s ease !important;
-  cursor: pointer !important;
-  text-decoration: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  color: #000000;
+  background: linear-gradient(90deg, #00e08e 0%, #00b872 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 2px 8px rgba(0, 200, 130, 0.15);
+  transition: all 0.25s ease;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .btn-premium:hover {
-  transform: translateY(-2px) scale(1.05) !important;
-  box-shadow: 0 0 25px rgba(0, 255, 159, 0.5) !important;
-  background: linear-gradient(90deg, #00FF9F 20%, #00CC80 80%) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(0, 200, 130, 0.25);
 }
 
 .btn-secondary {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 0.5rem !important;
-  padding: 1rem 2rem !important;
-  border-radius: 9999px !important;
-  font-weight: 700 !important;
-  font-size: 1rem !important;
-  color: #FFFFFF !important;
-  background: rgba(255, 255, 255, 0.05) !important;
-  backdrop-filter: blur(12px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  transition: all 0.3s ease !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: inherit;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: all 0.25s ease;
 }
 
 .btn-secondary:hover {
-  transform: translateY(-2px) scale(1.05) !important;
-  background: rgba(255, 255, 255, 0.1) !important;
-  border-color: rgba(0, 255, 159, 0.5) !important;
-  box-shadow: 0 0 15px rgba(0, 255, 159, 0.2) !important;
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(0, 200, 130, 0.35);
 }
 
 .glass-card {
-  @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden transition-all duration-500 hover:border-brand-mint-500/30 hover:shadow-2xl hover:shadow-brand-mint-500/10;
+  @apply bg-card border border-border rounded-2xl overflow-hidden transition-all duration-300 hover:border-brand-mint-600/30 hover:shadow-lg;
 }
 
 .text-gradient-mint {
@@ -663,23 +658,23 @@
 
 /* Hover states for CSS-only interactions */
 .skill-badge-hover {
-  transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .skill-badge-hover:hover {
-  transform: scale(1.08);
-  background-color: rgba(0, 255, 159, 0.1);
-  border-color: rgba(0, 255, 159, 0.3);
+  transform: scale(1.04);
+  background-color: rgba(0, 200, 130, 0.08);
+  border-color: rgba(0, 200, 130, 0.2);
 }
 
 .card-hover-lift {
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .card-hover-lift:hover {
-  transform: translateY(-8px) scale(1.02);
-  border-color: rgba(0, 255, 159, 0.5);
-  box-shadow: 0 8px 30px rgba(0, 255, 159, 0.15);
+  transform: translateY(-4px);
+  border-color: rgba(0, 200, 130, 0.3);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
 /* Stagger delay utilities */

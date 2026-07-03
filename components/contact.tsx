@@ -102,10 +102,13 @@ const Contact = memo(function Contact() {
 
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="mb-16 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="bg-linear-to-r from-brand-mint-500 to-brand-mint-600 bg-clip-text text-transparent">Let's Build Something</span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-3">
+            <span className="bg-linear-to-r from-brand-mint-500 to-brand-mint-600 bg-clip-text text-transparent">Get in Touch</span>
           </h2>
-          <div className="w-20 h-1 bg-linear-to-r from-brand-mint-500 to-brand-mint-600 rounded-full" />
+          <p className="text-muted-foreground text-lg mb-4">
+            Have a project in mind or want to work together? I&apos;d like to hear about it.
+          </p>
+          <div className="w-16 h-1 bg-brand-mint-500/40 rounded-full" />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

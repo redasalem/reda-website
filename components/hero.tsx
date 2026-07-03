@@ -15,18 +15,14 @@ import {
   ArrowRight,
   Code2,
   Mailbox,
-  Rocket,
-  Sparkles,
   Users,
-  Zap,
 } from "lucide-react";
 
 const CODE_LINES = [
-  "const engineer = {",
-  '  name: "Reda Salem",',
-  '  focus: "Performance & Scale",',
-  '  stack: ["React", "Next.js", "React Native", "Node.js"],',
-  '  results: ["99 PageSpeed", "2x Faster", "+30% Engagement"],',
+  "const reda = {",
+  '  role: "Full-Stack Engineer",',
+  '  stack: ["React", "Next.js", "Node.js", "MongoDB"],',
+  "  available: true,",
   "};",
 ];
 
@@ -35,7 +31,6 @@ const CODE_LINE_CLASSES = [
   "text-blue-700 dark:text-blue-400",
   "text-green-700 dark:text-green-400",
   "text-cyan-700 dark:text-cyan-400",
-  "text-brand-mint-700 dark:text-brand-mint-300",
   "text-brand-mint-700 dark:text-brand-mint-400",
 ];
 
@@ -47,59 +42,20 @@ const SOCIAL_LINKS = [
     href: "https://github.com/redasalem",
     icon: Code2,
     iconClassName: "text-[#181717] dark:text-white",
-    glowBackground: "radial-gradient(circle, rgba(0, 255, 159, 0.45) 0%, transparent 72%)",
   },
   {
     name: "linkedin",
     href: "https://www.linkedin.com/in/reda-salem-dev/",
     icon: Users,
     iconClassName: "text-[#0A66C2]",
-    glowBackground: "radial-gradient(circle, rgba(10, 102, 194, 0.45) 0%, transparent 72%)",
   },
   {
     name: "email",
     href: "mailto:redasalem287@gmail.com",
     icon: Mailbox,
     iconClassName: "text-red-600 dark:text-red-300",
-    glowBackground: "radial-gradient(circle, rgba(239, 68, 68, 0.42) 0%, transparent 72%)",
   },
 ];
-
-const PARTICLES = Array.from({ length: 24 }, (_, index) => ({
-  id: index,
-  left: (index * 17) % 100,
-  top: (index * 29) % 100,
-  size: 1 + (index % 3),
-  duration: 10 + (index % 6) * 2,
-  delay: (index % 5) * 0.9,
-  drift: 280 + (index % 7) * 36,
-}));
-
-const KEYBOARD_KEYS = Array.from({ length: 36 }, (_, index) => index);
-
-const HeroParticles = memo(function HeroParticles() {
-  return (
-    <div className="absolute inset-0 hidden md:block pointer-events-none" aria-hidden="true">
-      {PARTICLES.map((particle) => (
-        <span
-          key={particle.id}
-          className="hero-particle absolute rounded-full bg-brand-mint-500/60 dark:bg-brand-mint-400/50"
-          style={
-            {
-              left: `${particle.left}%`,
-              top: `${particle.top}%`,
-              width: `${particle.size}px`,
-              height: `${particle.size}px`,
-              animationDuration: `${particle.duration}s`,
-              animationDelay: `${particle.delay}s`,
-              ["--hero-particle-drift" as string]: `${particle.drift}px`,
-            } as CSSProperties
-          }
-        />
-      ))}
-    </div>
-  );
-});
 
 const TypedCodeBlock = memo(function TypedCodeBlock() {
   const [charCount, setCharCount] = useState(0);
@@ -111,7 +67,7 @@ const TypedCodeBlock = memo(function TypedCodeBlock() {
 
     const timeout = window.setTimeout(() => {
       setCharCount((currentCount) => currentCount + 1);
-    }, 24);
+    }, 28);
 
     return () => window.clearTimeout(timeout);
   }, [charCount]);
@@ -160,8 +116,8 @@ const HeroShowcase = memo(function HeroShowcase() {
     const rect = panelRef.current.getBoundingClientRect();
     const relativeX = (clientX - rect.left) / rect.width;
     const relativeY = (clientY - rect.top) / rect.height;
-    const rotateX = (0.5 - relativeY) * 8;
-    const rotateY = (relativeX - 0.5) * 8;
+    const rotateX = (0.5 - relativeY) * 6;
+    const rotateY = (relativeX - 0.5) * 6;
 
     panelRef.current.style.setProperty("--hero-rotate-x", `${rotateX.toFixed(2)}deg`);
     panelRef.current.style.setProperty("--hero-rotate-y", `${rotateY.toFixed(2)}deg`);
@@ -202,77 +158,31 @@ const HeroShowcase = memo(function HeroShowcase() {
 
   return (
     <div className="relative opacity-0 animate-fade-in-delay-3">
-      <div className="absolute inset-0 rounded-3xl bg-linear-to-r from-brand-mint-500 to-brand-mint-600 blur-3xl opacity-20 dark:opacity-30 hero-orb" />
-
       <div
         ref={panelRef}
         onPointerMove={handlePointerMove}
         onPointerLeave={handlePointerLeave}
-        className="hero-showcase-panel relative bg-linear-to-br from-gray-200 to-gray-300 dark:from-slate-800 dark:to-slate-900 rounded-2xl p-4 border border-gray-300 dark:border-brand-mint-500/30 shadow-2xl"
+        className="hero-showcase-panel relative bg-card rounded-2xl p-1 border border-border shadow-xl"
       >
-        <div className="hero-showcase-glow absolute inset-0 rounded-2xl pointer-events-none" />
+        <div className="hero-showcase-glow absolute inset-0 rounded-2xl pointer-events-none opacity-50" />
 
-        <div className="bg-linear-to-br from-gray-100 to-gray-200 dark:from-slate-900 dark:to-black rounded-xl overflow-hidden border border-gray-300 dark:border-slate-700 shadow-inner">
-          <div className="bg-gray-200 dark:bg-slate-800 px-4 py-2 flex items-center gap-2 border-b border-gray-300 dark:border-slate-700">
-            <div className="flex gap-2">
-              <div className="w-3 h-3 rounded-full bg-red-500" />
-              <div className="w-3 h-3 rounded-full bg-yellow-500" />
-              <div className="w-3 h-3 rounded-full bg-green-500" />
+        <div className="bg-gray-50 dark:bg-slate-900/80 rounded-xl overflow-hidden border border-gray-200 dark:border-slate-700/50">
+          <div className="bg-gray-100 dark:bg-slate-800/80 px-4 py-2.5 flex items-center gap-2 border-b border-gray-200 dark:border-slate-700/50">
+            <div className="flex gap-1.5">
+              <div className="w-2.5 h-2.5 rounded-full bg-red-400/80" />
+              <div className="w-2.5 h-2.5 rounded-full bg-yellow-400/80" />
+              <div className="w-2.5 h-2.5 rounded-full bg-green-400/80" />
             </div>
-            <div className="flex-1 text-center text-xs text-gray-600 dark:text-slate-400 font-medium">
-              reda-salem.com
+            <div className="flex-1 text-center text-xs text-gray-500 dark:text-slate-500 font-medium">
+              ~/reda-salem
             </div>
           </div>
 
-          <div className="p-6 min-h-[400px] relative overflow-hidden bg-white dark:bg-slate-900">
+          <div className="p-6 min-h-[220px] bg-white dark:bg-slate-900">
             <TypedCodeBlock />
-
-            <div className="absolute top-8 right-8 w-20 h-20 hero-float-fast">
-              <div className="w-full h-full bg-gradient-to-br from-brand-mint-500/40 to-brand-mint-600/20 rounded-xl backdrop-blur-sm border border-brand-mint-500/50 flex items-center justify-center shadow-lg shadow-brand-mint-500/20">
-                <Zap className="w-8 h-8 text-brand-mint-100" />
-              </div>
-            </div>
-
-            <div className="absolute bottom-12 right-16 w-14 h-14 hero-float-slow">
-              <div className="w-full h-full bg-gradient-to-tr from-brand-mint-600/40 to-brand-mint-500/20 rounded-full backdrop-blur-sm border border-brand-mint-600/50 flex items-center justify-center shadow-lg shadow-brand-mint-600/20">
-                <Rocket className="w-6 h-6 text-brand-mint-100" />
-              </div>
-            </div>
-
-            <div className="absolute top-1/2 left-4 w-10 h-10 hero-float-side">
-              <div className="w-full h-full bg-gradient-to-bl from-brand-mint-400/30 to-transparent rounded-lg flex items-center justify-center">
-                <Sparkles className="w-5 h-5 text-brand-mint-200" />
-              </div>
-            </div>
-
-            <div className="absolute top-10 right-10 w-16 h-16 bg-brand-mint-500/30 dark:bg-brand-mint-500/20 rounded-lg backdrop-blur-sm border border-brand-mint-500/50 dark:border-brand-mint-500/30 hero-float-fast">
-              <div className="w-full h-full flex items-center justify-center">
-                <Zap className="w-7 h-7 text-brand-mint-50" />
-              </div>
-            </div>
-
-            <div className="absolute bottom-10 right-20 w-12 h-12 bg-brand-mint-600/30 dark:bg-brand-mint-600/20 rounded-full backdrop-blur-sm border border-brand-mint-600/50 dark:border-brand-mint-600/30 hero-float-slow">
-              <div className="w-full h-full flex items-center justify-center">
-                <Rocket className="w-5 h-5 text-brand-mint-100" />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-4 bg-gray-300 dark:bg-slate-800 rounded-lg p-3 border border-gray-400 dark:border-slate-700">
-          <div className="grid grid-cols-12 gap-1">
-            {KEYBOARD_KEYS.map((key) => (
-              <div
-                key={key}
-                className="h-8 bg-gray-400 dark:bg-slate-700 rounded border border-gray-500 dark:border-slate-600 transition-transform duration-150 hover:bg-brand-mint-500 hover:scale-95 cursor-pointer"
-              />
-            ))}
           </div>
         </div>
       </div>
-
-      <div className="absolute -top-10 -right-10 w-40 h-40 bg-brand-mint-500 dark:bg-brand-mint-600 rounded-full blur-3xl opacity-15 dark:opacity-20 hero-orb" />
-      <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-brand-mint-600 dark:bg-teal-600 rounded-full blur-3xl opacity-15 dark:opacity-20 hero-orb-reverse" />
     </div>
   );
 });
@@ -288,30 +198,22 @@ const HeroSection = memo(function HeroSection() {
 
   return (
     <section id="about" className="relative min-h-screen overflow-hidden flex items-center bg-background">
+      {/* Subtle background grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,200,130,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,200,130,0.03)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(0,200,130,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(0,200,130,0.06)_1px,transparent_1px)] bg-size-[100px_100px] mask-[radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]" />
+
+      {/* Single subtle orb */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
         <div
-          className="absolute w-[600px] h-[600px] top-[-200px] left-[-200px] bg-gradient-to-br from-brand-mint-500/20 via-brand-mint-400/10 to-transparent rounded-full blur-3xl hero-orb"
-          style={{ animationDuration: "15s" }}
-        />
-        <div
-          className="absolute w-[500px] h-[500px] bottom-[-150px] right-[-100px] bg-gradient-to-tl from-brand-mint-600/20 via-brand-mint-500/10 to-transparent rounded-full blur-3xl hero-orb-reverse"
-          style={{ animationDuration: "18s", animationDelay: "-2s" }}
-        />
-        <div
-          className="absolute w-[400px] h-[400px] top-[30%] right-[20%] bg-gradient-to-tr from-brand-mint-400/15 to-transparent rounded-full blur-3xl hero-orb"
-          style={{ animationDuration: "12s", animationDelay: "-5s" }}
+          className="absolute w-[500px] h-[500px] top-[-150px] left-[-150px] bg-gradient-to-br from-brand-mint-500/10 to-transparent rounded-full blur-3xl hero-orb"
+          style={{ animationDuration: "18s" }}
         />
       </div>
 
-      <HeroParticles />
-
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,159,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,159,0.05)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(0,255,159,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,159,0.1)_1px,transparent_1px)] bg-size-[100px_100px] mask-[radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]" />
-
       <div className="container mx-auto px-6 z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-8">
             <div className="inline-block mt-4 opacity-0 animate-fade-in-delay-1">
-              <span className="px-4 py-2 bg-brand-mint-500/20 dark:bg-brand-mint-500/30 border border-brand-mint-500/50 dark:border-brand-mint-400/50 rounded-full text-brand-mint-700 dark:text-brand-mint-300 text-sm font-medium backdrop-blur-sm">
+              <span className="px-4 py-2 bg-brand-mint-500/10 dark:bg-brand-mint-500/15 border border-brand-mint-500/20 dark:border-brand-mint-400/20 rounded-full text-brand-mint-700 dark:text-brand-mint-300 text-sm font-medium">
                 Open to Remote & Freelance
               </span>
             </div>
@@ -319,34 +221,21 @@ const HeroSection = memo(function HeroSection() {
             <div className="space-y-4">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight opacity-0 animate-fade-in-delay-1">
                 Hi, I&apos;m{" "}
-                <span
-                  className="font-extrabold"
-                  style={{
-                    background: "linear-gradient(90deg, #FFFFFF 0%, #00FF9F 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    filter: "drop-shadow(0 0 10px rgba(0,255,159,0.3))",
-                  }}
-                >
+                <span className="text-brand-mint-600 dark:text-brand-mint-400 font-extrabold">
                   Reda Salem
                 </span>
               </h1>
 
-              <h2 className="text-3xl lg:text-4xl font-semibold text-brand-mint-700 dark:text-brand-mint-300 opacity-0 animate-fade-in-delay-2">
-                Strategic Full-Stack Engineer — Architecting Scalable Systems
+              <h2 className="text-2xl lg:text-3xl font-semibold text-muted-foreground opacity-0 animate-fade-in-delay-2">
+                Full-Stack Engineer
               </h2>
             </div>
 
             <p className="text-lg text-muted-foreground leading-relaxed max-w-xl opacity-0 animate-fade-in-delay-2">
-              I architect high-throughput digital products with a <strong>system-first mindset</strong>. Deep fluency in
-              <strong>Node.js, Express &amp; MongoDB</strong> empowers me to engineer smarter,
-              faster, and more secure <strong>React, Next.js &amp; React Native</strong> frontends. The result: a{" "}
-              <strong>99/100 PageSpeed</strong> score, secure payment pipelines via Stripe Connect, and cross-platform
-              mobile apps that ship on time and scale under pressure.
-            </p>
-
-            <p className="text-sm text-muted-foreground/70 italic max-w-xl opacity-0 animate-fade-in-delay-3">
-              Driven by Clean Code (SOLID), compile-time type safety with TypeScript 5, and AI-augmented workflows for scalable, production-grade systems.
+              I build web applications that work well and ship on time. My stack is{" "}
+              <strong className="text-foreground">React, Next.js, Node.js, and MongoDB</strong> — and I&apos;ve used it
+              to deliver car rental platforms, multi-vendor marketplaces, and SEO tools
+              that handle real users and real payments.
             </p>
 
             <div className="flex flex-wrap gap-4 opacity-0 animate-fade-in-delay-3">
@@ -357,14 +246,14 @@ const HeroSection = memo(function HeroSection() {
 
               <button
                 onClick={scrollToContact}
-                className="cursor-pointer px-8 py-4 bg-gray-200/80 dark:bg-white/10 backdrop-blur-sm border border-gray-300 dark:border-white/20 text-gray-900 dark:text-white font-semibold rounded-full hover:bg-gray-300/80 dark:hover:bg-white/20 transition-all duration-300 flex items-center gap-2 hover:-translate-y-0.5"
+                className="cursor-pointer px-8 py-4 bg-gray-200/80 dark:bg-white/10 border border-gray-300 dark:border-white/15 text-gray-900 dark:text-white font-semibold rounded-full hover:bg-gray-300/80 dark:hover:bg-white/15 transition-all duration-300 flex items-center gap-2 hover:-translate-y-0.5"
               >
                 <ArrowDown className="w-5 h-5" />
-                Let&apos;s Connect
+                Get in Touch
               </button>
             </div>
 
-            <div className="flex gap-6 opacity-0 animate-fade-in-delay-4">
+            <div className="flex gap-5 opacity-0 animate-fade-in-delay-4">
               {SOCIAL_LINKS.map((social) => {
                 const Icon = social.icon;
 
@@ -375,14 +264,9 @@ const HeroSection = memo(function HeroSection() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`Visit Reda Salem on ${social.name}`}
-                    className="group relative w-12 h-12 bg-gray-200/80 dark:bg-white/10 backdrop-blur-sm border border-gray-300 dark:border-white/20 rounded-full flex items-center justify-center hover:bg-brand-mint-500 dark:hover:bg-brand-mint-500/30 hover:border-brand-mint-500 dark:hover:border-brand-mint-500/50 transition-all duration-300 hover:-translate-y-1 hover:scale-110"
+                    className="group w-11 h-11 bg-gray-100 dark:bg-white/8 border border-gray-200 dark:border-white/10 rounded-full flex items-center justify-center hover:border-brand-mint-500/30 transition-all duration-300 hover:-translate-y-0.5"
                   >
-                    <span
-                      className="absolute inset-0 rounded-full opacity-0 scale-75 blur-md transition-all duration-300 group-hover:opacity-100 group-hover:scale-125"
-                      style={{ background: social.glowBackground }}
-                      aria-hidden="true"
-                    />
-                    <span className={`relative z-10 transition-transform duration-300 group-hover:scale-110 ${social.iconClassName}`}>
+                    <span className={`transition-transform duration-300 group-hover:scale-110 ${social.iconClassName}`}>
                       <Icon className="w-5 h-5" />
                     </span>
                   </a>
@@ -396,8 +280,8 @@ const HeroSection = memo(function HeroSection() {
       </div>
 
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in-delay-4">
-        <div className="hero-scroll-shell w-6 h-10 border-2 border-gray-400 dark:border-white/30 rounded-full flex justify-center pt-2">
-          <div className="hero-scroll-dot w-1 h-3 bg-gray-600 dark:bg-white/50 rounded-full" />
+        <div className="hero-scroll-shell w-6 h-10 border-2 border-gray-400 dark:border-white/20 rounded-full flex justify-center pt-2">
+          <div className="hero-scroll-dot w-1 h-3 bg-gray-500 dark:bg-white/40 rounded-full" />
         </div>
       </div>
     </section>

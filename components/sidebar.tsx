@@ -173,7 +173,7 @@ const Sidebar = memo(function Sidebar() {
             isExpanded ? "opacity-100" : "opacity-0"
           }`}
         >
-          Strategic Documentation
+          Resume
         </p>
 
         <Link
