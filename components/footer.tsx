@@ -1,40 +1,13 @@
 import React, { useMemo } from "react";
-import { Code2, Users, Mailbox } from "lucide-react";
+import SocialIcon from "@/components/social-icon";
 
 const Footer = React.memo(function Footer() {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = useMemo(() => [
-    {
-      icon: (
-        <span className="relative z-20 text-[#181717] dark:text-white group-hover:text-[#181717] dark:group-hover:text-white">
-          <Code2 className="w-5 h-5" />
-        </span>
-      ),
-      bg: "bg-slate-100 dark:bg-slate-800",
-      href: "https://github.com/redasalem",
-      label: "GitHub",
-    },
-    {
-      icon: (
-        <span className="relative z-20 text-[#0A66C2]">
-          <Users className="w-5 h-5" />
-        </span>
-      ),
-      bg: "bg-blue-50 dark:bg-blue-900/20",
-      href: "https://www.linkedin.com/in/reda-salem-dev/",
-      label: "LinkedIn",
-    },
-    {
-      icon: (
-        <span className="relative z-20 text-red-600">
-          <Mailbox className="w-5 h-5" />
-        </span>
-      ),
-      bg: "bg-red-50 dark:bg-red-900/20",
-      href: "mailto:redasalem287@gmail.com",
-      label: "Email",
-    },
+    { platform: "github" as const, href: "https://github.com/redasalem", label: "GitHub" },
+    { platform: "linkedin" as const, href: "https://www.linkedin.com/in/reda-salem-dev/", label: "LinkedIn" },
+    { platform: "email" as const, href: "mailto:redasalem287@gmail.com", label: "Email" },
   ], []);
 
   return (
@@ -108,19 +81,15 @@ const Footer = React.memo(function Footer() {
             <h4 className="text-sm font-semibold text-foreground mb-6 uppercase tracking-wider">
               Connect
             </h4>
-            <div className="flex gap-4">
-              {socialLinks.map((social, index) => (
-                <a
+            <div className="flex gap-3">
+              {socialLinks.map((social) => (
+                <SocialIcon
                   key={social.label}
+                  platform={social.platform}
                   href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`group p-3 rounded-xl ${social.bg} transition-all duration-300 hover:scale-110 hover:shadow-lg text-xl flex items-center justify-center`}
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                  aria-label={social.label}
-                >
-                  {social.icon}
-                </a>
+                  label={social.label}
+                  size="sm"
+                />
               ))}
             </div>
           </div>

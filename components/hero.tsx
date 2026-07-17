@@ -10,13 +10,8 @@ import React, {
   type CSSProperties,
   type PointerEvent,
 } from "react";
-import {
-  ArrowDown,
-  ArrowRight,
-  Code2,
-  Mailbox,
-  Users,
-} from "lucide-react";
+import { ArrowDown, ArrowRight } from "lucide-react";
+import SocialIcon from "@/components/social-icon";
 
 const CODE_LINES = [
   "const reda = {",
@@ -37,24 +32,9 @@ const CODE_LINE_CLASSES = [
 const FULL_CODE = CODE_LINES.join("\n");
 
 const SOCIAL_LINKS = [
-  {
-    name: "github",
-    href: "https://github.com/redasalem",
-    icon: Code2,
-    iconClassName: "text-[#181717] dark:text-white",
-  },
-  {
-    name: "linkedin",
-    href: "https://www.linkedin.com/in/reda-salem-dev/",
-    icon: Users,
-    iconClassName: "text-[#0A66C2]",
-  },
-  {
-    name: "email",
-    href: "mailto:redasalem287@gmail.com",
-    icon: Mailbox,
-    iconClassName: "text-red-600 dark:text-red-300",
-  },
+  { platform: "github" as const, href: "https://github.com/redasalem" },
+  { platform: "linkedin" as const, href: "https://www.linkedin.com/in/reda-salem-dev/" },
+  { platform: "email" as const, href: "mailto:redasalem287@gmail.com" },
 ];
 
 const TypedCodeBlock = memo(function TypedCodeBlock() {
@@ -253,25 +233,15 @@ const HeroSection = memo(function HeroSection() {
               </button>
             </div>
 
-            <div className="flex gap-5 opacity-0 animate-fade-in-delay-4">
-              {SOCIAL_LINKS.map((social) => {
-                const Icon = social.icon;
-
-                return (
-                  <a
-                    key={social.name}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Visit Reda Salem on ${social.name}`}
-                    className="group w-11 h-11 bg-gray-100 dark:bg-white/8 border border-gray-200 dark:border-white/10 rounded-full flex items-center justify-center hover:border-brand-mint-500/30 transition-all duration-300 hover:-translate-y-0.5"
-                  >
-                    <span className={`transition-transform duration-300 group-hover:scale-110 ${social.iconClassName}`}>
-                      <Icon className="w-5 h-5" />
-                    </span>
-                  </a>
-                );
-              })}
+            <div className="flex gap-3 opacity-0 animate-fade-in-delay-4">
+              {SOCIAL_LINKS.map((social) => (
+                <SocialIcon
+                  key={social.platform}
+                  platform={social.platform}
+                  href={social.href}
+                  size="md"
+                />
+              ))}
             </div>
           </div>
 
@@ -279,7 +249,7 @@ const HeroSection = memo(function HeroSection() {
         </div>
       </div>
 
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in-delay-4">
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden sm:flex opacity-0 animate-fade-in-delay-4">
         <div className="hero-scroll-shell w-6 h-10 border-2 border-gray-400 dark:border-white/20 rounded-full flex justify-center pt-2">
           <div className="hero-scroll-dot w-1 h-3 bg-gray-500 dark:bg-white/40 rounded-full" />
         </div>

@@ -49,7 +49,7 @@ const SkillBadge = ({ name, icon, delay }: { name: string; icon: React.ReactNode
 const SkillCategory = ({ title, skills, index }: { title: string; skills: Array<{name: string; color: string}>; index: number }) => {
   return (
     <div
-      className="glass-card p-6 animate-page-fade-in"
+      className="glass-card card-hover-lift p-6 animate-page-fade-in"
       style={{ animationDelay: `${index * 0.1}s` }}
     >
       <h3 className="text-lg font-bold mb-4 text-foreground flex items-center gap-2">
@@ -80,7 +80,7 @@ const Skills = React.memo(function Skills() {
     <section
       id="skills"
       ref={containerRef}
-      className="relative min-h-screen py-20 md:py-32 overflow-hidden bg-background text-foreground transition-colors duration-500"
+      className="relative py-16 md:py-24 lg:py-32 overflow-hidden bg-background text-foreground transition-colors duration-500"
     >
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-72 h-72 bg-accent/3 rounded-full blur-3xl" />
@@ -96,7 +96,7 @@ const Skills = React.memo(function Skills() {
             </span>
           </div>
 
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4 md:mb-6 text-foreground">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 md:mb-6 text-foreground">
               What I Work With
           </h2>
           <div className="w-16 md:w-20 h-1 mx-auto bg-brand-mint-500/40 rounded-full" />

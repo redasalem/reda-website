@@ -237,7 +237,7 @@ const Projects = memo(function Projects() {
   return (
     <section
       id="projects"
-      className="py-20 md:py-32 relative overflow-hidden bg-background transition-colors duration-500"
+      className="py-16 md:py-24 lg:py-32 relative overflow-hidden bg-background transition-colors duration-500"
     >
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none" aria-hidden="true">
         <div className="project-ambient-orb absolute top-20 left-10 w-72 h-72 bg-accent/10 rounded-full blur-3xl" />
@@ -254,7 +254,7 @@ const Projects = memo(function Projects() {
             <span className="text-xs md:text-sm font-semibold text-accent">Case Studies</span>
           </div>
 
-          <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight">
             <span className="bg-linear-to-r from-primary via-accent to-primary bg-clip-text text-transparent bg-size-[200%_auto] animate-gradient">
               Featured Projects
             </span>

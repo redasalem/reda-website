@@ -6,17 +6,14 @@ import Link from "next/link";
 import {
   Award,
   Briefcase,
-  Code2,
   Contact,
   Download,
   List,
-  Mail,
   Menu,
-  Phone,
   User,
-  Users,
   X,
 } from "lucide-react";
+import SocialIcon from "@/components/social-icon";
 
 const NAV_ITEMS = [
   { label: "About Me", id: "about", icon: User },
@@ -27,30 +24,10 @@ const NAV_ITEMS = [
 ];
 
 const SOCIAL_LINKS = [
-  {
-    icon: Code2,
-    href: "https://github.com/redasalem",
-    label: "GitHub",
-    iconClassName: "hover:text-brand-mint-400",
-  },
-  {
-    icon: Users,
-    href: "https://www.linkedin.com/in/reda-salem-dev/",
-    label: "LinkedIn",
-    iconClassName: "hover:text-brand-mint-500",
-  },
-  {
-    icon: Mail,
-    href: "mailto:redasalem287@gmail.com",
-    label: "Email",
-    iconClassName: "hover:text-red-400",
-  },
-  {
-    icon: Phone,
-    href: "tel:+201121696299",
-    label: "Phone",
-    iconClassName: "hover:text-green-400",
-  },
+  { platform: "github" as const, href: "https://github.com/redasalem", label: "GitHub" },
+  { platform: "linkedin" as const, href: "https://www.linkedin.com/in/reda-salem-dev/", label: "LinkedIn" },
+  { platform: "email" as const, href: "mailto:redasalem287@gmail.com", label: "Email" },
+  { platform: "phone" as const, href: "tel:+201121696299", label: "WhatsApp" },
 ];
 
 const Sidebar = memo(function Sidebar() {
@@ -207,26 +184,16 @@ const Sidebar = memo(function Sidebar() {
           Connect
         </p>
 
-        <div className={`flex gap-3 transition-all duration-300 ${!isExpanded ? "flex-col" : ""}`}>
-          {SOCIAL_LINKS.map((social) => {
-            const Icon = social.icon;
-
-            return (
-              <a
-                key={social.label}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`p-2.5 rounded-lg bg-sidebar-primary/10 hover:bg-sidebar-primary/20 transition-all duration-300 text-lg flex items-center justify-center relative overflow-hidden text-sidebar-foreground/80 ${social.iconClassName}`}
-                title={social.label}
-              >
-                <span className="absolute inset-0 rounded-lg bg-brand-mint-500/10 opacity-0 transition-opacity duration-300 hover:opacity-100" aria-hidden="true" />
-                <span className="relative z-10 transition-transform duration-300 hover:-translate-y-0.5 hover:scale-110">
-                  <Icon className="w-5 h-5" />
-                </span>
-              </a>
-            );
-          })}
+        <div className={`flex gap-2 flex-wrap transition-all duration-300 ${!isExpanded ? "flex-col" : ""}`}>
+          {SOCIAL_LINKS.map((social) => (
+            <SocialIcon
+              key={social.label}
+              platform={social.platform}
+              href={social.href}
+              label={social.label}
+              size="sm"
+            />
+          ))}
         </div>
       </div>
     </aside>

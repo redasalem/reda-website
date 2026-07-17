@@ -96,13 +96,13 @@ const Contact = memo(function Contact() {
   ];
 
   return (
-    <section id="contact" className="min-h-screen py-20 px-4 md:px-8 relative bg-background transition-colors duration-300">
+    <section id="contact" className="py-16 md:py-24 lg:py-32 px-4 md:px-6 relative bg-background transition-colors duration-300">
       {/* Background glow */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-brand-mint-50/50 to-background pointer-events-none dark:via-brand-mint-950/20 dark:to-background" />
 
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="mb-16 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold mb-3">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3">
             <span className="bg-linear-to-r from-brand-mint-500 to-brand-mint-600 bg-clip-text text-transparent">Get in Touch</span>
           </h2>
           <p className="text-muted-foreground text-lg mb-4">
@@ -123,7 +123,7 @@ const Contact = memo(function Contact() {
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="flex items-start gap-4">
-                  <div className={`w-7 h-7 rounded-full ${info.bg} relative z-10 flex items-center justify-center shrink-0 hover:rotate-10 hover:scale-110 transition-transform duration-300 text-lg`}>
+                  <div className={`w-10 h-10 rounded-full ${info.bg} relative z-10 flex items-center justify-center shrink-0 hover:rotate-10 hover:scale-110 transition-transform duration-300 text-lg`}>
                     {info.icon}
                   </div>
                   <div>

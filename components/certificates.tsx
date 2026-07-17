@@ -91,7 +91,7 @@ const Certificates = React.memo(function Certificates() {
     <section
       id="certificates"
       ref={containerRef}
-      className="min-h-screen py-32 px-4 md:px-8 relative overflow-hidden bg-gradient-to-b from-background via-background/95 to-background"
+      className="py-16 md:py-24 lg:py-32 px-4 md:px-8 relative overflow-hidden bg-gradient-to-b from-background via-background/95 to-background"
     >
       {/* Animated Background Grid */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(0,200,130,0.02)_2px,transparent_2px),linear-gradient(90deg,rgba(0,200,130,0.02)_2px,transparent_2px)] bg-size-[80px_80px]" />
@@ -137,7 +137,7 @@ const Certificates = React.memo(function Certificates() {
           viewport={{ once: true }}
         >
           <motion.h2
-            className="text-5xl md:text-6xl font-bold mb-4"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
@@ -168,7 +168,7 @@ const Certificates = React.memo(function Certificates() {
         </motion.div>
 
         {/* Certificates Grid */}
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {certificates.map((cert, index) => (
             <motion.div
               key={index}
@@ -195,7 +195,7 @@ const Certificates = React.memo(function Certificates() {
                 className="relative bg-card/80 backdrop-blur-xl rounded-3xl overflow-hidden border border-border group-hover:border-brand-mint-500/50 shadow-xl group-hover:shadow-2xl group-hover:shadow-brand-mint-500/20 transition-all duration-500"
               >
                 {/* Image Section */}
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative aspect-video overflow-hidden">
                   {/* Gradient Overlay */}
                   <motion.div
                     className={`absolute inset-0 bg-gradient-to-br ${cert.color} opacity-60 mix-blend-multiply z-10`}
