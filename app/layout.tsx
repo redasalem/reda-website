@@ -4,6 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/lib/theme-provider";
 import FirebaseAnalyticsLoader from "@/components/firebase-analytics-loader";
 import GridBackground from "@/components/grid-background";
+import AnimatedBackground from "@/components/animated-background";
 import Script from "next/script";
 import "./globals.css";
 
@@ -617,6 +618,7 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <ThemeProvider>
+          <AnimatedBackground />
           <GridBackground />
           {/* Skip to main content for accessibility */}
           <a

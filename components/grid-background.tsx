@@ -23,14 +23,6 @@ export default function GridBackground() {
         }}
       />
 
-      {/* Hero-area brand glow for depth */}
-      <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[600px] rounded-full blur-[160px] opacity-[0.07] dark:opacity-[0.10]"
-        style={{
-          background:
-            "radial-gradient(circle, var(--color-brand-mint-500, oklch(0.85 0.20 158)) 0%, transparent 70%)",
-        }}
-      />
     </div>
   );
 }
