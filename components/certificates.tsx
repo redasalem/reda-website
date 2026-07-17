@@ -178,7 +178,7 @@ const Certificates = React.memo(function Certificates() {
               viewport={{ once: true }}
               onHoverStart={() => setHoveredIndex(index)}
               onHoverEnd={() => setHoveredIndex(null)}
-              className="group relative"
+              className="group relative h-full"
             >
               {/* Card Glow Effect */}
               <motion.div
@@ -192,7 +192,7 @@ const Certificates = React.memo(function Certificates() {
               <motion.div
                 whileHover={{ y: -8 }}
                 transition={{ duration: 0.3 }}
-                className="relative bg-card/80 backdrop-blur-xl rounded-3xl overflow-hidden border border-border group-hover:border-brand-mint-500/50 shadow-xl group-hover:shadow-2xl group-hover:shadow-brand-mint-500/20 transition-all duration-500"
+                className="relative h-full flex flex-col bg-card/80 backdrop-blur-xl rounded-3xl overflow-hidden border border-border group-hover:border-brand-mint-500/50 shadow-xl group-hover:shadow-2xl group-hover:shadow-brand-mint-500/20 transition-all duration-500"
               >
                 {/* Image Section */}
                 <div className="relative aspect-video overflow-hidden">
@@ -274,7 +274,7 @@ const Certificates = React.memo(function Certificates() {
                 </div>
 
                 {/* Content Section */}
-                <div className="p-6 space-y-4">
+                <div className="p-6 flex-1 flex flex-col space-y-4">
                   {/* Title & Issuer */}
                   <div>
                     <motion.h3 className="text-2xl font-bold text-foreground group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text group-hover:from-brand-mint-400 group-hover:to-brand-mint-500 transition-all duration-300 mb-2">
@@ -302,15 +302,17 @@ const Certificates = React.memo(function Certificates() {
                   </p>
 
                   {/* Action Button - Unified Premium Style */}
-                  <motion.a
-                    href={cert.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-premium w-full !py-4"
-                  >
-                    <span className="relative z-10">View Certificate</span>
-                    <Award className="w-5 h-5 ml-2" />
-                  </motion.a>
+                  <div className="pt-2 mt-auto">
+                    <motion.a
+                      href={cert.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-premium w-full !py-4"
+                    >
+                      <span className="relative z-10">View Certificate</span>
+                      <Award className="w-5 h-5 ml-2" />
+                    </motion.a>
+                  </div>
                 </div>
 
                 {/* Corner Decoration */}
