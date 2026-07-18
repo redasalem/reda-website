@@ -7,7 +7,7 @@ import BottomNavbar from "@/components/Navbar";
 import ChatbotLoader from "@/components/chatbot-loader";
 
 function SectionSkeleton() {
-  return <div className="min-h-96 bg-background animate-pulse" />;
+  return <div className="min-h-96 w-full bg-background animate-pulse" />;
 }
 
 const Skills = dynamic(() => import("@/components/skills"), {
@@ -36,18 +36,26 @@ export default function Home() {
           <BottomNavbar />
           <Hero />
 
-          <Suspense fallback={<SectionSkeleton />}>
-            <Skills />
-          </Suspense>
-          <Suspense fallback={<SectionSkeleton />}>
-            <Projects />
-          </Suspense>
-          <Suspense fallback={<SectionSkeleton />}>
-            <Certificates />
-          </Suspense>
-          <Suspense fallback={<SectionSkeleton />}>
-            <Contact />
-          </Suspense>
+          <div id="skills">
+            <Suspense fallback={<SectionSkeleton />}>
+              <Skills />
+            </Suspense>
+          </div>
+          <div id="projects">
+            <Suspense fallback={<SectionSkeleton />}>
+              <Projects />
+            </Suspense>
+          </div>
+          <div id="certificates">
+            <Suspense fallback={<SectionSkeleton />}>
+              <Certificates />
+            </Suspense>
+          </div>
+          <div id="contact">
+            <Suspense fallback={<SectionSkeleton />}>
+              <Contact />
+            </Suspense>
+          </div>
           <Suspense fallback={<SectionSkeleton />}>
             <Footer />
           </Suspense>
