@@ -56,7 +56,7 @@ const TypedCodeBlock = memo(function TypedCodeBlock() {
   const lines = useMemo(() => displayedCode.split("\n"), [displayedCode]);
 
   return (
-    <div className="space-y-3 font-mono text-sm opacity-0 animate-fade-in-delay-3">
+    <div className="space-y-3 font-mono text-sm">
       <pre className="text-brand-mint-700 dark:text-brand-mint-400 whitespace-pre-wrap">
         {lines.map((line, index) => {
           const isLastLine = index === lines.length - 1;
@@ -137,7 +137,7 @@ const HeroShowcase = memo(function HeroShowcase() {
   }, [resetTilt]);
 
   return (
-    <div className="relative opacity-0 animate-fade-in-delay-3">
+    <div className="relative">
       <div
         ref={panelRef}
         onPointerMove={handlePointerMove}
@@ -192,33 +192,33 @@ const HeroSection = memo(function HeroSection() {
       <div className="container mx-auto px-6 z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-8">
-            <div className="inline-block mt-4 opacity-0 animate-fade-in-delay-1">
+            <div className="inline-block mt-4">
               <span className="px-4 py-2 bg-brand-mint-500/10 dark:bg-brand-mint-500/15 border border-brand-mint-500/20 dark:border-brand-mint-400/20 rounded-full text-brand-mint-700 dark:text-brand-mint-300 text-sm font-medium">
                 Open to Remote & Freelance
               </span>
             </div>
 
             <div className="space-y-4">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight opacity-0 animate-fade-in-delay-1">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
                 Hi, I&apos;m{" "}
                 <span className="text-brand-mint-600 dark:text-brand-mint-400 font-extrabold">
                   Reda Salem
                 </span>
               </h1>
 
-              <h2 className="text-2xl lg:text-3xl font-semibold text-muted-foreground opacity-0 animate-fade-in-delay-2">
+              <h2 className="text-2xl lg:text-3xl font-semibold text-muted-foreground">
                 Full-Stack Engineer
               </h2>
             </div>
 
-            <p className="text-lg text-muted-foreground leading-relaxed max-w-xl opacity-0 animate-fade-in-delay-2">
+            <p className="text-lg text-muted-foreground leading-relaxed max-w-xl">
               I build web applications that work well and ship on time. My stack is{" "}
               <strong className="text-foreground">React, Next.js, Node.js, and MongoDB</strong> — and I&apos;ve used it
               to deliver car rental platforms, multi-vendor marketplaces, and SEO tools
               that handle real users and real payments.
             </p>
 
-            <div className="flex flex-wrap gap-4 opacity-0 animate-fade-in-delay-3">
+            <div className="flex flex-wrap gap-4">
               <button onClick={scrollToProjects} className="btn-secondary group">
                 View My Projects
                 <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
@@ -233,7 +233,7 @@ const HeroSection = memo(function HeroSection() {
               </button>
             </div>
 
-            <div className="flex gap-3 opacity-0 animate-fade-in-delay-4">
+            <div className="flex gap-3">
               {SOCIAL_LINKS.map((social) => (
                 <SocialIcon
                   key={social.platform}
@@ -249,7 +249,7 @@ const HeroSection = memo(function HeroSection() {
         </div>
       </div>
 
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden sm:flex opacity-0 animate-fade-in-delay-4">
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden sm:flex">
         <div className="hero-scroll-shell w-6 h-10 border-2 border-gray-400 dark:border-white/20 rounded-full flex justify-center pt-2">
           <div className="hero-scroll-dot w-1 h-3 bg-gray-500 dark:bg-white/40 rounded-full" />
         </div>

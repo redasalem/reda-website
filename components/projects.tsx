@@ -12,6 +12,8 @@ import Image from "next/image";
 import { Code, Code2, ExternalLink, Sparkles } from "lucide-react";
 import { getProjects, ProjectData } from "@/lib/firestore";
 
+import { initialProjects } from "@/data/projects";
+
 const ProjectCard = memo(function ProjectCard({
   project,
   index,
@@ -77,11 +79,7 @@ const ProjectCard = memo(function ProjectCard({
 
   return (
     <div
-      className="group relative h-full flex flex-col [perspective:1000px] opacity-0"
-      style={{
-        animation: "fadeIn 0.7s ease-out forwards",
-        animationDelay: `${index * 0.12}s`,
-      }}
+      className="group relative h-full flex flex-col [perspective:1000px]"
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
     >
@@ -197,21 +195,23 @@ const ProjectCard = memo(function ProjectCard({
 });
 
 const Projects = memo(function Projects() {
-  const [projects, setProjects] = useState<ProjectData[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [projects, setProjects] = useState<ProjectData[]>(initialProjects);
 
   useEffect(() => {
     let isMounted = true;
 
     const fetchProjects = async () => {
-      const data = await getProjects();
+      try {
+        const data = await getProjects();
 
-      if (!isMounted) {
-        return;
+        if (!isMounted || !data || data.length === 0) {
+          return;
+        }
+
+        setProjects(data);
+      } catch (err) {
+        console.error("Error fetching dynamic projects:", err);
       }
-
-      setProjects(data);
-      setLoading(false);
     };
 
     void fetchProjects();
@@ -220,19 +220,6 @@ const Projects = memo(function Projects() {
       isMounted = false;
     };
   }, []);
-
-  if (loading) {
-    return (
-      <div className="py-20 flex items-center justify-center min-h-[50vh]">
-        <div className="relative">
-          <div className="w-16 h-16 border-4 border-primary/30 border-t-primary rounded-full animate-spin" />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <Sparkles className="text-primary w-8 h-8 animate-pulse" />
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <section
@@ -248,9 +235,9 @@ const Projects = memo(function Projects() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10">
-        <div className="text-center mb-16 md:mb-20 space-y-4 opacity-0 animate-fade-in">
+        <div className="text-center mb-16 md:mb-20 space-y-4">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-accent/10 border border-accent/20 backdrop-blur-sm mb-4 hover:scale-105 transition-transform duration-300">
-            <Code className="text-accent w-3 h-3 md:w-4 md:h-4 animate-spin [animation-duration:4s]" />
+            <Code className="text-accent w-3 h-3 md:w-4 md:h-4" />
             <span className="text-xs md:text-sm font-semibold text-accent">Case Studies</span>
           </div>
 
