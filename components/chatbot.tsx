@@ -259,11 +259,6 @@ const ChatBot = memo(function ChatBot({ defaultOpen = false }: ChatBotProps) {
                   <Send className="w-4 h-4 translate-x-[1px] translate-y-[1px]" />
                 </button>
               </form>
-              <div className="text-center mt-3">
-                <span className="text-[10px] text-gray-500 font-medium tracking-wide">
-                  Powered by Gemini Flash 2.5
-                </span>
-              </div>
             </div>
           </motion.div>
         )}
