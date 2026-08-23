@@ -2,7 +2,8 @@
 
 import React, { memo, useEffect, useRef, useState, type FormEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Bot, MessageSquare, Send, Sparkles, X, Fingerprint } from "lucide-react";
+import { MessageSquare, Send, X } from "lucide-react";
+import AiAvatarIcon from "./ai-avatar-icon";
 
 interface Message {
   text: string;
@@ -111,16 +112,16 @@ const ChatBot = memo(function ChatBot({ defaultOpen = false }: ChatBotProps) {
                 </motion.div>
               ) : (
                 <motion.div
-                  key="sparkle"
+                  key="custom-ai"
                   initial={{ rotate: 90, opacity: 0 }}
                   animate={{ rotate: 0, opacity: 1 }}
                   exit={{ rotate: -90, opacity: 0 }}
                   transition={{ duration: 0.2 }}
                   className="flex items-center justify-center"
                 >
-                  <Sparkles className="w-6 h-6 text-brand-mint-400 drop-shadow-[0_0_10px_rgba(0,255,159,0.8)]" />
-                  <span className="absolute top-3 right-3 w-2.5 h-2.5 bg-brand-mint-400 rounded-full animate-ping" />
-                  <span className="absolute top-3 right-3 w-2.5 h-2.5 bg-brand-mint-400 rounded-full shadow-[0_0_10px_rgba(0,255,159,1)]" />
+                  <AiAvatarIcon className="w-9 h-9 drop-shadow-[0_0_12px_rgba(0,255,159,0.8)]" />
+                  <span className="absolute top-2 right-2 w-2.5 h-2.5 bg-brand-mint-400 rounded-full animate-ping" />
+                  <span className="absolute top-2 right-2 w-2.5 h-2.5 bg-brand-mint-400 rounded-full shadow-[0_0_10px_rgba(0,255,159,1)]" />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -153,9 +154,9 @@ const ChatBot = memo(function ChatBot({ defaultOpen = false }: ChatBotProps) {
               
               <div className="relative flex items-center gap-4 z-10">
                 <div className="relative group/avatar">
-                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-mint-400 to-teal-600 flex items-center justify-center shadow-[0_0_20px_rgba(0,255,159,0.3)] border border-brand-mint-300/30 overflow-hidden relative">
-                    <div className="absolute inset-0 bg-white/20 -translate-y-full group-hover/avatar:translate-y-full transition-transform duration-1000 ease-in-out" />
-                    <Bot className="w-6 h-6 text-black" />
+                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-slate-900 to-slate-950 flex items-center justify-center shadow-[0_0_20px_rgba(0,255,159,0.3)] border border-brand-mint-400/40 overflow-hidden relative">
+                    <div className="absolute inset-0 bg-brand-mint-500/10 -translate-y-full group-hover/avatar:translate-y-full transition-transform duration-1000 ease-in-out" />
+                    <AiAvatarIcon className="w-8 h-8 drop-shadow-[0_0_10px_rgba(0,255,159,0.7)]" />
                   </div>
                   <div className="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-emerald-500 border-2 border-black rounded-full shadow-[0_0_10px_rgba(16,185,129,0.8)]" />
                 </div>
@@ -186,8 +187,8 @@ const ChatBot = memo(function ChatBot({ defaultOpen = false }: ChatBotProps) {
                   <div className="relative w-24 h-24 mb-8 flex items-center justify-center">
                     <div className="absolute inset-0 border border-brand-mint-500/20 rounded-full animate-[spin_10s_linear_infinite]" />
                     <div className="absolute inset-2 border border-brand-mint-500/30 rounded-full animate-[spin_15s_linear_infinite_reverse]" />
-                    <div className="w-16 h-16 rounded-full bg-brand-mint-500/10 flex items-center justify-center backdrop-blur-sm border border-brand-mint-500/20 shadow-[0_0_30px_rgba(0,255,159,0.1)]">
-                      <Fingerprint className="w-8 h-8 text-brand-mint-400 opacity-80" />
+                    <div className="w-16 h-16 rounded-full bg-brand-mint-500/10 flex items-center justify-center backdrop-blur-sm border border-brand-mint-500/20 shadow-[0_0_30px_rgba(0,255,159,0.15)]">
+                      <AiAvatarIcon className="w-9 h-9" />
                     </div>
                   </div>
                   <h4 className="text-white text-xl font-bold mb-2 tracking-tight">Ask me anything</h4>

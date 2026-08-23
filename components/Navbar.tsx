@@ -52,6 +52,24 @@ const NAV_ITEMS: NavItem[] = [
   },
 ];
 
+const TAB_COLORS = [
+  "text-brand-mint-400",
+  "text-brand-cyan-400",
+  "text-brand-violet-400",
+  "text-brand-mint-400",
+  "text-brand-amber-400",
+  "text-brand-cyan-400",
+];
+
+const TAB_GLOW_BG = [
+  "bg-brand-mint-500",
+  "bg-brand-cyan-500",
+  "bg-brand-violet-500",
+  "bg-brand-mint-500",
+  "bg-brand-amber-500",
+  "bg-brand-cyan-500",
+];
+
 const BottomNavbar = memo(function BottomNavbar() {
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -61,9 +79,9 @@ const BottomNavbar = memo(function BottomNavbar() {
 
   return (
     <nav className="sm:hidden fixed bottom-4 left-4 right-4 z-50 nav-slide-up">
-      <div className="relative bg-card/80 dark:bg-card/60 backdrop-blur-xl rounded-2xl border border-border shadow-xl shadow-black/5 overflow-hidden">
+      <div className="relative bg-slate-950/80 backdrop-blur-2xl rounded-2xl border border-white/10 shadow-2xl shadow-black/40 overflow-hidden">
         <div
-          className="absolute top-0 bottom-0 bg-brand-mint-500/10 rounded-2xl transition-transform duration-300 ease-out"
+          className="absolute top-0 bottom-0 bg-gradient-to-r from-brand-mint-500/10 via-brand-cyan-500/10 to-brand-violet-500/10 rounded-2xl transition-transform duration-300 ease-out"
           style={{
             width: `${100 / NAV_ITEMS.length}%`,
             transform: `translateX(${activeIndex * 100}%)`,
@@ -75,6 +93,9 @@ const BottomNavbar = memo(function BottomNavbar() {
           {NAV_ITEMS.map((item, index) => {
             const isActive = activeIndex === index;
             const Icon = item.icon;
+            const activeTextColor = TAB_COLORS[index % TAB_COLORS.length];
+            const activeBgColor = TAB_GLOW_BG[index % TAB_GLOW_BG.length];
+
             const sharedContent = (
               <>
                 <div
@@ -84,19 +105,19 @@ const BottomNavbar = memo(function BottomNavbar() {
                 >
                   <Icon
                     className={`w-5 h-5 transition-colors duration-200 ${
-                      isActive ? "text-brand-mint-500" : "text-muted-foreground"
+                      isActive ? activeTextColor : "text-muted-foreground"
                     }`}
                   />
                 </div>
                 <span
-                  className={`text-[9px] font-medium truncate w-full text-center transition-all duration-200 ${
-                    isActive ? "text-brand-mint-500 opacity-100" : "text-muted-foreground opacity-70"
+                  className={`text-[9px] font-semibold truncate w-full text-center transition-all duration-200 ${
+                    isActive ? `${activeTextColor} opacity-100` : "text-muted-foreground opacity-70"
                   }`}
                 >
                   {item.label}
                 </span>
                 <span
-                  className={`absolute -bottom-1 w-1 h-1 rounded-full bg-brand-mint-500 transition-all duration-200 ${
+                  className={`absolute -bottom-1 w-1.5 h-1.5 rounded-full ${activeBgColor} shadow-[0_0_8px_currentColor] transition-all duration-200 ${
                     isActive ? "scale-100 opacity-100" : "scale-0 opacity-0"
                   }`}
                   aria-hidden="true"
