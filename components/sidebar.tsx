@@ -40,11 +40,11 @@ const NAV_COLORS = [
 ];
 
 const NAV_BG_COLORS = [
-  "bg-brand-mint-500/15",
-  "bg-brand-violet-500/15",
-  "bg-brand-cyan-500/15",
-  "bg-brand-amber-500/15",
-  "bg-brand-mint-500/15",
+  "bg-brand-mint-500/15 text-brand-mint-400",
+  "bg-brand-violet-500/15 text-brand-violet-400",
+  "bg-brand-cyan-500/15 text-brand-cyan-400",
+  "bg-brand-amber-500/15 text-brand-amber-400",
+  "bg-brand-mint-500/15 text-brand-mint-400",
 ];
 
 const Sidebar = memo(function Sidebar() {
@@ -75,28 +75,33 @@ const Sidebar = memo(function Sidebar() {
 
   return (
     <aside
-      className={`hidden sm:flex sticky left-0 top-0 h-screen bg-sidebar/80 backdrop-blur-xl text-sidebar-foreground border-r border-sidebar-border/50 p-6 flex-col z-40 overflow-auto transition-[width] duration-300 ${
-        isExpanded ? "w-72" : "w-20"
+      className={`hidden sm:flex sticky left-0 top-0 h-screen bg-slate-950/85 backdrop-blur-2xl text-sidebar-foreground border-r border-white/10 flex-col z-40 overflow-y-auto overflow-x-hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden transition-all duration-300 ${
+        isExpanded ? "w-72 p-6" : "w-20 px-3 py-5 items-center"
       }`}
     >
-      <button
-        type="button"
-        onClick={() => setIsExpanded((currentValue) => !currentValue)}
-        className="absolute cursor-pointer top-4 right-4 p-2 rounded-lg hover:bg-sidebar-primary/20 transition-colors z-10 hover:scale-105 active:scale-95"
-        aria-label={isExpanded ? "Collapse menu" : "Expand menu"}
-      >
-        {isExpanded ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-      </button>
+      {/* Toggle Button */}
+      <div className={`w-full flex ${isExpanded ? "justify-end mb-2" : "justify-center mb-4"}`}>
+        <button
+          type="button"
+          onClick={() => setIsExpanded((currentValue) => !currentValue)}
+          className="cursor-pointer p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-muted-foreground hover:text-white border border-white/10 transition-all duration-200 hover:scale-105 active:scale-95 flex items-center justify-center shadow-md"
+          aria-label={isExpanded ? "Collapse menu" : "Expand menu"}
+          title={isExpanded ? "Collapse sidebar" : "Expand sidebar"}
+        >
+          {isExpanded ? <X className="w-4 h-4" /> : <Menu className="w-5 h-5" />}
+        </button>
+      </div>
 
-      <div className={`text-center mb-8 transition-all duration-300 ${!isExpanded ? "mt-12" : ""}`}>
-        <div className={`mb-4 flex justify-center transition-all duration-300 ${!isExpanded ? "mb-0" : ""}`}>
+      {/* Avatar & Profile */}
+      <div className={`text-center transition-all duration-300 ${isExpanded ? "mb-6" : "mb-5 flex flex-col items-center"}`}>
+        <div className={`flex justify-center transition-all duration-300 ${isExpanded ? "mb-4" : "mb-0"}`}>
           {/* Animated gradient ring around avatar */}
           <div
-            className={`relative rounded-full overflow-hidden border-2 avatar-ring transition-all duration-300 ${
-              isExpanded ? "w-24 h-24" : "w-[30px] h-[30px]"
+            className={`relative rounded-full overflow-hidden border-2 avatar-ring transition-all duration-300 shadow-xl ${
+              isExpanded ? "w-24 h-24" : "w-12 h-12"
             }`}
             style={{
-              boxShadow: "0 0 20px rgba(0, 200, 130, 0.15), 0 0 40px rgba(139, 92, 246, 0.08)",
+              boxShadow: "0 0 20px rgba(0, 200, 130, 0.25), 0 0 35px rgba(139, 92, 246, 0.15)",
             }}
           >
             <Image
@@ -104,36 +109,36 @@ const Sidebar = memo(function Sidebar() {
               alt="Reda Salem - Full-Stack Engineer"
               fill
               priority
-              sizes={isExpanded ? "96px" : "30px"}
+              sizes={isExpanded ? "96px" : "48px"}
               className="object-cover"
             />
           </div>
         </div>
 
+        {/* Text info only visible when expanded */}
         <div
-          className={`transition-all duration-200 ${
-            isExpanded ? "opacity-100 translate-y-0 max-h-32" : "opacity-0 -translate-y-2 max-h-0 overflow-hidden"
+          className={`transition-all duration-300 ${
+            isExpanded ? "opacity-100 translate-y-0 max-h-32 mt-2" : "opacity-0 -translate-y-4 max-h-0 overflow-hidden pointer-events-none"
           }`}
         >
-          <p className="text-2xl font-bold text-gradient-hero mb-2">Reda Salem</p>
-          <p className="text-lg text-sidebar-foreground/80">Full-Stack Engineer</p>
-          <p className="text-sm mt-1 text-sidebar-foreground/60">Next.js · React · React Native · TypeScript</p>
+          <p className="text-xl font-bold text-gradient-hero mb-1 tracking-tight">Reda Salem</p>
+          <p className="text-sm font-semibold text-sidebar-foreground/90">Full-Stack Engineer</p>
+          <p className="text-xs mt-1 text-muted-foreground">Next.js · React · Node.js</p>
         </div>
       </div>
 
       {/* Gradient divider */}
-      <div className="h-px bg-gradient-to-r from-transparent via-brand-mint-500/30 to-transparent mb-8" />
+      <div className={`h-px bg-gradient-to-r from-transparent via-brand-mint-500/30 to-transparent transition-all duration-300 ${isExpanded ? "w-full mb-6" : "w-10 mb-4"}`} />
 
-      <nav className="flex-1 mb-8">
-        <p
-          className={`text-xs font-semibold text-sidebar-foreground/50 uppercase tracking-wider mb-4 transition-opacity duration-200 ${
-            isExpanded ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          Navigation
-        </p>
+      {/* Navigation */}
+      <nav className={`w-full flex-1 ${isExpanded ? "mb-6" : "mb-4 flex flex-col items-center"}`}>
+        {isExpanded ? (
+          <p className="text-[11px] font-bold text-muted-foreground uppercase tracking-widest mb-3 px-2">
+            Navigation
+          </p>
+        ) : null}
 
-        <div className="space-y-1.5">
+        <div className={`space-y-1.5 w-full ${!isExpanded ? "flex flex-col items-center" : ""}`}>
           {NAV_ITEMS.map((item, idx) => {
             const Icon = item.icon;
             const isActive = activeItem === item.id;
@@ -145,21 +150,27 @@ const Sidebar = memo(function Sidebar() {
                 key={item.id}
                 type="button"
                 onClick={() => scrollToSection(item.id)}
-                className={`w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium text-sidebar-foreground dark:text-white hover:bg-sidebar-primary/10 transition-all duration-300 group relative overflow-hidden ${
-                  !isExpanded ? "flex justify-center px-2" : ""
-                } ${isActive ? activeBg : ""}`}
+                className={`transition-all duration-200 group relative overflow-hidden flex items-center ${
+                  isExpanded
+                    ? `w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium hover:bg-white/5 ${
+                        isActive ? activeBg : "text-sidebar-foreground/80 hover:text-white"
+                      }`
+                    : `w-11 h-11 justify-center rounded-xl hover:bg-white/10 ${
+                        isActive ? activeBg : "text-muted-foreground hover:text-white"
+                      }`
+                }`}
                 title={!isExpanded ? item.label : ""}
               >
                 {/* Hover gradient sweep */}
                 <span className="absolute inset-0 bg-gradient-to-r from-brand-mint-500/0 via-brand-mint-500/10 to-brand-violet-500/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100 rounded-xl" aria-hidden="true" />
 
                 {isExpanded ? (
-                  <span className="relative z-10 flex items-center justify-between gap-3 transition-transform duration-300 group-hover:translate-x-1">
+                  <span className="relative z-10 flex items-center justify-between w-full gap-3 transition-transform duration-300 group-hover:translate-x-1">
                     <span>{item.label}</span>
-                    <Icon className={`w-4 h-4 transition-colors duration-300 ${isActive ? activeColor : "text-sidebar-foreground/50"}`} />
+                    <Icon className={`w-4 h-4 transition-colors duration-200 ${isActive ? activeColor : "text-muted-foreground group-hover:text-white"}`} />
                   </span>
                 ) : (
-                  <span className="relative z-10 text-lg transition-all duration-300 group-hover:scale-110">
+                  <span className="relative z-10 transition-transform duration-200 group-hover:scale-110">
                     <Icon className={`w-5 h-5 ${isActive ? activeColor : ""}`} />
                   </span>
                 )}
@@ -169,47 +180,45 @@ const Sidebar = memo(function Sidebar() {
         </div>
       </nav>
 
-      <div className="space-y-3 mb-4">
-        <p
-          className={`text-xs font-semibold text-sidebar-foreground/50 uppercase tracking-wider mb-2 transition-opacity duration-200 ${
-            isExpanded ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          Resume
-        </p>
+      {/* Resume Section */}
+      <div className={`w-full ${isExpanded ? "mb-5" : "mb-4 flex justify-center"}`}>
+        {isExpanded ? (
+          <p className="text-[11px] font-bold text-muted-foreground uppercase tracking-widest mb-2 px-2">
+            Resume
+          </p>
+        ) : null}
 
         <Link
           href="/download"
-          className={`w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium text-sidebar-foreground dark:text-white bg-gradient-to-r from-brand-mint-500/8 to-brand-violet-500/8 hover:from-brand-mint-500/15 hover:to-brand-violet-500/15 border border-brand-mint-500/10 hover:border-brand-mint-500/25 transition-all duration-300 group flex items-center gap-3 ${
-            !isExpanded ? "justify-center px-2" : ""
+          className={`transition-all duration-200 group flex items-center ${
+            isExpanded
+              ? "w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium bg-gradient-to-r from-brand-mint-500/10 via-brand-cyan-500/5 to-brand-violet-500/10 hover:from-brand-mint-500/20 hover:to-brand-violet-500/20 border border-brand-mint-500/20 hover:border-brand-mint-500/40 gap-3 shadow-sm"
+              : "w-11 h-11 justify-center rounded-xl bg-brand-mint-500/10 hover:bg-brand-mint-500/20 border border-brand-mint-500/25 hover:border-brand-mint-500/50"
           }`}
-          title={!isExpanded ? "View Resumes" : "Front-End & Full-Stack CVs"}
+          title="View Resumes (Front-End & Full-Stack)"
         >
-          <span className="text-lg flex-shrink-0 relative z-10 text-brand-mint-400 transition-transform duration-300 group-hover:rotate-6">
+          <span className="flex-shrink-0 text-brand-mint-400 transition-transform duration-300 group-hover:rotate-6">
             <Download className="w-5 h-5" />
           </span>
 
-          <span
-            className={`relative z-10 flex flex-col transition-all duration-200 ${
-              isExpanded ? "opacity-100 translate-x-0" : "opacity-0 absolute -translate-x-2 pointer-events-none"
-            }`}
-          >
-            <span className="text-xs font-semibold leading-tight">View Resumes</span>
-            <span className="text-[10px] text-sidebar-foreground/40 leading-tight mt-0.5">Front-End - Full-Stack CVs</span>
-          </span>
+          {isExpanded ? (
+            <span className="relative z-10 flex flex-col">
+              <span className="text-xs font-bold leading-tight text-white">View Resumes</span>
+              <span className="text-[10px] text-muted-foreground leading-tight mt-0.5">Front-End · Full-Stack</span>
+            </span>
+          ) : null}
         </Link>
       </div>
 
-      <div className="space-y-4">
-        <p
-          className={`text-xs font-semibold text-sidebar-foreground/50 uppercase tracking-wider transition-opacity duration-200 ${
-            isExpanded ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          Connect
-        </p>
+      {/* Social / Connect */}
+      <div className={`w-full ${isExpanded ? "space-y-3" : "flex flex-col items-center mt-auto pt-2"}`}>
+        {isExpanded ? (
+          <p className="text-[11px] font-bold text-muted-foreground uppercase tracking-widest px-2">
+            Connect
+          </p>
+        ) : null}
 
-        <div className={`flex gap-2 flex-wrap transition-all duration-300 ${!isExpanded ? "flex-col" : ""}`}>
+        <div className={isExpanded ? "flex gap-2 flex-wrap" : "grid grid-cols-2 gap-1.5 justify-items-center"}>
           {SOCIAL_LINKS.map((social) => (
             <SocialIcon
               key={social.label}
@@ -217,6 +226,7 @@ const Sidebar = memo(function Sidebar() {
               href={social.href}
               label={social.label}
               size="sm"
+              className={!isExpanded ? "!w-8 !h-8 !text-xs" : ""}
             />
           ))}
         </div>
