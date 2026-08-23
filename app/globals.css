@@ -186,6 +186,25 @@
   --color-brand-mint-800: oklch(0.55 0.12 158);
   --color-brand-mint-900: oklch(0.45 0.10 158);
   --color-brand-mint-950: oklch(0.25 0.05 158);
+
+  /* Electric Violet — highlights & accents */
+  --color-brand-violet-300: oklch(0.80 0.18 290);
+  --color-brand-violet-400: oklch(0.72 0.22 290);
+  --color-brand-violet-500: oklch(0.65 0.27 290);
+  --color-brand-violet-600: oklch(0.55 0.24 290);
+  --color-brand-violet-700: oklch(0.45 0.20 290);
+
+  /* Neon Cyan — code & tech */
+  --color-brand-cyan-300: oklch(0.85 0.14 200);
+  --color-brand-cyan-400: oklch(0.78 0.16 200);
+  --color-brand-cyan-500: oklch(0.72 0.18 200);
+  --color-brand-cyan-600: oklch(0.62 0.15 200);
+
+  /* Warm Amber — achievements & certificates */
+  --color-brand-amber-300: oklch(0.88 0.14 80);
+  --color-brand-amber-400: oklch(0.82 0.16 75);
+  --color-brand-amber-500: oklch(0.78 0.18 70);
+  --color-brand-amber-600: oklch(0.68 0.16 70);
 }
 
 @layer base {
@@ -222,17 +241,7 @@
   }
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
 .glow-effect {
   animation: glow 3s ease-in-out infinite;
@@ -691,3 +700,265 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* =============================================
+   PREMIUM DESIGN EFFECTS — Multi-Color System
+   ============================================= */
+
+/* Animated Gradient Text */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.text-gradient-animated {
+  background: linear-gradient(
+    135deg,
+    var(--color-brand-mint-400),
+    var(--color-brand-violet-400),
+    var(--color-brand-cyan-400),
+    var(--color-brand-mint-400)
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradientShift 6s ease infinite;
+}
+
+.text-gradient-hero {
+  background: linear-gradient(
+    135deg,
+    var(--color-brand-mint-400),
+    var(--color-brand-cyan-400),
+    var(--color-brand-violet-400),
+    var(--color-brand-mint-300)
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradientShift 4s ease infinite;
+}
+
+/* Rotating Border Glow */
+@keyframes borderRotate {
+  0% { --border-angle: 0deg; }
+  100% { --border-angle: 360deg; }
+}
+
+@property --border-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.gradient-border-card {
+  position: relative;
+  border: 1px solid transparent;
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+.gradient-border-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--border-angle, 0deg),
+    transparent 40%,
+    var(--color-brand-mint-500) 50%,
+    var(--color-brand-violet-500) 60%,
+    transparent 70%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  animation: borderRotate 4s linear infinite;
+  pointer-events: none;
+}
+
+.gradient-border-card:hover::before {
+  opacity: 1;
+}
+
+/* Glassmorphism - Enhanced */
+.glass-premium {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px) saturate(1.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dark .glass-premium {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+/* Noise Texture Overlay */
+.noise-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.015;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+  z-index: 1;
+  mix-blend-mode: overlay;
+}
+
+/* Multi-Color Glow Pulse */
+@keyframes multiGlow {
+  0%, 100% {
+    box-shadow:
+      0 0 20px rgba(0, 200, 130, 0.15),
+      0 0 40px rgba(0, 200, 130, 0.05);
+  }
+  33% {
+    box-shadow:
+      0 0 20px rgba(139, 92, 246, 0.15),
+      0 0 40px rgba(139, 92, 246, 0.05);
+  }
+  66% {
+    box-shadow:
+      0 0 20px rgba(6, 182, 212, 0.15),
+      0 0 40px rgba(6, 182, 212, 0.05);
+  }
+}
+
+.multi-glow {
+  animation: multiGlow 6s ease-in-out infinite;
+}
+
+/* Animated Gradient Button */
+.btn-gradient {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  color: #000000;
+  background: linear-gradient(135deg, #00e08e 0%, #06b6d4 50%, #8b5cf6 100%);
+  background-size: 200% 200%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 200, 130, 0.25);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+  animation: gradientShift 4s ease infinite;
+}
+
+.btn-gradient:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 25px rgba(0, 200, 130, 0.3),
+    0 4px 15px rgba(139, 92, 246, 0.2);
+}
+
+/* Section Divider - Gradient Line */
+.section-divider {
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-brand-mint-500),
+    var(--color-brand-violet-500),
+    var(--color-brand-cyan-500),
+    transparent
+  );
+  border: none;
+  opacity: 0.4;
+}
+
+/* Glowing Input Focus */
+.input-glow:focus {
+  border-color: var(--color-brand-mint-500);
+  box-shadow:
+    0 0 0 3px rgba(0, 200, 130, 0.1),
+    0 0 20px rgba(0, 200, 130, 0.1);
+}
+
+/* Animated Avatar Ring */
+@keyframes avatarRing {
+  0% { border-color: var(--color-brand-mint-500); }
+  33% { border-color: var(--color-brand-violet-500); }
+  66% { border-color: var(--color-brand-cyan-500); }
+  100% { border-color: var(--color-brand-mint-500); }
+}
+
+.avatar-ring {
+  animation: avatarRing 6s ease-in-out infinite;
+}
+
+/* Floating Badge Pulse */
+@keyframes badgePulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(0, 200, 130, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(0, 200, 130, 0);
+  }
+}
+
+.badge-pulse {
+  animation: badgePulse 2s ease-in-out infinite;
+}
+
+/* Card Shimmer on Hover */
+.card-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.03) 45%,
+    rgba(255, 255, 255, 0.06) 50%,
+    rgba(255, 255, 255, 0.03) 55%,
+    transparent 60%
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.card-shimmer:hover::after {
+  transform: translateX(100%);
+}
+
+/* Orb animations for background */
+@keyframes orbFloat1 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  25% { transform: translate3d(30px, -20px, 0) scale(1.05); }
+  50% { transform: translate3d(-10px, -35px, 0) scale(1.02); }
+  75% { transform: translate3d(20px, -10px, 0) scale(1.07); }
+}
+
+@keyframes orbFloat2 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  25% { transform: translate3d(-25px, 15px, 0) scale(1.04); }
+  50% { transform: translate3d(15px, 25px, 0) scale(1.08); }
+  75% { transform: translate3d(-20px, -10px, 0) scale(1.03); }
+}
+
+@keyframes orbFloat3 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  33% { transform: translate3d(20px, -25px, 0) scale(1.06); }
+  66% { transform: translate3d(-15px, 20px, 0) scale(1.03); }
+}
+

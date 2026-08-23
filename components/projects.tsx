@@ -85,20 +85,12 @@ const ProjectCard = memo(function ProjectCard({
     >
       <div
         ref={surfaceRef}
-        className="glass-card project-card-surface flex flex-col h-full group-hover:-translate-y-3 relative overflow-hidden hover:shadow-[0_25px_50px_-12px_rgba(0,255,159,0.25)]"
+        className="gradient-border-card card-shimmer glass-card project-card-surface flex flex-col h-full group-hover:-translate-y-3 relative overflow-hidden hover:shadow-[0_25px_50px_-12px_rgba(0,255,159,0.15),0_15px_30px_-8px_rgba(139,92,246,0.1)] rounded-2xl"
       >
-        <div
-          className="absolute inset-0 rounded-2xl p-[1px] pointer-events-none opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-          style={{
-            background: "linear-gradient(135deg, rgba(0, 255, 159, 0.5), transparent, rgba(0, 255, 159, 0.3))",
-            WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-            WebkitMaskComposite: "xor",
-            maskComposite: "exclude",
-          }}
-        />
-
         <div className="relative h-48 md:h-60 w-full overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent z-10 opacity-50 transition-opacity duration-300 group-hover:opacity-100" />
+          {/* Multi-color gradient overlay on hover */}
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent z-10 opacity-40 transition-opacity duration-300 group-hover:opacity-80" />
+          <div className="absolute inset-0 bg-gradient-to-br from-brand-mint-500/0 via-brand-violet-500/0 to-brand-cyan-500/0 z-10 opacity-0 transition-all duration-500 group-hover:opacity-30 group-hover:from-brand-mint-500/20 group-hover:via-brand-violet-500/10 group-hover:to-brand-cyan-500/15" />
 
           <Image
             src={project.image || "/images/placeholder.png"}
@@ -109,7 +101,7 @@ const ProjectCard = memo(function ProjectCard({
           />
 
           <div className="absolute top-4 right-4 z-20 opacity-0 scale-75 -translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0">
-            <div className="px-3 py-1 rounded-full bg-brand-mint-500/90 backdrop-blur-md text-black text-[10px] font-black flex items-center gap-1 border border-white/20 shadow-lg uppercase tracking-wider">
+            <div className="px-3 py-1 rounded-full bg-gradient-to-r from-brand-mint-500/90 to-brand-cyan-500/90 backdrop-blur-md text-black text-[10px] font-black flex items-center gap-1 border border-white/20 shadow-lg uppercase tracking-wider">
               <Sparkles size={14} className="transition-transform duration-500 group-hover:rotate-[360deg]" />
               FEATURED
             </div>
@@ -136,10 +128,10 @@ const ProjectCard = memo(function ProjectCard({
 
         <div className="flex flex-col flex-grow p-5 md:p-6 space-y-4">
           <div className="flex items-start justify-between gap-2">
-            <h3 className="text-xl md:text-2xl font-bold text-foreground grow transition-colors duration-300 group-hover:text-brand-mint-500">
+            <h3 className="text-xl md:text-2xl font-bold text-foreground grow transition-colors duration-300 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-brand-mint-400 group-hover:via-brand-cyan-400 group-hover:to-brand-violet-400 group-hover:bg-clip-text">
               {project.title}
             </h3>
-            <div className="w-8 h-8 rounded-full bg-brand-mint-500/10 flex items-center justify-center text-brand-mint-400 font-bold transition-all duration-300 group-hover:rotate-45 group-hover:bg-brand-mint-500/20">
+            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-brand-mint-500/10 to-brand-violet-500/10 flex items-center justify-center text-brand-mint-400 font-bold transition-all duration-300 group-hover:rotate-45 group-hover:from-brand-mint-500/20 group-hover:to-brand-violet-500/20">
               <ExternalLink size={16} />
             </div>
           </div>
@@ -161,7 +153,7 @@ const ProjectCard = memo(function ProjectCard({
             ))}
           </div>
 
-          <div className="h-px bg-border/50 my-4" />
+          <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent my-4" />
 
           <div className="flex gap-4 mt-auto">
             {project.demo ? (
@@ -169,7 +161,7 @@ const ProjectCard = memo(function ProjectCard({
                 href={project.demo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-premium flex-1 !py-3 !text-xs"
+                className="btn-gradient flex-1 !py-3 !text-xs"
               >
                 <ExternalLink size={16} />
                 Demo
@@ -227,22 +219,22 @@ const Projects = memo(function Projects() {
       className="py-16 md:py-24 lg:py-32 relative overflow-hidden bg-background transition-colors duration-500"
     >
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none" aria-hidden="true">
-        <div className="project-ambient-orb absolute top-20 left-10 w-72 h-72 bg-accent/10 rounded-full blur-3xl" />
+        <div className="absolute top-20 left-10 w-72 h-72 bg-brand-mint-500/8 rounded-full blur-3xl" style={{ animation: "orbFloat1 14s ease-in-out infinite" }} />
         <div
-          className="project-ambient-orb absolute bottom-20 right-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl"
-          style={{ animationDuration: "12s", animationDelay: "-2s" }}
+          className="absolute bottom-20 right-10 w-96 h-96 bg-brand-violet-500/8 rounded-full blur-3xl"
+          style={{ animation: "orbFloat2 12s ease-in-out infinite" }}
         />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10">
         <div className="text-center mb-16 md:mb-20 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-accent/10 border border-accent/20 backdrop-blur-sm mb-4 hover:scale-105 transition-transform duration-300">
-            <Code className="text-accent w-3 h-3 md:w-4 md:h-4" />
-            <span className="text-xs md:text-sm font-semibold text-accent">Case Studies</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-brand-cyan-500/10 border border-brand-cyan-500/20 backdrop-blur-sm mb-4 hover:scale-105 transition-transform duration-300">
+            <Code className="text-brand-cyan-400 w-3 h-3 md:w-4 md:h-4" />
+            <span className="text-xs md:text-sm font-semibold text-brand-cyan-400">Case Studies</span>
           </div>
 
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight">
-            <span className="bg-linear-to-r from-primary via-accent to-primary bg-clip-text text-transparent bg-size-[200%_auto] animate-gradient">
+            <span className="text-gradient-animated">
               Featured Projects
             </span>
           </h2>
@@ -253,7 +245,7 @@ const Projects = memo(function Projects() {
             App Router architecture, to secure Stripe Connect payment pipelines and scalable multi-vendor ecosystems.
           </p>
 
-          <div className="w-20 md:w-24 h-1.5 mx-auto bg-linear-to-r from-primary to-accent rounded-full mt-6" />
+          <div className="w-24 h-1.5 mx-auto bg-gradient-to-r from-brand-mint-500 via-brand-violet-500 to-brand-cyan-500 rounded-full mt-6" />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
@@ -263,16 +255,16 @@ const Projects = memo(function Projects() {
         </div>
 
         {projects.length > 0 ? (
-          <div className="text-center mt-16 md:mt-20 opacity-0 animate-fade-in-delay-2">
+          <div className="text-center mt-16 md:mt-20">
             <div className="inline-flex flex-col items-center gap-4">
               <p className="text-muted-foreground">Want to see more?</p>
               <a
                 href="https://github.com/redasalem"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative overflow-hidden px-8 py-3 rounded-full bg-card border border-border hover:border-primary/50 transition-colors duration-300"
+                className="group relative overflow-hidden px-8 py-3 rounded-full glass-premium hover:border-brand-violet-500/30 transition-all duration-300"
               >
-                <span className="relative flex items-center gap-2 text-foreground font-medium group-hover:text-primary transition-colors">
+                <span className="relative flex items-center gap-2 text-foreground font-medium group-hover:text-brand-violet-400 transition-colors">
                   <Code2 />
                   View All Projects on GitHub
                   <ExternalLink className="transition-transform duration-300 group-hover:translate-x-1" size={18} />

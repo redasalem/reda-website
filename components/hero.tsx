@@ -21,12 +21,13 @@ const CODE_LINES = [
   "};",
 ];
 
+/* Richer syntax highlighting colors */
 const CODE_LINE_CLASSES = [
-  "text-brand-mint-700 dark:text-brand-mint-400",
-  "text-blue-700 dark:text-blue-400",
-  "text-green-700 dark:text-green-400",
-  "text-cyan-700 dark:text-cyan-400",
-  "text-brand-mint-700 dark:text-brand-mint-400",
+  "text-brand-violet-400",                          /* keyword: const */
+  "text-brand-cyan-400",                             /* string key */
+  "text-brand-mint-400",                             /* array */
+  "text-brand-amber-400",                            /* boolean */
+  "text-brand-violet-400",                           /* closing brace */
 ];
 
 const FULL_CODE = CODE_LINES.join("\n");
@@ -57,12 +58,13 @@ const TypedCodeBlock = memo(function TypedCodeBlock() {
 
   return (
     <div className="space-y-3 font-mono text-sm">
-      <pre className="text-brand-mint-700 dark:text-brand-mint-400 whitespace-pre-wrap">
+      <pre className="text-brand-mint-400 whitespace-pre-wrap">
         {lines.map((line, index) => {
           const isLastLine = index === lines.length - 1;
 
           return (
             <div key={`${index}-${line.length}`} className={CODE_LINE_CLASSES[index] ?? CODE_LINE_CLASSES[0]}>
+              <span className="text-muted-foreground/40 mr-3 select-none text-xs">{index + 1}</span>
               {line}
               {isLastLine ? <span className="hero-code-cursor ml-1 align-middle" aria-hidden="true" /> : null}
             </div>
@@ -96,8 +98,8 @@ const HeroShowcase = memo(function HeroShowcase() {
     const rect = panelRef.current.getBoundingClientRect();
     const relativeX = (clientX - rect.left) / rect.width;
     const relativeY = (clientY - rect.top) / rect.height;
-    const rotateX = (0.5 - relativeY) * 6;
-    const rotateY = (relativeX - 0.5) * 6;
+    const rotateX = (0.5 - relativeY) * 8;
+    const rotateY = (relativeX - 0.5) * 8;
 
     panelRef.current.style.setProperty("--hero-rotate-x", `${rotateX.toFixed(2)}deg`);
     panelRef.current.style.setProperty("--hero-rotate-y", `${rotateY.toFixed(2)}deg`);
@@ -138,27 +140,33 @@ const HeroShowcase = memo(function HeroShowcase() {
 
   return (
     <div className="relative">
+      {/* Glow behind the panel */}
+      <div className="absolute -inset-4 bg-gradient-to-br from-brand-mint-500/20 via-brand-violet-500/10 to-brand-cyan-500/15 rounded-3xl blur-2xl opacity-60 pointer-events-none" />
+
       <div
         ref={panelRef}
         onPointerMove={handlePointerMove}
         onPointerLeave={handlePointerLeave}
-        className="hero-showcase-panel relative bg-card rounded-2xl p-1 border border-border shadow-xl"
+        className="hero-showcase-panel relative bg-card/80 rounded-2xl p-1 border border-border/50 shadow-xl multi-glow"
       >
         <div className="hero-showcase-glow absolute inset-0 rounded-2xl pointer-events-none opacity-50" />
 
-        <div className="bg-gray-50 dark:bg-slate-900/80 rounded-xl overflow-hidden border border-gray-200 dark:border-slate-700/50">
-          <div className="bg-gray-100 dark:bg-slate-800/80 px-4 py-2.5 flex items-center gap-2 border-b border-gray-200 dark:border-slate-700/50">
+        <div className="bg-gray-50 dark:bg-slate-900/90 rounded-xl overflow-hidden border border-gray-200 dark:border-slate-700/30">
+          {/* Terminal header with traffic lights */}
+          <div className="bg-gray-100 dark:bg-slate-800/90 px-4 py-2.5 flex items-center gap-2 border-b border-gray-200 dark:border-slate-700/30">
             <div className="flex gap-1.5">
-              <div className="w-2.5 h-2.5 rounded-full bg-red-400/80" />
-              <div className="w-2.5 h-2.5 rounded-full bg-yellow-400/80" />
-              <div className="w-2.5 h-2.5 rounded-full bg-green-400/80" />
+              <div className="w-3 h-3 rounded-full bg-red-500/80 shadow-[0_0_6px_rgba(239,68,68,0.4)]" />
+              <div className="w-3 h-3 rounded-full bg-yellow-500/80 shadow-[0_0_6px_rgba(234,179,8,0.4)]" />
+              <div className="w-3 h-3 rounded-full bg-green-500/80 shadow-[0_0_6px_rgba(34,197,94,0.4)]" />
             </div>
-            <div className="flex-1 text-center text-xs text-gray-500 dark:text-slate-500 font-medium">
-              ~/reda-salem
+            <div className="flex-1 text-center">
+              <span className="px-3 py-0.5 rounded-md bg-slate-700/20 dark:bg-slate-700/40 text-xs text-muted-foreground font-mono">
+                ~/reda-salem
+              </span>
             </div>
           </div>
 
-          <div className="p-6 min-h-[220px] bg-white dark:bg-slate-900">
+          <div className="p-6 min-h-[220px] bg-white dark:bg-[#0d1117]">
             <TypedCodeBlock />
           </div>
         </div>
@@ -181,19 +189,28 @@ const HeroSection = memo(function HeroSection() {
       {/* Subtle background grid */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(0,200,130,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,200,130,0.03)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(0,200,130,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(0,200,130,0.06)_1px,transparent_1px)] bg-size-[100px_100px] mask-[radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]" />
 
-      {/* Single subtle orb */}
+      {/* Multi-color orbs behind hero content */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
         <div
-          className="absolute w-[500px] h-[500px] top-[-150px] left-[-150px] bg-gradient-to-br from-brand-mint-500/10 to-transparent rounded-full blur-3xl hero-orb"
-          style={{ animationDuration: "18s" }}
+          className="absolute w-[500px] h-[500px] top-[-150px] left-[-150px] bg-gradient-to-br from-brand-mint-500/15 via-brand-cyan-500/8 to-transparent rounded-full blur-3xl"
+          style={{ animation: "orbFloat1 18s ease-in-out infinite" }}
+        />
+        <div
+          className="absolute w-[400px] h-[400px] bottom-[-100px] right-[-100px] bg-gradient-to-tl from-brand-violet-500/10 via-brand-mint-500/5 to-transparent rounded-full blur-3xl"
+          style={{ animation: "orbFloat2 22s ease-in-out infinite" }}
         />
       </div>
 
       <div className="container mx-auto px-6 z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-8">
+            {/* Status Badge with pulse */}
             <div className="inline-block mt-4">
-              <span className="px-4 py-2 bg-brand-mint-500/10 dark:bg-brand-mint-500/15 border border-brand-mint-500/20 dark:border-brand-mint-400/20 rounded-full text-brand-mint-700 dark:text-brand-mint-300 text-sm font-medium">
+              <span className="badge-pulse px-4 py-2 bg-brand-mint-500/10 dark:bg-brand-mint-500/15 border border-brand-mint-500/30 dark:border-brand-mint-400/25 rounded-full text-brand-mint-600 dark:text-brand-mint-300 text-sm font-semibold inline-flex items-center gap-2">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-mint-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-mint-500" />
+                </span>
                 Open to Remote & Freelance
               </span>
             </div>
@@ -201,13 +218,15 @@ const HeroSection = memo(function HeroSection() {
             <div className="space-y-4">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
                 Hi, I&apos;m{" "}
-                <span className="text-brand-mint-600 dark:text-brand-mint-400 font-extrabold">
+                <span className="text-gradient-hero font-extrabold">
                   Reda Salem
                 </span>
               </h1>
 
-              <h2 className="text-2xl lg:text-3xl font-semibold text-muted-foreground">
-                Full-Stack Engineer
+              <h2 className="text-2xl lg:text-3xl font-semibold">
+                <span className="bg-gradient-to-r from-brand-cyan-400 via-brand-violet-400 to-brand-mint-400 bg-clip-text text-transparent">
+                  Full-Stack Engineer
+                </span>
               </h2>
             </div>
 
@@ -219,14 +238,14 @@ const HeroSection = memo(function HeroSection() {
             </p>
 
             <div className="flex flex-wrap gap-4">
-              <button onClick={scrollToProjects} className="btn-secondary group">
+              <button onClick={scrollToProjects} className="btn-gradient group">
                 View My Projects
                 <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
               </button>
 
               <button
                 onClick={scrollToContact}
-                className="cursor-pointer px-8 py-4 bg-gray-200/80 dark:bg-white/10 border border-gray-300 dark:border-white/15 text-gray-900 dark:text-white font-semibold rounded-full hover:bg-gray-300/80 dark:hover:bg-white/15 transition-all duration-300 flex items-center gap-2 hover:-translate-y-0.5"
+                className="cursor-pointer px-8 py-4 glass-premium text-foreground font-semibold rounded-full hover:bg-white/10 transition-all duration-300 flex items-center gap-2 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-brand-violet-500/10"
               >
                 <ArrowDown className="w-5 h-5" />
                 Get in Touch
@@ -250,8 +269,8 @@ const HeroSection = memo(function HeroSection() {
       </div>
 
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden sm:flex">
-        <div className="hero-scroll-shell w-6 h-10 border-2 border-gray-400 dark:border-white/20 rounded-full flex justify-center pt-2">
-          <div className="hero-scroll-dot w-1 h-3 bg-gray-500 dark:bg-white/40 rounded-full" />
+        <div className="hero-scroll-shell w-6 h-10 border-2 border-brand-mint-500/30 dark:border-white/20 rounded-full flex justify-center pt-2">
+          <div className="hero-scroll-dot w-1 h-3 bg-brand-mint-500/60 dark:bg-white/40 rounded-full" />
         </div>
       </div>
     </section>

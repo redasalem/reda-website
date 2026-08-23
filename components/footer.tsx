@@ -11,13 +11,13 @@ const Footer = React.memo(function Footer() {
   ], []);
 
   return (
-    <footer className="border-t border-border bg-background/50 backdrop-blur-md mb-24 sm:mb-0 transition-colors duration-300">
+    <footer className="border-t border-border/50 bg-background/50 backdrop-blur-md mb-24 sm:mb-0 transition-colors duration-300">
       <div className="max-w-6xl mx-auto px-6 py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 mb-12 animate-fade-in text-center md:text-left">
           {/* Brand */}
           <div className="flex flex-col items-center md:items-start space-y-4">
             <div className="space-y-2">
-              <h3 className="text-xl font-bold bg-linear-to-r from-brand-mint-500 to-brand-mint-600 bg-clip-text text-transparent">
+              <h3 className="text-xl font-bold text-gradient-hero">
                 Reda Salem
               </h3>
               <p className="text-sm text-muted-foreground max-w-xs mx-auto md:mx-0 leading-relaxed">
@@ -36,7 +36,7 @@ const Footer = React.memo(function Footer() {
               <li>
                 <a
                   href="#about"
-                  className="hover:text-primary transition-colors flex items-center gap-2 justify-center md:justify-start"
+                  className="hover:text-brand-mint-400 transition-colors flex items-center gap-2 justify-center md:justify-start"
                 >
                   About Me
                 </a>
@@ -44,7 +44,7 @@ const Footer = React.memo(function Footer() {
               <li>
                 <a
                   href="#skills"
-                  className="hover:text-primary transition-colors flex items-center gap-2 justify-center md:justify-start"
+                  className="hover:text-brand-violet-400 transition-colors flex items-center gap-2 justify-center md:justify-start"
                 >
                   Skills
                 </a>
@@ -52,7 +52,7 @@ const Footer = React.memo(function Footer() {
               <li>
                 <a
                   href="#projects"
-                  className="hover:text-primary transition-colors flex items-center gap-2 justify-center md:justify-start"
+                  className="hover:text-brand-cyan-400 transition-colors flex items-center gap-2 justify-center md:justify-start"
                 >
                   Projects
                 </a>
@@ -60,7 +60,7 @@ const Footer = React.memo(function Footer() {
               <li>
                 <a
                   href="#certificates"
-                  className="hover:text-primary transition-colors flex items-center gap-2 justify-center md:justify-start"
+                  className="hover:text-brand-amber-400 transition-colors flex items-center gap-2 justify-center md:justify-start"
                 >
                   Certificates
                 </a>
@@ -68,7 +68,7 @@ const Footer = React.memo(function Footer() {
               <li>
                 <a
                   href="#contact"
-                  className="hover:text-primary transition-colors flex items-center gap-2 justify-center md:justify-start"
+                  className="hover:text-brand-mint-400 transition-colors flex items-center gap-2 justify-center md:justify-start"
                 >
                   Contact
                 </a>
@@ -95,17 +95,17 @@ const Footer = React.memo(function Footer() {
           </div>
         </div>
 
-        {/* Divider */}
-        <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent my-8" />
+        {/* Multi-color gradient divider */}
+        <div className="section-divider my-8" />
 
         {/* Copyright */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-muted-foreground animate-fade-in text-center md:text-left">
-          <p>© {currentYear} Reda Salem. All rights reserved.</p>
+          <p>© {currentYear} <span className="text-gradient-hero font-semibold">Reda Salem</span>. All rights reserved.</p>
           <div className="flex flex-wrap justify-center gap-6">
-            <span className="text-muted-foreground/50 cursor-default">
+            <span className="text-muted-foreground/40 cursor-default">
               Privacy Policy
             </span>
-            <span className="text-muted-foreground/50 cursor-default">
+            <span className="text-muted-foreground/40 cursor-default">
               Terms of Service
             </span>
           </div>
