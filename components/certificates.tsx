@@ -12,7 +12,8 @@ export default function Certificates() {
           </h2>
         </div>
         <p>
-          Academic foundation combined with<br className="desktop-break" /> modern industry certifications.
+          Academic foundation combined with
+          <br className="desktop-break" /> modern industry certifications.
         </p>
       </div>
 
@@ -21,7 +22,9 @@ export default function Certificates() {
           <Award size={28} strokeWidth={1.5} className="certificate-icon" />
           <div className="certificate-content">
             <h3>Build with AI: Masr Edition</h3>
-            <p className="mono certificate-meta">Google for Developers & ITI · 2026</p>
+            <p className="mono certificate-meta">
+              Google for Developers & ITI · 2026
+            </p>
           </div>
         </article>
 
@@ -34,7 +37,11 @@ export default function Certificates() {
         </article>
 
         <article className="certificate-card">
-          <GraduationCap size={28} strokeWidth={1.5} className="certificate-icon" />
+          <GraduationCap
+            size={28}
+            strokeWidth={1.5}
+            className="certificate-icon"
+          />
           <div className="certificate-content">
             <h3>Bachelor's in Information Systems and Technology</h3>
             <p className="mono certificate-meta">Aug 2019 - Sep 2023</p>

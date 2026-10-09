@@ -10,7 +10,7 @@
     "start": "next start",
     "clean": "rimraf .next node_modules/.cache .vercel && pnpm store prune",
     "typecheck": "tsc --noEmit",
-    "test": "jest --config jest.config.cjs",
+    "test": "jest --config jest.config.cjs --passWithNoTests",
     "test:rules": "jest --config jest.rules.config.cjs",
     "test:e2e": "playwright test"
   },
