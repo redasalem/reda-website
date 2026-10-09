@@ -1,56 +1,52 @@
 <div align="center">
 
-# ⚡ Reda Salem — Portfolio & Engineering Showcase
+# reda. — Thoughtful Interfaces. Powerful Foundations.
 
-**A High-Performance, Next-Generation Portfolio built with Next.js 16, React 19, Tailwind CSS v4, and Gemini AI.**
+**An editorial engineering portfolio — Next.js 16 App Router · React 19 · React Three Fiber · Firestore ISR · hidden Admin Studio.**
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-reda--website.vercel.app-00ff9f?style=for-the-badge&logo=vercel&logoColor=black)](https://reda-website.vercel.app)
-[![PageSpeed](https://img.shields.io/badge/Google%20PageSpeed-99%2B-00e5ff?style=for-the-badge&logo=googlechrome&logoColor=black)](https://reda-website.vercel.app)
-[![Next.js 16](https://img.shields.io/badge/Next.js-16.2-black?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org/)
-[![React 19](https://img.shields.io/badge/React-19.0-61dafb?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
-[![Tailwind CSS v4](https://img.shields.io/badge/Tailwind_CSS-v4.2-38bdf8?style=for-the-badge&logo=tailwindcss&logoColor=black)](https://tailwindcss.com/)
-[![Gemini AI](https://img.shields.io/badge/AI%20Assistant-Gemini%20Pro-8b5cf6?style=for-the-badge&logo=google&logoColor=white)](https://ai.google.dev/)
+[![Live](https://img.shields.io/badge/Live-reda--website.vercel.app-22251f?style=for-the-badge&logo=vercel&logoColor=white)](https://reda-website.vercel.app)
+[![Next.js](https://img.shields.io/badge/Next.js-16.2-black?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19-61dafb?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![R3F 3D](https://img.shields.io/badge/3D-R3F_demand_rendering-be3e1c?style=for-the-badge&logo=threedotjs&logoColor=white)](https://r3f.docs.pmnd.rs/)
+[![Firestore](https://img.shields.io/badge/Data-Firestore_ISR-ffca28?style=for-the-badge&logo=firebase&logoColor=black)](https://firebase.google.com/)
 
 <br />
 
-<p align="center">
-  <a href="#-key-features">Features</a> •
-  <a href="#-tech-stack">Tech Stack</a> •
-  <a href="#-architecture--performance">Performance</a> •
-  <a href="#-project-structure">Structure</a> •
-  <a href="#-getting-started">Getting Started</a> •
-  <a href="#-connect">Connect</a>
-</p>
+<a href="#-why-this-is-different">Why different</a> ·
+<a href="#-live-3d-hero">3D Hero</a> ·
+<a href="#-firestore--studio">Firestore + Studio</a> ·
+<a href="#-tech-stack">Stack</a> ·
+<a href="#-architecture">Architecture</a> ·
+<a href="#-getting-started">Getting Started</a>
+
+> **Live:** [reda-website.vercel.app](https://reda-website.vercel.app) — server-rendered editorial design, procedural 3D sculpture, Firestore-driven case studies.
 
 </div>
 
 ---
 
-## 🌟 Overview
+## 🧭 Why this is different
 
-This repository houses the source code for **Reda Salem's** personal portfolio and full-stack engineering showcase. Engineered for maximum speed, rich aesthetics, and seamless user experience, the website combines cutting-edge web technologies with a bespoke **Cyber-Neo design system**.
+Most developer portfolios are a template with a new name. This one is built like an **engineering journal**:
 
-> **Live Website:** [https://reda-website.vercel.app](https://reda-website.vercel.app)
+- 📜 **Paper & ink aesthetic** — warm paper `#f5f3ed`, ink `#22251f`, burnt-orange `#be3e1c`, Courier mono eyebrows, Georgia italic serif accents, grotesk-tight headlines.
+- 🔬 **Instrument-panel language** — `FIG. 01 / CONNECTED SYSTEMS`, `INTERFACE ↔ INFRASTRUCTURE`, numbered principles `01/02/03`.
+- 🧱 **Server-first** — copy, metadata, CSS art all render as HTML. JavaScript is progressive enhancement, never the content.
+- 🗿 **One sculpture, zero downloads** — the 3D hero is 100% procedural geometry. No models, no textures, no HDRIs, no post-processing.
+- 🔒 **A CMS nobody can find** — project management lives at a hidden URL behind Firebase Auth custom claims. No public login buttons, no sitemap entry, `noindex` + `robots` disallow + private cache headers.
 
 ---
 
-## 🚀 Key Features
+## 🗿 Live 3D Hero
 
-### 1. 🔮 Cyber-Neo Visual System & Multi-Color Glow
-* **Dynamic Color Tokens:** Built on native `OKLCH` color spaces featuring **Neo-Mint (`#00e08e`)**, **Electric Violet (`#8b5cf6`)**, **Cyber Cyan (`#06b6d4`)**, and **Warm Amber (`#f59e0b`)**.
-* **GPU-Accelerated Ambient Orbs:** 4 floating ambient orbs and a noise texture overlay powered 100% by pure CSS `@keyframes` with zero JavaScript animation overhead.
-* **Animated Gradient Typography:** CSS-composited shifting text gradients on headers and hero sections.
-* **Rotating Conic-Gradient Borders:** Interactive hover glow on cards with glassmorphism depth.
+`components/portfolio/hero-art.tsx` + `components/portfolio/sculpture.tsx`
 
-### 2. ⚡ Ultra-Fast Interactive Hero & Terminal
-* **3D Parallax Tilt Panel:** Lightweight pointer-tracking perspective panel without heavy dependencies.
-* **Live Typing Terminal:** Code snippet simulator with syntax-highlighted code lines and real-time blinking cursor.
-* **Instant First Contentful Paint (FCP):** Non-blocking hero typography delivering immediate visual rendering.
-
-### 3. 🤖 Custom AI Assistant (Reda AI v2.0)
-* **Custom Cybernetic Hex-Visor Hologram Icon:** An exclusive vector-engineered AI core avatar with orbital nodes and quantum singularity aura.
-* **Google Gemini AI Integration:** Live intelligent conversational bot trained on engineering projects, tech stack, and experience.
-* **Smart On-Demand Chunk Loading:** Loads chatbot bundles only on user interaction or hover to guarantee a lightweight initial page payload.
+| Guarantee | How |
+|---|---|
+| **Never blocks SSR** | `next/dynamic(() => import("./sculpture"), { ssr: false })` + `<Suspense>` — `three` is absent from the server bundle |
+| **Never punishes weak devices** | Auto-load gate: `!reduced-motion && !saveData && !2g && ≥900px`, 1200 ms idle delay via `requestIdleCallback` — otherwise a pure-CSS static sculpture stays |
+| **Never renders offscreen** | `frameloop={active ? "demand" : "never"}` + `IntersectionObserver` + `visibilitychange` — hidden tabs cost **0 frames** |
 
 ### 4. 💼 Case Studies & Instant Project Engine
 * **Hybrid Data Strategy:** Instant initial SSR render with background Firebase Firestore Lite revalidation.
