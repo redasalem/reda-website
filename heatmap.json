@@ -1,0 +1,37 @@
+{
+  "entries": {
+    "\\\\?\\C:\\Users\\redasalem\\.agents\\skills\\shadcn\\SKILL.md": {
+      "path": "\\\\?\\C:\\Users\\redasalem\\.agents\\skills\\shadcn\\SKILL.md",
+      "access_count": 1,
+      "last_access": "2026-10-09T00:54:06.045447200+00:00",
+      "total_tokens_saved": 0,
+      "total_original_tokens": 4528,
+      "avg_compression_ratio": 0.0,
+      "agent_accesses": {
+        "local": 1
+      }
+    },
+    "\\\\?\\C:\\Users\\redasalem\\.codex\\LEAN-CTX.md": {
+      "path": "\\\\?\\C:\\Users\\redasalem\\.codex\\LEAN-CTX.md",
+      "access_count": 1,
+      "last_access": "2026-10-09T00:52:42.545390100+00:00",
+      "total_tokens_saved": 0,
+      "total_original_tokens": 726,
+      "avg_compression_ratio": 0.0,
+      "agent_accesses": {
+        "local": 1
+      }
+    },
+    "\\\\?\\C:\\Users\\redasalem\\.codex\\skills\\lean-ctx\\SKILL.md": {
+      "path": "\\\\?\\C:\\Users\\redasalem\\.codex\\skills\\lean-ctx\\SKILL.md",
+      "access_count": 1,
+      "last_access": "2026-10-09T00:52:42.030396500+00:00",
+      "total_tokens_saved": 0,
+      "total_original_tokens": 905,
+      "avg_compression_ratio": 0.0,
+      "agent_accesses": {
+        "local": 1
+      }
+    }
+  }
+}

@@ -19,6 +19,11 @@ yarn-error.log*
 # env files
 .env*
 .env.local*
+!.env.example
+/coverage/
+/playwright-report/
+/test-results/
+*-debug.log
 
 # vercel
 .vercel

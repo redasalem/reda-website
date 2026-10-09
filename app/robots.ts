@@ -1,29 +1,7 @@
-import { MetadataRoute } from "next";
-
+import type { MetadataRoute } from "next";
+import { site } from "@/lib/site";
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://reda-website.vercel.app";
-
-  return {
-    rules: [
-      {
-        userAgent: "*",
-        allow: "/",
-        disallow: ["/admin/", "/api/", "/server/", "/private/", "/tmp/", "/*?*"],
-        crawlDelay: 2,
-      },
-      {
-        userAgent: "Googlebot",
-        allow: ["/*.js$", "/*.css$", "/images/"],
-      },
-      {
-        userAgent: "Bingbot",
-        crawlDelay: 5,
-      },
-      {
-        userAgent: "Yandex",
-        disallow: "/cgi-bin/",
-      },
-    ],
-    sitemap: `${baseUrl}/sitemap.xml`,
-  };
+  // Defense in depth: noindex headers + metadata on the studio, plus exclusion here.
+  // Authorization still comes from Firebase Auth custom claims + Firestore rules, never obscurity.
+  return { rules: [{ userAgent: "*", allow: "/", disallow: ["/api/", "/secret-admin-studio"] }, { userAgent: "*", allow: ["/", "/work/", "/download", "/opengraph-image"] }], sitemap: site.url + "/sitemap.xml" };
 }

@@ -1,0 +1,44 @@
+{
+  "outcomes": [
+    {
+      "session_id": "4632",
+      "language": "md",
+      "entropy_threshold": 1.3,
+      "jaccard_threshold": 0.6,
+      "total_turns": 1,
+      "tokens_saved": 0,
+      "tokens_original": 905,
+      "cache_hits": 0,
+      "total_reads": 1,
+      "task_completed": true,
+      "timestamp": "2026-10-09T03:52:42.035527800+03:00"
+    },
+    {
+      "session_id": "2764",
+      "language": "md",
+      "entropy_threshold": 1.3,
+      "jaccard_threshold": 0.6,
+      "total_turns": 1,
+      "tokens_saved": 0,
+      "tokens_original": 726,
+      "cache_hits": 0,
+      "total_reads": 1,
+      "task_completed": true,
+      "timestamp": "2026-10-09T03:52:42.550474500+03:00"
+    },
+    {
+      "session_id": "7744",
+      "language": "md",
+      "entropy_threshold": 1.3,
+      "jaccard_threshold": 0.6,
+      "total_turns": 1,
+      "tokens_saved": 0,
+      "tokens_original": 4528,
+      "cache_hits": 0,
+      "total_reads": 1,
+      "task_completed": true,
+      "timestamp": "2026-10-09T03:54:06.051774300+03:00"
+    }
+  ],
+  "learned_thresholds": {}
+}

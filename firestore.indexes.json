@@ -1,0 +1,4 @@
+{
+  "indexes": [{ "collectionGroup": "projects", "queryScope": "COLLECTION", "fields": [{ "fieldPath": "published", "order": "ASCENDING" }, { "fieldPath": "order", "order": "ASCENDING" }] }],
+  "fieldOverrides": []
+}
