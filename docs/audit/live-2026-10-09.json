@@ -1,0 +1,41 @@
+{
+  "base": "https://reda-website.vercel.app",
+  "fetchedAt": "2026-10-09T19:13:21.273Z",
+  "routes": [
+    {
+      "route": "/",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "route": "/robots.txt",
+      "error": "fetch failed"
+    },
+    {
+      "route": "/sitemap.xml",
+      "error": "fetch failed"
+    },
+    {
+      "route": "/secret-admin-studio",
+      "error": "fetch failed"
+    },
+    {
+      "route": "/api/revalidate",
+      "error": "fetch failed"
+    },
+    {
+      "route": "/download",
+      "error": "fetch failed"
+    },
+    {
+      "route": "/opengraph-image",
+      "error": "fetch failed"
+    },
+    {
+      "route": "/work/audit-missing-project",
+      "error": "fetch failed"
+    }
+  ],
+  "views": [],
+  "interactions": {},
+  "browserError": "page.goto: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://reda-website.vercel.app/\", waiting until \"networkidle\"\u001b[22m\n\n    at E:\\coding\\reda-website\\docs\\audit\\inspect-2026-10-09.mjs:38:16"
+}

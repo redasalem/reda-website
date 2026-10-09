@@ -7,19 +7,26 @@ function lerp(a: number, b: number, t: number) {
 }
 
 function Knot({ active }: { active: boolean }) {
-  const group = useRef<{ rotation: { x: number; y: number } } | null>(null);
+  const group = useRef<{ rotation: { x: number; y: number; z: number } } | null>(null);
   const target = useRef({ x: 0.28, y: -0.4 });
+  const rectRef = useRef<DOMRect | null>(null);
   const { gl, invalidate } = useThree();
   useEffect(() => {
+    const canvas = gl.domElement;
+    const capture = () => { rectRef.current = canvas.getBoundingClientRect(); };
     const move = (event: PointerEvent) => {
       if (!active) return;
-      const rect = gl.domElement.getBoundingClientRect();
+      // Cached on pointerenter — avoids a layout read on every move event.
+      const rect = rectRef.current ?? canvas.getBoundingClientRect();
       target.current = { x: 0.28 + ((event.clientY - rect.top) / rect.height - 0.5) * 0.7, y: -0.4 + ((event.clientX - rect.left) / rect.width - 0.5) * 1.2 };
       invalidate();
     };
-    gl.domElement.addEventListener("pointermove", move, { passive: true });
-    return () => gl.domElement.removeEventListener("pointermove", move);
+    canvas.addEventListener("pointerenter", capture, { passive: true });
+    canvas.addEventListener("pointermove", move, { passive: true });
+    return () => { canvas.removeEventListener("pointerenter", capture); canvas.removeEventListener("pointermove", move); };
   }, [active, gl, invalidate]);
+  // Explicit GPU release on unmount (lost-context-then-navigate edge).
+  useEffect(() => () => { gl.dispose(); }, [gl]);
   useFrame((_, delta) => {
     if (!group.current || !active) return;
     const factor = 1 - Math.exp(-6 * Math.min(delta, 0.05));

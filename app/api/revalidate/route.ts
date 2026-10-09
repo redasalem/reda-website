@@ -1,11 +1,20 @@
 import "server-only";
 import { revalidatePath, revalidateTag } from "next/cache";
-import { getApps, initializeApp, applicationDefault } from "firebase-admin/app";
+import { getApps, initializeApp, applicationDefault, cert } from "firebase-admin/app";
 import { getAuth } from "firebase-admin/auth";
 
 function getAdminAuth() {
   if (getApps().length === 0) {
-    initializeApp({ credential: applicationDefault() });
+    // Vercel serverless has no Application Default Credentials — prefer explicit
+    // service-account env vars when present, fall back to ADC for local/GCP.
+    const projectId = process.env.FIREBASE_PROJECT_ID;
+    const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
+    const privateKey = process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, "\n");
+    if (projectId && clientEmail && privateKey) {
+      initializeApp({ credential: cert({ projectId, clientEmail, privateKey }) });
+    } else {
+      initializeApp({ credential: applicationDefault() });
+    }
   }
   return getAuth();
 }

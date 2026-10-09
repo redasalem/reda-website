@@ -19,22 +19,26 @@ export default function HeroArt() {
   const [paused, setPaused] = useState(false);
   useEffect(() => {
     const media = matchMedia("(prefers-reduced-motion: reduce)");
+    const viewport = matchMedia("(min-width: 900px)");
     const connection = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
-    const allowed = !media.matches && !connection?.saveData && !connection?.effectiveType?.includes("2g") && matchMedia("(min-width: 900px)").matches;
+    const computeAllowed = () => !media.matches && !connection?.saveData && !connection?.effectiveType?.includes("2g") && viewport.matches;
     let idle: number | undefined;
     const timer = window.setTimeout(() => {
-      if (!allowed) return;
+      if (!computeAllowed()) return;
       if ("requestIdleCallback" in window) idle = window.requestIdleCallback(() => setEnabled(true));
       else setEnabled(true);
     }, 1200);
     const preference = () => { if (media.matches) { setEnabled(false); setReady(false); } };
+    // Re-evaluate the 3D gate on tablet rotation / window resize without a reload.
+    const onViewport = () => { if (!computeAllowed()) { setEnabled(false); setReady(false); } };
     media.addEventListener("change", preference);
+    viewport.addEventListener("change", onViewport);
     let intersecting = true;
     const update = () => setVisible(intersecting && !document.hidden);
     const observer = new IntersectionObserver(([entry]) => { intersecting = entry.isIntersecting; update(); });
     if (host.current) observer.observe(host.current);
     document.addEventListener("visibilitychange", update);
-    return () => { clearTimeout(timer); if (idle !== undefined) window.cancelIdleCallback(idle); observer.disconnect(); media.removeEventListener("change", preference); document.removeEventListener("visibilitychange", update); };
+    return () => { clearTimeout(timer); if (idle !== undefined) window.cancelIdleCallback(idle); observer.disconnect(); media.removeEventListener("change", preference); viewport.removeEventListener("change", onViewport); document.removeEventListener("visibilitychange", update); };
   }, []);
   return <div className="hero-art" ref={host}>
     <div className="art-coordinate mono">FIG. 01 / CONNECTED SYSTEMS</div>
