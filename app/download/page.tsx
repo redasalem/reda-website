@@ -172,7 +172,7 @@ export default function DownloadPage() {
 
           <div className="flex flex-col sm:flex-row justify-center gap-4 max-w-2xl mx-auto">
             <a
-              href="https://drive.google.com/file/d/16F5MI205bQZlWwt9JzOrqd6P8PNYPTQY/view"
+              href="https://drive.google.com/file/d/1OPCpxoGmn_JoAVOvflMNVvE1-xvjBlwR/view"
               target="_blank"
               rel="noopener noreferrer"
               className="group relative flex-1 inline-flex items-center justify-center gap-3 px-8 py-5 bg-card/80 backdrop-blur-sm border-2 border-brand-mint-500/40 text-foreground font-bold text-lg rounded-full shadow-xl hover:border-brand-mint-500 transition-all duration-500 overflow-hidden hover:scale-105"
