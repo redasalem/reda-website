@@ -2,7 +2,8 @@
 
 import React, { memo, useState } from "react";
 import Link from "next/link";
-import { Award, Briefcase, Download, Info, Mail, Menu } from "lucide-react";
+import { Award, Briefcase, Download, Globe, Info, Mail, Menu } from "lucide-react";
+import { siteDictionary, type Locale } from "@/lib/i18n";
 
 type NavItem =
   | {
@@ -18,40 +19,6 @@ type NavItem =
       isRoute?: false;
     };
 
-const NAV_ITEMS: NavItem[] = [
-  {
-    icon: Download,
-    label: "CV",
-    href: "/download",
-    isRoute: true,
-  },
-  {
-    icon: Info,
-    label: "About",
-    id: "about",
-  },
-  {
-    icon: Menu,
-    label: "Skills",
-    id: "skills",
-  },
-  {
-    icon: Briefcase,
-    label: "Projects",
-    id: "projects",
-  },
-  {
-    icon: Award,
-    label: "Certs",
-    id: "certificates",
-  },
-  {
-    icon: Mail,
-    label: "Contact",
-    id: "contact",
-  },
-];
-
 const TAB_COLORS = [
   "text-brand-mint-400",
   "text-brand-cyan-400",
@@ -59,6 +26,7 @@ const TAB_COLORS = [
   "text-brand-mint-400",
   "text-brand-amber-400",
   "text-brand-cyan-400",
+  "text-brand-mint-400",
 ];
 
 const TAB_GLOW_BG = [
@@ -68,10 +36,56 @@ const TAB_GLOW_BG = [
   "bg-brand-mint-500",
   "bg-brand-amber-500",
   "bg-brand-cyan-500",
+  "bg-brand-mint-500",
 ];
 
-const BottomNavbar = memo(function BottomNavbar() {
+const BottomNavbar = memo(function BottomNavbar({
+  locale = "en",
+}: {
+  locale?: Locale;
+}) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const t = siteDictionary[locale];
+
+  const navItems: NavItem[] = [
+    {
+      icon: Download,
+      label: t.nav.cvShort,
+      href: locale === "ar" ? "/ar/download" : "/download",
+      isRoute: true,
+    },
+    {
+      icon: Info,
+      label: t.nav.aboutShort,
+      id: "about",
+    },
+    {
+      icon: Menu,
+      label: t.nav.skills,
+      id: "skills",
+    },
+    {
+      icon: Briefcase,
+      label: t.nav.projects,
+      id: "projects",
+    },
+    {
+      icon: Award,
+      label: t.nav.certsShort,
+      id: "certificates",
+    },
+    {
+      icon: Mail,
+      label: t.nav.contact,
+      id: "contact",
+    },
+    {
+      icon: Globe,
+      label: locale === "ar" ? "EN" : "عربي",
+      href: locale === "ar" ? "/" : "/ar",
+      isRoute: true,
+    },
+  ];
 
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -83,14 +97,16 @@ const BottomNavbar = memo(function BottomNavbar() {
         <div
           className="absolute top-0 bottom-0 bg-gradient-to-r from-brand-mint-500/10 via-brand-cyan-500/10 to-brand-violet-500/10 rounded-2xl transition-transform duration-300 ease-out"
           style={{
-            width: `${100 / NAV_ITEMS.length}%`,
-            transform: `translateX(${activeIndex * 100}%)`,
+            width: `${100 / navItems.length}%`,
+            transform: `translateX(${
+              (locale === "ar" ? -activeIndex : activeIndex) * 100
+            }%)`,
           }}
           aria-hidden="true"
         />
 
         <div className="relative flex justify-around items-center px-1 py-3">
-          {NAV_ITEMS.map((item, index) => {
+          {navItems.map((item, index) => {
             const isActive = activeIndex === index;
             const Icon = item.icon;
             const activeTextColor = TAB_COLORS[index % TAB_COLORS.length];
@@ -111,7 +127,9 @@ const BottomNavbar = memo(function BottomNavbar() {
                 </div>
                 <span
                   className={`text-[9px] font-semibold truncate w-full text-center transition-all duration-200 ${
-                    isActive ? `${activeTextColor} opacity-100` : "text-muted-foreground opacity-70"
+                    isActive
+                      ? `${activeTextColor} opacity-100`
+                      : "text-muted-foreground opacity-70"
                   }`}
                 >
                   {item.label}

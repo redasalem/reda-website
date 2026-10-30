@@ -1,12 +1,24 @@
-"use client"
+"use client";
 
 import type React from "react";
 import { useState, memo } from "react";
 import { Users, Mailbox, Phone, Send } from "lucide-react";
+import { DEFAULT_SITE_SETTINGS, type SiteSettings } from "@/lib/firestore";
+import { siteDictionary, type Locale } from "@/lib/i18n";
 
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-const Contact = memo(function Contact() {
+interface ContactProps {
+  locale?: Locale;
+  settings?: SiteSettings;
+}
+
+const Contact = memo(function Contact({
+  locale = "en",
+  settings = DEFAULT_SITE_SETTINGS,
+}: ContactProps) {
+  const t = siteDictionary[locale];
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -16,20 +28,21 @@ const Contact = memo(function Contact() {
 
   const [isValidEmail, setIsValidEmail] = useState(false);
 
-  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
 
-    // Validate email on change
-    if (name === 'email') {
+    if (name === "email") {
       setIsValidEmail(emailRegex.test(value));
     }
-  }
+  };
 
-
-  // web3form
   const [result, setResult] = useState(false);
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -40,7 +53,7 @@ const Contact = memo(function Contact() {
 
     const response = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
-      body: formDataObj
+      body: formDataObj,
     });
 
     const data = await response.json();
@@ -63,12 +76,12 @@ const Contact = memo(function Contact() {
           <Mailbox />
         </span>
       ),
-      bgClass: 'bg-red-500/10 dark:bg-red-500/15',
-      borderClass: 'border-red-500/20',
-      hoverGlow: 'hover:shadow-[0_0_20px_rgba(234,67,53,0.2)]',
-      label: "Email",
-      value: "redasalem287@gmail.com",
-      href: "mailto:redasalem287@gmail.com",
+      bgClass: "bg-red-500/10 dark:bg-red-500/15",
+      borderClass: "border-red-500/20",
+      hoverGlow: "hover:shadow-[0_0_20px_rgba(234,67,53,0.2)]",
+      label: t.contact.emailLabel,
+      value: settings.email,
+      href: `mailto:${settings.email}`,
     },
     {
       icon: (
@@ -76,12 +89,12 @@ const Contact = memo(function Contact() {
           <Phone />
         </span>
       ),
-      bgClass: 'bg-[#25D366]/10 dark:bg-[#25D366]/15',
-      borderClass: 'border-[#25D366]/20',
-      hoverGlow: 'hover:shadow-[0_0_20px_rgba(37,211,102,0.2)]',
-      label: "Phone",
-      value: "+20 112 169 6299",
-      href: "tel:+201121696299",
+      bgClass: "bg-[#25D366]/10 dark:bg-[#25D366]/15",
+      borderClass: "border-[#25D366]/20",
+      hoverGlow: "hover:shadow-[0_0_20px_rgba(37,211,102,0.2)]",
+      label: t.contact.phoneLabel,
+      value: settings.phoneDisplay || settings.phone,
+      href: `tel:${settings.phone.replace(/\s+/g, "")}`,
     },
     {
       icon: (
@@ -89,17 +102,20 @@ const Contact = memo(function Contact() {
           <Users />
         </span>
       ),
-      bgClass: 'bg-[#0A66C2]/10 dark:bg-[#0A66C2]/15',
-      borderClass: 'border-[#0A66C2]/20',
-      hoverGlow: 'hover:shadow-[0_0_20px_rgba(10,102,194,0.2)]',
-      href: "https://www.linkedin.com/in/reda-salem-dev/",
-      label: "LinkedIn",
-      value: "LinkedIn Profile",
+      bgClass: "bg-[#0A66C2]/10 dark:bg-[#0A66C2]/15",
+      borderClass: "border-[#0A66C2]/20",
+      hoverGlow: "hover:shadow-[0_0_20px_rgba(10,102,194,0.2)]",
+      href: settings.linkedinUrl,
+      label: t.contact.linkedinLabel,
+      value: t.contact.linkedinValue,
     },
   ];
 
   return (
-    <section id="contact" className="py-16 md:py-24 lg:py-32 px-4 md:px-6 relative bg-background transition-colors duration-300">
+    <section
+      id="contact"
+      className="py-16 md:py-24 lg:py-32 px-4 md:px-6 relative bg-background transition-colors duration-300"
+    >
       {/* Background glow — multi-color */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-brand-mint-500/5 rounded-full blur-3xl" />
@@ -111,15 +127,15 @@ const Contact = memo(function Contact() {
           <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-brand-mint-500/10 border border-brand-mint-500/20 mb-4 md:mb-6">
             <Send className="text-brand-mint-400 w-3 h-3 md:w-4 md:h-4" />
             <span className="text-xs md:text-sm font-semibold text-brand-mint-400">
-              Let&apos;s Talk
+              {t.contact.badge}
             </span>
           </div>
 
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3">
-            <span className="text-gradient-animated">Get in Touch</span>
+            <span className="text-gradient-animated">{t.contact.title}</span>
           </h2>
           <p className="text-muted-foreground text-lg mb-4">
-            Have a project in mind or want to work together? I&apos;d like to hear about it.
+            {t.contact.subtitle}
           </p>
           <div className="w-20 h-1.5 bg-gradient-to-r from-brand-mint-500 via-brand-violet-500 to-brand-cyan-500 rounded-full" />
         </div>
@@ -131,17 +147,28 @@ const Contact = memo(function Contact() {
               <a
                 key={index}
                 href={info.href}
-                {...(info.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                {...(info.href.startsWith("http")
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
                 className={`group block p-4 rounded-xl glass-premium ${info.hoverGlow} hover:-translate-y-0.5 transition-all duration-300 animate-fade-in`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="flex items-start gap-4">
-                  <div className={`w-11 h-11 rounded-xl ${info.bgClass} border ${info.borderClass} relative z-10 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300 text-lg`}>
+                  <div
+                    className={`w-11 h-11 rounded-xl ${info.bgClass} border ${info.borderClass} relative z-10 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300 text-lg`}
+                  >
                     {info.icon}
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-muted-foreground">{info.label}</p>
-                    <p className="text-foreground group-hover:text-brand-mint-400 transition-colors">{info.value}</p>
+                    <p className="text-sm font-semibold text-muted-foreground">
+                      {info.label}
+                    </p>
+                    <p
+                      className="text-foreground group-hover:text-brand-mint-400 transition-colors"
+                      dir="ltr"
+                    >
+                      {info.value}
+                    </p>
                   </div>
                 </div>
               </a>
@@ -157,7 +184,12 @@ const Contact = memo(function Contact() {
             <div className="space-y-4">
               {/* Name Input */}
               <div>
-                <label htmlFor="contact-name" className="block text-sm font-medium text-foreground mb-2">Name</label>
+                <label
+                  htmlFor="contact-name"
+                  className="block text-sm font-medium text-foreground mb-2"
+                >
+                  {t.contact.nameLabel}
+                </label>
                 <input
                   id="contact-name"
                   type="text"
@@ -166,13 +198,18 @@ const Contact = memo(function Contact() {
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3 rounded-xl bg-background/50 border border-border text-foreground placeholder-muted-foreground focus:outline-none focus:border-brand-mint-500 focus:ring-2 focus:ring-brand-mint-500/20 focus:shadow-[0_0_20px_rgba(0,200,130,0.1)] transition-all duration-300"
-                  placeholder="Your name"
+                  placeholder={t.contact.namePlaceholder}
                 />
               </div>
 
               {/* Email Input */}
               <div>
-                <label htmlFor="contact-email" className="block text-sm font-medium text-foreground mb-2">Email</label>
+                <label
+                  htmlFor="contact-email"
+                  className="block text-sm font-medium text-foreground mb-2"
+                >
+                  {t.contact.emailInputLabel}
+                </label>
                 <input
                   id="contact-email"
                   type="email"
@@ -180,16 +217,27 @@ const Contact = memo(function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   required
+                  dir="ltr"
                   pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
-                  className={`w-full px-4 py-3 rounded-xl bg-background/50 border text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 transition-all duration-300 ${formData.email ? (isValidEmail ? 'border-green-500 focus:ring-green-500/20 focus:shadow-[0_0_20px_rgba(34,197,94,0.1)]' : 'border-red-500 focus:ring-red-500/20') : 'border-border focus:border-brand-mint-500 focus:ring-brand-mint-500/20'
-                    }`}
-                  placeholder="your@email.com"
+                  className={`w-full px-4 py-3 rounded-xl bg-background/50 border text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 transition-all duration-300 ${
+                    formData.email
+                      ? isValidEmail
+                        ? "border-green-500 focus:ring-green-500/20 focus:shadow-[0_0_20px_rgba(34,197,94,0.1)]"
+                        : "border-red-500 focus:ring-red-500/20"
+                      : "border-border focus:border-brand-mint-500 focus:ring-brand-mint-500/20"
+                  }`}
+                  placeholder={t.contact.emailPlaceholder}
                 />
               </div>
 
               {/* Subject Input */}
               <div>
-                <label htmlFor="contact-subject" className="block text-sm font-medium text-foreground mb-2">Subject</label>
+                <label
+                  htmlFor="contact-subject"
+                  className="block text-sm font-medium text-foreground mb-2"
+                >
+                  {t.contact.subjectLabel}
+                </label>
                 <input
                   id="contact-subject"
                   type="text"
@@ -198,13 +246,18 @@ const Contact = memo(function Contact() {
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3 rounded-xl bg-background/50 border border-border text-foreground placeholder-muted-foreground focus:outline-none focus:border-brand-violet-500 focus:ring-2 focus:ring-brand-violet-500/20 focus:shadow-[0_0_20px_rgba(139,92,246,0.1)] transition-all duration-300"
-                  placeholder="Project inquiry"
+                  placeholder={t.contact.subjectPlaceholder}
                 />
               </div>
 
               {/* Message Textarea */}
               <div>
-                <label htmlFor="contact-message" className="block text-sm font-medium text-foreground mb-2">Message</label>
+                <label
+                  htmlFor="contact-message"
+                  className="block text-sm font-medium text-foreground mb-2"
+                >
+                  {t.contact.messageLabel}
+                </label>
                 <textarea
                   id="contact-message"
                   name="message"
@@ -213,25 +266,32 @@ const Contact = memo(function Contact() {
                   required
                   rows={5}
                   className="w-full px-4 py-3 rounded-xl bg-background/50 border border-border text-foreground placeholder-muted-foreground focus:outline-none focus:border-brand-cyan-500 focus:ring-2 focus:ring-brand-cyan-500/20 focus:shadow-[0_0_20px_rgba(6,182,212,0.1)] transition-all duration-300 resize-none"
-                  placeholder="Your message here..."
+                  placeholder={t.contact.messagePlaceholder}
                 />
               </div>
 
               {/* Submit Button — Gradient */}
               <button
                 type="submit"
-                disabled={!formData.name || !isValidEmail || !formData.subject || !formData.message}
+                disabled={
+                  !formData.name ||
+                  !isValidEmail ||
+                  !formData.subject ||
+                  !formData.message
+                }
                 className="cursor-pointer w-full btn-gradient !py-3.5 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:transform-none"
               >
                 {result ? (
                   <>
                     <div className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
-                    Sending...
+                    {t.contact.sendingBtn}
                   </>
                 ) : (
                   <>
-                    <span><Send className="w-5 h-5" /></span>
-                    Send Message
+                    <span>
+                      <Send className="w-5 h-5" />
+                    </span>
+                    {t.contact.sendBtn}
                   </>
                 )}
               </button>
@@ -239,12 +299,12 @@ const Contact = memo(function Contact() {
               {/* Status Messages */}
               {submitStatus === "success" && (
                 <div className="p-3 rounded-xl bg-green-500/10 border border-green-500/30 text-green-400 text-sm text-center animate-fade-in backdrop-blur-sm">
-                  Message sent successfully! I'll get back to you soon.
+                  {t.contact.successMsg}
                 </div>
               )}
               {submitStatus === "error" && (
                 <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-sm text-center animate-fade-in backdrop-blur-sm">
-                  Error sending message. Please try again.
+                  {t.contact.errorMsg}
                 </div>
               )}
             </div>

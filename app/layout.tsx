@@ -56,7 +56,7 @@ export const metadata: Metadata = {
   alternates: {
     languages: {
       en: "https://reda-website.vercel.app",
-      ar: "https://reda-website.vercel.app",
+      ar: "https://reda-website.vercel.app/ar",
     },
     canonical: "https://reda-website.vercel.app",
     types: {

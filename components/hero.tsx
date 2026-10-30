@@ -7,42 +7,49 @@ import React, {
   useMemo,
   useRef,
   useState,
-  type CSSProperties,
   type PointerEvent,
 } from "react";
-import { ArrowDown, ArrowRight } from "lucide-react";
+import { ArrowDown, ArrowLeft, ArrowRight } from "lucide-react";
 import SocialIcon from "@/components/social-icon";
-
-const CODE_LINES = [
-  "const reda = {",
-  '  role: "Full-Stack Engineer",',
-  '  stack: ["React", "Next.js", "Node.js", "MongoDB"],',
-  "  available: true,",
-  "};",
-];
+import {
+  DEFAULT_SITE_SETTINGS,
+  DEFAULT_SOCIAL_LINKS,
+  type SiteSettings,
+  type SocialLinkItem,
+} from "@/lib/firestore";
+import { siteDictionary, type Locale } from "@/lib/i18n";
 
 /* Richer syntax highlighting colors */
 const CODE_LINE_CLASSES = [
-  "text-brand-violet-400",                          /* keyword: const */
-  "text-brand-cyan-400",                             /* string key */
-  "text-brand-mint-400",                             /* array */
-  "text-brand-amber-400",                            /* boolean */
-  "text-brand-violet-400",                           /* closing brace */
+  "text-brand-violet-400",
+  "text-brand-cyan-400",
+  "text-brand-mint-400",
+  "text-brand-amber-400",
+  "text-brand-violet-400",
 ];
 
-const FULL_CODE = CODE_LINES.join("\n");
+const TypedCodeBlock = memo(function TypedCodeBlock({
+  role,
+  stack,
+}: {
+  role: string;
+  stack: string[];
+}) {
+  const fullCode = useMemo(() => {
+    const stackList = stack.map((item) => `"${item}"`).join(", ");
+    return [
+      "const reda = {",
+      `  role: "${role}",`,
+      `  stack: [${stackList}],`,
+      "  available: true,",
+      "};",
+    ].join("\n");
+  }, [role, stack]);
 
-const SOCIAL_LINKS = [
-  { platform: "github" as const, href: "https://github.com/redasalem" },
-  { platform: "linkedin" as const, href: "https://www.linkedin.com/in/reda-salem-dev/" },
-  { platform: "email" as const, href: "mailto:redasalem287@gmail.com" },
-];
-
-const TypedCodeBlock = memo(function TypedCodeBlock() {
   const [charCount, setCharCount] = useState(0);
 
   useEffect(() => {
-    if (charCount >= FULL_CODE.length) {
+    if (charCount >= fullCode.length) {
       return undefined;
     }
 
@@ -51,22 +58,35 @@ const TypedCodeBlock = memo(function TypedCodeBlock() {
     }, 28);
 
     return () => window.clearTimeout(timeout);
-  }, [charCount]);
+  }, [charCount, fullCode.length]);
 
-  const displayedCode = useMemo(() => FULL_CODE.slice(0, charCount), [charCount]);
+  const displayedCode = useMemo(
+    () => fullCode.slice(0, charCount),
+    [charCount, fullCode],
+  );
   const lines = useMemo(() => displayedCode.split("\n"), [displayedCode]);
 
   return (
-    <div className="space-y-3 font-mono text-sm">
-      <pre className="text-brand-mint-400 whitespace-pre-wrap">
+    <div className="space-y-3 font-mono text-sm" dir="ltr">
+      <pre className="text-brand-mint-400 whitespace-pre-wrap text-left">
         {lines.map((line, index) => {
           const isLastLine = index === lines.length - 1;
 
           return (
-            <div key={`${index}-${line.length}`} className={CODE_LINE_CLASSES[index] ?? CODE_LINE_CLASSES[0]}>
-              <span className="text-muted-foreground/40 mr-3 select-none text-xs">{index + 1}</span>
+            <div
+              key={`${index}-${line.length}`}
+              className={CODE_LINE_CLASSES[index] ?? CODE_LINE_CLASSES[0]}
+            >
+              <span className="text-muted-foreground/40 mr-3 select-none text-xs">
+                {index + 1}
+              </span>
               {line}
-              {isLastLine ? <span className="hero-code-cursor ml-1 align-middle" aria-hidden="true" /> : null}
+              {isLastLine ? (
+                <span
+                  className="hero-code-cursor ml-1 align-middle"
+                  aria-hidden="true"
+                />
+              ) : null}
             </div>
           );
         })}
@@ -75,7 +95,13 @@ const TypedCodeBlock = memo(function TypedCodeBlock() {
   );
 });
 
-const HeroShowcase = memo(function HeroShowcase() {
+const HeroShowcase = memo(function HeroShowcase({
+  role,
+  stack,
+}: {
+  role: string;
+  stack: string[];
+}) {
   const panelRef = useRef<HTMLDivElement>(null);
   const frameRef = useRef<number | null>(null);
 
@@ -101,23 +127,38 @@ const HeroShowcase = memo(function HeroShowcase() {
     const rotateX = (0.5 - relativeY) * 8;
     const rotateY = (relativeX - 0.5) * 8;
 
-    panelRef.current.style.setProperty("--hero-rotate-x", `${rotateX.toFixed(2)}deg`);
-    panelRef.current.style.setProperty("--hero-rotate-y", `${rotateY.toFixed(2)}deg`);
-    panelRef.current.style.setProperty("--hero-glow-x", `${(relativeX * 100).toFixed(2)}%`);
-    panelRef.current.style.setProperty("--hero-glow-y", `${(relativeY * 100).toFixed(2)}%`);
+    panelRef.current.style.setProperty(
+      "--hero-rotate-x",
+      `${rotateX.toFixed(2)}deg`,
+    );
+    panelRef.current.style.setProperty(
+      "--hero-rotate-y",
+      `${rotateY.toFixed(2)}deg`,
+    );
+    panelRef.current.style.setProperty(
+      "--hero-glow-x",
+      `${(relativeX * 100).toFixed(2)}%`,
+    );
+    panelRef.current.style.setProperty(
+      "--hero-glow-y",
+      `${(relativeY * 100).toFixed(2)}%`,
+    );
   }, []);
 
-  const handlePointerMove = useCallback((event: PointerEvent<HTMLDivElement>) => {
-    const { clientX, clientY } = event;
+  const handlePointerMove = useCallback(
+    (event: PointerEvent<HTMLDivElement>) => {
+      const { clientX, clientY } = event;
 
-    if (frameRef.current !== null) {
-      window.cancelAnimationFrame(frameRef.current);
-    }
+      if (frameRef.current !== null) {
+        window.cancelAnimationFrame(frameRef.current);
+      }
 
-    frameRef.current = window.requestAnimationFrame(() => {
-      updateTilt(clientX, clientY);
-    });
-  }, [updateTilt]);
+      frameRef.current = window.requestAnimationFrame(() => {
+        updateTilt(clientX, clientY);
+      });
+    },
+    [updateTilt],
+  );
 
   const handlePointerLeave = useCallback(() => {
     if (frameRef.current !== null) {
@@ -139,7 +180,7 @@ const HeroShowcase = memo(function HeroShowcase() {
   }, [resetTilt]);
 
   return (
-    <div className="relative">
+    <div className="relative" dir="ltr">
       {/* Glow behind the panel */}
       <div className="absolute -inset-4 bg-gradient-to-br from-brand-mint-500/20 via-brand-violet-500/10 to-brand-cyan-500/15 rounded-3xl blur-2xl opacity-60 pointer-events-none" />
 
@@ -167,7 +208,7 @@ const HeroShowcase = memo(function HeroShowcase() {
           </div>
 
           <div className="p-6 min-h-[220px] bg-white dark:bg-[#0d1117]">
-            <TypedCodeBlock />
+            <TypedCodeBlock role={role} stack={stack} />
           </div>
         </div>
       </div>
@@ -175,22 +216,72 @@ const HeroShowcase = memo(function HeroShowcase() {
   );
 });
 
-const HeroSection = memo(function HeroSection() {
+interface HeroSectionProps {
+  locale?: Locale;
+  settings?: SiteSettings;
+  socials?: SocialLinkItem[];
+}
+
+const HeroSection = memo(function HeroSection({
+  locale = "en",
+  settings = DEFAULT_SITE_SETTINGS,
+  socials = DEFAULT_SOCIAL_LINKS,
+}: HeroSectionProps) {
+  const t = siteDictionary[locale];
+  const isRtl = locale === "ar";
+
   const scrollToContact = useCallback(() => {
-    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    document
+      .getElementById("contact")
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, []);
 
   const scrollToProjects = useCallback(() => {
-    document.getElementById("projects")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    document
+      .getElementById("projects")
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, []);
 
+  const heroSocials = useMemo(
+    () => socials.filter((s) => s.visible && s.showInHero !== false),
+    [socials],
+  );
+
+  const badgeText =
+    locale === "ar"
+      ? settings.availabilityBadgeAr || t.hero.defaultBadge
+      : settings.availabilityBadge || t.hero.defaultBadge;
+
+  const displayName =
+    locale === "ar"
+      ? settings.heroNameAr || settings.heroName
+      : settings.heroName;
+
+  const titleText =
+    locale === "ar"
+      ? settings.heroTitleAr || t.hero.defaultTitle
+      : settings.heroTitle || t.hero.defaultTitle;
+
+  const bioText =
+    locale === "ar"
+      ? settings.heroBioAr || t.hero.defaultBio
+      : settings.heroBio || t.hero.defaultBio;
+
+  const PrimaryArrow = isRtl ? ArrowLeft : ArrowRight;
+
   return (
-    <section id="about" className="relative min-h-screen overflow-hidden flex items-center bg-background">
+    <section
+      id="about"
+      className="relative min-h-screen overflow-hidden flex items-center bg-background"
+    >
       {/* Subtle background grid */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(0,200,130,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,200,130,0.03)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(0,200,130,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(0,200,130,0.06)_1px,transparent_1px)] bg-size-[100px_100px] mask-[radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]" />
 
       {/* Multi-color orbs behind hero content */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+      <div
+        className="absolute inset-0 overflow-hidden pointer-events-none"
+        aria-hidden="true"
+      >
         <div
           className="absolute w-[500px] h-[500px] top-[-150px] left-[-150px] bg-gradient-to-br from-brand-mint-500/15 via-brand-cyan-500/8 to-transparent rounded-full blur-3xl"
           style={{ animation: "orbFloat1 18s ease-in-out infinite" }}
@@ -211,36 +302,39 @@ const HeroSection = memo(function HeroSection() {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-mint-400 opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-mint-500" />
                 </span>
-                Open to Remote & Freelance
+                {badgeText}
               </span>
             </div>
 
             <div className="space-y-4">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
-                Hi, I&apos;m{" "}
+                {t.hero.greetingPrefix}{" "}
                 <span className="text-gradient-hero font-extrabold">
-                  Reda Salem
+                  {displayName}
                 </span>
               </h1>
 
               <h2 className="text-2xl lg:text-3xl font-semibold">
                 <span className="bg-gradient-to-r from-brand-cyan-400 via-brand-violet-400 to-brand-mint-400 bg-clip-text text-transparent">
-                  Full-Stack Engineer
+                  {titleText}
                 </span>
               </h2>
             </div>
 
             <p className="text-lg text-muted-foreground leading-relaxed max-w-xl">
-              I build web applications that work well and ship on time. My stack is{" "}
-              <strong className="text-foreground">React, Next.js, Node.js, and MongoDB</strong> — and I&apos;ve used it
-              to deliver car rental platforms, multi-vendor marketplaces, and SEO tools
-              that handle real users and real payments.
+              {bioText}
             </p>
 
             <div className="flex flex-wrap gap-4">
               <button onClick={scrollToProjects} className="btn-gradient group">
-                View My Projects
-                <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+                {t.hero.viewProjectsBtn}
+                <PrimaryArrow
+                  className={`w-5 h-5 transition-transform duration-300 ${
+                    isRtl
+                      ? "group-hover:-translate-x-1"
+                      : "group-hover:translate-x-1"
+                  }`}
+                />
               </button>
 
               <button
@@ -248,23 +342,31 @@ const HeroSection = memo(function HeroSection() {
                 className="cursor-pointer px-8 py-4 glass-premium text-foreground font-semibold rounded-full hover:bg-white/10 transition-all duration-300 flex items-center gap-2 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-brand-violet-500/10"
               >
                 <ArrowDown className="w-5 h-5" />
-                Get in Touch
+                {t.hero.getInTouchBtn}
               </button>
             </div>
 
-            <div className="flex gap-3">
-              {SOCIAL_LINKS.map((social) => (
+            <div className="flex gap-3 flex-wrap">
+              {heroSocials.map((social) => (
                 <SocialIcon
-                  key={social.platform}
+                  key={social.id}
                   platform={social.platform}
                   href={social.href}
+                  label={social.label}
                   size="md"
                 />
               ))}
             </div>
           </div>
 
-          <HeroShowcase />
+          <HeroShowcase
+            role={settings.heroTitle || "Full-Stack Engineer"}
+            stack={
+              settings.codeStack && settings.codeStack.length > 0
+                ? settings.codeStack
+                : ["React", "Next.js", "Node.js", "MongoDB"]
+            }
+          />
         </div>
       </div>
 
