@@ -151,12 +151,12 @@ export default function AdminCertificatesPage() {
                 Description
               </label>
               <textarea
-                rows={2}
+                rows={5}
                 value={cert.description}
                 onChange={(e) =>
                   updateCert(idx, { description: e.target.value })
                 }
-                className="w-full px-3.5 py-2 rounded-xl bg-slate-950 border border-white/15 text-sm text-white resize-none"
+                className="w-full min-h-[130px] px-4 py-3 rounded-xl bg-slate-950 border border-white/15 text-base leading-relaxed text-white resize-y"
               />
             </div>
 

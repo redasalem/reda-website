@@ -104,7 +104,7 @@ export default function AdminAiAssistantPage() {
           dir="ltr"
           value={promptText}
           onChange={(e) => setPromptText(e.target.value)}
-          className="w-full p-4 rounded-2xl bg-slate-950 border border-white/15 font-mono text-xs leading-relaxed text-foreground focus:outline-none focus:border-brand-mint-500"
+          className="w-full min-h-[380px] p-4 rounded-2xl bg-slate-950 border border-white/15 font-mono text-sm leading-relaxed text-foreground focus:outline-none focus:border-brand-mint-500 resize-y"
         />
       </div>
     </form>

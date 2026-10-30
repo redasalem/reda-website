@@ -263,7 +263,7 @@ export default function AdminProjectsPage() {
                 {isAr ? "وصف المشروع (Description) *" : "Project Description *"}
               </label>
               <textarea
-                rows={3}
+                rows={7}
                 required
                 dir="ltr"
                 value={form.description}
@@ -271,7 +271,7 @@ export default function AdminProjectsPage() {
                   setForm((prev) => ({ ...prev, description: e.target.value }))
                 }
                 placeholder="Describe architecture, features, and impact..."
-                className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-white/15 text-sm text-foreground focus:outline-none focus:border-brand-mint-500 resize-none"
+                className="w-full min-h-[160px] px-4 py-3.5 rounded-xl bg-slate-950 border border-white/15 text-base leading-relaxed text-foreground focus:outline-none focus:border-brand-mint-500 resize-y"
               />
             </div>
 

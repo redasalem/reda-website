@@ -198,12 +198,12 @@ export default function AdminProfilePage() {
             Hero Bio Paragraph (EN)
           </label>
           <textarea
-            rows={3}
+            rows={6}
             value={settings.heroBio}
             onChange={(e) =>
               setSettings((p) => ({ ...p, heroBio: e.target.value }))
             }
-            className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-white/15 text-sm text-white resize-none"
+            className="w-full min-h-[150px] px-4 py-3 rounded-xl bg-slate-950 border border-white/15 text-base leading-relaxed text-white resize-y"
           />
         </div>
 
@@ -212,12 +212,12 @@ export default function AdminProfilePage() {
             Footer Summary (EN)
           </label>
           <textarea
-            rows={2}
+            rows={4}
             value={settings.footerBlurb}
             onChange={(e) =>
               setSettings((p) => ({ ...p, footerBlurb: e.target.value }))
             }
-            className="w-full px-3.5 py-2 rounded-xl bg-slate-950 border border-white/15 text-sm text-white resize-none"
+            className="w-full min-h-[110px] px-4 py-3 rounded-xl bg-slate-950 border border-white/15 text-base leading-relaxed text-white resize-y"
           />
         </div>
       </div>
@@ -286,12 +286,12 @@ export default function AdminProfilePage() {
             النبذة التعريفية في الواجهة (Hero Bio بالعربية)
           </label>
           <textarea
-            rows={3}
+            rows={6}
             value={settings.heroBioAr || ""}
             onChange={(e) =>
               setSettings((p) => ({ ...p, heroBioAr: e.target.value }))
             }
-            className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-white/15 text-sm text-white resize-none"
+            className="w-full min-h-[150px] px-4 py-3 rounded-xl bg-slate-950 border border-white/15 text-base leading-relaxed text-white resize-y"
           />
         </div>
 
@@ -300,12 +300,12 @@ export default function AdminProfilePage() {
             وصف الفوتر بالعربية (Footer)
           </label>
           <textarea
-            rows={2}
+            rows={4}
             value={settings.footerBlurbAr || ""}
             onChange={(e) =>
               setSettings((p) => ({ ...p, footerBlurbAr: e.target.value }))
             }
-            className="w-full px-3.5 py-2 rounded-xl bg-slate-950 border border-white/15 text-sm text-white resize-none"
+            className="w-full min-h-[110px] px-4 py-3 rounded-xl bg-slate-950 border border-white/15 text-base leading-relaxed text-white resize-y"
           />
         </div>
       </div>
