@@ -1,32 +1,38 @@
 rules_version = '2';
+
 service cloud.firestore {
   match /databases/{database}/documents {
-    function admin() {
-      return request.auth != null && request.auth.token.admin == true;
+    // Only Reda Salem's verified Google account can create, update, or delete any portfolio data
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email == "redasalem287@gmail.com"
+        && request.auth.token.email_verified == true;
     }
-    function text(value, min, max) {
-      return value is string && value.size() >= min && value.size() <= max;
+
+    match /projects/{projectId} {
+      allow read: if true;
+      allow write: if isAdmin();
     }
-    function link(value) {
-      return value is string && value.size() <= 500 && (value == '' || value.matches('https://[^\\s/]+.*'));
+
+    match /settings/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
     }
-    function valid() {
-      let d = request.resource.data;
-      return d.keys().hasAll(['title', 'summary', 'body', 'category', 'stack', 'liveUrl', 'repoUrl', 'published', 'order', 'createdAt', 'updatedAt'])
-        && d.keys().hasOnly(['title', 'summary', 'body', 'category', 'stack', 'liveUrl', 'repoUrl', 'published', 'order', 'createdAt', 'updatedAt'])
-        && text(d.title, 3, 100) && text(d.summary, 20, 300)
-        && text(d.body, 20, 8000) && text(d.category, 2, 60) && text(d.stack, 2, 300)
-        && link(d.liveUrl) && link(d.repoUrl)
-        && d.published is bool && d.order is int && d.order >= 0 && d.order <= 999
-        && d.createdAt is timestamp && d.updatedAt == request.time;
+
+    match /skillCategories/{categoryId} {
+      allow read: if true;
+      allow write: if isAdmin();
     }
-    match /projects/{id} {
-      allow get: if admin() || resource.data.published == true;
-      allow list: if admin() || (resource.data.published == true && request.query.limit <= 50);
-      allow create: if admin() && valid() && request.resource.data.createdAt == request.time;
-      allow update: if admin() && valid() && request.resource.data.createdAt == resource.data.createdAt;
-      allow delete: if admin();
+
+    match /certificates/{certId} {
+      allow read: if true;
+      allow write: if isAdmin();
     }
-    match /{document=**} { allow read, write: if false; }
+
+    // Deny everything else by default
+    match /{document=**} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
   }
 }

@@ -1,7 +1,10 @@
 import Link from "next/link";
+import type { Metadata } from "next";
+import { SITE_URL } from "@/lib/seo";
 
-export const metadata = {
-  title: "Page not found",
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  title: "Page not found | Reda Salem",
   description: "The page you requested could not be found.",
   robots: { index: false, follow: false },
 };
@@ -18,7 +21,7 @@ export default function NotFound() {
         engineering work is still one click away.
       </p>
       <div className="case-actions">
-        <Link className="button-primary" href="/#work">
+        <Link className="case-action-link" href="/#projects">
           Explore selected work ↗
         </Link>
         <Link className="text-link" href="/">

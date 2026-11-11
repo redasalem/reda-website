@@ -1,11 +1,24 @@
 /**
  * SocialIcon — unified branded social icon component.
- * Supports: github, linkedin, email, phone/whatsapp
+ * Supports: github, linkedin, email, phone/whatsapp, facebook, x, devto, medium, stackoverflow, youtube, website
  * Uses react-icons/fa for official brand logos (highly compatible & stable).
  */
-import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp } from "react-icons/fa";
+import {
+  FaGithub,
+  FaLinkedin,
+  FaEnvelope,
+  FaWhatsapp,
+  FaFacebook,
+  FaTwitter,
+  FaDev,
+  FaMedium,
+  FaStackOverflow,
+  FaYoutube,
+  FaGlobe,
+} from "react-icons/fa";
+import type { SocialPlatform } from "@/lib/firestore";
 
-type Platform = "github" | "linkedin" | "email" | "phone";
+export type Platform = SocialPlatform;
 
 interface SocialIconProps {
   platform: Platform;
@@ -34,7 +47,8 @@ const PLATFORM_CONFIG: Record<
     bgClass: "bg-[#24292e]/10 dark:bg-white/8",
     borderClass: "border-[#24292e]/20 dark:border-white/12",
     hoverBgClass: "hover:bg-[#24292e]/20 dark:hover:bg-white/15",
-    hoverShadow: "hover:shadow-[0_0_20px_rgba(36,41,46,0.25)] dark:hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]",
+    hoverShadow:
+      "hover:shadow-[0_0_20px_rgba(36,41,46,0.25)] dark:hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]",
     defaultLabel: "GitHub",
   },
   linkedin: {
@@ -64,6 +78,69 @@ const PLATFORM_CONFIG: Record<
     hoverShadow: "hover:shadow-[0_0_20px_rgba(37,211,102,0.30)]",
     defaultLabel: "WhatsApp",
   },
+  facebook: {
+    Icon: FaFacebook,
+    color: "text-[#1877F2]",
+    bgClass: "bg-[#1877F2]/10",
+    borderClass: "border-[#1877F2]/20",
+    hoverBgClass: "hover:bg-[#1877F2]/20",
+    hoverShadow: "hover:shadow-[0_0_20px_rgba(24,119,242,0.30)]",
+    defaultLabel: "Facebook",
+  },
+  x: {
+    Icon: FaTwitter,
+    color: "text-[#1DA1F2]",
+    bgClass: "bg-[#1DA1F2]/10",
+    borderClass: "border-[#1DA1F2]/20",
+    hoverBgClass: "hover:bg-[#1DA1F2]/20",
+    hoverShadow: "hover:shadow-[0_0_20px_rgba(29,161,242,0.30)]",
+    defaultLabel: "X (Twitter)",
+  },
+  devto: {
+    Icon: FaDev,
+    color: "text-white",
+    bgClass: "bg-white/10",
+    borderClass: "border-white/20",
+    hoverBgClass: "hover:bg-white/20",
+    hoverShadow: "hover:shadow-[0_0_20px_rgba(255,255,255,0.20)]",
+    defaultLabel: "DEV Community",
+  },
+  medium: {
+    Icon: FaMedium,
+    color: "text-white",
+    bgClass: "bg-white/10",
+    borderClass: "border-white/20",
+    hoverBgClass: "hover:bg-white/20",
+    hoverShadow: "hover:shadow-[0_0_20px_rgba(255,255,255,0.20)]",
+    defaultLabel: "Medium",
+  },
+  stackoverflow: {
+    Icon: FaStackOverflow,
+    color: "text-[#F48024]",
+    bgClass: "bg-[#F48024]/10",
+    borderClass: "border-[#F48024]/20",
+    hoverBgClass: "hover:bg-[#F48024]/20",
+    hoverShadow: "hover:shadow-[0_0_20px_rgba(244,128,36,0.30)]",
+    defaultLabel: "Stack Overflow",
+  },
+  youtube: {
+    Icon: FaYoutube,
+    color: "text-[#FF0000]",
+    bgClass: "bg-[#FF0000]/10",
+    borderClass: "border-[#FF0000]/20",
+    hoverBgClass: "hover:bg-[#FF0000]/20",
+    hoverShadow: "hover:shadow-[0_0_20px_rgba(255,0,0,0.30)]",
+    defaultLabel: "YouTube",
+  },
+  website: {
+    Icon: FaGlobe,
+    color: "text-brand-mint-400",
+    bgClass: "bg-brand-mint-500/10",
+    borderClass: "border-brand-mint-500/20",
+    hoverBgClass: "hover:bg-brand-mint-500/20",
+    hoverShadow: "hover:shadow-[0_0_20px_rgba(0,255,159,0.30)]",
+    defaultLabel: "Website",
+  },
 };
 
 export default function SocialIcon({
@@ -73,7 +150,7 @@ export default function SocialIcon({
   size = "sm",
   className = "",
 }: SocialIconProps) {
-  const cfg = PLATFORM_CONFIG[platform];
+  const cfg = PLATFORM_CONFIG[platform] || PLATFORM_CONFIG.website;
   const { Icon } = cfg;
 
   const sizeClass = size === "md" ? "w-11 h-11" : "w-10 h-10";

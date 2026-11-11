@@ -2,8 +2,6 @@
 
 # dependencies
 /node_modules
-package-lock.json
-yarn.lock
 
 # next.js
 /.next/
@@ -21,11 +19,6 @@ yarn-error.log*
 # env files
 .env*
 .env.local*
-!.env.example
-/coverage/
-/playwright-report/
-/test-results/
-*-debug.log
 
 # vercel
 .vercel

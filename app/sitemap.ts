@@ -1,8 +1,33 @@
 import type { MetadataRoute } from "next";
-import { getPublishedProjects } from "@/lib/public-projects";
-import { site } from "@/lib/site";
-export const revalidate = 60;
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const projects = await getPublishedProjects().catch(() => []);
-  return [{ url: site.url, changeFrequency: "monthly", priority: 1 }, { url: site.url + "/download", changeFrequency: "monthly", priority: 0.5 }, ...projects.map(project => ({ url: site.url + "/work/" + project.id, changeFrequency: "monthly" as const, priority: 0.8 }))];
+import { SITE_URL } from "@/lib/seo";
+
+const STABLE_LAST_MODIFIED = new Date("2026-10-09T00:00:00.000Z");
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  return [
+    {
+      url: SITE_URL,
+      lastModified: STABLE_LAST_MODIFIED,
+      changeFrequency: "weekly",
+      priority: 1.0,
+      alternates: {
+        languages: {
+          en: SITE_URL,
+          "x-default": SITE_URL,
+        },
+      },
+    },
+    {
+      url: `${SITE_URL}/download`,
+      lastModified: STABLE_LAST_MODIFIED,
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: {
+        languages: {
+          en: `${SITE_URL}/download`,
+          "x-default": `${SITE_URL}/download`,
+        },
+      },
+    },
+  ];
 }
