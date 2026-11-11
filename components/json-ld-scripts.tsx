@@ -1,6 +1,10 @@
 import { getLocalizedSchemas, type PageRouteKey } from "@/lib/seo";
 import type { Locale } from "@/lib/i18n";
 
+function serializeJsonLd(data: unknown): string {
+  return JSON.stringify(data).replace(/</g, "\\u003c");
+}
+
 export default function JsonLdScripts({
   locale,
   route = "home",
@@ -15,37 +19,37 @@ export default function JsonLdScripts({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(schemas.personSchema),
+          __html: serializeJsonLd(schemas.personSchema),
         }}
       />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(schemas.websiteSchema),
+          __html: serializeJsonLd(schemas.websiteSchema),
         }}
       />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(schemas.webPageSchema),
+          __html: serializeJsonLd(schemas.webPageSchema),
         }}
       />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(schemas.professionalServiceSchema),
+          __html: serializeJsonLd(schemas.professionalServiceSchema),
         }}
       />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(schemas.breadcrumbSchema),
+          __html: serializeJsonLd(schemas.breadcrumbSchema),
         }}
       />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(schemas.navigationSchema),
+          __html: serializeJsonLd(schemas.navigationSchema),
         }}
       />
     </>

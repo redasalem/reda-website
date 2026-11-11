@@ -25,20 +25,20 @@ export default function ImageUploader({
       return (
         process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME ||
         window.localStorage.getItem("reda_cloudinary_cloud_name") ||
-        "dffileatz"
+        ""
       );
     }
-    return process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || "dffileatz";
+    return process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || "";
   });
   const [uploadPresetInput, setUploadPresetInput] = useState(() => {
     if (typeof window !== "undefined") {
       return (
         process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET ||
         window.localStorage.getItem("reda_cloudinary_upload_preset") ||
-        "reda_portfolio"
+        ""
       );
     }
-    return process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || "reda_portfolio";
+    return process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || "";
   });
   const [showCloudinarySetup, setShowCloudinarySetup] = useState(false);
 

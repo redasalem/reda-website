@@ -142,8 +142,23 @@ const ChatBot = memo(function ChatBot({ defaultOpen = false }: ChatBotProps) {
     setIsLoading(true);
 
     try {
-      const { getGeminiResponse } = await import("../config/gemini");
-      const aiResponseText = await getGeminiResponse(prompt, historyForGemini);
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          prompt,
+          history: historyForGemini,
+        }),
+      });
+
+      const data = (await response.json()) as { text?: string; error?: string };
+      if (!response.ok || !data.text) {
+        throw new Error(data.error || "Failed to fetch AI response");
+      }
+
+      const aiResponseText = data.text;
 
       setMessages((previousMessages) => [
         ...previousMessages,

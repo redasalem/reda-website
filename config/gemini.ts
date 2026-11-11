@@ -2,7 +2,11 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import { SYSTEM_INSTRUCTION } from "./prompt";
 import { getPortfolioSnapshot } from "@/lib/firestore";
 
-const GOOGLE_API_KEY = process.env.NEXT_PUBLIC_GEMINI_API;
+if (typeof window !== "undefined") {
+  throw new Error("config/gemini.ts must only be imported on the server.");
+}
+
+const GOOGLE_API_KEY = process.env.GEMINI_API_KEY;
 
 export interface ChatTurn {
   role: "user" | "model";
@@ -16,7 +20,7 @@ let cachedDynamicInstruction: { value: string; fetchedAt: number } | null =
 
 function getGenAI(): GoogleGenerativeAI {
   if (!GOOGLE_API_KEY) {
-    throw new Error("Missing NEXT_PUBLIC_GEMINI_API environment variable");
+    throw new Error("Missing GEMINI_API_KEY environment variable");
   }
   if (!genAI) {
     genAI = new GoogleGenerativeAI(GOOGLE_API_KEY);
