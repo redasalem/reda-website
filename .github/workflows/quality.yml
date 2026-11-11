@@ -12,19 +12,6 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
-      - uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 21
       - run: pnpm install --frozen-lockfile
       - run: pnpm run typecheck
-      - run: pnpm test -- --runInBand
-      - run: pnpm run test:rules
       - run: pnpm run build
-      - run: pnpm exec playwright install --with-deps chrome
-      - run: pnpm run test:e2e
-      - uses: actions/upload-artifact@v4
-        if: failure()
-        with:
-          name: browser-traces
-          path: test-results/

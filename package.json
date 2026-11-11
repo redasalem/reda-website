@@ -5,6 +5,7 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
+    "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "start": "next start",
     "clean": "rimraf .next node_modules/.cache .vercel && npm cache clean --force"
