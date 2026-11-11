@@ -1,8 +1,21 @@
 import { revalidatePath } from "next/cache";
-import { NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 
-export async function POST() {
+export async function POST(req: NextRequest) {
   try {
+    const secret =
+      req.headers.get("x-revalidate-secret") ||
+      req.nextUrl.searchParams.get("secret");
+
+    const expectedSecret = process.env.REVALIDATION_SECRET;
+
+    if (!expectedSecret || secret !== expectedSecret) {
+      return NextResponse.json(
+        { error: "Unauthorized" },
+        { status: 401 },
+      );
+    }
+
     revalidatePath("/", "layout");
     revalidatePath("/");
     revalidatePath("/ar");

@@ -31,7 +31,16 @@ function getAdminDb() {
 
 export async function triggerPublicCacheRefresh(): Promise<void> {
   try {
-    await fetch("/api/revalidate", { method: "POST" });
+    const secret =
+      process.env.NEXT_PUBLIC_REVALIDATION_SECRET ||
+      process.env.REVALIDATION_SECRET ||
+      "";
+    await fetch("/api/revalidate", {
+      method: "POST",
+      headers: {
+        "x-revalidate-secret": secret,
+      },
+    });
   } catch (err) {
     console.warn("Cache refresh notice:", err);
   }

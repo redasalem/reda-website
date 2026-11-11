@@ -29,10 +29,9 @@ service cloud.firestore {
       allow write: if isAdmin();
     }
 
-    // Deny everything else by default
+    // Strictly deny everything else by default
     match /{document=**} {
-      allow read: if true;
-      allow write: if isAdmin();
+      allow read, write: if false;
     }
   }
 }
