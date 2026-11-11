@@ -60,34 +60,6 @@ export const ENGLISH_KEYWORDS: string[] = [
   "Custom Web Application Development",
 ];
 
-export const ARABIC_KEYWORDS: string[] = [
-  "رضا سالم",
-  "مبرمج فول ستاك",
-  "مطور ويب",
-  "مهندس برمجيات",
-  "هندسة البرمجيات",
-  "تطوير تطبيقات الويب",
-  "تطوير تطبيقات الموبايل",
-  "مطور React",
-  "مطور Next.js",
-  "مطور React Native",
-  "مطور Node.js",
-  "مطور TypeScript",
-  "مطور باك اند",
-  "مطور فرونت اند",
-  "مطور تطبيقات موبايل",
-  "تطبيقات رياكت نيتف",
-  "تطوير مواقع فول ستاك",
-  "تطبيقات عالية الأداء",
-  "تطوير المواقع الإلكترونية",
-  "تطبيقات الويب المتجاوبة",
-  "مطور ويب مصري",
-  "مبرمج مصري",
-  "تطوير واجهات المستخدم",
-  "تطوير الواجهات الأمامية",
-  "مهندس برمجيات متخصص",
-];
-
 const NOINDEX_FOLLOW_ROBOTS: NonNullable<Metadata["robots"]> = {
   index: false,
   follow: true,
@@ -183,6 +155,34 @@ export const BASE_METADATA: Metadata = {
     siteName: "Reda Salem - Professional Portfolio",
   },
 };
+
+export const ARABIC_KEYWORDS: string[] = [
+  "رضا سالم",
+  "مبرمج فول ستاك",
+  "مطور ويب",
+  "مهندس برمجيات",
+  "هندسة البرمجيات",
+  "تطوير تطبيقات الويب",
+  "تطوير تطبيقات الموبايل",
+  "مطور React",
+  "مطور Next.js",
+  "مطور React Native",
+  "مطور Node.js",
+  "مطور TypeScript",
+  "مطور باك اند",
+  "مطور فرونت اند",
+  "مطور تطبيقات موبايل",
+  "تطبيقات رياكت نيتف",
+  "تطوير مواقع فول ستاك",
+  "تطبيقات عالية الأداء",
+  "تطوير المواقع الإلكترونية",
+  "تطبيقات الويب المتجاوبة",
+  "مطور ويب مصري",
+  "مبرمج مصري",
+  "تطوير واجهات المستخدم",
+  "تطوير الواجهات الأمامية",
+  "مهندس برمجيات متخصص",
+];
 
 export const AR_BASE_METADATA: Metadata = {
   ...BASE_METADATA,
@@ -481,13 +481,21 @@ export function getLocalizedSchemas(
     "@type": "WebSite",
     "@id": `${SITE_URL}/#website`,
     url: SITE_URL,
-    name: "Reda Salem - Full-Stack Engineer Portfolio",
-    alternateName: [
-      "رضا سالم — معرض الأعمال المهني",
-      "Reda Salem Full-Stack Engineer",
-    ],
-    description:
-      "Professional portfolio showcasing full-stack web development projects, React applications, and Node.js backend expertise.",
+    name: isAr
+      ? "رضا سالم — معرض الأعمال المهني"
+      : "Reda Salem - Full-Stack Engineer Portfolio",
+    alternateName: isAr
+      ? [
+          "رضا سالم — معرض الأعمال المهني",
+          "Reda Salem Full-Stack Engineer",
+        ]
+      : [
+          "Reda Salem Portfolio",
+          "Reda Salem Full-Stack Engineer",
+        ],
+    description: isAr
+      ? "معرض الأعمال المهني للمهندس رضا سالم لعرض مشاريع تطوير الويب والموبايل باستخدام React وNext.js وNode.js."
+      : "Professional portfolio showcasing full-stack web development projects, React applications, and Node.js backend expertise.",
     publisher: {
       "@id": `${SITE_URL}/#person`,
     },
