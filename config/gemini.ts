@@ -7,17 +7,18 @@ if (typeof window !== "undefined") {
 }
 
 const GOOGLE_API_KEY = process.env.GEMINI_API_KEY;
+const GEMINI_REQUEST_TIMEOUT_MS = 18_000;
 const GEMINI_MODEL_CANDIDATES = Array.from(
   new Set(
     [
       process.env.GEMINI_MODEL?.trim(),
+      "gemini-3.5-flash-lite",
+      "gemini-flash-lite-latest",
       "gemini-3.6-flash",
       "gemini-3.5-flash",
-      "gemini-3.5-flash-lite",
       "gemini-3.8-flash",
       "gemini-3.7-flash",
       "gemini-flash-latest",
-      "gemini-flash-lite-latest",
     ].filter((m): m is string => Boolean(m)),
   ),
 );
@@ -149,6 +150,23 @@ function buildPortfolioFallbackReply(
   return `Hi! **Reda Salem** is a **Full-Stack Software Engineer** (2.5+ years, Remote · UTC+2) specializing in **React, Next.js, TypeScript, Node.js, PostgreSQL, MongoDB, Redis, Docker, and MCP**.\n\n- **Top Projects:** Veycraft v2.4.0, C4R Car Rental, Apex Athletics, RankBoost, PRO-BOT.\n- **Resume:** https://reda-website.vercel.app/download\n- **Contact:** ${email} | WhatsApp: https://wa.me/201121696299`;
 }
 
+function withTimeout<T>(promise: Promise<T>, timeoutMs: number): Promise<T> {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  return Promise.race([
+    promise,
+    new Promise<never>((_, reject) => {
+      timer = setTimeout(
+        () => reject(new Error(`Gemini request timed out after ${timeoutMs}ms`)),
+        timeoutMs,
+      );
+    }),
+  ]).finally(() => {
+    if (timer !== undefined) {
+      clearTimeout(timer);
+    }
+  });
+}
+
 export async function getGeminiResponse(
   prompt: string,
   history: ChatTurn[] = [],
@@ -178,7 +196,10 @@ export async function getGeminiResponse(
         history: validHistory,
       });
 
-      const result = await chat.sendMessage(prompt);
+      const result = await withTimeout(
+        chat.sendMessage(prompt),
+        GEMINI_REQUEST_TIMEOUT_MS,
+      );
       const response = await result.response;
       const text = response.text().trim();
       if (text) {
