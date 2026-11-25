@@ -169,7 +169,7 @@ export async function getGeminiResponse(
         model: modelName,
         systemInstruction,
         generationConfig: {
-          maxOutputTokens: 1200,
+          maxOutputTokens: 4096,
           temperature: 0.65,
         },
       });
