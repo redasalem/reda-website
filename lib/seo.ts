@@ -36,28 +36,30 @@ export const SITE_VIEWPORT: Viewport = {
 
 export const ENGLISH_KEYWORDS: string[] = [
   "Reda Salem",
+  "Full-Stack Software Engineer",
   "Full-Stack Engineer",
   "Full-Stack Developer Egypt",
-  "React Developer Egypt",
+  "React Developer",
   "Next.js Developer",
-  "React Native Developer",
-  "Performance Optimization Engineer",
-  "Google PageSpeed 99",
-  "Scalable Web Applications",
-  "Remote JavaScript Developer",
   "TypeScript Full-Stack Developer",
   "Node.js Backend Developer",
-  "Frontend Developer Cairo",
+  "PostgreSQL",
+  "MongoDB",
+  "Redis",
+  "Docker",
+  "BullMQ",
+  "CI/CD",
+  "Model Context Protocol",
+  "MCP Server Developer",
+  "Playwright",
+  "Jest",
+  "GitHub Actions",
+  "Stripe Connect",
+  "Scalable Web Applications",
   "Remote Full-Stack Developer",
   "Freelance React Developer",
-  "Web Developer for hire",
-  "Tailwind CSS Specialist",
-  "UI/UX Developer",
-  "Responsive Web Design",
-  "E-commerce Website Developer",
   "SaaS Application Developer",
-  "Dashboard UI Developer",
-  "Custom Web Application Development",
+  "E-commerce Website Developer",
 ];
 
 const NOINDEX_FOLLOW_ROBOTS: NonNullable<Metadata["robots"]> = {
@@ -82,11 +84,11 @@ export const BASE_METADATA: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default:
-      "Reda Salem | Performance Optimization Engineer & React Developer",
-    template: "%s | Reda Salem - Full-Stack Engineer",
+      "Reda Salem | Full-Stack Software Engineer (React, Next.js, TypeScript, Node.js)",
+    template: "%s | Reda Salem - Full-Stack Software Engineer",
   },
   description:
-    "Hire Reda Salem, a Remote Full-Stack JavaScript Developer & Performance Optimization Engineer specializing in high-speed, scalable web and mobile applications using React, Next.js, TypeScript, React Native, and Node.js.",
+    "Reda Salem is a Full-Stack Software Engineer (2.5+ years, Remote) building production web applications, SaaS platforms, REST APIs, and MCP developer tooling with React, Next.js, TypeScript, Node.js, PostgreSQL, MongoDB, Redis, and Docker.",
   keywords: ENGLISH_KEYWORDS,
   authors: [
     {
@@ -204,33 +206,27 @@ export const AR_BASE_METADATA: Metadata = {
 
 export const EN_HOME_METADATA: Metadata = {
   title:
-    "Reda Salem | Performance Optimization Engineer & React Developer",
+    "Reda Salem | Full-Stack Software Engineer (React, Next.js, TypeScript, Node.js)",
   description:
-    "Hire Reda Salem, a Remote Full-Stack JavaScript Developer & Performance Optimization Engineer. Achieving 99/100 Google PageSpeed scores, I build scalable web and mobile applications using React, Next.js, TypeScript, React Native, and Node.js.",
+    "Full-Stack Software Engineer (2.5+ years, Remote) building production web applications, multi-vendor marketplaces, SaaS systems, REST APIs, and MCP workflows with React, Next.js, TypeScript, Node.js, PostgreSQL, MongoDB, Redis, and Docker.",
   keywords: ENGLISH_KEYWORDS,
   alternates: buildEnglishAlternates("/"),
   openGraph: {
     type: "website",
     locale: "en_US",
     url: SITE_URL,
-    siteName: "Reda Salem - Professional Portfolio",
-    title: "Reda Salem | Performance Optimization Engineer & React Developer",
+    siteName: "Reda Salem - Full-Stack Software Engineer",
+    title:
+      "Reda Salem | Full-Stack Software Engineer (React, Next.js, TypeScript, Node.js)",
     description:
-      "Hire Reda Salem, a Remote Full-Stack JavaScript Developer & Performance Optimization Engineer building high-speed, scalable web applications with React, Next.js, and Node.js.",
+      "Full-Stack Software Engineer building production web apps, SaaS platforms, REST APIs, and MCP developer tools with React, Next.js, TypeScript, Node.js, PostgreSQL, MongoDB, Redis, and Docker.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Reda Salem - Full-Stack Engineer Portfolio showcasing modern web and mobile applications",
+        alt: "Reda Salem - Full-Stack Software Engineer Portfolio",
         type: "image/png",
-      },
-      {
-        url: "/images/reda.jpeg",
-        width: 800,
-        height: 800,
-        alt: "Reda Salem - Full-Stack Engineer",
-        type: "image/jpeg",
       },
     ],
   },
@@ -238,9 +234,10 @@ export const EN_HOME_METADATA: Metadata = {
     card: "summary_large_image",
     site: "@redasalem",
     creator: "@redasalem",
-    title: "Reda Salem | Performance Optimization Engineer & React Developer",
+    title:
+      "Reda Salem | Full-Stack Software Engineer (React, Next.js, TypeScript, Node.js)",
     description:
-      "Achieving Google PageSpeed 99 on scalable web apps using React, Next.js, TypeScript, and Node.js.",
+      "Building production web apps, SaaS platforms, REST APIs, and MCP workflows with React, Next.js, TypeScript, Node.js, PostgreSQL, MongoDB, Redis, and Docker.",
     images: {
       url: "/og-image.png",
       alt: "Reda Salem Portfolio",
@@ -410,32 +407,40 @@ export function getLocalizedSchemas(
     url: SITE_URL,
     image: {
       "@type": "ImageObject",
-      url: `${SITE_URL}/images/reda.jpeg`,
-      width: 800,
-      height: 800,
+      url: `${SITE_URL}/og-image.png`,
+      width: 1200,
+      height: 630,
       caption: isAr
         ? "رضا سالم - مهندس برمجيات Full-Stack"
-        : "Reda Salem - Full-Stack Engineer",
+        : "Reda Salem - Full-Stack Software Engineer",
     },
     jobTitle: isAr
-      ? "مهندس برمجيات Full-Stack ومتخصص تحسين الأداء"
-      : "Full-Stack Engineer & Performance Optimization Specialist",
+      ? "مهندس برمجيات Full-Stack"
+      : "Full-Stack Software Engineer",
     worksFor: {
       "@type": "Organization",
       name: "Freelance / Remote",
     },
     description: isAr
-      ? "مطور برمجيات Full-Stack ومتخصص في تحسين سرعة وأداء تطبيقات الويب والموبايل باستخدام React وNext.js وReact Native وNode.js."
-      : "Remote JavaScript Developer and Performance Optimization Engineer achieving 99/100 PageSpeed scores. Specializing in scalable web applications, React, Next.js, React Native, and Node.js.",
+      ? "مهندس برمجيات Full-Stack متخصص في بناء تطبيقات الويب ومنصات SaaS وواجهات REST APIs وأنظمة MCP باستخدام React وNext.js وTypeScript وNode.js وPostgreSQL وMongoDB وRedis وDocker."
+      : "Full-Stack Software Engineer (2.5+ years, Remote) building production web applications, SaaS platforms, REST APIs, and MCP developer tooling using React, Next.js, TypeScript, Node.js, PostgreSQL, MongoDB, Redis, and Docker.",
     knowsAbout: [
       "React.js",
       "Next.js",
-      "React Native",
       "TypeScript",
       "JavaScript",
       "Node.js",
       "Express.js",
+      "PostgreSQL",
       "MongoDB",
+      "Redis",
+      "BullMQ",
+      "Docker",
+      "CI/CD",
+      "GitHub Actions",
+      "Model Context Protocol (MCP)",
+      "Playwright",
+      "Jest",
       "Tailwind CSS",
       "Web Performance Optimization",
       "SEO Optimization",
@@ -456,7 +461,8 @@ export function getLocalizedSchemas(
     sameAs: [
       "https://github.com/redasalem",
       "https://www.linkedin.com/in/reda-salem-dev/",
-      "https://redasalem.github.io/Reda_Salem_Portfolio/",
+      "https://www.npmjs.com/package/veycraft",
+      "https://glama.ai/mcp/servers/redasalem/veycraft",
       "https://x.com/salem_reda81609",
       "https://dev.to/redasalem",
       "https://medium.com/@redasalem",
@@ -464,8 +470,7 @@ export function getLocalizedSchemas(
     ],
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Cairo",
-      addressRegion: "Cairo Governorate",
+      addressLocality: "Egypt",
       addressCountry: "EG",
     },
     contactPoint: {
@@ -513,14 +518,14 @@ export function getLocalizedSchemas(
         : "Download Resume | Reda Salem - Full-Stack Engineer"
       : isAr
         ? "رضا سالم | مهندس برمجيات Full-Stack ومطور React و Next.js في مصر"
-        : "Reda Salem | Performance Optimization Engineer & React Developer",
+        : "Reda Salem | Full-Stack Software Engineer (React, Next.js, TypeScript, Node.js)",
     description: isDownload
       ? isAr
         ? "حمّل السيرة الذاتية المعتمدة للمهندس رضا سالم — خبرة عملية في تطوير تطبيقات الويب والموبايل باستخدام React و Next.js و Node.js."
-        : "Download Reda Salem's resume and certificates. Full-Stack Engineer specializing in React, Next.js, TypeScript, and Node.js."
+        : "Download Reda Salem's resume and certificates. Full-Stack Software Engineer specializing in React, Next.js, TypeScript, and Node.js."
       : isAr
         ? "تواصل مع المهندس رضا سالم، مطور برمجيات Full-Stack متخصص في بناء تطبيقات الويب والموبايل فائقة السرعة باستخدام React و Next.js و Node.js."
-        : "Hire Reda Salem, a Remote Full-Stack JavaScript Developer & Performance Optimization Engineer building scalable web and mobile applications.",
+        : "Full-Stack Software Engineer building production web apps, SaaS platforms, REST APIs, and MCP developer tooling.",
     inLanguage,
     isPartOf: {
       "@id": `${SITE_URL}/#website`,
@@ -540,10 +545,10 @@ export function getLocalizedSchemas(
     name: isAr
       ? "رضا سالم — خدمات هندسة وتطوير البرمجيات"
       : "Reda Salem - Full-Stack Engineering Services",
-    image: `${SITE_URL}/images/reda.jpeg`,
+    image: `${SITE_URL}/og-image.png`,
     description: isAr
-      ? "خدمات تطوير تطبيقات الويب والموبايل المتكاملة باستخدام React وNext.js وNode.js وReact Native."
-      : "Professional full-stack development services specializing in Backend (Node.js, Express, MongoDB), Frontend (React, Next.js), and Mobile App Development (React Native).",
+      ? "خدمات تطوير تطبيقات الويب ومنصات SaaS وواجهات REST APIs باستخدام React وNext.js وTypeScript وNode.js وPostgreSQL وMongoDB وRedis."
+      : "Full-Stack Software Engineering services specializing in Next.js, React, TypeScript, Node.js, Express, PostgreSQL, MongoDB, Redis, Docker, and MCP workflows.",
     address: {
       "@type": "PostalAddress",
       addressCountry: "EG",

@@ -1,7 +1,6 @@
 "use client";
 
 import React, { memo, useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import {
   Award,
@@ -131,7 +130,7 @@ const Sidebar = memo(function Sidebar({
         </button>
       </div>
 
-      {/* Avatar & Profile */}
+      {/* Developer Identity Emblem & Profile */}
       <div
         className={`text-center transition-all duration-300 ${
           isExpanded ? "mb-6" : "mb-5 flex flex-col items-center"
@@ -142,24 +141,80 @@ const Sidebar = memo(function Sidebar({
             isExpanded ? "mb-4" : "mb-0"
           }`}
         >
-          {/* Animated gradient ring around avatar */}
           <div
-            className={`relative rounded-full overflow-hidden border-2 avatar-ring transition-all duration-300 shadow-xl ${
-              isExpanded ? "w-24 h-24" : "w-12 h-12"
+            role="img"
+            aria-label={`${settings.heroName} - ${settings.heroTitle}`}
+            className={`group/emblem relative rounded-2xl overflow-hidden border border-brand-mint-500/35 bg-gradient-to-br from-[#060c18] via-[#0a1324] to-[#040811] transition-all duration-300 hover:scale-105 hover:border-brand-mint-400/60 flex items-center justify-center shadow-xl ${
+              isExpanded ? "w-24 h-24" : "w-12 h-12 rounded-xl"
             }`}
             style={{
               boxShadow:
-                "0 0 20px rgba(0, 200, 130, 0.25), 0 0 35px rgba(139, 92, 246, 0.15)",
+                "0 0 24px rgba(0, 224, 142, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.08)",
             }}
           >
-            <Image
-              src={settings.avatarUrl || "/images/reda.jpeg"}
-              alt={`${settings.heroName} - ${settings.heroTitle}`}
-              fill
-              priority
-              sizes={isExpanded ? "96px" : "48px"}
-              className="object-cover"
+            <span
+              className="absolute inset-0 bg-[radial-gradient(circle_at_25%_20%,rgba(0,224,142,0.22),transparent_55%),radial-gradient(circle_at_80%_85%,rgba(6,182,212,0.2),transparent_55%)] pointer-events-none"
+              aria-hidden="true"
             />
+            <svg
+              viewBox="0 0 96 96"
+              className={`relative z-10 transition-transform duration-300 group-hover/emblem:scale-105 ${
+                isExpanded ? "w-16 h-16" : "w-8 h-8"
+              }`}
+              fill="none"
+              aria-hidden="true"
+            >
+              <defs>
+                <linearGradient id="rsEmblemGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#00e08e" />
+                  <stop offset="55%" stopColor="#06b6d4" />
+                  <stop offset="100%" stopColor="#8b5cf6" />
+                </linearGradient>
+              </defs>
+              <rect
+                x="6"
+                y="6"
+                width="84"
+                height="84"
+                rx="18"
+                stroke="url(#rsEmblemGrad)"
+                strokeWidth="1.75"
+                strokeOpacity="0.45"
+              />
+              <path
+                d="M27 33L16 48L27 63"
+                stroke="#00e08e"
+                strokeWidth="4.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M69 33L80 48L69 63"
+                stroke="#06b6d4"
+                strokeWidth="4.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M52 27L42 69"
+                stroke="url(#rsEmblemGrad)"
+                strokeWidth="3.8"
+                strokeLinecap="round"
+              />
+              <text
+                x="48"
+                y="54"
+                textAnchor="middle"
+                fill="#f8fafc"
+                fontSize="20"
+                fontWeight="800"
+                fontFamily="ui-monospace, SFMono-Regular, Menlo, monospace"
+                letterSpacing="-1"
+              >
+                RS
+              </text>
+              <circle cx="77" cy="19" r="3.5" fill="#00e08e" />
+            </svg>
           </div>
         </div>
 
@@ -167,7 +222,7 @@ const Sidebar = memo(function Sidebar({
         <div
           className={`transition-all duration-300 ${
             isExpanded
-              ? "opacity-100 translate-y-0 max-h-32 mt-2"
+              ? "opacity-100 translate-y-0 max-h-40 mt-2"
               : "opacity-0 -translate-y-4 max-h-0 overflow-hidden pointer-events-none"
           }`}
         >
@@ -184,6 +239,13 @@ const Sidebar = memo(function Sidebar({
           <p className="text-xs mt-1 text-muted-foreground">
             {settings.sidebarTagline}
           </p>
+          <div className="mt-2.5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-brand-mint-500/10 border border-brand-mint-500/25 text-[11px] font-semibold text-brand-mint-300">
+            <span className="relative flex h-2 w-2" aria-hidden="true">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-mint-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-mint-400" />
+            </span>
+            <span>{isRtl ? "عن بُعد · UTC+2" : "Remote · UTC+2"}</span>
+          </div>
         </div>
       </div>
 

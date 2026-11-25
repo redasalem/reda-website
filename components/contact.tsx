@@ -48,24 +48,28 @@ const Contact = memo(function Contact({
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setResult(true);
-    const formDataObj = new FormData(event.currentTarget);
-    formDataObj.append("access_key", `${process.env.NEXT_PUBLIC_WEBFORMS}`);
+    try {
+      const formDataObj = new FormData(event.currentTarget);
+      formDataObj.append("access_key", `${process.env.NEXT_PUBLIC_WEBFORMS || ""}`);
 
-    const response = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      body: formDataObj,
-    });
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formDataObj,
+      });
 
-    const data = await response.json();
-    if (data.success) {
-      setResult(false);
-      setFormData({ name: "", email: "", subject: "", message: "" });
-      setSubmitStatus("success");
-      setTimeout(() => setSubmitStatus("idle"), 3000);
-    } else {
-      setResult(false);
+      const data = await response.json();
+      if (response.ok && data.success) {
+        setFormData({ name: "", email: "", subject: "", message: "" });
+        setIsValidEmail(false);
+        setSubmitStatus("success");
+      } else {
+        setSubmitStatus("error");
+      }
+    } catch {
       setSubmitStatus("error");
-      setTimeout(() => setSubmitStatus("idle"), 3000);
+    } finally {
+      setResult(false);
+      setTimeout(() => setSubmitStatus("idle"), 3500);
     }
   };
 
@@ -194,6 +198,7 @@ const Contact = memo(function Contact({
                   id="contact-name"
                   type="text"
                   name="name"
+                  autoComplete="name"
                   value={formData.name}
                   onChange={handleChange}
                   required
@@ -214,6 +219,7 @@ const Contact = memo(function Contact({
                   id="contact-email"
                   type="email"
                   name="email"
+                  autoComplete="email"
                   value={formData.email}
                   onChange={handleChange}
                   required

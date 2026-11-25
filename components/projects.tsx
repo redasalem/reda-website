@@ -88,7 +88,9 @@ const ProjectCard = memo(function ProjectCard({
     };
   }, [resetTilt]);
 
+  const [expanded, setExpanded] = useState(false);
   const showFeatured = project.featured !== false;
+  const hasLongDescription = project.description.trim().length > 130;
 
   return (
     <div
@@ -149,14 +151,27 @@ const ProjectCard = memo(function ProjectCard({
             <h3 className="text-xl md:text-2xl font-bold text-foreground grow transition-colors duration-300 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-brand-mint-400 group-hover:via-brand-cyan-400 group-hover:to-brand-violet-400 group-hover:bg-clip-text">
               {project.title}
             </h3>
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-brand-mint-500/10 to-brand-violet-500/10 flex items-center justify-center text-brand-mint-400 font-bold transition-all duration-300 group-hover:rotate-45 group-hover:from-brand-mint-500/20 group-hover:to-brand-violet-500/20">
-              <ExternalLink size={16} />
-            </div>
           </div>
 
-          <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2 transition-opacity duration-300 group-hover:opacity-70">
-            {project.description}
-          </p>
+          <div className="space-y-2">
+            <p
+              className={`text-muted-foreground text-sm leading-relaxed transition-opacity duration-300 ${
+                expanded ? "" : "line-clamp-2 group-hover:opacity-80"
+              }`}
+            >
+              {project.description}
+            </p>
+            {hasLongDescription ? (
+              <button
+                type="button"
+                onClick={() => setExpanded((prev) => !prev)}
+                className="cursor-pointer text-xs font-semibold text-brand-mint-400 hover:text-brand-mint-300 transition-colors"
+                aria-expanded={expanded}
+              >
+                {expanded ? t.projects.showLess : t.projects.readMore}
+              </button>
+            ) : null}
+          </div>
 
           <div className="grow" />
 

@@ -11,6 +11,7 @@ import {
   writeBatch,
   getDocs,
 } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 import { getFirebaseApp } from "@/config/firebase";
 import {
   type ProjectData,
@@ -31,16 +32,20 @@ function getAdminDb() {
 
 export async function triggerPublicCacheRefresh(): Promise<void> {
   try {
-    const secret =
-      process.env.NEXT_PUBLIC_REVALIDATION_SECRET ||
-      process.env.REVALIDATION_SECRET ||
-      "";
-    await fetch("/api/revalidate", {
+    const auth = getAuth(getFirebaseApp());
+    const idToken = await auth.currentUser?.getIdToken();
+    const headers: Record<string, string> = {};
+    if (idToken) {
+      headers.Authorization = `Bearer ${idToken}`;
+    }
+
+    const res = await fetch("/api/revalidate", {
       method: "POST",
-      headers: {
-        "x-revalidate-secret": secret,
-      },
+      headers,
     });
+    if (!res.ok) {
+      console.warn("Cache refresh status:", res.status);
+    }
   } catch (err) {
     console.warn("Cache refresh notice:", err);
   }
