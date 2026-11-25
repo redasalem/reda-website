@@ -50,7 +50,7 @@ export default function PortfolioLanding({
         socials={snapshot.socials}
       />
 
-      <main className="flex-1 relative w-full overflow-x-hidden">
+      <main className="flex-1 min-w-0 relative w-full overflow-x-hidden">
         <div className="w-full">
           <BottomNavbar locale={locale} />
           <Hero

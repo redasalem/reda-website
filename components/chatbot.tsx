@@ -173,10 +173,11 @@ const ChatBot = memo(function ChatBot({ defaultOpen = false }: ChatBotProps) {
       ]);
     } catch (error) {
       console.error("Error fetching Gemini response:", error);
+      const useArabicError = isArabicPage || hasArabicCharacters(prompt);
       setMessages((previousMessages) => [
         ...previousMessages,
         {
-          text: isArabicPage
+          text: useArabicError
             ? "عذراً، المساعد الذكي غير متصل حالياً. يمكنك التواصل مع رضا مباشرة عبر واتساب +201121696299 أو البريد redasalem287@gmail.com."
             : "Sorry, I am currently unavailable. You can reach Reda directly via WhatsApp at +201121696299 or email redasalem287@gmail.com.",
           sender: "ai",

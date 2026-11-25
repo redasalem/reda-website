@@ -10,6 +10,13 @@ import React, {
 } from "react";
 import Image from "next/image";
 import { Code, Code2, ExternalLink, Sparkles } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { getProjects, type ProjectData } from "@/lib/firestore";
 import { initialProjects } from "@/data/projects";
 import { siteDictionary, type Locale } from "@/lib/i18n";
@@ -17,10 +24,12 @@ import { siteDictionary, type Locale } from "@/lib/i18n";
 const ProjectCard = memo(function ProjectCard({
   project,
   locale = "en",
+  onOpenDetails,
 }: {
   project: ProjectData;
   index: number;
   locale?: Locale;
+  onOpenDetails: (project: ProjectData) => void;
 }) {
   const surfaceRef = useRef<HTMLDivElement>(null);
   const frameRef = useRef<number | null>(null);
@@ -88,7 +97,6 @@ const ProjectCard = memo(function ProjectCard({
     };
   }, [resetTilt]);
 
-  const [expanded, setExpanded] = useState(false);
   const showFeatured = project.featured !== false;
   const hasLongDescription = project.description.trim().length > 130;
 
@@ -154,21 +162,16 @@ const ProjectCard = memo(function ProjectCard({
           </div>
 
           <div className="space-y-2">
-            <p
-              className={`text-muted-foreground text-sm leading-relaxed transition-opacity duration-300 ${
-                expanded ? "" : "line-clamp-2 group-hover:opacity-80"
-              }`}
-            >
+            <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2 transition-opacity duration-300 group-hover:opacity-80">
               {project.description}
             </p>
             {hasLongDescription ? (
               <button
                 type="button"
-                onClick={() => setExpanded((prev) => !prev)}
+                onClick={() => onOpenDetails(project)}
                 className="cursor-pointer text-xs font-semibold text-brand-mint-400 hover:text-brand-mint-300 transition-colors"
-                aria-expanded={expanded}
               >
-                {expanded ? t.projects.showLess : t.projects.readMore}
+                {t.projects.readMore}
               </button>
             ) : null}
           </div>
@@ -233,6 +236,7 @@ const Projects = memo(function Projects({
   const [projects, setProjects] = useState<ProjectData[]>(
     initialData && initialData.length > 0 ? initialData : initialProjects,
   );
+  const [selectedProject, setSelectedProject] = useState<ProjectData | null>(null);
   const t = siteDictionary[locale];
 
   // Also refresh client-side so newly added projects appear immediately even before ISR cache expires
@@ -306,9 +310,81 @@ const Projects = memo(function Projects({
               project={project}
               index={index}
               locale={locale}
+              onOpenDetails={setSelectedProject}
             />
           ))}
         </div>
+
+        <Dialog
+          open={Boolean(selectedProject)}
+          onOpenChange={(open) => {
+            if (!open) setSelectedProject(null);
+          }}
+        >
+          <DialogContent className="sm:max-w-2xl bg-slate-950/95 border border-white/15 backdrop-blur-2xl text-foreground p-0 overflow-hidden rounded-3xl">
+            {selectedProject ? (
+              <div className="flex flex-col max-h-[85vh]">
+                <div className="relative h-56 w-full shrink-0 overflow-hidden border-b border-white/10">
+                  <Image
+                    src={selectedProject.image || "/images/placeholder.png"}
+                    alt={selectedProject.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 672px"
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
+                </div>
+
+                <div className="p-6 space-y-5 overflow-y-auto">
+                  <DialogHeader className="text-left space-y-2">
+                    <DialogTitle className="text-xl sm:text-2xl font-bold text-white leading-snug">
+                      {selectedProject.title}
+                    </DialogTitle>
+                    <DialogDescription className="text-sm text-muted-foreground leading-relaxed whitespace-pre-line">
+                      {selectedProject.description}
+                    </DialogDescription>
+                  </DialogHeader>
+
+                  <div className="flex flex-wrap gap-2">
+                    {selectedProject.tech.map((techItem) => (
+                      <span
+                        key={`${selectedProject.id}-modal-${techItem}`}
+                        className="px-2.5 py-1 rounded-lg bg-brand-mint-500/10 text-brand-mint-300 text-xs font-bold border border-brand-mint-500/20 uppercase tracking-tight"
+                      >
+                        {techItem}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="flex flex-wrap gap-3 pt-2">
+                    {selectedProject.demo ? (
+                      <a
+                        href={selectedProject.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-gradient flex-1 !py-3 !text-xs"
+                      >
+                        <ExternalLink size={16} />
+                        {t.projects.demoBtn}
+                      </a>
+                    ) : null}
+                    {selectedProject.code ? (
+                      <a
+                        href={selectedProject.code}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-secondary flex-1 !py-3 !text-xs"
+                      >
+                        <Code2 size={16} />
+                        {t.projects.codeBtn}
+                      </a>
+                    ) : null}
+                  </div>
+                </div>
+              </div>
+            ) : null}
+          </DialogContent>
+        </Dialog>
 
         {projects.length > 0 ? (
           <div className="text-center mt-16 md:mt-20">

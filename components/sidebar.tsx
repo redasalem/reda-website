@@ -94,7 +94,7 @@ const Sidebar = memo(function Sidebar({
 
   return (
     <aside
-      className={`hidden sm:flex sticky top-0 h-screen bg-slate-950/85 backdrop-blur-2xl text-sidebar-foreground ${
+      className={`hidden sm:flex shrink-0 sticky top-0 h-screen bg-slate-950/85 backdrop-blur-2xl text-sidebar-foreground ${
         isRtl ? "right-0 border-l" : "left-0 border-r"
       } border-white/10 flex-col z-40 overflow-y-auto overflow-x-hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden transition-all duration-300 ${
         isExpanded ? "w-72 p-6" : "w-20 px-3 py-5 items-center"

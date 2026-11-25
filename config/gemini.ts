@@ -1,12 +1,22 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { SYSTEM_INSTRUCTION } from "./prompt";
-import { getPortfolioSnapshot } from "@/lib/firestore";
+import { getPortfolioSnapshot, type PortfolioSnapshot } from "@/lib/firestore";
 
 if (typeof window !== "undefined") {
   throw new Error("config/gemini.ts must only be imported on the server.");
 }
 
 const GOOGLE_API_KEY = process.env.GEMINI_API_KEY;
+const GEMINI_MODEL_CANDIDATES = Array.from(
+  new Set(
+    [
+      process.env.GEMINI_MODEL?.trim(),
+      "gemini-3.8-flash",
+      "gemini-3.8-flash-lite",
+      "gemini-2.5-flash",
+    ].filter((m): m is string => Boolean(m)),
+  ),
+);
 
 export interface ChatTurn {
   role: "user" | "model";
@@ -28,12 +38,6 @@ function getGenAI(): GoogleGenerativeAI {
   return genAI;
 }
 
-/**
- * Builds a rich system instruction that combines:
- * 1. Custom prompt from /admin/ai (or SYSTEM_INSTRUCTION fallback)
- * 2. Live Firestore snapshot (projects, skills, certificates, CV link, contact info)
- * so the AI always knows about newly added projects or updated links immediately.
- */
 async function buildLiveSystemInstruction(): Promise<string> {
   if (
     cachedDynamicInstruction &&
@@ -69,7 +73,7 @@ async function buildLiveSystemInstruction(): Promise<string> {
       .join("\n");
 
     const certsContext = certificates
-      .map((c) => `- ${c.title} (${c.issuer}, ${c.date}) — ${c.description}`)
+      .map((c) => `- ${c.title} (${c.issuer}, ${c.date}) - ${c.description}`)
       .join("\n");
 
     const socialsContext = socials
@@ -111,22 +115,41 @@ ${socialsContext}
   }
 }
 
+function buildPortfolioFallbackReply(
+  prompt: string,
+  snapshot: PortfolioSnapshot | null,
+): string {
+  const isArabic = /[\u0600-\u06FF]/.test(prompt);
+  const lower = prompt.toLowerCase();
+  const topProjects = (snapshot?.projects || []).slice(0, 4);
+  const email = snapshot?.settings.email || "redasalem287@gmail.com";
+  const phone = snapshot?.settings.phoneDisplay || "+20 112 169 6299";
+
+  if (isArabic) {
+    if (lower.includes("مشاريع") || lower.includes("project")) {
+      const list = topProjects
+        .map((p) => `- **${p.title}**: ${p.demo || p.code}`)
+        .join("\n");
+      return `أهلاً بك! هذه أبرز مشاريع **رضا سالم** (${snapshot?.settings.heroTitle || "Full-Stack Software Engineer"}):\n\n${list}\n\nللتفاصيل أو عرض عمل: **${email}** أو واتساب **https://wa.me/201121696299**`;
+    }
+    return `أهلاً بك! أنا المساعد التقني لبورتفوليو **رضا سالم** (${snapshot?.settings.heroTitle || "Full-Stack Software Engineer"}).\n\n- **التقنيات الأساسية:** React، Next.js، TypeScript، Node.js، PostgreSQL، MongoDB، Redis، Docker، وMCP.\n- **أبرز المشاريع:** Veycraft v2.4.0، C4R Car Rental، Apex Athletics، RankBoost، PRO-BOT.\n- **التواصل المباشر:** ${email} | واتساب: https://wa.me/201121696299`;
+  }
+
+  if (lower.includes("project") || lower.includes("work")) {
+    const list = topProjects
+      .map((p) => `- **${p.title}**: ${p.demo || p.code}`)
+      .join("\n");
+    return `Here are **Reda Salem's** top shipped projects:\n\n${list}\n\nReach Reda directly at **${email}** or WhatsApp **https://wa.me/201121696299** (${phone}).`;
+  }
+
+  return `Hi! **Reda Salem** is a **Full-Stack Software Engineer** (2.5+ years, Remote · UTC+2) specializing in **React, Next.js, TypeScript, Node.js, PostgreSQL, MongoDB, Redis, Docker, and MCP**.\n\n- **Top Projects:** Veycraft v2.4.0, C4R Car Rental, Apex Athletics, RankBoost, PRO-BOT.\n- **Resume:** https://reda-website.vercel.app/download\n- **Contact:** ${email} | WhatsApp: https://wa.me/201121696299`;
+}
+
 export async function getGeminiResponse(
   prompt: string,
   history: ChatTurn[] = [],
 ): Promise<string> {
   const systemInstruction = await buildLiveSystemInstruction();
-
-  const model = getGenAI().getGenerativeModel({
-    model: "gemini-2.5-flash",
-    systemInstruction,
-    generationConfig: {
-      maxOutputTokens: 1200,
-      temperature: 0.65,
-    },
-  });
-
-  // Use multi-turn chat when conversation history is present
   const validHistory = history
     .slice(-10)
     .filter((h) => h.text && h.text.trim().length > 0)
@@ -135,11 +158,35 @@ export async function getGeminiResponse(
       parts: [{ text: h.text }],
     }));
 
-  const chat = model.startChat({
-    history: validHistory,
-  });
+  let lastError: unknown = null;
+  for (const modelName of GEMINI_MODEL_CANDIDATES) {
+    try {
+      const model = getGenAI().getGenerativeModel({
+        model: modelName,
+        systemInstruction,
+        generationConfig: {
+          maxOutputTokens: 1200,
+          temperature: 0.65,
+        },
+      });
 
-  const result = await chat.sendMessage(prompt);
-  const response = await result.response;
-  return response.text();
+      const chat = model.startChat({
+        history: validHistory,
+      });
+
+      const result = await chat.sendMessage(prompt);
+      const response = await result.response;
+      const text = response.text().trim();
+      if (text) {
+        return text;
+      }
+    } catch (err) {
+      lastError = err;
+      console.warn(`Gemini model "${modelName}" failed, trying next:`, err);
+    }
+  }
+
+  console.error("All Gemini model candidates failed:", lastError);
+  const snapshot = await getPortfolioSnapshot().catch(() => null);
+  return buildPortfolioFallbackReply(prompt, snapshot);
 }
